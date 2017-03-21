@@ -3,6 +3,7 @@ $select_btn_size: 140px;
     text-align: center;
     &-title{
         margin-bottom: 40px;
+        font-family: mont_l;
         font-size: 26px;
     }
     &-btn{
@@ -18,11 +19,15 @@ $select_btn_size: 140px;
         background-color: $light-color;
         
         font-size: 24px;
-
         
         box-shadow: 0 0 20px rgba($blue-color, 0.8);
         cursor: pointer;
 
+        transition: $transition-time;
+        &:hover{
+            color: inherit;
+            box-shadow: 0 0 50px rgba($blue-color, 0.8);
+        }
         &:after, &:before{
             z-index: 1;
             content: "";
@@ -54,7 +59,7 @@ $select_btn_size: 140px;
             animation-delay: 1s; 
             @keyframes select_btn_anim_after{
                 0%{
-                    opacity: 0.5;
+                    opacity: 0.3;
                 }
                 100%{
                     width: $select_btn_size + $select_btn_size / 4;

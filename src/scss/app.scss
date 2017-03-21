@@ -1,0 +1,23 @@
+.app{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: stretch;
+    flex-wrap: wrap;
+    &-toolbar{
+        flex: 1;
+        .toolbar{
+            min-height: 100%;
+        }
+    }
+    &-test{
+        flex: 2;
+        padding: 20px;
+        text-align: justify;
+    }
+    @media screen and (max-width: 900px){
+        &-toolbar{
+            flex-basis: 100%;
+        }
+    }
+}

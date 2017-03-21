@@ -1,0 +1,51 @@
+.toolbar{
+    box-sizing: border-box;
+    padding: 40px 40px;
+    border: 2px solid $yellow-color;
+    border-left: none;
+    background-color: $blue-color;
+    color: $light-color;
+    &-title{
+        margin-bottom: 20px;
+        color: $yellow-color;
+        font-size: 24px;
+        text-transform: capitalize;
+    }
+    &-select{
+        margin-bottom: 10px;
+        box-sizing: border-box;
+        padding: 2px 4px;
+        width: 100%;
+        //border: 2px solid $light-color;
+
+        color: $dark-color;
+        font-size: 18px;
+        outline: none;
+
+        //transition: $transition-time;
+        &:hover{
+            //border-color: $yellow-color;
+            //background-color: $yellow-color;
+        }
+        &:last-of-type{
+            margin-bottom: 20px;
+        }
+    }
+    &-submit{
+        min-width: 70px;
+        font-size: 18px;
+        padding: 5px 10px;
+
+        background-color: $yellow-color;
+        color: $dark-color;
+        text-transform: uppercase;
+        outline: none;
+
+        cursor: pointer;
+
+        transition: $transition-time;
+        &:hover{
+            box-shadow: 0 0 10px rgba($yellow-color, 0.7);
+        }
+    }
+}

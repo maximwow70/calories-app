@@ -1,0 +1,44 @@
+$loading-size: 100px;
+$loading-border-size: 3px;
+.loading{
+    position: relative;
+    width: $loading-size; 
+    height: $loading-size;
+    line-height: $loading-size;
+    border-radius: 50%;
+    border-top: $loading-border-size solid $blue-color;
+    border-bottom: $loading-border-size solid $blue-color;
+    //border-right: none;
+
+    color: $blue-color;
+    text-align: center;
+
+    &:after{
+        content: "";
+
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        display: block;
+        width: $loading-size;
+        height: $loading-size;
+        border-radius: 50%;
+        border-right: $loading-border-size solid $yellow-color;
+        border-left: $loading-border-size solid $yellow-color;
+
+        animation: loading 2s linear infinite;
+        @keyframes loading{
+            0%{
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+            50%{
+                transform: translate(-50%, -50%) rotate(180deg);
+            }
+            100%{
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
+    }
+}

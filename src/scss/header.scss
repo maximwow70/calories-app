@@ -11,4 +11,15 @@
         width: 50%;
         text-align: right;
     }
+    @media screen and (max-width: 800px){
+        padding: 10px 0;
+        &-logo{
+            width: 100%;
+            text-align: center;
+        }
+        &-info{
+            width: 100%;
+            text-align: center;
+        }
+    }
 }
