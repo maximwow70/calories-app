@@ -1,0 +1,26 @@
+@font-face{
+    font-family: mont_l;
+    src: url(../fonts/Montserrat-Light.otf);
+}
+@font-face{
+    font-family: mont_r;
+    src: url(../fonts/Montserrat-Regular.otf);
+}
+@font-face{
+    font-family: mont_m;
+    src: url(../fonts/Montserrat-Medium.otf);
+}
+@font-face{
+    font-family: mont_b;
+    src: url(../fonts/Montserrat-Bold.otf);
+}
+@font-face{
+    font-family: logo;
+    src: url(../fonts/EmilySmiles.ttf);
+}
+
+$font-stack: mont_r, Arial, sans-serif;
+
+$dark-color: rgb(44,54,63);
+$blue-color: rgb(47,102,101);
+$light-color: rgb(220,220,221);

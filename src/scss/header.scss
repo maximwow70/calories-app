@@ -1,0 +1,15 @@
+.header{
+    color: $light-color;
+    color: rgb(229,189,71);
+    &-logo{
+        display: inline-block;
+        vertical-align: middle;
+        width: 50%;
+    }
+    &-info{
+        display: inline-block;
+        vertical-align: middle;
+        width: 50%;
+        text-align: right;
+    }
+}
