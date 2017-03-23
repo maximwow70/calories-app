@@ -33,13 +33,14 @@ public class SQL {
         }
     }
     
-    public static ResultSet findDishById(int id){
+    public static ResultSet findComponents() throws SQLException {
         connect();
-        try{
+        return stat.executeQuery("SELECT * FROM Components;");
+    }
+    
+    public static ResultSet findDishById(int id) throws SQLException{
+        connect();
         return stat.executeQuery("SELECT * FROM Dishes WHERE DishID = "+id+";");
-        } catch(SQLException e ){
-        return null;
-        }
     }
     
     public static ResultSet findDishesByName(String name) throws SQLException {

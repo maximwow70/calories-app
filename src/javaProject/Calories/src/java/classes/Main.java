@@ -5,10 +5,10 @@
  */
 package classes;
 
+import com.google.gson.Gson;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.LinkedHashSet;
 
 /**
  *
@@ -16,13 +16,16 @@ import java.util.logging.Logger;
  */
 public class Main {
     public static void main(String... args) {
+        LinkedHashSet<Component> set = new LinkedHashSet<>();
+        ResultSet res = null;
         try {
-            ResultSet rs = SQL.findComponentsByDishId(1);
-            while(rs.next()) {
-                System.out.println(rs.getString("Name"));
-            }
-        } catch (Exception e) {
-            System.out.println("resSetError");
+            res = SQL.findComponents();
+            while(res.next()) {
+            set.add(new Component(res.getString("Name"),res.getInt("ComponentID")));
         }
+        } catch (SQLException ex) { }
+        Gson g = new Gson();
+        String s = g.toJson(set);
+        System.out.println(s);
     }
 }

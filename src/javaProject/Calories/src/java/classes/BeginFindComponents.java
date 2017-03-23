@@ -5,8 +5,15 @@
  */
 package classes;
 
+import com.google.gson.Gson;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.LinkedHashSet;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,8 +24,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author admin
  */
-@WebServlet(name = "Finder", urlPatterns = {"/Finder"})
-public class Finder extends HttpServlet {
+@WebServlet(name = "BeginFindComponents", urlPatterns = {"/BeginFindComponents"})
+public class BeginFindComponents extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -60,12 +67,18 @@ public class Finder extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text.html;charset=UTF-8");
+        LinkedHashSet<Component> set = new LinkedHashSet<>();
+        ResultSet res;
+        try {
+            res = SQL.findComponents();
+            while(res.next()) {
+            set.add(new Component(res.getString("Name"),res.getInt("ComponentID")));
+        }
+        } catch (SQLException ex) {}
         
-        Map<String,String[]> map = request.getParameterMap();
-        
-        String dishName = map.get("dishName")[0];
-        String[] names = map.get("names");
-        
+        Gson g = new Gson();
+        String str = g.toJson(set);
+        response.getWriter().write(str);
     }
 
     /**
