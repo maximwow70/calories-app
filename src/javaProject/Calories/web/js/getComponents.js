@@ -25,6 +25,19 @@ function newXMLHttpRequest() {
 function getSelectElements() {
     return document.querySelectorAll('.toolbar-select--components');
 }
+function setConponents(arr){
+    var selectElements = getSelectElements();
+    var components = arr;
+    for (var i = 0; i < selectElements.length; i++){
+        for (var j = 0; j < components.length; j++){
+            var componentName = components[j].name;
+            var option = document.createElement('option');
+            option.value = componentName;
+            option.innerHTML = componentName;
+            selectElements[i].appendChild(option);
+        }
+    }
+}
 function getComponents(){
     var components = [];
     var xhr = new newXMLHttpRequest();
@@ -34,46 +47,11 @@ function getComponents(){
     xhr.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200){
             components = JSON.parse(xhr.responseText);
-        }
-        else {
-            components = ['lal'];
+            setComponents(components);
         }
     }
-    return components;
+    //return components;
 }
 
-var selectElements = getSelectElements();
-var components = [];
-console.log(selectElements); //test
+getComponents();
 
-components = getComponents();
-console.log(components); //test
-/*
-components = [
-    {
-        name: 'ice'
-    },
-    {
-        name: 'visky'
-    },
-    {
-        name: 'coca-cola'
-    },
-    {
-        name: 'freash meat'
-    }
-];
-console.log(components);
-*/
-
-// set options
-for (var i = 0; i < selectElements.length; i++){
-    for (var j = 0; j < components.length; j++){
-        var componentName = components[j].name;
-        var option = document.createElement('option');
-        option.value = componentName;
-        option.innerHTML = componentName;
-        //console.log(selectElements);
-        selectElements[i].appendChild(option);
-    }
-}
