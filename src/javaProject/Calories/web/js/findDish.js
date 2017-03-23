@@ -25,7 +25,6 @@ function newXMLHttpRequest() {
 
 var toolbar = document.querySelector('.toolbar--find_dish');
 var control = document.querySelector('.toolbar-submit--find_dish');
-var dishList = document.querySelector('.item_list');
 
  
 function getSelectElements() {
@@ -48,9 +47,10 @@ function getDish(){
 	dish.names = dishComponents;
 	return dish;
 }
-//setDishes([{name: 'apple pie', components: [{id: 1, name: 'pie'},{id: 2,name: 'apple'}]}]);
+//setDishes([{name: 'apple pie', components: [{id: 1, name: 'pie', calories: 300},{id: 2,name: 'apple', calories: 100}]}]);
 function setDishes(arr){
 	var dishList = new ItemList();
+	dishList.setEmpty();
 	var dishes = arr;
 	for (var i = 0; i < dishes.length; i++){
 		
@@ -60,10 +60,10 @@ function setDishes(arr){
 		var dishComponentsList = dishes[i].components;
 		var components = [];
 		for (var j = 0; j < dishComponentsList.length; j++){
-			var id = dishComponentsList[j].id;
-			var name = dishComponentsList[j].name;
-			var calories = dishComponentsList[j].calories;
-			var dishComponent = new Component(id, name, calories);
+			var idComponent = dishComponentsList[j].id;
+			var nameComponent = dishComponentsList[j].name;
+			var caloriesComponent = dishComponentsList[j].calories;
+			var dishComponent = new Component(idComponent, nameComponent, caloriesComponent);
 			components.push(dishComponent);
 		}
 		var dish = new Item(id, name, components);
