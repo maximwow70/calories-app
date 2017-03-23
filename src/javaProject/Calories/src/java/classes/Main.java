@@ -21,7 +21,7 @@ public class Main {
         
         Gson gson = new Gson();
         String[] str = {"name"};
-        JsonDish jsonDish = new JsonDish("",str);
+        JsonDish jsonDish = gson.fromJson("{\"dishName\":\"\",\"names\":[\"Component3\",\"\",\"\"]}", JsonDish.class);
         
         try {
             ResultSet res = SQL.findDishByNameAndComponents(jsonDish.dishName, jsonDish.names);
@@ -40,6 +40,7 @@ public class Main {
             for(Dish d : lightSet) {
                 res = SQL.findComponentsByDishId(d.getId());
                 while(res.next()) {
+                    System.out.println(res.getString("Name"));
                     String name = res.getString("Name");
                     int id = res.getInt("ComponentID");
                     int calories = res.getInt("Calories");
@@ -47,7 +48,8 @@ public class Main {
                 }
             }
             for(Dish d:lightSet) {
-            if(d.getCount() == str.length)
+                System.out.println(d.getName());
+            if(d.getCount() >= jsonDish.length())
                 set.add(d);
         }
         } catch(SQLException ex) {System.out.println("Error");}

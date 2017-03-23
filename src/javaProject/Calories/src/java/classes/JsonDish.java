@@ -16,4 +16,12 @@ public class JsonDish {
         this.dishName = dishName;
         this.names = names;
     }
+    public int length() {
+        int k = 0;
+        for(String s:names) {
+            if(!s.equals(""))
+                k++;
+        }
+        return k;
+    }
 }

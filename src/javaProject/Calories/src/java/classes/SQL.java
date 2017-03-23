@@ -68,15 +68,20 @@ public class SQL {
         String url = "Select d.* from Dishes d,Components c,DishFormulas f WHERE\n" +
 "d.Name LIKE \"%"+dish+"%\" AND\n" +
 "(d.DishID = f.DishID AND\n" +
-"c.ComponentID = f.ComponentID) AND(\n";
+"c.ComponentID = f.ComponentID)";
         int i = 0;
         for(String s: components) {
-            if(i>0)
-                url += " OR ";
-            url+="c.Name = \""+s+"\"\n";
-            i++;
+            if(!s.equals("")) {
+                if(i == 0)
+                    url+=" AND(\n";
+                if(i>0)
+                    url += " OR ";
+                url+="c.Name = \""+s+"\"\n";
+                i++;
+            }
         }
-        url+=")";
+        if(i>0)
+            url+=")";
         System.out.println(url);
         connect();
         return stat.executeQuery(url);

@@ -68,9 +68,12 @@ public class FindDish extends HttpServlet {
         LinkedHashSet<Dish> lightSet = new LinkedHashSet<>();
         LinkedHashSet<Dish> set = new LinkedHashSet<>();
         
+        
+        String string = request.getReader().readLine();
+        
         Gson gson = new Gson();
-        String[] str = {"name"};
-        JsonDish jsonDish = new JsonDish("",str);
+        JsonDish jsonDish = gson.fromJson(string, JsonDish.class);
+        
         
         try {
             ResultSet res = SQL.findDishByNameAndComponents(jsonDish.dishName, jsonDish.names);
@@ -89,6 +92,7 @@ public class FindDish extends HttpServlet {
             for(Dish d : lightSet) {
                 res = SQL.findComponentsByDishId(d.getId());
                 while(res.next()) {
+                    System.out.println(res.getString("Name"));
                     String name = res.getString("Name");
                     int id = res.getInt("ComponentID");
                     int calories = res.getInt("Calories");
@@ -96,7 +100,8 @@ public class FindDish extends HttpServlet {
                 }
             }
             for(Dish d:lightSet) {
-            if(d.getCount() == str.length)
+                System.out.println(d.getName());
+            if(d.getCount() >= jsonDish.length())
                 set.add(d);
         }
         } catch(SQLException ex) {System.out.println("Error");}
