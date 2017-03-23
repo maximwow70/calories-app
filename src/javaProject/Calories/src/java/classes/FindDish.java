@@ -5,7 +5,11 @@
  */
 package classes;
 
+import com.google.gson.Gson;
 import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.LinkedHashSet;
 import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -61,10 +65,43 @@ public class FindDish extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text.html;charset=UTF-8");
         
-        Map<String,String[]> map = request.getParameterMap();
+        LinkedHashSet<Dish> lightSet = new LinkedHashSet<>();
+        LinkedHashSet<Dish> set = new LinkedHashSet<>();
         
-        String dishName = map.get("dishName")[0];
-        String[] names = map.get("names");
+        Gson gson = new Gson();
+        String[] str = {"Component2","Component3"};
+        JsonDish jsonDish = new JsonDish("",str);
+        
+        try {
+            ResultSet res = SQL.findDishByNameAndComponents(jsonDish.dishName, jsonDish.names);
+            while(res.next()) {
+                boolean is = false;
+                for(Dish d :lightSet) {
+                    if(d.getId() == res.getInt("DishID")){
+                        d.addCount();
+                        is = true;
+                        break;
+                    }
+                }
+                if(!is)
+                lightSet.add(new Dish(res.getInt("DishID"),res.getString("Name")));
+            }
+            for(Dish d : lightSet) {
+                res = SQL.findComponentsByDishId(d.getId());
+                while(res.next()) {
+                    String name = res.getString("Name");
+                    int id = res.getInt("ComponentID");
+                    int calories = res.getInt("Calories");
+                    d.addComponent(new Component(name,id,calories));
+                }
+            }
+            for(Dish d:lightSet) {
+            if(d.getCount() == str.length)
+                set.add(d);
+        }
+        } catch(SQLException ex) {System.out.println("Error");}
+        String s = gson.toJson(str);
+        response.getWriter().write(s);
         
     }
 

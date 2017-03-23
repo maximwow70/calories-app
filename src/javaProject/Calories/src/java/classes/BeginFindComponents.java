@@ -72,7 +72,7 @@ public class BeginFindComponents extends HttpServlet {
         try {
             res = SQL.findComponents();
             while(res.next()) {
-            set.add(new Component(res.getString("Name"),res.getInt("ComponentID")));
+            set.add(new Component(res.getString("Name"),res.getInt("ComponentID"),res.getInt("Calories")));
         }
         } catch (SQLException ex) {}
         

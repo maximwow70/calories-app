@@ -16,17 +16,44 @@ import java.util.LinkedHashSet;
  */
 public class Main {
     public static void main(String... args) {
-        LinkedHashSet<Component> set = new LinkedHashSet<>();
-        ResultSet res;
-        try {
-            res = SQL.findComponents();
-            while(res.next()) {
-            set.add(new Component(res.getString("Name"),res.getInt("ComponentID")));
-        }
-        } catch (SQLException ex) {}
+        LinkedHashSet<Dish> lightSet = new LinkedHashSet<>();
+        LinkedHashSet<Dish> set = new LinkedHashSet<>();
         
-        Gson g = new Gson();
-        String str = g.toJson(set);
-        System.out.println(str);
+        String s = "[{dishName: , names:{Component1,Component2}}]";
+        Gson gson = new Gson();
+        String[] str = {"Component2","Component3"};
+        JsonDish jsonDish = new JsonDish("",str);
+        
+        try {
+            ResultSet res = SQL.findDishByNameAndComponents(jsonDish.dishName, jsonDish.names);
+            while(res.next()) {
+                boolean is = false;
+                for(Dish d :lightSet) {
+                    if(d.getId() == res.getInt("DishID")){
+                        d.addCount();
+                        is = true;
+                        break;
+                    }
+                }
+                if(!is)
+                lightSet.add(new Dish(res.getInt("DishID"),res.getString("Name")));
+            }
+            for(Dish d : lightSet) {
+                res = SQL.findComponentsByDishId(d.getId());
+                while(res.next()) {
+                    String name = res.getString("Name");
+                    int id = res.getInt("ComponentID");
+                    int calories = res.getInt("Calories");
+                    d.addComponent(new Component(name,id,calories));
+                }
+            }
+        } catch(SQLException ex) {System.out.println("Error");}
+        for(Dish d:lightSet) {
+            if(d.getCount() == str.length)
+                set.add(d);
+        }
+        for(Dish d:set) {
+            System.out.println(d.getName());
+        }
     }
 }
