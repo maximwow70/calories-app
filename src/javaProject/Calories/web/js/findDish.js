@@ -37,7 +37,7 @@ var xhr = new newXMLHttpRequest();
 
 var toolbar = document.querySelector('.toolbar--find_dish');
 var control = document.querySelector('.toolbar-submit--find_dish');
-var dishList = document.querySelectorAll('.item_list');
+var dishList = document.querySelector('.item_list');
 
 function getSelectElements() {
     return document.querySelectorAll('.toolbar-select--components');
@@ -59,11 +59,26 @@ function getDish(){
 	dish.names = dishComponents;
 	return dish;
 }
+//setDishes([{name: 'apple pie', components: [{id: 1, name: 'pie'},{id: 2,name: 'apple'}]}]);
 function setDishes(arr){
 	var dishes = arr;
 	for (var i = 0; i < dishes.length; i++){
 		var dish = document.createElement('div');
-		dish.textContent = dishes[i].name;
+
+		var dishName = document.createElement('h2');
+		dishName.textContent = dishes[i].name;
+
+		var dishComponents = document.createElement('ul');
+		var dishComponentsList = dishes[i].components;
+		
+		for (var i = 0; i < dishComponentsList.length; i++){
+			var component = document.createElement('li');
+			component.textContent += dishComponentsList[i].id + '.' + dishComponentsList[i].name;
+			dishComponents.appendChild(component);
+		}
+		dish.appendChild(dishName);
+		dish.appendChild(dishComponents);
+
 		dishList.appendChild(dish);
 	}
 }

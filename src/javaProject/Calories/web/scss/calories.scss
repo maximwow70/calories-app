@@ -7,6 +7,8 @@
 @import 'select.scss';
 @import 'loading.scss';
 @import 'toolbar.scss';
+@import 'item.scss';
+@import 'component.scss';
 @import 'footer.scss';
 *{
     margin: 0;
@@ -24,6 +26,10 @@ a{
     &:hover{
         color: $yellow-color;
     }
+}
+li{
+    margin-left: 1rem;
+    text-decoration: none;
 }
 .link{
 }

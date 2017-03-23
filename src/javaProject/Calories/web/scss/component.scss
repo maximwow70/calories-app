@@ -1,0 +1,24 @@
+.component{
+    &-id{
+        &:after{
+            display: inline;
+            content: ':';
+        }
+    }
+    &-name{
+        &:after{
+            display: inline;
+            content: ' ';
+        }
+    }
+    &-description{
+        &:before{
+            display: inline;
+            content: '(';
+        }
+        &:after{
+            display: inline;
+            content: ')';
+        }
+    }
+}
