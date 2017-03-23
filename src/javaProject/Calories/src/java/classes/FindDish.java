@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author admin
  */
-@WebServlet(name = "Finder", urlPatterns = {"/Finder"})
+@WebServlet(name = "FindDish", urlPatterns = {"/FindDish"})
 public class FindDish extends HttpServlet {
 
     /**
@@ -69,7 +69,7 @@ public class FindDish extends HttpServlet {
         LinkedHashSet<Dish> set = new LinkedHashSet<>();
         
         Gson gson = new Gson();
-        String[] str = {"Component2","Component3"};
+        String[] str = {"name"};
         JsonDish jsonDish = new JsonDish("",str);
         
         try {
@@ -100,7 +100,7 @@ public class FindDish extends HttpServlet {
                 set.add(d);
         }
         } catch(SQLException ex) {System.out.println("Error");}
-        String s = gson.toJson(str);
+        String s = gson.toJson(set);
         response.getWriter().write(s);
         
     }

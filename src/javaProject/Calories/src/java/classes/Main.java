@@ -19,9 +19,8 @@ public class Main {
         LinkedHashSet<Dish> lightSet = new LinkedHashSet<>();
         LinkedHashSet<Dish> set = new LinkedHashSet<>();
         
-        String s = "[{dishName: , names:{Component1,Component2}}]";
         Gson gson = new Gson();
-        String[] str = {"Component2","Component3"};
+        String[] str = {"name"};
         JsonDish jsonDish = new JsonDish("",str);
         
         try {
@@ -47,11 +46,13 @@ public class Main {
                     d.addComponent(new Component(name,id,calories));
                 }
             }
-        } catch(SQLException ex) {System.out.println("Error");}
-        for(Dish d:lightSet) {
+            for(Dish d:lightSet) {
             if(d.getCount() == str.length)
                 set.add(d);
         }
+        } catch(SQLException ex) {System.out.println("Error");}
+        String s = gson.toJson(set);
+        System.out.println(s);
         for(Dish d:set) {
             System.out.println(d.getName());
         }
