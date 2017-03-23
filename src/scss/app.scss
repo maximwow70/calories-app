@@ -6,14 +6,20 @@
     flex-wrap: wrap;
     &-toolbar{
         flex: 1;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: stretch;
         .toolbar{
-            min-height: 100%;
+            flex: 1;
         }
     }
     &-test{
         flex: 2;
         padding: 20px;
         text-align: justify;
+        //max-height: 100vh;
+        //overflow: auto;
     }
     @media screen and (max-width: 900px){
         &-toolbar{
