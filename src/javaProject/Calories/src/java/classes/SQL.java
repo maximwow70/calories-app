@@ -25,7 +25,6 @@ public class SQL {
     private static void connect() {
         try{
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            System.out.println("driver");
             connect = DriverManager.getConnection(url, userName, password);
             stat = connect.createStatement();
         } catch(Exception e) {
@@ -63,6 +62,24 @@ public class SQL {
         return stat.executeQuery("SELECT c.* FROM Components c, DishFormulas f WHERE\n"
                 + "f.DishID = "+id+" AND\n"
                 + "c.ComponentID = f.ComponentID ;");
+    }
+    
+    public static ResultSet findDishByNameAndComponents(String dish, String[] components) throws SQLException {
+        String url = "Select d.* from Dishes d,Components c,DishFormulas f WHERE\n" +
+"d.Name LIKE \"%"+dish+"%\" AND\n" +
+"(d.DishID = f.DishID AND\n" +
+"c.ComponentID = f.ComponentID) AND(\n";
+        int i = 0;
+        for(String s: components) {
+            if(i>0)
+                url += " OR ";
+            url+="c.Name = \""+s+"\"\n";
+            i++;
+        }
+        url+=")";
+        System.out.println(url);
+        connect();
+        return stat.executeQuery(url);
     }
     
 }
