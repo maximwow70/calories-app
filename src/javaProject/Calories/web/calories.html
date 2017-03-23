@@ -39,21 +39,35 @@
         <div class="calories-app calories-app--close">
             <div class="app">
                 <div class="app-toolbar">
-                    <div class="toolbar">
+                    <div class="toolbar toolbar--find_dish">
                         <div class="toolbar-title">Find the dish!</div>
-                        <input type="text" class="toolbar-select" placeholder="Dish's name">
+                        <input type="text" class="toolbar-select toolbar-select--name" placeholder="Dish's name">
                         <select class="toolbar-select toolbar-select--components">
+                            <option class="toolbar-select--empty" value=""></option>
                         </select>
                         <select class="toolbar-select toolbar-select--components">
+                            <option class="toolbar-select--empty" value=""></option>
                         </select>
                         <select class="toolbar-select toolbar-select--components">
+                            <option class="toolbar-select--empty" value=""></option>
                         </select>
-                        <button class="toolbar-submit">find</button>
+                        <button class="toolbar-submit toolbar-submit--find_dish">find</button>
                     </div>
                 </div>
-                <div class="app-test">
-                    <div class="test">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos maiores expedita possimus non, sapiente error eligendi illum animi vitae. Itaque quidem, placeat accusantium labore, possimus laboriosam. Dolore vitae blanditiis perferendis consequuntur, est ipsam commodi voluptates ex quae eaque beatae tempore sapiente voluptate accusamus sint deleniti nobis, corrupti quia porro a voluptas mollitia saepe! Est quos, modi iure, repellat aperiam vitae porro vero in minus, reprehenderit sit eaque ipsam recusandae voluptate fugiat quibusdam blanditiis voluptatem! Placeat corrupti illum natus veniam dolorum ab asperiores rem cupiditate debitis sed, voluptates nisi quas ipsum. Ipsum, possimus, voluptas sed eum minima magnam similique dolorem incidunt perferendis quos enim assumenda ipsa eius autem quas iste eveniet soluta neque aperiam. Vel inventore dolore sed harum obcaecati quas tenetur voluptas provident quis, magnam sit ut tempora recusandae, earum repellat cupiditate libero sequi veritatis hic a dignissimos mollitia, voluptatibus porro praesentium necessitatibus. Ipsum dignissimos dicta culpa eos incidunt qui laborum sit nisi, quae nostrum sed quibusdam quia iste, commodi quis adipisci sunt, enim error harum est quos. Illo repellendus optio consectetur deleniti laboriosam perspiciatis voluptatibus minima dicta itaque, tempora nulla earum? Minus quod eveniet voluptatum eum labore minima omnis, numquam fugiat? Adipisci atque hic quis minus quisquam itaque, doloribus numquam? Neque qui doloribus adipisci earum! Quod molestias eligendi ea numquam, consequatur, aperiam magnam nobis assumenda enim iusto quos sit! Quibusdam qui ullam modi repudiandae distinctio hic, nostrum, dolorum dolore aperiam in expedita voluptates enim deleniti quam reiciendis aspernatur dolorem odio saepe assumenda illo, libero mollitia autem est maxime! Animi magni, odio iste magnam quaerat voluptate ipsa veritatis at eius sapiente quasi officia natus temporibus voluptates, voluptatum suscipit corporis quod, quam aperiam dolore dolores quae! Sint a impedit, molestias eligendi natus, praesentium ducimus exercitationem tempora, assumenda ipsum magnam suscipit perspiciatis repudiandae. Eaque odio, laborum voluptatum! Adipisci deserunt facilis ipsa magni saepe modi hic blanditiis nemo quasi numquam a voluptate fuga, suscipit, fugiat consectetur commodi ullam explicabo dolor, consequatur odio eligendi molestiae. Odio ducimus voluptate reprehenderit dolorum, quod, sit deserunt doloremque minima fugit distinctio modi, cum nisi perspiciatis earum a voluptatum aut. Numquam unde reiciendis sit, quo debitis, saepe officia eum corrupti quis ut recusandae! Distinctio esse culpa quis corrupti veritatis enim tempore porro in, animi, fugiat magnam, adipisci consequuntur. Recusandae nostrum nemo esse eligendi, labore alias! Doloribus fugiat blanditiis vel culpa enim perferendis amet aut officia consequatur tempore illum, voluptatum quisquam assumenda laborum reiciendis, quo sed nulla quis odit asperiores animi sunt. Quos nam delectus, vel excepturi? Inventore ullam sunt dignissimos deserunt dolore, sint, illo commodi dicta nemo. Delectus aliquid id eligendi a magni dolore, ratione praesentium maiores at. Sapiente eius, laborum, cum saepe sed animi nobis magnam. Quam necessitatibus nisi voluptates dolores consequuntur labore blanditiis atque voluptate eveniet, quas aliquam eius fugiat error eligendi voluptatem consectetur harum provident doloremque saepe quidem aperiam, ullam officia pariatur. Possimus aperiam esse temporibus pariatur atque, aliquid? Consequuntur error magnam dolorum labore aliquam reprehenderit explicabo voluptates voluptas eveniet deleniti, inventore, accusantium voluptatum alias iusto suscipit fugiat pariatur illum, expedita. Amet cum reiciendis, aliquid soluta.
+                <div class="app-item_list">
+                    <div class="item_list">
+                        <div class="item">
+                            <div class="item-name">
+                                    Apple pie
+                            </div>
+                            <div class="item-components">
+                                <div class="component">
+                                    <span class="component-id">1</span>
+                                    <span class="component-name">Apples</span>
+                                    <span class="component-description">400 kk</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -81,6 +95,7 @@
     </div>
 
     <script src="libs/jquery-1.11.1.min.js"></script>
+    <script src="dish.js"></script>
     <script src="js/calories.js"></script>
     <script src="js/getComponents.js"></script>
     <script src="js/findDish.js"></script>
