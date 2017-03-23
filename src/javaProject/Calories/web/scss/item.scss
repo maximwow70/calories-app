@@ -1,21 +1,25 @@
 $item-border: 2px solid $yellow-color;
 .item{
-    display: inline-block;
     box-sizing: border-box;
     width: 250px;
     height: 300px;
     border: $item-border;
     background-color: $blue-color;
     color: $light-color;
+    text-align: left;
     &-name{
         margin-bottom: 30px;
         border-bottom: $item-border;
 
         padding: 10px 20px;
         font-size: 20px;
+        //text-transform: capitalize;
     }
     &-components{
         padding: 10px 20px;
+        .component{
+            margin-bottom: 10px;
+        }
     }
     
 }

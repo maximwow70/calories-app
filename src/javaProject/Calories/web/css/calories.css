@@ -275,14 +275,21 @@
     .toolbar-submit:hover {
       box-shadow: 0 0 10px rgba(229, 189, 71, 0.7); }
 
+.item_list {
+  text-align: center; }
+  .item_list .item {
+    display: inline-block;
+    vertical-align: top;
+    margin: 0 15px 20px 25px; }
+
 .item {
-  display: inline-block;
   box-sizing: border-box;
   width: 250px;
   height: 300px;
   border: 2px solid #e5bd47;
   background-color: #2f6665;
-  color: #dcdcdd; }
+  color: #dcdcdd;
+  text-align: left; }
   .item-name {
     margin-bottom: 30px;
     border-bottom: 2px solid #e5bd47;
@@ -290,6 +297,8 @@
     font-size: 20px; }
   .item-components {
     padding: 10px 20px; }
+    .item-components .component {
+      margin-bottom: 10px; }
 
 .component-id:after {
   display: inline;
