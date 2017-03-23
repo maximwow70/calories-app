@@ -25,7 +25,7 @@ function newXMLHttpRequest() {
 function getSelectElements() {
     return document.querySelectorAll('.toolbar-select--components');
 }
-function setConponents(arr){
+function setComponents(arr){
     var selectElements = getSelectElements();
     var components = arr;
     for (var i = 0; i < selectElements.length; i++){
