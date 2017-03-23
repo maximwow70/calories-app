@@ -6,6 +6,9 @@ function ItemList(items){
 ItemList.prototype.addChild = function(child){
     this.dom.appendChild(child);
 }
+ItemList.prototype.setEmpty = function(){
+    this.dom.innerHTML = "";
+}
 
 function Item(id, name, components){
     this.id = id;
