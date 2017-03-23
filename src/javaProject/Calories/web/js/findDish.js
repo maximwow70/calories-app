@@ -23,18 +23,6 @@ function newXMLHttpRequest() {
   return xmlreq;
 }
 
-/*
-function Dish(name, components){
-	this.name = name;
-	this.components = components;
-}
-function Component(){
-
-}
-*/
-
-var xhr = new newXMLHttpRequest();
-
 var toolbar = document.querySelector('.toolbar--find_dish');
 var control = document.querySelector('.toolbar-submit--find_dish');
 var dishList = document.querySelector('.item_list');
@@ -71,9 +59,9 @@ function setDishes(arr){
 		var dishComponents = document.createElement('ul');
 		var dishComponentsList = dishes[i].components;
 		
-		for (var i = 0; i < dishComponentsList.length; i++){
+		for (var j = 0; j < dishComponentsList.length; j++){
 			var component = document.createElement('li');
-			component.textContent += dishComponentsList[i].id + '.' + dishComponentsList[i].name;
+			component.textContent += dishComponentsList[j].id + '.' + dishComponentsList[j].name;
 			dishComponents.appendChild(component);
 		}
 		dish.appendChild(dishName);
