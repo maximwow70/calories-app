@@ -17,15 +17,16 @@ import java.util.LinkedHashSet;
 public class Main {
     public static void main(String... args) {
         LinkedHashSet<Component> set = new LinkedHashSet<>();
-        ResultSet res = null;
+        ResultSet res;
         try {
             res = SQL.findComponents();
             while(res.next()) {
             set.add(new Component(res.getString("Name"),res.getInt("ComponentID")));
         }
-        } catch (SQLException ex) { }
+        } catch (SQLException ex) {}
+        
         Gson g = new Gson();
-        String s = g.toJson(set);
-        System.out.println(s);
+        String str = g.toJson(set);
+        System.out.println(str);
     }
 }

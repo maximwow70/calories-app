@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author admin
  */
 @WebServlet(name = "Finder", urlPatterns = {"/Finder"})
-public class Finder extends HttpServlet {
+public class FindDish extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
