@@ -1,25 +1,22 @@
 @font-face{
-    font-family: mont_l;
-    src: url(../fonts/Montserrat-Light.otf);
-}
-@font-face{
-    font-family: mont_r;
-    src: url(../fonts/Montserrat-Regular.otf);
-}
-@font-face{
-    font-family: mont_m;
-    src: url(../fonts/Montserrat-Medium.otf);
-}
-@font-face{
-    font-family: mont_b;
-    src: url(../fonts/Montserrat-Bold.otf);
-}
-@font-face{
     font-family: logo;
     src: url(../fonts/EmilySmiles.ttf);
 }
+@font-face{
+    font-family: exo_r;
+    src: url(../fonts/Exo2Regular.ttf);
+}
+@font-face{
+    font-family: exo_l;
+    src: url(../fonts/Exo2Light.ttf);
+}
+@font-face{
+    font-family: exo_t;
+    src: url(../fonts/Exo2Thin.ttf);
+}
 
-$font-stack: mont_r, Arial, sans-serif;
+
+$font-stack: exo_r, Arial, sans-serif;
 
 $transition-time: 0.4s;
 

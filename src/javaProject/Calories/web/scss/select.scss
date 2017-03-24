@@ -3,7 +3,7 @@ $select_btn_size: 140px;
     text-align: center;
     &-title{
         margin-bottom: 40px;
-        font-family: mont_l;
+        font-family: exo_r + ',' + $font-stack;
         font-size: 26px;
     }
     &-btn{

@@ -5,11 +5,17 @@
         vertical-align: middle;
         width: 50%;
     }
-    &-info{
+    &-navigation{
         display: inline-block;
         vertical-align: middle;
         width: 50%;
         text-align: right;
+        .navigation{
+            font-size: 16px;
+            &-list{
+                vertical-align: middle;
+            }
+        }
     }
     @media screen and (max-width: 800px){
         padding: 10px 0;
@@ -17,7 +23,7 @@
             width: 100%;
             text-align: center;
         }
-        &-info{
+        &-navigation{
             width: 100%;
             text-align: center;
         }

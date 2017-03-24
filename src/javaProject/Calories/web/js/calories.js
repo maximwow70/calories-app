@@ -2,7 +2,7 @@ var app = document.getElementsByClassName('calories-app')[0];
 var select = document.getElementsByClassName('calories-select')[0];
 var loading = document.getElementsByClassName('calories-loading')[0];
 var selectFind = document.getElementsByClassName('select-btn--find');
-var linkMain = document.getElementsByClassName('link--main')[0];
+var linkMain = document.getElementsByClassName('navigation-list--main')[0];
 
 var openMain = function (){
     console.log('lox');
