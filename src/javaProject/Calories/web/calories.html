@@ -42,16 +42,19 @@
                     <div class="toolbar toolbar--find_dish">
                         <div class="toolbar-title">Find the dish!</div>
                         <input type="text" class="toolbar-select toolbar-select--name" placeholder="Dish's name">
-                        <select class="toolbar-select toolbar-select--components">
-                            <option class="toolbar-select--empty" value=""></option>
-                        </select>
-                        <select class="toolbar-select toolbar-select--components">
-                            <option class="toolbar-select--empty" value=""></option>
-                        </select>
-                        <select class="toolbar-select toolbar-select--components">
-                            <option class="toolbar-select--empty" value=""></option>
-                        </select>
-                        <button class="toolbar-submit toolbar-submit--find_dish">find</button>
+                        <div class="toolbar-select_components">
+                            <select class="toolbar-select toolbar-select--components">
+                                <option class="toolbar-select--empty" value=""></option>
+                            </select>
+                            <select class="toolbar-select toolbar-select--components">
+                                <option class="toolbar-select--empty" value=""></option>
+                            </select>
+                            <select class="toolbar-select toolbar-select--components">
+                                <option class="toolbar-select--empty" value=""></option>
+                            </select>
+                        </div>
+                        <button class="toolbar-btn toolbar-btn--add_component">Add new component</button>
+                        <button class="toolbar-btn toolbar-btn--find_dish">find</button>
                     </div>
                 </div>
                 <div class="app-item_list">
@@ -85,8 +88,8 @@
 
     <script src="libs/jquery-1.11.1.min.js"></script>
     <script src="js/item.js"></script>
-    <script src="js/calories.js"></script>
-    <script src="js/getComponents.js"></script>
+    <script src="js/toolbar.js"></script>
     <script src="js/findDish.js"></script>
+    <script src="js/calories.js"></script>
 </body>
 </html>

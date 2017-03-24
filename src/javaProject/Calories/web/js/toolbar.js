@@ -22,19 +22,36 @@ function newXMLHttpRequest() {
   }
   return xmlreq;
 }
-function getSelectElements() {
+function getToolbarSelectComponents(){
+	return document.querySelector('.toolbar-select_components');
+}
+function getSelectComponents(){
     return document.querySelectorAll('.toolbar-select--components');
 }
+function addSelectComponent(){
+	var selectComponents = getSelectComponents()[0].cloneNode(true);
+	var toolbarSelectComponents = getToolbarSelectComponents();
+	toolbarSelectComponents.appendChild(selectComponents);
+}
+function getControlComponents(){
+    return document.querySelector('.toolbar-btn--add_component');
+}
+function getControlToolbar(){
+    return document.querySelector('.toolbar-btn--find_dish');
+}
+function createComponent(name){
+	var option = document.createElement('option');
+	option.value = name;
+	option.innerHTML = name;
+	return option;
+}
 function setComponents(arr){
-    var selectElements = getSelectElements();
+    var selectElements = getSelectComponents();
     var components = arr;
     for (var i = 0; i < selectElements.length; i++){
         for (var j = 0; j < components.length; j++){
-            var componentName = components[j].name;
-            var option = document.createElement('option');
-            option.value = componentName;
-            option.innerHTML = componentName;
-            selectElements[i].appendChild(option);
+            var component = createComponent(components[j].name);
+			selectElements[i].appendChild(component);
         }
     }
 }
@@ -53,5 +70,23 @@ function getComponents(){
     //return components;
 }
 
+/*
+	tests//
+
+	setComponents([
+		{name: 'apple'},
+		{name: 'coca-cola'},
+		{name: 'pie'},
+		{name: 'cherries'},
+		{name: 'ice'},
+		{name: 'tomatoes'},
+	]);
+*/
+
 getComponents();
+
+var controlComponents = getControlComponents();
+controlComponents.addEventListener('click', function(){
+	addSelectComponent();
+});
 

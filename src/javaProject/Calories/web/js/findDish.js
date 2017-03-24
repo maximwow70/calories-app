@@ -24,9 +24,8 @@ function newXMLHttpRequest() {
 }
 
 var toolbar = document.querySelector('.toolbar--find_dish');
-var control = document.querySelector('.toolbar-submit--find_dish');
+var control = getControlToolbar();
 
- 
 function getSelectElements() {
     return document.querySelectorAll('.toolbar-select--components');
 }

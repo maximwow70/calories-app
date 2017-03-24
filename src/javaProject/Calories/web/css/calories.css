@@ -254,6 +254,8 @@
     color: #e5bd47;
     font-size: 24px;
     text-transform: capitalize; }
+  .toolbar-select_components {
+    margin-bottom: 20px; }
   .toolbar-select {
     margin-bottom: 10px;
     box-sizing: border-box;
@@ -262,18 +264,22 @@
     color: #2c363f;
     font-size: 18px;
     outline: none; }
-  .toolbar-submit {
+    .toolbar-select:last-child {
+      margin-bottom: 0; }
+  .toolbar-btn {
     min-width: 70px;
     font-size: 18px;
     padding: 5px 10px;
     background-color: #e5bd47;
     color: #2c363f;
-    text-transform: uppercase;
+    text-transform: capitalize;
     outline: none;
     cursor: pointer;
     transition: 0.4s; }
-    .toolbar-submit:hover {
+    .toolbar-btn:hover {
       box-shadow: 0 0 10px rgba(229, 189, 71, 0.7); }
+    .toolbar-btn--add_component {
+      margin-bottom: 10px; }
 
 .item_list {
   text-align: center; }

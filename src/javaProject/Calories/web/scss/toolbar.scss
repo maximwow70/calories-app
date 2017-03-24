@@ -11,6 +11,9 @@
         font-size: 24px;
         text-transform: capitalize;
     }
+    &-select_components{
+        margin-bottom: 20px;
+    }
     &-select{
         margin-bottom: 10px;
         box-sizing: border-box;
@@ -22,20 +25,23 @@
         font-size: 18px;
         outline: none;
 
+        &:last-child{
+            margin-bottom: 0;
+        }
         //transition: $transition-time;
         &:hover{
             //border-color: $yellow-color;
             //background-color: $yellow-color;
         }
     }
-    &-submit{
+    &-btn{
         min-width: 70px;
         font-size: 18px;
         padding: 5px 10px;
 
         background-color: $yellow-color;
         color: $dark-color;
-        text-transform: uppercase;
+        text-transform: capitalize;
         outline: none;
 
         cursor: pointer;
@@ -43,6 +49,9 @@
         transition: $transition-time;
         &:hover{
             box-shadow: 0 0 10px rgba($yellow-color, 0.7);
+        }
+        &--add_component{
+            margin-bottom: 10px;
         }
     }
 }
