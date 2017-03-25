@@ -22,19 +22,20 @@ function newXMLHttpRequest() {
   }
   return xmlreq;
 }
-function getToolbarSelectComponents(){
-	return document.querySelector('.toolbar-select_components');
+function getToolbarSelectComponents(parent){
+	return parent.querySelector('.toolbar-select_components');
 }
-function getSelectComponents(){
-    return document.querySelectorAll('.toolbar-select--components');
+function getSelectComponent(parent){
+    return parent.querySelector('.toolbar-select--components');
 }
-function addSelectComponent(){
-	var selectComponents = getSelectComponents()[0].cloneNode(true);
-	var toolbarSelectComponents = getToolbarSelectComponents();
-	toolbarSelectComponents.appendChild(selectComponents);
+function addSelectComponent(parent){
+    parent = parent[0]; // костыль
+	var selectComponent = getSelectComponent(parent).cloneNode(true);
+	var toolbarSelectComponents = getToolbarSelectComponents(parent);
+	toolbarSelectComponents.appendChild(selectComponent);
 }
-function getControlComponents(){
-    return document.querySelector('.toolbar-btn--add_component');
+function getControlComponents(parent){
+    return parent.querySelector('.toolbar-btn--add_component');
 }
 function getControlToolbar(){
     return document.querySelector('.toolbar-btn--find_dish');
@@ -84,9 +85,18 @@ function getComponents(){
 */
 
 getComponents();
+var appFind = document.querySelector('.app-find');
+var appFindControlComponents = getControlComponents(appFind);
 
-var controlComponents = getControlComponents();
-controlComponents.addEventListener('click', function(){
-	addSelectComponent();
+appFindControlComponents.addEventListener('click', function(){
+    addSelectComponent(appFind);
 });
+
+var appAdd = document.querySelector('.app-add');
+var appAddControlComponents = getControlComponents(appAdd);
+
+appAddControlComponents.addEventListener('click', function(){
+    addSelectComponent(appAdd);
+});
+
 

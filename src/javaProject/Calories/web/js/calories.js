@@ -1,27 +1,44 @@
 var app = document.getElementsByClassName('calories-app')[0];
-var select = document.getElementsByClassName('calories-select')[0];
-var loading = document.getElementsByClassName('calories-loading')[0];
+var appFind = document.querySelectorAll('.app-find');
+var appAdd = document.querySelectorAll('.app-add');
+
+var select = document.getElementsByClassName('app-select')[0];
+var loading = document.getElementsByClassName('app-loading')[0];
+
 var selectFind = document.getElementsByClassName('select-btn--find');
+var selectAdd = document.getElementsByClassName('select-btn--add');
 var linkMain = document.getElementsByClassName('navigation-list--main')[0];
 
 var openMain = function (){
-    $(select).addClass('calories-select--close');
-    $(app).addClass('calories-app--close');
-    $(loading).removeClass('calories-loading--close');
+    $(select).addClass('app-select--close');
+    $(appFind).addClass('app-find--close');
+    $(appAdd).addClass('app-add--close');
+    $(loading).removeClass('app-loading--close');
     
     setTimeout(function(){
-        $(loading).addClass('calories-loading--close');
-        $(select).removeClass('calories-select--close');
+        $(loading).addClass('app-loading--close');
+        $(select).removeClass('app-select--close');
     }, 500);
 }
 
 for (var i = 0; i < selectFind.length; i++){
     selectFind[i].addEventListener('click', function(){
-        $(select).addClass('calories-select--close');
-        $(loading).removeClass('calories-loading--close');
+        $(select).addClass('app-select--close');
+        $(loading).removeClass('app-loading--close');
         setTimeout(function(){
-            $(loading).addClass('calories-loading--close');
-            $(app).removeClass('calories-app--close');
+            $(loading).addClass('app-loading--close');
+            $(appFind).removeClass('app-find--close');
+        }, 500);
+    });
+}
+
+for (var i = 0; i < selectAdd.length; i++){
+    selectAdd[i].addEventListener('click', function(){
+        $(select).addClass('app-select--close');
+        $(loading).removeClass('app-loading--close');
+        setTimeout(function(){
+            $(loading).addClass('app-loading--close');
+            $(appAdd).removeClass('app-add--close');
         }, 500);
     });
 }
