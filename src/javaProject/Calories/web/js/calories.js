@@ -45,7 +45,32 @@ for (var i = 0; i < selectAdd.length; i++){
 
 linkMain.addEventListener('click', openMain);
 
+function initToolbar(){
+    getComponents();
+    var appFind = document.querySelector('.app-find');
+    var appFindControlComponents = getControlComponents(appFind);
 
+    appFindControlComponents.addEventListener('click', function(){
+        addSelectComponent(appFind);
+    });
+
+    var appAdd = document.querySelector('.app-add');
+    var appAddControlComponents = getControlComponents(appAdd);
+
+    appAddControlComponents.addEventListener('click', function(){
+        addSelectComponent(appAdd);
+    });
+}
+initToolbar();
+
+function initFindDish(){
+    findDish(getDish());
+	control.addEventListener('click',function(){
+		var dish = getDish();
+		findDish(dish);
+	});
+}
+initFindDish();
 
 
 

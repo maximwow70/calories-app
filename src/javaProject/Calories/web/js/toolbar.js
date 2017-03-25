@@ -28,8 +28,10 @@ function getToolbarSelectComponents(parent){
 function getSelectComponent(parent){
     return parent.querySelector('.toolbar-select--components');
 }
+function getSelectComponentsAll(){
+    return document.querySelectorAll('.toolbar-select--components');
+}
 function addSelectComponent(parent){
-    parent = parent[0]; // костыль
 	var selectComponent = getSelectComponent(parent).cloneNode(true);
 	var toolbarSelectComponents = getToolbarSelectComponents(parent);
 	toolbarSelectComponents.appendChild(selectComponent);
@@ -47,7 +49,7 @@ function createComponent(name){
 	return option;
 }
 function setComponents(arr){
-    var selectElements = getSelectComponents();
+    var selectElements = getSelectComponentsAll();
     var components = arr;
     for (var i = 0; i < selectElements.length; i++){
         for (var j = 0; j < components.length; j++){
@@ -68,7 +70,6 @@ function getComponents(){
             setComponents(components);
         }
     }
-    //return components;
 }
 
 /*
@@ -83,20 +84,7 @@ function getComponents(){
 		{name: 'tomatoes'},
 	]);
 */
-
-getComponents();
-var appFind = document.querySelector('.app-find');
-var appFindControlComponents = getControlComponents(appFind);
-
-appFindControlComponents.addEventListener('click', function(){
-    addSelectComponent(appFind);
-});
-
-var appAdd = document.querySelector('.app-add');
-var appAddControlComponents = getControlComponents(appAdd);
-
-appAddControlComponents.addEventListener('click', function(){
-    addSelectComponent(appAdd);
-});
-
-
+function main(){
+    
+}
+main();

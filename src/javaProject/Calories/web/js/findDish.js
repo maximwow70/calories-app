@@ -84,8 +84,8 @@ function findDish(_dish){
 	}
 }
 
-findDish(getDish());
-control.addEventListener('click',function(){
-	var dish = getDish();
-	findDish(dish);
-});
+
+function main(){
+	
+}
+main();
