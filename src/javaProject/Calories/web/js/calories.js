@@ -5,12 +5,10 @@ var selectFind = document.getElementsByClassName('select-btn--find');
 var linkMain = document.getElementsByClassName('navigation-list--main')[0];
 
 var openMain = function (){
-    console.log('lox');
     $(select).addClass('calories-select--close');
     $(app).addClass('calories-app--close');
     $(loading).removeClass('calories-loading--close');
     
-    console.log('lox2');
     setTimeout(function(){
         $(loading).addClass('calories-loading--close');
         $(select).removeClass('calories-select--close');
