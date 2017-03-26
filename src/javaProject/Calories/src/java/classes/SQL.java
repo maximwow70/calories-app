@@ -97,7 +97,7 @@ public class SQL {
         } catch(SQLException e) {return null;}
     }
     
-    public static ArrayList<Dish> findDishesByNameAndComponents(String dish, String[] components) {
+    public static ArrayList<Dish> findDishesByNameAndComponents(String dish, ArrayList<String> components) {
         String url = "Select d.* from Dishes d,Components c,DishFormulas f WHERE\n" +
 "d.Name LIKE \"%"+dish+"%\" AND\n" +
 "(d.DishID = f.DishID AND\n" +
@@ -139,6 +139,7 @@ public class SQL {
     public static boolean addDish(Dish dish) {
         connect();
         try {
+            System.out.println("1");
             ResultSet res = stat.executeQuery("SELECT DishID from Dishes WHERE \n" +
                     "Name = \""+dish.getName()+"\";");
             res.next();
@@ -146,12 +147,22 @@ public class SQL {
                 res.getInt("DishID");
                 return false;
             } catch(Exception e) {}
+            System.out.println("2");
             stat.execute("INSERT INTO Dishes(Name) VALUES(\""+dish.getName()+"\");");
             res = stat.executeQuery("SELECT DishID FROM Dishes WHERE Name = \""+dish.getName()+"\";");
             res.next();
             int id = res.getInt("DishID");
-            for(Component comp : dish.getComponents()) {
-                stat.execute("INSERT INTO DishFormulas(DishID,ComponentID,Weidth) VALUES ("+id+","+comp.getID()+","+comp.getWeidth()+");");
+            System.out.println("3");
+            Dish dish1 = findDishById(id);
+            for(Component c :dish.getComponents()) {
+                Component comp = findComponentByName(c.name);
+                System.out.println("4");
+                if(!c.name.equals(""))
+                dish1.addComponent(new Component(comp.getName(),comp.getID(),comp.getCalories(),c.getWeight()));
+            }
+            for(Component comp : dish1.getComponents()) {
+                System.out.println("5");
+                stat.execute("INSERT INTO DishFormulas(DishID,ComponentID,Weight) VALUES ("+id+","+comp.getID()+","+comp.getWeight()+");");
             }
             return true;
         } catch (SQLException ex) {

@@ -51,6 +51,7 @@ function setDishes(parent, arr, title, notRewrite){
 function findDish(parent, _dish){
 	var dishes = [];
 	var dish = JSON.stringify(_dish);
+        console.log(dish);
 	var xhr = new newXMLHttpRequest();
 	xhr.open('POST', 'FindDish', true);
 	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");

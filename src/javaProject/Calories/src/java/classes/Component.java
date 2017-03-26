@@ -12,7 +12,7 @@ package classes;
 public class Component {
     public String name;
     public int calories;
-    public int weidth;
+    public int weight;
     public int id;
     
     
@@ -20,18 +20,24 @@ public class Component {
         this.name = name;
         this.id = id;
         this.calories = calories;
-        weidth = 0;
+        weight = 0;
     }
     public Component(String name, int id, int calories, int weidth) {
         this.name = name;
         this.id = id;
         this.calories = calories;
-        this.weidth = weidth;
+        this.weight = weidth;
     }
     public int getID() {
         return id;
     }
-    public int getWeidth() {
-        return weidth;
+    public int getWeight() {
+        return weight;
+    }
+    public String getName() {
+        return name;
+    }
+    public int getCalories() {
+        return calories;
     }
 }

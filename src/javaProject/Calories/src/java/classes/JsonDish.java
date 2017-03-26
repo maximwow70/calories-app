@@ -5,17 +5,18 @@
  */
 package classes;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author admin
  */
 public class JsonDish {
     private String name;
-    private String[] components;
-    private int[] weidths;
-    public JsonDish(String name, String[] components) {
+    private ArrayList<String> components;
+    public JsonDish(String name) {
         this.name = name;
-        this.components = components;
+        components = new ArrayList<>();
     }
     public int length() {
         int k = 0;
@@ -25,13 +26,13 @@ public class JsonDish {
         }
         return k;
     }
+    public void addComponent(String s) {
+        components.add(s);
+    }
     public String getName() {
         return name;
     }
-    public String[] getComponents() {
+    public ArrayList<String> getComponents() {
         return components;
-    }
-    public int[] getWeidths() {
-        return weidths;
     }
 }

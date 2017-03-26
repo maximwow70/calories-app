@@ -22,13 +22,13 @@ public class Dish {
         components = new ArrayList<>();
         this.name = name;
         this.id = id;
-        setComponents(SQL.findComponentsByDishId(id));
+        addComponents(SQL.findComponentsByDishId(id));
     }
     public void addComponent(Component c) {
         components.add(c);
     }
-    public void setComponents(ArrayList<Component> list) {
-        components = list;
+    public void addComponents(ArrayList<Component> list) {
+        components.addAll(list);
     }
     public int getId() {
         return id;
