@@ -75,7 +75,7 @@ function initAddDish(){
     var control = getControlToolbar(appAdd);
     control.addEventListener('click', function(){
         var dish = getDish(appAdd);
-        findDish(appAdd, dish, true);
+        addDish(appAdd, dish, true);
     });
 }
 initAddDish();

@@ -19,8 +19,8 @@ function getDish(parent){
 	dish.names = dishComponents;
 	return dish;
 }
-function setDishes(parent, arr, notRewrite){
-	var dishList = new ItemList(parent);
+function setDishes(parent, arr, title, notRewrite){
+	var dishList = new ItemList(parent, arr, title);
 	if (!notRewrite){
 		dishList.setEmpty();
 	}
