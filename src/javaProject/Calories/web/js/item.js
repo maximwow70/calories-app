@@ -15,6 +15,7 @@ ItemList.prototype.setItems = function(){
 }
 ItemList.prototype.setTitle = function(title){
     this.title = title;
+    this.dom.querySelector('.item_list-title').textContent = title;
 }
 ItemList.prototype.addItem = function(item){
     this.dom.appendChild(item);
