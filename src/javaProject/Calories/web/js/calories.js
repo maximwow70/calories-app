@@ -63,7 +63,7 @@ initToolbar();
 //var appFind = document.querySelector('.app-find');
 function initFindDish(){
     var control = getControlToolbar(appFind);
-    findDish(getDish(appFind));
+    findDish(appFind, getDish(appFind));
 	control.addEventListener('click',function(){
 		var dish = getDish(appFind);
 		findDish(appFind, dish);
