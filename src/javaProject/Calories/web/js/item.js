@@ -1,3 +1,17 @@
+function ItemListDom(parent, title){
+    this.dom = parent.querySelector('.item_list');
+
+    if (title != ""){
+        var title = document.createElement('h3');
+        title.setAttribute('class', 'item_list-title');
+        title.textContent = this.title;
+        this.dom.appendChild(title);
+    } 
+}
+ItemListDom.prototype.getDom = function(){
+    return this.dom;
+}
+
 function ItemList(parent, _items, _title){
     this.items = _items;
     this.title = _title;
@@ -28,6 +42,7 @@ ItemList.prototype.setEmpty = function(){
         this.dom.removeChild(items[i]);
     }
 }
+
 
 function Item(id, name, components){
     this.id = id;
