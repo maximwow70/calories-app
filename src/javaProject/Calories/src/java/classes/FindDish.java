@@ -71,7 +71,7 @@ public class FindDish extends HttpServlet {
         Gson gson = new Gson();
         JsonDish jsonDish = gson.fromJson(string, JsonDish.class);
         
-        lightSet = SQL.findDishesByNameAndComponents(jsonDish.name, jsonDish.components);
+        lightSet = SQL.findDishesByNameAndComponents(jsonDish.getName(), jsonDish.getComponents());
         for(Dish d:lightSet) {
             System.out.println(d.getName());
         if(d.getCount() >= jsonDish.length())

@@ -12,6 +12,7 @@ package classes;
 public class JsonDish {
     private String name;
     private String[] components;
+    private int[] weidths;
     public JsonDish(String name, String[] components) {
         this.name = name;
         this.components = components;
@@ -26,5 +27,11 @@ public class JsonDish {
     }
     public String getName() {
         return name;
+    }
+    public String[] getComponents() {
+        return components;
+    }
+    public int[] getWeidths() {
+        return weidths;
     }
 }
