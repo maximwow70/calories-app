@@ -8,7 +8,7 @@ function addDish(parent, _dish){
 	xhr.onreadystatechange = function(){
 		if (this.readyState == 4 && this.status == 200){
             dishes = JSON.parse(xhr.responseText);
-            setDishes(parent, dishes);
+            setDishes(parent, dishes, false);
         }
 	}
 }

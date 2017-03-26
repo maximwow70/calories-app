@@ -2,6 +2,7 @@ function ItemList(parent, items){
     this.itemList = items;
     
     this.dom = parent.querySelector('.item_list');
+    this.title = this.dom.querySelector('.item_list-title');
 }
 ItemList.prototype.addChild = function(child){
     this.dom.appendChild(child);
