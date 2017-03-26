@@ -1,13 +1,28 @@
-function ItemList(items){
-    this.itemList = items;
+function ItemList(parent, _items, _title){
+    this.items = _items;
     
-    this.dom = document.querySelector('.item_list');
+    this.dom = parent.querySelector('.item_list');
+
+    if (title != ""){
+        var title = document.createElement('h3');
+        title.setAttribute('class', 'item_list-title');
+        title.textContent = _title;
+        this.dom.appendChild(title);
+    } 
 }
-ItemList.prototype.addChild = function(child){
-    this.dom.appendChild(child);
+ItemList.prototype.setItems = function(){
+
+}
+ItemList.prototype.addItem = function(item){
+    this.dom.appendChild(item);
 }
 ItemList.prototype.setEmpty = function(){
-    this.dom.innerHTML = "";
+    var title = this.dom.querySelector('.item_list-title');
+    this.dom.removeChild(title);
+    var items = this.dom.querySelectorAll('.item');
+    for (var i = 0; i < items.length; i++){
+        this.dom.removeChild(items[i]);
+    }
 }
 
 function Item(id, name, components){
