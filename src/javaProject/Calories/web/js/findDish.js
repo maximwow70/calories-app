@@ -7,7 +7,12 @@ function getDishComponents(parent){
 	var selects = getSelectElements(parent);
 	var components = [];
 	for (var i = 0; i < selects.length; i++){
-		components.push(selects[i].value);
+		var component = {
+			name: selects[i].value,
+			weight: 100,
+			//calories: 100
+		}
+		components.push(component);
 	}
 	return components;
 }
