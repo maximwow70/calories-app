@@ -1,17 +1,20 @@
 function ItemList(parent, _items, _title){
     this.items = _items;
-    
+    this.title = _title;
     this.dom = parent.querySelector('.item_list');
 
     if (title != ""){
         var title = document.createElement('h3');
         title.setAttribute('class', 'item_list-title');
-        title.textContent = _title;
+        title.textContent = this.title;
         this.dom.appendChild(title);
     } 
 }
 ItemList.prototype.setItems = function(){
 
+}
+ItemList.prototype.setTitle = function(title){
+    this.title = title;
 }
 ItemList.prototype.addItem = function(item){
     this.dom.appendChild(item);
