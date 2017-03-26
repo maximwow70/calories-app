@@ -5,12 +5,16 @@
  */
 package classes;
 
+import com.google.gson.Gson;
+
 /**
  *
  * @author admin
  */
 public class Main {
     public static void main(String... args) {
-        SQL.addDish(new Dish(1,"nam"));
+        Dish dish = SQL.findDishById(1);
+        Gson gson = new Gson();
+        System.out.println(gson.toJson(dish));
     }
 }

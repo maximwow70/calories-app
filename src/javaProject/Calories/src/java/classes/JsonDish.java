@@ -10,18 +10,21 @@ package classes;
  * @author admin
  */
 public class JsonDish {
-    public String dishName;
-    public String[] names;
-    public JsonDish(String dishName, String[] names) {
-        this.dishName = dishName;
-        this.names = names;
+    private String name;
+    private String[] components;
+    public JsonDish(String name, String[] components) {
+        this.name = name;
+        this.components = components;
     }
     public int length() {
         int k = 0;
-        for(String s:names) {
+        for(String s:components) {
             if(!s.equals(""))
                 k++;
         }
         return k;
+    }
+    public String getName() {
+        return name;
     }
 }
