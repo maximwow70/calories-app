@@ -23,33 +23,32 @@ function newXMLHttpRequest() {
   return xmlreq;
 }
 
-var toolbar = document.querySelector('.toolbar--find_dish');
-var control = getControlToolbar();
+//var toolbar = document.querySelector('.toolbar--find_dish');
 
-function getSelectElements() {
-    return document.querySelectorAll('.toolbar-select--components');
+function getSelectElements(parent) {
+    return parent.querySelectorAll('.toolbar-select--components');
 }
-function getDishComponents(){
-	var selects = getSelectElements();
+function getDishComponents(parent){
+	var selects = getSelectElements(parent);
 	var components = [];
 	for (var i = 0; i < selects.length; i++){
 		components.push(selects[i].value);
 	}
 	return components;
-
 }
-function getDish(){
+function getDish(parent){
 	var dish = {};
-	var dishName = toolbar.querySelector('.toolbar-select--name').value;
-	var dishComponents = getDishComponents();
+	var dishName = parent.querySelector('.toolbar-select--name').value;
+	var dishComponents = getDishComponents(parent);
 	dish.dishName = dishName;
 	dish.names = dishComponents;
 	return dish;
 }
-//setDishes([{name: 'apple pie', components: [{id: 1, name: 'pie', calories: 300},{id: 2,name: 'apple', calories: 100}]}]);
-function setDishes(arr){
-	var dishList = new ItemList();
-	dishList.setEmpty();
+function setDishes(parent, arr, notRewrite){
+	var dishList = new ItemList(parent);
+	if (!notRewrite){
+		dishList.setEmpty();
+	}
 	var dishes = arr;
 	for (var i = 0; i < dishes.length; i++){
 		
@@ -69,22 +68,49 @@ function setDishes(arr){
 		dishList.addChild(dish.getDom());
 	}
 }
-function findDish(_dish){
+function findDish(parent, _dish){
 	var dishes = [];
 	var dish = JSON.stringify(_dish);
 	var xhr = new newXMLHttpRequest();
 	xhr.open('POST', 'FindDish', true);
 	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.send(dish);
+  xhr.send(dish);
 	xhr.onreadystatechange = function(){
 		if (this.readyState == 4 && this.status == 200){
             dishes = JSON.parse(xhr.responseText);
-            setDishes(dishes);
+            setDishes(parent, dishes);
         }
 	}
 }
-
-
+/*
+	//tests
+	
+	setDishes(
+		appFind,
+		[
+			{
+				name: 'apple pie',
+				components: [
+					{
+						id: 1,
+						name: 'pie',
+						calories: 300
+					},
+					{
+						id: 2,
+						name: 'apple',
+						calories: 100
+					},
+					{
+						id: 3,
+						name: 'cream',
+						calories: 500
+					}
+				]
+			}
+		]
+	);
+*/
 function main(){
 	
 }

@@ -1,6 +1,6 @@
 var app = document.getElementsByClassName('calories-app')[0];
-var appFind = document.querySelectorAll('.app-find');
-var appAdd = document.querySelectorAll('.app-add');
+var appFind = document.querySelector('.app-find');
+var appAdd = document.querySelector('.app-add');
 
 var select = document.getElementsByClassName('app-select')[0];
 var loading = document.getElementsByClassName('app-loading')[0];
@@ -47,30 +47,35 @@ linkMain.addEventListener('click', openMain);
 
 function initToolbar(){
     getComponents();
-    var appFind = document.querySelector('.app-find');
-    var appFindControlComponents = getControlComponents(appFind);
 
+    var appFindControlComponents = getControlComponents(appFind);
     appFindControlComponents.addEventListener('click', function(){
         addSelectComponent(appFind);
     });
 
-    var appAdd = document.querySelector('.app-add');
     var appAddControlComponents = getControlComponents(appAdd);
-
     appAddControlComponents.addEventListener('click', function(){
         addSelectComponent(appAdd);
     });
 }
 initToolbar();
 
+//var appFind = document.querySelector('.app-find');
 function initFindDish(){
-    findDish(getDish());
+    var control = getControlToolbar(appFind);
+    findDish(getDish(appFind));
 	control.addEventListener('click',function(){
-		var dish = getDish();
-		findDish(dish);
+		var dish = getDish(appFind);
+		findDish(appFind, dish);
 	});
 }
 initFindDish();
 
-
-
+function initAddDish(){
+    var control = getControlToolbar(appAdd);
+    control.addEventListener('click', function(){
+        var dish = getDish(appAdd);
+        findDish(appAdd, dish, true);
+    });
+}
+initAddDish();

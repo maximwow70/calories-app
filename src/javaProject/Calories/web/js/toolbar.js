@@ -39,8 +39,8 @@ function addSelectComponent(parent){
 function getControlComponents(parent){
     return parent.querySelector('.toolbar-btn--add_component');
 }
-function getControlToolbar(){
-    return document.querySelector('.toolbar-btn--find_dish');
+function getControlToolbar(parent){
+    return parent.querySelector('.toolbar-btn:last-child');
 }
 function createComponent(name){
 	var option = document.createElement('option');
