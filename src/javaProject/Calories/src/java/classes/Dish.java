@@ -22,6 +22,7 @@ public class Dish {
         components = new ArrayList<>();
         this.name = name;
         this.id = id;
+        setComponents(SQL.findComponentsByDishId(id));
     }
     public void addComponent(Component c) {
         components.add(c);

@@ -8,8 +8,6 @@ package classes;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -78,12 +76,13 @@ public class AddDish extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         ArrayList<Dish> list = new ArrayList<>();
-        String jsonDish = request.getReader().readLine();
+        String inJsonDish = request.getReader().readLine();
         Gson gson = new Gson();
-        Dish dish = gson.fromJson(jsonDish, Dish.class);
+        Dish dish = gson.fromJson(inJsonDish, Dish.class);
         SQL.addDish(dish);
-        
-        response.getWriter().write(jsonDish);
+        list.add(SQL.findDishByName(dish.getName()));
+        String outJsonDish = gson.toJson(list);
+        response.getWriter().write(outJsonDish);
     }
 
     /**
