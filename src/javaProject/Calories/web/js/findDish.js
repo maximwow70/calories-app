@@ -40,7 +40,7 @@ function setDishes(parent, arr, title, notRewrite){
 			components.push(dishComponent);
 		}
 		var dish = new Item(id, name, components);
-		dishList.addChild(dish.getDom());
+		dishList.addItem(dish.getDom());
 	}
 }
 function findDish(parent, _dish){
