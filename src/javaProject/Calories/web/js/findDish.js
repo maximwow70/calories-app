@@ -15,8 +15,8 @@ function getDish(parent){
 	var dish = {};
 	var dishName = parent.querySelector('.toolbar-select--name').value;
 	var dishComponents = getDishComponents(parent);
-	dish.dishName = dishName;
-	dish.names = dishComponents;
+	dish.name = dishName;
+	dish.components = dishComponents;
 	return dish;
 }
 function setDishes(parent, arr, title, notRewrite){
