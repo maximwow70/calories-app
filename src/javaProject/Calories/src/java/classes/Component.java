@@ -28,4 +28,10 @@ public class Component {
         this.calories = calories;
         this.weidth = weidth;
     }
+    public int getID() {
+        return id;
+    }
+    public int getWeidth() {
+        return weidth;
+    }
 }

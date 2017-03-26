@@ -5,26 +5,29 @@
  */
 package classes;
 
-import java.util.LinkedHashSet;
+import java.util.ArrayList;
 
 /**
  *
  * @author admin
  */
 public class Dish {
-    private LinkedHashSet<Component> components;
+    private ArrayList<Component> components;
     private String name;
     private int id;
     private int count = 1;
     
     
     public Dish(int id,String name) {
-        components = new LinkedHashSet<>();
+        components = new ArrayList<>();
         this.name = name;
         this.id = id;
     }
     public void addComponent(Component c) {
         components.add(c);
+    }
+    public void setComponents(ArrayList<Component> list) {
+        components = list;
     }
     public int getId() {
         return id;
@@ -37,5 +40,8 @@ public class Dish {
     }
     public void addCount() {
         count++;
+    }
+    public ArrayList<Component> getComponents() {
+        return components;
     }
 }

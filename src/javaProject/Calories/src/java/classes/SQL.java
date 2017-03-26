@@ -10,6 +10,9 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -32,39 +35,69 @@ public class SQL {
         }
     }
     
-    public static ResultSet findComponents() throws SQLException {
+    public static ArrayList<Component> findComponents() {
         connect();
-        return stat.executeQuery("SELECT * FROM Components;");
+        ArrayList<Component> list = new ArrayList<>();
+        try {
+            ResultSet res =  stat.executeQuery("SELECT * FROM Components;");
+            while(res.next()) {
+                list.add(new Component(res.getString("Name"),res.getInt("ComponentID"),res.getInt("Calories")));
+            }
+            return list;
+        } catch (SQLException e) {return null;}
     }
     
-    public static ResultSet findDishById(int id) throws SQLException{
-        connect();
-        return stat.executeQuery("SELECT * FROM Dishes WHERE DishID = "+id+";");
+    public static Dish findDishById(int id) {
+        connect(); 
+        try {
+            ResultSet res = stat.executeQuery("SELECT * FROM Dishes WHERE DishID = "+id+";");
+            res.next();
+            return new Dish(res.getInt("DishID"),res.getString("Name"));
+        } catch(SQLException e) {return null;}
     }
     
-    public static ResultSet findDishesByName(String name) throws SQLException {
+    public static Dish findDishByName(String name) {
         connect();
-        return stat.executeQuery("SELECT * FROM Dishes WHERE Name LIKE \"%"+name+"%\";");
+        try{
+            ResultSet res =  stat.executeQuery("SELECT * FROM Dishes WHERE Name LIKE \"%"+name+"%\";");
+            res.next();
+            return new Dish(res.getInt("DishID"),res.getString("Name"));
+        } catch(SQLException e) {return null;}
     }
     
-    public static ResultSet findComponentById(int id) throws SQLException {
+    public static Component findComponentById(int id) {
         connect();
-        return stat.executeQuery("SELECT * FROM Components WHERE ComponentID = "+id+";");
+        try {
+            ResultSet res = stat.executeQuery("SELECT * FROM Components WHERE ComponentID = "+id+";");
+            res.next();
+            return new Component(res.getString("Name"),res.getInt("ComponentID"),res.getInt("Calories"));
+        } catch(SQLException e) {return null;}
     }
     
-    public static ResultSet findComponentsByName(String name) throws SQLException {
+    public static Component findComponentByName(String name) {
         connect();
-        return stat.executeQuery("SELECT * FROM Components WHERE Name LIKE \"%"+name+"%\";");
+        try {
+            ResultSet res = stat.executeQuery("SELECT * FROM Components WHERE Name LIKE \"%"+name+"%\";");
+            res.next();
+            return new Component(res.getString("Name"),res.getInt("ComponentID"),res.getInt("Calories"));
+        } catch(SQLException e) {return null;}
     }
     
-    public static ResultSet findComponentsByDishId(int id) throws SQLException {
+    public static ArrayList<Component> findComponentsByDishId(int id) {
         connect();
-        return stat.executeQuery("SELECT c.* FROM Components c, DishFormulas f WHERE\n"
-                + "f.DishID = "+id+" AND\n"
-                + "c.ComponentID = f.ComponentID ;");
+        ArrayList<Component> list = new ArrayList<>();
+        try {
+            ResultSet res = stat.executeQuery("SELECT c.*,f.Weight FROM Components c, DishFormulas f WHERE\n"
+                    + "f.DishID = "+id+" AND\n"
+                    + "c.ComponentID = f.ComponentID ;");
+            while(res.next()) {
+                list.add(new Component(res.getString("Name"),res.getInt("ComponentID"),res.getInt("Calories"),res.getInt("Weight")));
+            }
+            return list;
+        } catch(SQLException e) {return null;}
     }
     
-    public static ResultSet findDishByNameAndComponents(String dish, String[] components) throws SQLException {
+    public static ArrayList<Dish> findDishesByNameAndComponents(String dish, String[] components) {
         String url = "Select d.* from Dishes d,Components c,DishFormulas f WHERE\n" +
 "d.Name LIKE \"%"+dish+"%\" AND\n" +
 "(d.DishID = f.DishID AND\n" +
@@ -83,8 +116,47 @@ public class SQL {
         if(i>0)
             url+=")";
         System.out.println(url);
+        ArrayList<Dish> list = new ArrayList<>();
         connect();
-        return stat.executeQuery(url);
+        try {
+        ResultSet res = stat.executeQuery(url);
+            while(res.next()) {
+                boolean is = false;
+                for(Dish d :list) {
+                    if(d.getId() == res.getInt("DishID")){
+                        d.addCount();
+                        is = true;
+                        break;
+                    }
+                }
+                if(!is)
+                list.add(new Dish(res.getInt("DishID"),res.getString("Name")));
+            }
+            return list;
+        } catch(SQLException e) {return null;}
+    }
+    
+    public static boolean addDish(Dish dish) {
+        connect();
+        try {
+            ResultSet res = stat.executeQuery("SELECT DishID from Dishes WHERE \n" +
+                    "Name = \""+dish.getName()+"\";");
+            res.next();
+            try {
+                res.getInt("DishID");
+                return false;
+            } catch(Exception e) {}
+            stat.execute("INSERT INTO Dishes(Name) VALUES(\""+dish.getName()+"\");");
+            res = stat.executeQuery("SELECT DishID FROM Dishes WHERE Name = \""+dish.getName()+"\";");
+            res.next();
+            int id = res.getInt("DishID");
+            for(Component comp : dish.getComponents()) {
+                stat.execute("INSERT INTO DishFormulas(DishID,ComponentID,Weidth) VALUES ("+id+","+comp.getID()+","+comp.getWeidth()+");");
+            }
+            return true;
+        } catch (SQLException ex) {
+            return false;
+        }
     }
     
 }

@@ -9,8 +9,8 @@ import com.google.gson.Gson;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.LinkedHashSet;
-import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -65,8 +65,8 @@ public class FindDish extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text.html;charset=UTF-8");
         
-        LinkedHashSet<Dish> lightSet = new LinkedHashSet<>();
-        LinkedHashSet<Dish> set = new LinkedHashSet<>();
+        ArrayList<Dish> lightSet = new ArrayList<>();
+        ArrayList<Dish> set = new ArrayList<>();
         
         
         String string = request.getReader().readLine();
@@ -74,37 +74,15 @@ public class FindDish extends HttpServlet {
         Gson gson = new Gson();
         JsonDish jsonDish = gson.fromJson(string, JsonDish.class);
         
-        
-        try {
-            ResultSet res = SQL.findDishByNameAndComponents(jsonDish.dishName, jsonDish.names);
-            while(res.next()) {
-                boolean is = false;
-                for(Dish d :lightSet) {
-                    if(d.getId() == res.getInt("DishID")){
-                        d.addCount();
-                        is = true;
-                        break;
-                    }
-                }
-                if(!is)
-                lightSet.add(new Dish(res.getInt("DishID"),res.getString("Name")));
-            }
-            for(Dish d : lightSet) {
-                res = SQL.findComponentsByDishId(d.getId());
-                while(res.next()) {
-                    System.out.println(res.getString("Name"));
-                    String name = res.getString("Name");
-                    int id = res.getInt("ComponentID");
-                    int calories = res.getInt("Calories");
-                    d.addComponent(new Component(name,id,calories));
-                }
-            }
-            for(Dish d:lightSet) {
-                System.out.println(d.getName());
-            if(d.getCount() >= jsonDish.length())
-                set.add(d);
+        lightSet = SQL.findDishesByNameAndComponents(jsonDish.dishName, jsonDish.names);
+        for(Dish d : lightSet) {
+            d.setComponents(SQL.findComponentsByDishId(d.getId()));
         }
-        } catch(SQLException ex) {System.out.println("Error");}
+        for(Dish d:lightSet) {
+            System.out.println(d.getName());
+        if(d.getCount() >= jsonDish.length())
+            set.add(d);
+        }
         String s = gson.toJson(set);
         response.getWriter().write(s);
         

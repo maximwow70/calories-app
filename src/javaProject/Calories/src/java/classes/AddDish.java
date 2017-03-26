@@ -7,6 +7,7 @@ package classes;
 
 import com.google.gson.Gson;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -20,8 +21,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author admin
  */
-@WebServlet(name = "BeginFindComponents", urlPatterns = {"/BeginFindComponents"})
-public class BeginFindComponents extends HttpServlet {
+@WebServlet(name = "AddDish", urlPatterns = {"/AddDish"})
+public class AddDish extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,6 +35,19 @@ public class BeginFindComponents extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet AddDish</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet AddDish at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -62,11 +76,14 @@ public class BeginFindComponents extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text.html;charset=UTF-8");
-        ArrayList<Component> set = SQL.findComponents();
-        Gson g = new Gson();
-        String str = g.toJson(set);
-        response.getWriter().write(str);
+        response.setContentType("text/html;charset=UTF-8");
+        ArrayList<Dish> list = new ArrayList<>();
+        String jsonDish = request.getReader().readLine();
+        Gson gson = new Gson();
+        Dish dish = gson.fromJson(jsonDish, Dish.class);
+        SQL.addDish(dish);
+        
+        response.getWriter().write(jsonDish);
     }
 
     /**
