@@ -488,24 +488,6 @@ li {
   .calories-header {
     background-color: #2f6665;
     padding: 0 5%; }
-  .calories-select {
-    -webkit-flex: 1;
-    -ms-flex: 1;
-    flex: 1;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-flex-direction: row;
-    -ms-flex-direction: row;
-    flex-direction: row;
-    -webkit-justify-content: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-    -webkit-align-items: center;
-    -ms-flex-align: center;
-    align-items: center; }
-    .calories-select--close {
-      display: none; }
   .calories-app {
     -webkit-flex: 1;
     -ms-flex: 1;
@@ -527,24 +509,6 @@ li {
       -ms-flex: 1;
       flex: 1; }
     .calories-app--close {
-      display: none; }
-  .calories-loading {
-    -webkit-flex: 1;
-    -ms-flex: 1;
-    flex: 1;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-flex-direction: row;
-    -ms-flex-direction: row;
-    flex-direction: row;
-    -webkit-justify-content: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-    -webkit-align-items: center;
-    -ms-flex-align: center;
-    align-items: center; }
-    .calories-loading--close {
       display: none; }
   .calories-footer {
     background-color: #2f6665;

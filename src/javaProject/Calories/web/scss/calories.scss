@@ -50,18 +50,6 @@ li{
         background-color: $blue-color;
         padding: 0 5%;
     }
-    &-select{
-        flex: 1;
-
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        
-        &--close{
-            display: none;
-        }
-    }
     &-app{
         flex: 1;
 
@@ -73,17 +61,6 @@ li{
         .app{
             flex: 1;
         }
-        &--close{
-            display: none;
-        }
-    }
-    &-loading{
-        flex: 1;
-
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
         &--close{
             display: none;
         }
