@@ -10,10 +10,10 @@ package classes;
  * @author admin
  */
 public class Component {
-    public String name;
-    public int calories;
-    public int weight;
-    public int id;
+    private String name;
+    private int calories;
+    private int weight;
+    private int id;
     
     
     public Component(String name, int id,int calories) {

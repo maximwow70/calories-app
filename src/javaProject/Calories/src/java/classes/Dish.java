@@ -16,13 +16,16 @@ public class Dish {
     private String name;
     private int id;
     private int count = 1;
-    
+    private int weight;
+    private int calories;
     
     public Dish(int id,String name) {
         components = new ArrayList<>();
         this.name = name;
         this.id = id;
         addComponents(SQL.findComponentsByDishId(id));
+        weight = getWeight();
+        calories = getCalories();
     }
     public void addComponent(Component c) {
         components.add(c);
@@ -44,5 +47,27 @@ public class Dish {
     }
     public ArrayList<Component> getComponents() {
         return components;
+    }
+    public int getWeight() {
+        int result = 0;
+        for(Component c : components) {
+            result+=c.getWeight();
+        }
+        return result;
+    }
+    public int getCalories() {
+        int result = 0;
+        for(Component c : components) {
+            result+=c.getWeight()*c.getCalories();
+        }
+        return result;
+    }
+    public int length() {
+        int count = 0;
+        for(Component c : components) {
+            if(!c.getName().equals(""))
+                count++;
+        }
+        return count;
     }
 }
