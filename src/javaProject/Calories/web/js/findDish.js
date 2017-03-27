@@ -1,5 +1,3 @@
-//var toolbar = document.querySelector('.toolbar--find_dish');
-
 function getSelectElements(parent) {
     return parent.querySelectorAll('.toolbar-select--components');
 }
@@ -23,32 +21,9 @@ function getDish(parent){
 	dish.components = dishComponents;
 	return dish;
 }
-function setDishes(parent, arr, title, notRewrite){
-	var dishList = new ItemList(parent, arr, title);
-	if (!notRewrite){
-		dishList.setEmpty();
-	}
-	var dishes = arr;
-	for (var i = 0; i < dishes.length; i++){
-		
-		var id = dishes[i].id;
-		var name = dishes[i].name;
-		
-		var dishComponentsList = dishes[i].components;
-		var components = [];
-		for (var j = 0; j < dishComponentsList.length; j++){
-			var idComponent = dishComponentsList[j].id;
-			var nameComponent = dishComponentsList[j].name;
-			var weightComponent = dishComponentsList[j].weight;
-			var caloriesComponent = dishComponentsList[j].calories;
-			var dishComponent = new Component(idComponent, nameComponent, weightComponent, caloriesComponent);
-			components.push(dishComponent);
-		}
-		var dish = new Item(id, name, components);
-		dishList.addItem(dish.getDom());
-	}
-}
-function findDish(parent, _dish){
+
+
+function findDish(itemList, _dish){
 	var dishes = [];
 	var dish = JSON.stringify(_dish);
 	var xhr = new newXMLHttpRequest();
@@ -58,7 +33,7 @@ function findDish(parent, _dish){
 	xhr.onreadystatechange = function(){
 		if (this.readyState == 4 && this.status == 200){
             dishes = JSON.parse(xhr.responseText);
-            setDishes(parent, dishes);
+            itemList.setItems(dishes);
         }
 	}
 }
@@ -74,16 +49,19 @@ function findDish(parent, _dish){
 					{
 						id: 1,
 						name: 'pie',
+						weight: 666,
 						calories: 300
 					},
 					{
 						id: 2,
 						name: 'apple',
+						weight: 666,
 						calories: 100
 					},
 					{
 						id: 3,
 						name: 'cream',
+						weight: 666,
 						calories: 500
 					}
 				]
@@ -91,7 +69,3 @@ function findDish(parent, _dish){
 		]
 	);
 */
-function main(){
-	
-}
-main();

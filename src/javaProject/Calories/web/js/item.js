@@ -1,72 +1,11 @@
-function ItemListDom(parent, _title){
-    this.dom = parent.querySelector('.item_list');
-
-    if (_title){
-        this.setTitle(_title);
-    } 
+function ItemDom(id, name, components){
+    
 }
-ItemListDom.prototype.setTitle = function(_title){
-    var title = this.dom.querySelector('.item_list-title');
-    if (title){
-        title.textContent = _title;
-    }
-    else {
-        title = document.createElement('h3');
-        title.setAttribute('class', 'item_list-title');
-        title.textContent = _title;
-        this.dom.appendChild(title);
-    }
+ItemDom.prototype.addComponent = function(component){
+    
 }
-ItemListDom.prototype.addItems = function(items){
-
-}
-ItemListDom.prototype.setEmpty = function(){
-    var items = this.dom.querySelectorAll('.item');
-    for (var i = 0; i < items.length; i++){
-        this.dom.removeChild(items[i]);
-    }
-}
-ItemListDom.prototype.getDom = function(){
+ItemDom.prototype.getDom = function(){
     return this.dom;
-}
-
-function ItemList(parent, _items, _title){
-    this.items = _items;
-    this.title = _title;
-    //this.dom = new ItemListDom(parent, _title);
-
-    this.dom = parent.querySelector('.item_list');
-
-    if (_title){
-        var title = this.dom.querySelector('.item_list-title');
-        if (title){
-            title.textContent = _title;
-        }
-        else {
-            title = document.createElement('h3');
-            title.setAttribute('class', 'item_list-title');
-            title.textContent = _title;
-            this.dom.appendChild(title);
-        }
-    }  
-}
-ItemList.prototype.setItems = function(){
-
-}
-ItemList.prototype.setTitle = function(title){
-    this.title = title;
-    this.dom.setTitle(title);
-}
-ItemList.prototype.addItem = function(item){
-    this.dom.appendChild(item);
-}
-ItemList.prototype.setEmpty = function(){
-    this.items = [];
-    //this.dom.setEmpty();
-    var items = this.dom.querySelectorAll('.item');
-    for (var i = 0; i < items.length; i++){
-        this.dom.removeChild(items[i]);
-    }
 }
 
 
@@ -74,6 +13,8 @@ function Item(id, name, components){
     this.id = id;
     this.name = name;
     this.components = components;
+
+    //this.dom = new ItemDom(id, name, components);    
 
     this.dom = document.createElement('div');
     this.dom.setAttribute('class', 'item');
@@ -95,8 +36,9 @@ function Item(id, name, components){
     this.dom.appendChild(itemNameHtml);
     this.dom.appendChild(itemComponentsHtml);
 }
-Item.prototype.addComponent = function(){
+Item.prototype.addComponent = function(component){
     this.components.push(component);
+    //this.dom.addComponent(component);
 }
 Item.prototype.getDom = function(){
     return this.dom;
@@ -144,4 +86,31 @@ var item = new Item('1', 'apple pie', components);
 
 var list = new ItemList();
 list.addChild(item.getDom());
+
+
+var a = new ItemList(appFind, [
+			{
+				name: 'apple pie',
+				components: [
+					{
+						id: 1,
+						name: 'pie',
+						weight: 666,
+						calories: 300
+					},
+					{
+						id: 2,
+						name: 'apple',
+						weight: 666,
+						calories: 100
+					},
+					{
+						id: 3,
+						name: 'cream',
+						weight: 666,
+						calories: 500
+					}
+				]
+			}
+		], 'kek')
 */
