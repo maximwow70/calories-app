@@ -65,6 +65,15 @@ public class SQL {
         } catch(SQLException e) {return null;}
     }
     
+    public static Dish findDishByNameOnly(String name) {
+        connect();
+        try{
+            ResultSet res =  stat.executeQuery("SELECT * FROM Dishes WHERE Name = \""+name+"\";");
+            res.next();
+            return new Dish(res.getInt("DishID"),res.getString("Name"));
+        } catch(SQLException e) {return null;}
+    }
+    
     public static Component findComponentById(int id) {
         connect();
         try {

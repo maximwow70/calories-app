@@ -79,10 +79,13 @@ public class AddDish extends HttpServlet {
         String inJsonDish = request.getReader().readLine();
         Gson gson = new Gson();
         Dish dish = gson.fromJson(inJsonDish, Dish.class);
-        SQL.addDish(dish);
-        list.add(SQL.findDishByName(dish.getName()));
+        boolean is = SQL.addDish(dish);
+        list.add(SQL.findDishByNameOnly(dish.getName()));
         String outJsonDish = gson.toJson(list);
-        response.getWriter().write(outJsonDish);
+        if(is)
+            response.getWriter().write(outJsonDish);
+        else
+            response.getWriter().write("");
     }
 
     /**
