@@ -26,7 +26,7 @@ function getDish(parent){
 function setDishes(parent, arr, title, notRewrite){
 	var dishList = new ItemList(parent, arr, title);
 	if (!notRewrite){
-		//dishList.setEmpty();
+		dishList.setEmpty();
 	}
 	var dishes = arr;
 	for (var i = 0; i < dishes.length; i++){

@@ -20,6 +20,12 @@ ItemListDom.prototype.setTitle = function(_title){
 ItemListDom.prototype.addItems = function(items){
 
 }
+ItemListDom.prototype.setEmpty = function(){
+    var items = this.dom.querySelectorAll('.item');
+    for (var i = 0; i < items.length; i++){
+        this.dom.removeChild(items[i]);
+    }
+}
 ItemListDom.prototype.getDom = function(){
     return this.dom;
 }
@@ -55,8 +61,8 @@ ItemList.prototype.addItem = function(item){
     this.dom.appendChild(item);
 }
 ItemList.prototype.setEmpty = function(){
-    var title = this.dom.querySelector('.item_list-title');
-    this.dom.removeChild(title);
+    this.items = [];
+    //this.dom.setEmpty();
     var items = this.dom.querySelectorAll('.item');
     for (var i = 0; i < items.length; i++){
         this.dom.removeChild(items[i]);
