@@ -136,6 +136,45 @@ public class SQL {
         } catch(SQLException e) {return null;}
     }
     
+    public static ArrayList<Dish> findDishesByNameAndComponents(Dish dish) {
+        String url = "Select d.* from Dishes d,Components c,DishFormulas f WHERE\n" +
+"d.Name LIKE \"%"+dish.getName()+"%\" AND\n" +
+"(d.DishID = f.DishID AND\n" +
+"c.ComponentID = f.ComponentID)";
+        int i = 0;
+        for(Component s : dish.getComponents()) {
+            if(!s.getName().equals("")) {
+                if(i == 0)
+                    url+=" AND(\n";
+                if(i>0)
+                    url += " OR ";
+                url+="c.Name = \""+s.getName()+"\"\n";
+                i++;
+            }
+        }
+        if(i>0)
+            url+=")";
+        System.out.println(url);
+        ArrayList<Dish> list = new ArrayList<>();
+        connect();
+        try {
+        ResultSet res = stat.executeQuery(url);
+            while(res.next()) {
+                boolean is = false;
+                for(Dish d :list) {
+                    if(d.getId() == res.getInt("DishID")){
+                        d.addCount();
+                        is = true;
+                        break;
+                    }
+                }
+                if(!is)
+                list.add(new Dish(res.getInt("DishID"),res.getString("Name")));
+            }
+            return list;
+        } catch(SQLException e) {return null;}
+    }
+    
     public static boolean addDish(Dish dish) {
         connect();
         try {
@@ -155,9 +194,9 @@ public class SQL {
             System.out.println("3");
             Dish dish1 = findDishById(id);
             for(Component c :dish.getComponents()) {
-                Component comp = findComponentByName(c.name);
+                Component comp = findComponentByName(c.getName());
                 System.out.println("4");
-                if(!c.name.equals(""))
+                if(!c.getName().equals(""))
                 dish1.addComponent(new Component(comp.getName(),comp.getID(),comp.getCalories(),c.getWeight()));
             }
             for(Component comp : dish1.getComponents()) {

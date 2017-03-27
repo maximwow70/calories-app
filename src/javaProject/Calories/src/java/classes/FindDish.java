@@ -68,18 +68,12 @@ public class FindDish extends HttpServlet {
         
         String string = request.getReader().readLine();
         
-        //КОСТЫЛЬ!!!!!!
         Gson gson = new Gson();
         Dish dish = gson.fromJson(string, Dish.class);
-        JsonDish jsonDish = new JsonDish(dish.getName());
-        for(Component c : dish.getComponents()) {
-            jsonDish.addComponent(c.getName());
-        }
-        
-        lightSet = SQL.findDishesByNameAndComponents(jsonDish.getName(), jsonDish.getComponents());
+        lightSet = SQL.findDishesByNameAndComponents(dish);
         for(Dish d:lightSet) {
             System.out.println(d.getName());
-        if(d.getCount() >= jsonDish.length())
+        if(d.getCount() >= dish.length())
             set.add(d);
         }
         String s = gson.toJson(set);

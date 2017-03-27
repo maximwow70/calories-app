@@ -18,17 +18,20 @@ public class Main {
         ArrayList<Dish> set = new ArrayList<>();
         
         
-        String[] str = {"name"};
-        JsonDish jsonDish = new JsonDish("",str);
+        String string = "{\"name\":\"\",\"components\":[{\"name\":\"\",\"weight\":100},{\"name\":\"\",\"weight\":100},{\"name\":\"\",\"weight\":100}]}";
         
-        lightSet = SQL.findDishesByNameAndComponents(jsonDish.getName(), jsonDish.getComponents());
+        //КОСТЫЛЬ!!!!!!
+        Gson gson = new Gson();
+        Dish dish = gson.fromJson(string, Dish.class);
+        
+        
+        lightSet = SQL.findDishesByNameAndComponents(dish);
         for(Dish d:lightSet) {
             System.out.println(d.getName());
-        if(d.getCount() >= jsonDish.length())
+        if(d.getCount() >= dish.length())
             set.add(d);
         }
-        Gson gson = new Gson();
-        System.out.println(gson.toJson(set));
-        
+        String s = gson.toJson(set);
+        System.out.println(s);
     }
 }
