@@ -1,4 +1,4 @@
-function addDish(parent, _dish){
+function addDish(itemList, _dish){
     var dishes = [];
 	var dish = JSON.stringify(_dish);
 	var xhr = new newXMLHttpRequest();
@@ -9,10 +9,11 @@ function addDish(parent, _dish){
 		if (this.readyState == 4 && this.status == 200){
             dishes = JSON.parse(xhr.responseText);
             if (dishes){
-                setDishes(parent, dishes, 'Your dish:', false);
+                itemList.setTitle('Your dish: ');
+                itemList.setItems(dishes);
             }
             else {
-
+                itemList.setTitle('Sorry, this dish is already exist. Try again!');
             }
         }
 	}

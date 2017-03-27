@@ -60,22 +60,23 @@ function initToolbar(){
 }
 initToolbar();
 
-//var appFind = document.querySelector('.app-find');
 function initFindDish(){
     var control = getControlToolbar(appFind);
-    findDish(appFind, getDish(appFind));
-	control.addEventListener('click',function(){
+    var items = findDish(getDish(appFind));
+    var itemList = new ItemList(appFind, items, '');
+	control.addEventListener('click', function(){
 		var dish = getDish(appFind);
-		findDish(appFind, dish);
+		findDish(itemList, dish);
 	});
 }
 initFindDish();
 
 function initAddDish(){
     var control = getControlToolbar(appAdd);
+    var itemList = new ItemList(appAdd);
     control.addEventListener('click', function(){
         var dish = getDish(appAdd);
-        addDish(appAdd, dish, true);
+        addDish(itemList, dish);
     });
 }
 initAddDish();
