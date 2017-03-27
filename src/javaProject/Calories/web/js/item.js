@@ -1,12 +1,24 @@
-function ItemListDom(parent, title){
+function ItemListDom(parent, _title){
     this.dom = parent.querySelector('.item_list');
 
-    if (title != ""){
-        var title = document.createElement('h3');
-        title.setAttribute('class', 'item_list-title');
-        title.textContent = this.title;
-        this.dom.appendChild(title);
+    if (_title){
+        this.setTitle(_title);
     } 
+}
+ItemListDom.prototype.setTitle = function(_title){
+    var title = this.dom.querySelector('.item_list-title');
+    if (title){
+        title.textContent = _title;
+    }
+    else {
+        title = document.createElement('h3');
+        title.setAttribute('class', 'item_list-title');
+        title.textContent = _title;
+        this.dom.appendChild(title);
+    }
+}
+ItemListDom.prototype.addItems = function(items){
+
 }
 ItemListDom.prototype.getDom = function(){
     return this.dom;
@@ -15,21 +27,29 @@ ItemListDom.prototype.getDom = function(){
 function ItemList(parent, _items, _title){
     this.items = _items;
     this.title = _title;
+    //this.dom = new ItemListDom(parent, _title);
+
     this.dom = parent.querySelector('.item_list');
 
-    if (title != ""){
-        var title = document.createElement('h3');
-        title.setAttribute('class', 'item_list-title');
-        title.textContent = this.title;
-        this.dom.appendChild(title);
-    } 
+    if (_title){
+        var title = this.dom.querySelector('.item_list-title');
+        if (title){
+            title.textContent = _title;
+        }
+        else {
+            title = document.createElement('h3');
+            title.setAttribute('class', 'item_list-title');
+            title.textContent = _title;
+            this.dom.appendChild(title);
+        }
+    }  
 }
 ItemList.prototype.setItems = function(){
 
 }
 ItemList.prototype.setTitle = function(title){
     this.title = title;
-    this.dom.querySelector('.item_list-title').textContent = title;
+    this.dom.setTitle(title);
 }
 ItemList.prototype.addItem = function(item){
     this.dom.appendChild(item);
@@ -76,7 +96,7 @@ Item.prototype.getDom = function(){
     return this.dom;
 }
 
-function Component(id, name, calories, weight){
+function Component(id, name, weight, calories){
     this.id = id;
     this.name = name;
     this.calories = calories;
@@ -85,9 +105,9 @@ function Component(id, name, calories, weight){
     this.dom = document.createElement('div');
     this.dom.setAttribute('class', 'component');
 
-    var componentIdHtml = document.createElement('span');
+    /*var componentIdHtml = document.createElement('span');
     componentIdHtml.setAttribute('class', 'component-id');
-    componentIdHtml.textContent = id;
+    componentIdHtml.textContent = id;*/
 
     var componentNameHtml = document.createElement('span');
     componentNameHtml.setAttribute('class', 'component-name');
@@ -95,9 +115,9 @@ function Component(id, name, calories, weight){
 
     var componentDescriptionHtml = document.createElement('span');
     componentDescriptionHtml.setAttribute('class', 'component-description');
-    componentDescriptionHtml.textContent = calories;
+    componentDescriptionHtml.textContent = weight + 'g (' + calories + 'c/100g)';
 
-    this.dom.appendChild(componentIdHtml);
+    /*this.dom.appendChild(componentIdHtml);*/
     this.dom.appendChild(componentNameHtml);
     this.dom.appendChild(componentDescriptionHtml);
 }

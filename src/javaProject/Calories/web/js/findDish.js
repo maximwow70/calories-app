@@ -9,8 +9,7 @@ function getDishComponents(parent){
 	for (var i = 0; i < selects.length; i++){
 		var component = {
 			name: selects[i].value,
-			weight: 100,
-			//calories: 100
+			weight: 100
 		}
 		components.push(component);
 	}
@@ -27,7 +26,7 @@ function getDish(parent){
 function setDishes(parent, arr, title, notRewrite){
 	var dishList = new ItemList(parent, arr, title);
 	if (!notRewrite){
-		dishList.setEmpty();
+		//dishList.setEmpty();
 	}
 	var dishes = arr;
 	for (var i = 0; i < dishes.length; i++){
@@ -40,8 +39,9 @@ function setDishes(parent, arr, title, notRewrite){
 		for (var j = 0; j < dishComponentsList.length; j++){
 			var idComponent = dishComponentsList[j].id;
 			var nameComponent = dishComponentsList[j].name;
+			var weightComponent = dishComponentsList[j].weight;
 			var caloriesComponent = dishComponentsList[j].calories;
-			var dishComponent = new Component(idComponent, nameComponent, caloriesComponent);
+			var dishComponent = new Component(idComponent, nameComponent, weightComponent, caloriesComponent);
 			components.push(dishComponent);
 		}
 		var dish = new Item(id, name, components);
@@ -51,11 +51,10 @@ function setDishes(parent, arr, title, notRewrite){
 function findDish(parent, _dish){
 	var dishes = [];
 	var dish = JSON.stringify(_dish);
-        console.log(dish);
 	var xhr = new newXMLHttpRequest();
 	xhr.open('POST', 'FindDish', true);
 	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-  xhr.send(dish);
+  	xhr.send(dish);
 	xhr.onreadystatechange = function(){
 		if (this.readyState == 4 && this.status == 200){
             dishes = JSON.parse(xhr.responseText);

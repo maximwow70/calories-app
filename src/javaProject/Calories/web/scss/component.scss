@@ -2,16 +2,17 @@
     &-id{
         &:after{
             display: inline;
-            content: ':';
+            content: '';
         }
     }
     &-name{
         &:after{
             display: inline;
-            content: ' ';
+            content: ': ';
         }
     }
     &-description{
+        /*
         &:before{
             display: inline;
             content: '(';
@@ -20,5 +21,6 @@
             display: inline;
             content: ')';
         }
+        */
     }
 }

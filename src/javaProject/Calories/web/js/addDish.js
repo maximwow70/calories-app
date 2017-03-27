@@ -1,7 +1,6 @@
 function addDish(parent, _dish){
     var dishes = [];
 	var dish = JSON.stringify(_dish);
-        console.log(dish);
 	var xhr = new newXMLHttpRequest();
 	xhr.open('POST', 'AddDish', true);
 	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
