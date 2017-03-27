@@ -7,12 +7,12 @@ function addDish(itemList, _dish){
     xhr.send(dish);
 	xhr.onreadystatechange = function(){
 		if (this.readyState == 4 && this.status == 200){
-            dishes = JSON.parse(xhr.responseText);
-            if (dishes){
+            try {
+                dishes = JSON.parse(xhr.responseText);
                 itemList.setTitle('Your dish: ');
                 itemList.setItems(dishes);
             }
-            else {
+            catch(e) {
                 itemList.setTitle('Sorry, this dish is already exist. Try again!');
             }
         }

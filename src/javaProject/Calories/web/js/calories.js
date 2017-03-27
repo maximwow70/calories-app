@@ -62,8 +62,8 @@ initToolbar();
 
 function initFindDish(){
     var control = getControlToolbar(appFind);
-    var items = findDish(getDish(appFind));
-    var itemList = new ItemList(appFind, items, '');
+    var itemList = new ItemList(appFind);
+    findDish(itemList, getDish(appFind));
 	control.addEventListener('click', function(){
 		var dish = getDish(appFind);
 		findDish(itemList, dish);
