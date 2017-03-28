@@ -138,6 +138,11 @@
     flex-wrap: wrap; }
     .app-find--close, .app-add--close {
       display: none; }
+  .app-find .toolbar-select--component {
+    width: 100%; }
+  .app-find .toolbar-select--weight {
+    display: none;
+    width: 0%; }
   .app-toolbar {
     -webkit-flex: 1;
     -ms-flex: 1;
@@ -353,11 +358,20 @@
     margin-bottom: 20px;
     color: #e5bd47;
     font-size: 24px;
+    font-weight: normal;
     text-transform: capitalize; }
-  .toolbar-select_components {
-    margin-bottom: 20px; }
+  .toolbar-select_component {
+    overflow: hidden;
+    margin-bottom: 10px; }
+    .toolbar-select_component:after {
+      content: '';
+      clear: both; }
+    .toolbar-select_component:last-of-type {
+      margin-bottom: 20px; }
   .toolbar-select {
-    margin-bottom: 10px;
+    display: inline-block;
+    vertical-align: top;
+    height: 26px;
     box-sizing: border-box;
     padding: 2px 4px;
     width: 100%;
@@ -366,6 +380,14 @@
     outline: none; }
     .toolbar-select:last-child {
       margin-bottom: 0; }
+    .toolbar-select--name {
+      margin-bottom: 10px; }
+    .toolbar-select--component {
+      float: left;
+      width: 65%; }
+    .toolbar-select--weight {
+      margin-left: 5%;
+      width: 30%; }
   .toolbar-btn {
     min-width: 70px;
     font-size: 18px;

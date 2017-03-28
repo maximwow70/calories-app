@@ -40,7 +40,16 @@
         }
     }
     &-find{
+        .app-toolbar{
 
+        }
+        .toolbar-select--component{
+            width: 100%;
+        }
+        .toolbar-select--weight{
+            display: none;
+            width: 0%;
+        }
     }
     &-add{
 

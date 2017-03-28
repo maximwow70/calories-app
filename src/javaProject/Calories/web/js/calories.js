@@ -46,37 +46,38 @@ for (var i = 0; i < selectAdd.length; i++){
 linkMain.addEventListener('click', openMain);
 
 function initToolbar(){
-    getComponents();
 
-    var appFindControlComponents = getControlComponents(appFind);
-    appFindControlComponents.addEventListener('click', function(){
-        addSelectComponent(appFind);
-    });
+    
 
-    var appAddControlComponents = getControlComponents(appAdd);
-    appAddControlComponents.addEventListener('click', function(){
-        addSelectComponent(appAdd);
-    });
+    //var appAddControlComponents = getControlComponents(appAdd);
+   
 }
 initToolbar();
 
-function initFindDish(){
-    var control = getControlToolbar(appFind);
+//function initAppFind(){
+    var toolbar = new Toolbar(appFind);
+    var control = toolbar.control;
     var itemList = new ItemList(appFind);
-    findDish(itemList, getDish(appFind));
+    
+    findDish(itemList, toolbar.getItem());
+    getComponents(toolbar);
 	control.addEventListener('click', function(){
-		var dish = getDish(appFind);
+		var dish = toolbar.getItem();
 		findDish(itemList, dish);
 	});
-}
-initFindDish();
+//}
+//initAppFind();
 
-function initAddDish(){
-    var control = getControlToolbar(appAdd);
+function initAppAdd(){
+    var toolbar = new Toolbar(appAdd);
+    var control = toolbar.control;
     var itemList = new ItemList(appAdd);
+
+    getComponents(toolbar);
     control.addEventListener('click', function(){
-        var dish = getDish(appAdd);
+        var dish = toolbar.getItem();
         addDish(itemList, dish);
     });
 }
-initAddDish();
+initAppAdd();
+

@@ -1,28 +1,4 @@
-function getSelectElements(parent) {
-    return parent.querySelectorAll('.toolbar-select--components');
-}
-function getDishComponents(parent){
-	var selects = getSelectElements(parent);
-	var components = [];
-	for (var i = 0; i < selects.length; i++){
-		var component = {
-			name: selects[i].value,
-			weight: 100
-		}
-		components.push(component);
-	}
-	return components;
-}
-function getDish(parent){
-	var dish = {};
-	var dishName = parent.querySelector('.toolbar-select--name').value;
-	var dishComponents = getDishComponents(parent);
-	dish.name = dishName;
-	dish.components = dishComponents;
-	return dish;
-}
-
-
+//server
 function findDish(itemList, _dish){
 	var dishes = [];
 	var dish = JSON.stringify(_dish);

@@ -1,3 +1,4 @@
+//server
 function addDish(itemList, _dish){
     var dishes = [];
 	var dish = JSON.stringify(_dish);

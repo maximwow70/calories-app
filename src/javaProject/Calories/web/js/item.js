@@ -1,22 +1,10 @@
-function ItemDom(id, name, components){
-    
-}
-ItemDom.prototype.addComponent = function(component){
-    
-}
-ItemDom.prototype.getDom = function(){
-    return this.dom;
-}
-
-
 function Item(id, name, components){
     this.id = id;
     this.name = name;
     this.components = components;
 
-    //this.dom = new ItemDom(id, name, components);    
-
     this.dom = document.createElement('div');
+    
     this.dom.setAttribute('class', 'item');
 
     var itemNameHtml = document.createElement('div');

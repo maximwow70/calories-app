@@ -9,13 +9,24 @@
         margin-bottom: 20px;
         color: $yellow-color;
         font-size: 24px;
+        font-weight: normal;
         text-transform: capitalize;
     }
-    &-select_components{
-        margin-bottom: 20px;
+    &-select_component{
+        overflow: hidden;
+        margin-bottom: 10px;
+        &:after{
+            content: '';
+            clear: both;
+        }
+        &:last-of-type{
+            margin-bottom: 20px;
+        }
     }
     &-select{
-        margin-bottom: 10px;
+        display: inline-block;
+        vertical-align: top;
+        height: 26px;
         box-sizing: border-box;
         padding: 2px 4px;
         width: 100%;
@@ -32,6 +43,17 @@
         &:hover{
             //border-color: $yellow-color;
             //background-color: $yellow-color;
+        }
+        &--name{
+            margin-bottom: 10px;
+        }
+        &--component{
+            float: left;
+            width: 65%;
+        }
+        &--weight{
+            margin-left: 5%;
+            width: 30%;
         }
     }
     &-btn{

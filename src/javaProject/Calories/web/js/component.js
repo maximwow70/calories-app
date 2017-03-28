@@ -5,6 +5,7 @@ function Component(id, name, weight, calories){
     this.weight = weight;
 
     this.dom = document.createElement('div');
+    
     this.dom.setAttribute('class', 'component');
 
     /*var componentIdHtml = document.createElement('span');

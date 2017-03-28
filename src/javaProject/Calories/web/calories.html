@@ -44,19 +44,15 @@
                         <div class="toolbar toolbar--find_dish">
                             <div class="toolbar-title">Find the dish!</div>
                             <input type="text" class="toolbar-select toolbar-select--name" placeholder="Dish's name">
-                            <div class="toolbar-select_components">
-                                <select class="toolbar-select toolbar-select--components">
-                                    <option class="toolbar-select--empty" value=""></option>
-                                </select>
-                                <select class="toolbar-select toolbar-select--components">
-                                    <option class="toolbar-select--empty" value=""></option>
-                                </select>
-                                <select class="toolbar-select toolbar-select--components">
+                            <div class="toolbar-select_component">
+                                <select class="toolbar-select toolbar-select--component">
                                     <option class="toolbar-select--empty" value=""></option>
                                 </select>
                             </div>
-                            <button class="toolbar-btn toolbar-btn--add_component">Add component</button>
-                            <button class="toolbar-btn toolbar-btn--find_dish">find</button>
+                            <div class="toolbar-controls">
+                                <button class="toolbar-btn toolbar-btn--add_component">Add component</button>
+                                <button class="toolbar-btn toolbar-btn--control toolbar-btn--find_dish">find</button>
+                            </div>
                         </div>
                     </div>
                     <div class="app-item_list">
@@ -69,19 +65,16 @@
                         <div class="toolbar toolbar--find_dish">
                             <div class="toolbar-title">Add the dish!</div>
                             <input type="text" class="toolbar-select toolbar-select--name" placeholder="Dish's name">
-                            <div class="toolbar-select_components">
-                                <select class="toolbar-select toolbar-select--components">
-                                    <option class="toolbar-select--empty" value=""></option>
+                            <div class="toolbar-select_component">
+                                <select class="toolbar-select toolbar-select--component">
+                                <option class="toolbar-select--empty" value=""></option>
                                 </select>
-                                <select class="toolbar-select toolbar-select--components">
-                                    <option class="toolbar-select--empty" value=""></option>
-                                </select>
-                                <select class="toolbar-select toolbar-select--components">
-                                    <option class="toolbar-select--empty" value=""></option>
-                                </select>
+                                <input class="toolbar-select toolbar-select--weight" type="number" min="0" placeholder="weight">
                             </div>
-                            <button class="toolbar-btn toolbar-btn--add_component">Add component</button>
-                            <button class="toolbar-btn toolbar-btn--add_dish">add</button>
+                            <div class="toolbar-controls">
+                                <button class="toolbar-btn toolbar-btn--add_component">Add component</button>
+                                <button class="toolbar-btn toolbar-btn--control toolbar-btn--add_dish">add</button>
+                            </div>
                         </div>
                     </div>
                     <div class="app-item_list app-item_list--one_item">

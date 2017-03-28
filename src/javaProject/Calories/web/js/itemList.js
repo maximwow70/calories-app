@@ -1,14 +1,20 @@
-function ItemListDom(parent, items, title){
+function ItemList(parent, _items, _title){
+    this.items = [];
+    this.title;
+
     this.dom = parent.querySelector('.item_list');
 
-    if (title){
-        this.setTitle(title);
+    if (_title){
+        this.setTitle(_title);
     }
-    if (items){
-        this.addItems(items);
-    } 
+    if (_items){
+        this.addItems(_items);
+    }
 }
-ItemListDom.prototype.setTitle = function(_title){
+ItemList.prototype.setTitle = function(_title){
+    this.title = _title;
+    
+    // dom
     var title = this.dom.querySelector('.item_list-title');
     if (title){
         title.textContent = _title;
@@ -21,9 +27,16 @@ ItemListDom.prototype.setTitle = function(_title){
         this.dom.insertBefore(title, firstChild);
     }
 }
-ItemListDom.prototype.addItems = function(items){
-	for (var i = 0; i < items.length; i++){
-		var id = items[i].id;
+ItemList.prototype.setItems = function(items){
+    this.setEmpty();
+    this.addItems(items);
+}
+ItemList.prototype.addItems = function(items){
+    for (var i = 0; i < items.length; i++){
+        this.items.push(items[i]);
+
+        // dom
+        var id = items[i].id;
 		var name = items[i].name;
 		var itemComponentsList = items[i].components;
 		var components = [];
@@ -36,42 +49,16 @@ ItemListDom.prototype.addItems = function(items){
 			var itemComponent = new Component(idComponent, nameComponent, weightComponent, caloriesComponent);
 			components.push(itemComponent);
 		}
-		var dish = new Item(id, name, components);
-		this.dom.appendChild(dish.getDom());
-	}
+		var item = new Item(id, name, components);
+		this.dom.appendChild(item.getDom());
+    }
 }
-ItemListDom.prototype.setEmpty = function(){
+ItemList.prototype.setEmpty = function(){
+    this.items = [];
+
+    // dom
     var items = this.dom.querySelectorAll('.item');
     for (var i = 0; i < items.length; i++){
         this.dom.removeChild(items[i]);
     }
-}
-ItemListDom.prototype.getDom = function(){
-    return this.dom;
-}
-
-function ItemList(parent, _items, _title){
-    this.items = _items;
-    this.title = _title;
-
-    this.dom = new ItemListDom(parent, _items, _title);
-    
-}
-ItemList.prototype.setTitle = function(title){
-    this.title = title;
-    this.dom.setTitle(title);
-}
-ItemList.prototype.setItems = function(items){
-    this.setEmpty();
-    this.addItems(items);
-}
-ItemList.prototype.addItems = function(items){
-    for (var i = 0; i < items.length; i++){
-        this.items.push(items[i]);
-    }
-    this.dom.addItems(items);
-}
-ItemList.prototype.setEmpty = function(){
-    this.items = [];
-    this.dom.setEmpty();
 }
