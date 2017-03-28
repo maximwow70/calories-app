@@ -22,11 +22,11 @@ public class Component {
         this.calories = calories;
         weight = 0;
     }
-    public Component(String name, int id, int calories, int weidth) {
+    public Component(String name, int id, int calories, int weight) {
         this.name = name;
         this.id = id;
         this.calories = calories;
-        this.weight = weidth;
+        this.weight = weight;
     }
     public int getID() {
         return id;

@@ -14,7 +14,7 @@ import java.util.ArrayList;
  */
 public class Main {
     public static void main(String... args) {
-        ArrayList<Dish> lightSet = new ArrayList<>();
+        ArrayList<Dish> lightSet;
         ArrayList<Dish> set = new ArrayList<>();
         
         

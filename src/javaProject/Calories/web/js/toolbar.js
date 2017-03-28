@@ -90,7 +90,7 @@ Toolbar.prototype.getItemComponents = function(){
             componentWeight = selects[i].querySelector('.toolbar-select--weight').value;
         }
         catch(e){
-            componentWeight = '';
+            componentWeight = 0;
         }
 
 		var component = {};
