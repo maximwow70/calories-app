@@ -4,3 +4,4 @@
 src/javaProject/\.DS_Store
 
 src/\.DS_Store
+/src/javaProject/Calories/dist/
