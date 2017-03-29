@@ -24,6 +24,9 @@
       margin-left: 0; }
     .navigation-list--main {
       font-size: 32px; }
+    .navigation-list--about {
+      margin-top: 2px;
+      font-size: 32px; }
   .navigation-description {
     margin-left: 10px;
     vertical-align: middle; }
@@ -117,7 +120,7 @@
     align-items: center; }
     .app-select--close {
       display: none; }
-  .app-find, .app-add {
+  .app-find, .app-add, .app-about {
     -webkit-flex: 1;
     -ms-flex: 1;
     flex: 1;
@@ -136,13 +139,23 @@
     -webkit-flex-wrap: wrap;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap; }
-    .app-find--close, .app-add--close {
+    .app-find--close, .app-add--close, .app-about--close {
       display: none; }
   .app-find .toolbar-select--component {
     width: 100%; }
   .app-find .toolbar-select--weight {
     display: none;
     width: 0%; }
+  .app-about {
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center; }
+    .app-about .about {
+      padding: 20px;
+      max-width: 300px; }
   .app-toolbar {
     -webkit-flex: 1;
     -ms-flex: 1;
@@ -346,6 +359,22 @@
   100% {
     -webkit-transform: translate(-50%, -50%) rotate(360deg);
     transform: translate(-50%, -50%) rotate(360deg); } }
+
+.about {
+  text-align: center; }
+  .about-title {
+    margin-bottom: 10px;
+    font-weight: normal;
+    font-size: 26px; }
+  .about-description {
+    margin-bottom: 10px; }
+  .about-developer {
+    line-height: 24px; }
+    .about-developer:last-of-type {
+      margin-bottom: 10px; }
+  .about-version {
+    font-size: 16px;
+    font-weight: normal; }
 
 .toolbar {
   box-sizing: border-box;
