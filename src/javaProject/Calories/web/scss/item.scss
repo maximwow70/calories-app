@@ -2,7 +2,7 @@ $item-border: 2px solid $yellow-color;
 .item{
     box-sizing: border-box;
     width: 250px;
-    height: 300px;
+    min-height: 300px;
     border: $item-border;
     background-color: $blue-color;
     color: $light-color;
@@ -16,8 +16,12 @@ $item-border: 2px solid $yellow-color;
         text-transform: capitalize;
         text-align: center;
     }
+    &-weight{
+        padding: 0px 20px;
+        margin-bottom: 20px;
+    }
     &-components{
-        padding: 10px 20px;
+        padding: 0px 20px;
         .component{
             margin-bottom: 10px;
         }

@@ -1,6 +1,8 @@
-function Item(id, name, components){
+function Item(id, name, components, weight, calories){
     this.id = id;
     this.name = name;
+	this.weight = weight;
+	this.calories = calories;
     this.components = components;
 
     this.dom = document.createElement('div');
@@ -9,7 +11,23 @@ function Item(id, name, components){
 
     var itemNameHtml = document.createElement('div');
     itemNameHtml.setAttribute('class', 'item-name');
-    itemNameHtml.textContent = name;
+    itemNameHtml.textContent = this.name;
+    this.dom.appendChild(itemNameHtml);
+
+	if (weight){
+		var itemWeightHtml = document.createElement('div');
+		itemWeightHtml.setAttribute('class', 'item-weight');
+		itemWeightHtml.innerHTML = 'Weight: ' + this.weight + 'g';
+		this.dom.appendChild(itemWeightHtml);
+	}
+
+	if (calories){
+		var itemCaloriesHtml = document.createElement('div');
+		itemCaloriesHtml.setAttribute('class', 'item-weight');
+		itemCaloriesHtml.innerHTML = 'Calories: ' + this.calories + 'c/100g';
+		this.dom.appendChild(itemCaloriesHtml);
+	}
+
     var itemComponentsHtml = document.createElement('div');
     itemComponentsHtml.setAttribute('class', 'item-components');
 
@@ -21,7 +39,6 @@ function Item(id, name, components){
         }
     }
 
-    this.dom.appendChild(itemNameHtml);
     this.dom.appendChild(itemComponentsHtml);
 }
 Item.prototype.addComponent = function(component){

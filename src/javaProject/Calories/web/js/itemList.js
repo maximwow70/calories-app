@@ -38,6 +38,8 @@ ItemList.prototype.addItems = function(items){
         // dom
         var id = items[i].id;
 		var name = items[i].name;
+        var weight = items[i].weight;
+        var calories = items[i].calories;
 		var itemComponentsList = items[i].components;
 		var components = [];
 
@@ -49,7 +51,7 @@ ItemList.prototype.addItems = function(items){
 			var itemComponent = new Component(idComponent, nameComponent, weightComponent, caloriesComponent);
 			components.push(itemComponent);
 		}
-		var item = new Item(id, name, components);
+		var item = new Item(id, name, components, weight, calories);
 		this.dom.appendChild(item.getDom());
     }
 }

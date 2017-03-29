@@ -57,9 +57,17 @@
         text-align: center; } }
 
 .logo-title {
+  display: inline-block;
+  vertical-align: middle;
   font-family: logo;
   font-size: 36px;
   font-weight: normal; }
+
+.logo-img {
+  margin-left: 10px;
+  display: inline-block;
+  vertical-align: middle;
+  height: 40px; }
 
 .info {
   font-family: exo_l,exo_r, Arial, sans-serif; }
@@ -362,9 +370,8 @@
 
 .about {
   text-align: center; }
-  .about-title {
+  .about-logo {
     margin-bottom: 10px;
-    font-weight: normal;
     font-size: 26px; }
   .about-description {
     margin-bottom: 10px; }
@@ -445,7 +452,7 @@
 .item {
   box-sizing: border-box;
   width: 250px;
-  height: 300px;
+  min-height: 300px;
   border: 2px solid #e5bd47;
   background-color: #2f6665;
   color: #dcdcdd;
@@ -457,8 +464,11 @@
     font-size: 20px;
     text-transform: capitalize;
     text-align: center; }
+  .item-weight {
+    padding: 0px 20px;
+    margin-bottom: 20px; }
   .item-components {
-    padding: 10px 20px; }
+    padding: 0px 20px; }
     .item-components .component {
       margin-bottom: 10px; }
 
