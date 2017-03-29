@@ -22,9 +22,10 @@ function Item(id, name, components, weight, calories){
 	}
 
 	if (calories){
+		var c = Math.round(this.calories * 100 / this.weight);
 		var itemCaloriesHtml = document.createElement('div');
-		itemCaloriesHtml.setAttribute('class', 'item-weight');
-		itemCaloriesHtml.innerHTML = 'Calories: ' + this.calories + 'c/100g';
+		itemCaloriesHtml.setAttribute('class', 'item-calories');
+		itemCaloriesHtml.innerHTML = 'Calories: ' + this.calories + ' (' + c + 'c/100g)';
 		this.dom.appendChild(itemCaloriesHtml);
 	}
 
