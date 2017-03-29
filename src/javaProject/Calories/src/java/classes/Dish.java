@@ -18,11 +18,13 @@ public class Dish {
     private int count = 1;
     private int weight;
     private int calories;
+    private String src;
     
     public Dish(int id,String name) {
         components = new ArrayList<>();
         this.name = name;
         this.id = id;
+        src = "image"+id+".jpg";
         addComponents(SQL.findComponentsByDishId(id));
         weight = getWeight();
         calories = getCalories();
@@ -58,7 +60,7 @@ public class Dish {
     public int getCalories() {
         int result = 0;
         for(Component c : components) {
-            result+=c.getWeight()*c.getCalories();
+            result+=(c.getWeight()*c.getCalories())/100;
         }
         return result;
     }
