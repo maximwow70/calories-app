@@ -88,6 +88,9 @@ Toolbar.prototype.getItemComponents = function(){
         var componentWeight;
         try{
             componentWeight = selects[i].querySelector('.toolbar-select--weight').value;
+            if (!componentWeight){
+                componentWeight = 0;
+            }
         }
         catch(e){
             componentWeight = 0;
