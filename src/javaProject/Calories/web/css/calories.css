@@ -447,28 +447,31 @@
   .item_list .item {
     display: inline-block;
     vertical-align: top;
-    margin: 0 15px 20px 25px; }
+    margin: 0 15px 20px 15px; }
 
 .item {
   box-sizing: border-box;
-  width: 250px;
-  min-height: 300px;
+  width: 270px;
+  min-height: 320px;
   border: 2px solid #e5bd47;
   background-color: #2f6665;
   color: #dcdcdd;
   text-align: left; }
   .item-name {
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     border-bottom: 2px solid #e5bd47;
     padding: 10px 20px;
     font-size: 20px;
     text-transform: capitalize;
     text-align: center; }
   .item-weight {
-    padding: 0px 20px;
-    margin-bottom: 20px; }
-  .item-components {
+    margin-bottom: 10px;
     padding: 0px 20px; }
+  .item-calories {
+    margin-bottom: 20px;
+    padding: 0px 20px; }
+  .item-components {
+    padding: 0px 20px 10px 20px; }
     .item-components .component {
       margin-bottom: 10px; }
 

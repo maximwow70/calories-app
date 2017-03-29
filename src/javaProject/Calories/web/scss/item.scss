@@ -1,14 +1,14 @@
 $item-border: 2px solid $yellow-color;
 .item{
     box-sizing: border-box;
-    width: 250px;
-    min-height: 300px;
+    width: 270px;
+    min-height: 320px;
     border: $item-border;
     background-color: $blue-color;
     color: $light-color;
     text-align: left;
     &-name{
-        margin-bottom: 30px;
+        margin-bottom: 20px;
         border-bottom: $item-border;
 
         padding: 10px 20px;
@@ -17,11 +17,15 @@ $item-border: 2px solid $yellow-color;
         text-align: center;
     }
     &-weight{
+        margin-bottom: 10px;
         padding: 0px 20px;
+    }
+    &-calories{
         margin-bottom: 20px;
+        padding: 0px 20px;
     }
     &-components{
-        padding: 0px 20px;
+        padding: 0px 20px 10px 20px;
         .component{
             margin-bottom: 10px;
         }
