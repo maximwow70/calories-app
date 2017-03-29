@@ -1,83 +1,61 @@
-var app = document.getElementsByClassName('calories-app')[0];
-var appFind = document.querySelector('.app-find');
-var appAdd = document.querySelector('.app-add');
+var selectFind = document.querySelectorAll('.select-btn--find');
+var selectAdd = document.querySelectorAll('.select-btn--add');
+var selectMain = document.querySelectorAll('.navigation-list--main');
+var selectAbout = document.querySelectorAll('.navigation-list--about');
 
-var select = document.getElementsByClassName('app-select')[0];
-var loading = document.getElementsByClassName('app-loading')[0];
+var app = new App();
+var server = new Server();
 
-var selectFind = document.getElementsByClassName('select-btn--find');
-var selectAdd = document.getElementsByClassName('select-btn--add');
-var linkMain = document.getElementsByClassName('navigation-list--main')[0];
-
-var openMain = function (){
-    $(select).addClass('app-select--close');
-    $(appFind).addClass('app-find--close');
-    $(appAdd).addClass('app-add--close');
-    $(loading).removeClass('app-loading--close');
-    
-    setTimeout(function(){
-        $(loading).addClass('app-loading--close');
-        $(select).removeClass('app-select--close');
-    }, 500);
+function openSelect(){
+    app.openSelect();
 }
-
+function openFind(){
+    app.openFind();
+}
+function openAdd(){
+    app.openAdd();
+}
+function openAbout(){
+    app.openAbout();
+}
+for (var i = 0; i < selectMain.length; i++){
+    selectMain[i].addEventListener('click', openSelect);
+}
 for (var i = 0; i < selectFind.length; i++){
-    selectFind[i].addEventListener('click', function(){
-        $(select).addClass('app-select--close');
-        $(loading).removeClass('app-loading--close');
-        setTimeout(function(){
-            $(loading).addClass('app-loading--close');
-            $(appFind).removeClass('app-find--close');
-        }, 500);
-    });
+    selectFind[i].addEventListener('click', openFind);
 }
-
 for (var i = 0; i < selectAdd.length; i++){
-    selectAdd[i].addEventListener('click', function(){
-        $(select).addClass('app-select--close');
-        $(loading).removeClass('app-loading--close');
-        setTimeout(function(){
-            $(loading).addClass('app-loading--close');
-            $(appAdd).removeClass('app-add--close');
-        }, 500);
-    });
+    selectAdd[i].addEventListener('click', openAdd);
+}
+for (var i = 0; i < selectAbout.length; i++){
+    selectAbout[i].addEventListener('click', openAbout);
 }
 
-linkMain.addEventListener('click', openMain);
-
-function initToolbar(){
-
-    
-
-    //var appAddControlComponents = getControlComponents(appAdd);
-   
-}
-initToolbar();
-
-//function initAppFind(){
+function initAppFind(){
+    var appFind = app.getAppFind();
     var toolbar = new Toolbar(appFind);
     var control = toolbar.control;
     var itemList = new ItemList(appFind);
     
-    findDish(itemList, toolbar.getItem());
-    getComponents(toolbar);
+    server.findDish(itemList, toolbar.getItem());
+    server.getComponents(toolbar);
 	control.addEventListener('click', function(){
 		var dish = toolbar.getItem();
-		findDish(itemList, dish);
+		server.findDish(itemList, dish);
 	});
-//}
-//initAppFind();
+}
+initAppFind();
 
 function initAppAdd(){
+    var appAdd = app.getAppAdd();
     var toolbar = new Toolbar(appAdd);
     var control = toolbar.control;
     var itemList = new ItemList(appAdd);
 
-    getComponents(toolbar);
+    server.getComponents(toolbar);
     control.addEventListener('click', function(){
         var dish = toolbar.getItem();
-        addDish(itemList, dish);
+        server.addDish(itemList, dish);
     });
 }
 initAppAdd();
-

@@ -27,7 +27,7 @@
             display: none;
         }
     }
-    &-find, &-add{
+    &-find, &-add, &-about{
         flex: 1;
 
         display: flex;
@@ -53,6 +53,14 @@
     }
     &-add{
 
+    }
+    &-about{
+        align-items: center;
+        justify-content: center;
+        .about{
+            padding: 20px;
+            max-width: 300px;
+        }
     }
     &-toolbar{
         flex: 1;

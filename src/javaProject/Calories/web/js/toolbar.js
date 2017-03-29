@@ -114,22 +114,6 @@ Toolbar.prototype.getDom = function(){
     return this.dom;
 }
 
-
-//server
-function getComponents(toolbar){
-    var components = [];
-    var xhr = new newXMLHttpRequest();
-    xhr.open('POST', 'BeginFindComponents', true);
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.send();
-    xhr.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200){
-            components = JSON.parse(xhr.responseText);
-            toolbar.initComponents(components);
-        }
-    }
-}
-
 /*
 	tests//
 
