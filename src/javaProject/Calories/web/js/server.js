@@ -25,24 +25,35 @@ Server.prototype.getNewXhr = function(){
     return xmlreq;
 }
 Server.prototype.addDish = function (itemList, _dish){
-    var dishes = [];
-	var dish = JSON.stringify(_dish);
-	var xhr = this.getNewXhr();
-	xhr.open('POST', 'AddDish', true);
-	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.send(dish);
-	xhr.onreadystatechange = function(){
-		if (this.readyState == 4 && this.status == 200){
-            try {
-                dishes = JSON.parse(xhr.responseText);
-                itemList.setTitle('Your dish: ');
-                itemList.setItems(dishes);
-            }
-            catch(e) {
-                itemList.setTitle('Sorry, this dish is already exist. Try again!');
+    var that = this;
+
+    var reader = new FileReader();
+    file = _dish.image;
+    reader.readAsDataURL(file);
+
+    reader.onload = function(){
+        _dish.image = reader.result;
+        console.log(_dish.image);
+
+        var dishes = [];
+        var dish = JSON.stringify(_dish);
+        var xhr = that.getNewXhr();
+        xhr.open('POST', 'AddDish', true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.send(dish);
+        xhr.onreadystatechange = function(){
+            if (this.readyState == 4 && this.status == 200){
+                try {
+                    dishes = JSON.parse(xhr.responseText);
+                    itemList.setTitle('Your dish: ');
+                    itemList.setItems(dishes);
+                }
+                catch(e) {
+                    itemList.setTitle('Sorry, this dish is already exist. Try again!');
+                }
             }
         }
-	}
+    }
 }
 Server.prototype.findDish = function (itemList, _dish){
 	var dishes = [];

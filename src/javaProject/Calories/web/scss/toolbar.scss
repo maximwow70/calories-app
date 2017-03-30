@@ -56,6 +56,9 @@
             width: 30%;
         }
     }
+    &-select_file{
+        margin-bottom: 10px;
+    }
     &-btn{
         min-width: 70px;
         font-size: 18px;
@@ -63,6 +66,7 @@
 
         background-color: $yellow-color;
         color: $dark-color;
+        font-family: $font-stack;
         text-transform: capitalize;
         outline: none;
 

@@ -1,5 +1,19 @@
 $select_btn_size: 140px;
 .select{
+
+    div:last-child{
+        margin-top: 50px;
+        div{
+            margin-top: 0px;
+            display: inline-block;
+            vertical-align: top;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border-bottom: 3px solid $blue-color;
+        }
+    }
+
     text-align: center;
     &-title{
         margin-bottom: 40px;
@@ -11,7 +25,7 @@ $select_btn_size: 140px;
         position: relative;
         margin: 0 ($select_btn_size / 5);
         display: inline-block;
-        vertical-align: top;
+        vertical-align: middle;
         width: $select_btn_size;
         height: $select_btn_size;
         border-radius: 50%;
