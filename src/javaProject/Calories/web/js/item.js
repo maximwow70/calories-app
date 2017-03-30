@@ -5,7 +5,7 @@ function Item(id, name, components, weight, calories, src){
 	this.calories = calories;
     this.components = components;
 	this.src = src;
-	this.imgPath = 'url(img/' + this.src + ')';
+	this.imgPath = 'url(../../../img/' + this.src + ')';
 
     this.dom = document.createElement('div');
     
