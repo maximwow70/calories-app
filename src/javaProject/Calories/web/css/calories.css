@@ -220,9 +220,6 @@
         -ms-flex-align: stretch;
         align-items: stretch; }
         .app-item_list--one_item .item_list .item {
-          -webkit-flex: 1;
-          -ms-flex: 1;
-          flex: 1;
           margin: 0;
           display: block;
           width: auto; }
@@ -234,16 +231,6 @@
 
 .select {
   text-align: center; }
-  .select div:last-child {
-    margin-top: 50px; }
-    .select div:last-child div {
-      margin-top: 0px;
-      display: inline-block;
-      vertical-align: top;
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      border-bottom: 3px solid #2f6665; }
   .select-title {
     margin-bottom: 40px;
     font-family: exo_r,exo_r, Arial, sans-serif;
@@ -505,7 +492,8 @@
   .item-description {
     position: relative;
     padding: 20px;
-    background-size: 100% 100%; }
+    background-size: 100% 100%;
+    background-position: center; }
     .item-description .filter {
       z-index: 1;
       position: absolute;
