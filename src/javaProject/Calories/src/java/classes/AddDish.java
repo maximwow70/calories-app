@@ -6,9 +6,12 @@
 package classes;
 
 import com.google.gson.Gson;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Base64;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -82,8 +85,13 @@ public class AddDish extends HttpServlet {
         boolean is = SQL.addDish(dish);
         list.add(SQL.findDishByNameOnly(dish.getName()));
         String outJsonDish = gson.toJson(list);
-        if(is)
+        if(is) {
+            FileOutputStream out = new FileOutputStream(new File(list.get(0).getSrc()));
+            byte[] file = Base64.getDecoder().decode(list.get(0).getImage());
+            out.write(file);
+            out.close();
             response.getWriter().write(outJsonDish);
+        }
         else
             response.getWriter().write("");
     }

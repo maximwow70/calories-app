@@ -6,32 +6,35 @@
 package classes;
 
 import com.google.gson.Gson;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.Base64;
 
 /**
  *
  * @author admin
  */
 public class Main {
-    public static void main(String... args) {
-        ArrayList<Dish> lightSet;
-        ArrayList<Dish> set = new ArrayList<>();
-        
-        
-        String string = "{\"name\":\"\",\"components\":[{\"name\":\"\",\"weight\":100},{\"name\":\"\",\"weight\":100},{\"name\":\"\",\"weight\":100}]}";
-        
-        //КОСТЫЛЬ!!!!!!
-        Gson gson = new Gson();
-        Dish dish = gson.fromJson(string, Dish.class);
-        
-        
-        lightSet = SQL.findDishesByNameAndComponents(dish);
-        for(Dish d:lightSet) {
-            System.out.println(d.getName());
-        if(d.getCount() >= dish.length())
-            set.add(d);
+    public static void main(String... args) throws UnsupportedEncodingException, FileNotFoundException, IOException {
+        FileInputStream in = new FileInputStream(new File("lol.txt"));
+        byte[] bytes = new byte[500];
+        int i = -1;
+        int k = 0;
+        while((i=in.read())!=-1) {
+            bytes[k] = (byte)i;
+            k++;
         }
-        String s = gson.toJson(set);
-        System.out.println(s);
+        in.close();
+        String code = Base64.getEncoder().encodeToString(bytes);
+        byte[] lol = Base64.getDecoder().decode(code);
+        FileOutputStream out = new FileOutputStream(new File("lol1.txt"));
+        out.write(lol);
+        out.close();
+        
     }
 }

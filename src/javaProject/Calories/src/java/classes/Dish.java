@@ -19,6 +19,7 @@ public class Dish {
     private int weight;
     private int calories;
     private String src;
+    private String image;
     
     public Dish(int id,String name) {
         components = new ArrayList<>();
@@ -40,6 +41,12 @@ public class Dish {
     }
     public String getName() {
         return name;
+    }
+    public String getImage() {
+        return image;
+    }
+    public String getSrc() {
+        return src;
     }
     public int getCount() {
         return count;
