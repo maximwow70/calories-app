@@ -8,6 +8,7 @@ package classes;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -62,6 +63,7 @@ public class BeginFindComponents extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text.html;charset=UTF-8");
         ArrayList<Component> set = SQL.findComponents();
+        set.sort(new CustomComparator());
         Gson g = new Gson();
         String str = g.toJson(set);
         response.getWriter().write(str);
