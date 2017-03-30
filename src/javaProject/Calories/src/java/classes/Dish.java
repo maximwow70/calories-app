@@ -24,7 +24,7 @@ public class Dish {
         components = new ArrayList<>();
         this.name = name;
         this.id = id;
-        src = "image"+id+".jpg";
+        src = "dish"+id+".jpg";
         addComponents(SQL.findComponentsByDishId(id));
         weight = getWeight();
         calories = getCalories();
