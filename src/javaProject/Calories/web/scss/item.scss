@@ -6,28 +6,50 @@ $item-border: 2px solid $yellow-color;
     border: $item-border;
     background-color: $blue-color;
     color: $light-color;
+    font-size: 18px;
     text-align: left;
+
     &-name{
-        margin-bottom: 20px;
         border-bottom: $item-border;
 
         padding: 10px 20px;
-        font-size: 20px;
+        font-size: 24px;
         text-transform: capitalize;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
         text-align: center;
     }
+    &-description{
+        position: relative;
+        padding: 20px;
+        //background: url(../img/dish1.jpeg);
+        background-size: 100% 100%;
+        .filter{
+            z-index: 1;
+            position: absolute;
+            top: 0; right: 0; bottom: 0; left: 0;
+            background-color: rgba($blue-color, .8)
+        }
+    }
     &-weight{
+        position: relative;
+        z-index: 2;
         margin-bottom: 10px;
-        padding: 0px 20px;
     }
     &-calories{
+        position: relative;
+        z-index: 2;
         margin-bottom: 20px;
-        padding: 0px 20px;
     }
     &-components{
-        padding: 0px 20px 10px 20px;
+        position: relative;
+        z-index: 2;
         .component{
             margin-bottom: 10px;
+            &:last-child{
+                margin-bottom: 0px;
+            }
         }
     }
 }

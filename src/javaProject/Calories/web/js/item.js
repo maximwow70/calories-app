@@ -1,9 +1,11 @@
-function Item(id, name, components, weight, calories){
+function Item(id, name, components, weight, calories, src){
     this.id = id;
     this.name = name;
 	this.weight = weight;
 	this.calories = calories;
     this.components = components;
+	this.src = src;
+	this.imgPath = 'url(img/' + this.src + ')';
 
     this.dom = document.createElement('div');
     
@@ -14,11 +16,15 @@ function Item(id, name, components, weight, calories){
     itemNameHtml.textContent = this.name;
     this.dom.appendChild(itemNameHtml);
 
+	var itemDescriptionHtml = document.createElement('div');
+    itemDescriptionHtml.setAttribute('class', 'item-description');
+	itemDescriptionHtml.style.backgroundImage = this.imgPath;
+
 	if (weight){
 		var itemWeightHtml = document.createElement('div');
 		itemWeightHtml.setAttribute('class', 'item-weight');
 		itemWeightHtml.innerHTML = 'Weight: ' + this.weight + 'g';
-		this.dom.appendChild(itemWeightHtml);
+		itemDescriptionHtml.appendChild(itemWeightHtml);
 	}
 
 	if (calories){
@@ -26,7 +32,7 @@ function Item(id, name, components, weight, calories){
 		var itemCaloriesHtml = document.createElement('div');
 		itemCaloriesHtml.setAttribute('class', 'item-calories');
 		itemCaloriesHtml.innerHTML = 'Calories: ' + this.calories + ' (' + c + 'c/100g)';
-		this.dom.appendChild(itemCaloriesHtml);
+		itemDescriptionHtml.appendChild(itemCaloriesHtml);
 	}
 
     var itemComponentsHtml = document.createElement('div');
@@ -40,7 +46,16 @@ function Item(id, name, components, weight, calories){
         }
     }
 
-    this.dom.appendChild(itemComponentsHtml);
+	var itemFilterHtml = document.createElement('div');
+    itemFilterHtml.setAttribute('class', 'filter');
+
+	itemDescriptionHtml.appendChild(itemFilterHtml);
+    itemDescriptionHtml.appendChild(itemComponentsHtml);
+
+	this.dom.appendChild(itemDescriptionHtml);
+
+	
+
 }
 Item.prototype.addComponent = function(component){
     this.components.push(component);

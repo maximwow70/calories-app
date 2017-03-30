@@ -445,9 +445,10 @@
     margin-bottom: 20px;
     text-align: left; }
   .item_list .item {
-    display: inline-block;
+    margin: 0 20px;
+    margin-bottom: 30px;
     vertical-align: top;
-    margin: 0 15px 20px 15px; }
+    display: inline-block; }
 
 .item {
   box-sizing: border-box;
@@ -456,24 +457,44 @@
   border: 2px solid #e5bd47;
   background-color: #2f6665;
   color: #dcdcdd;
+  font-size: 18px;
   text-align: left; }
   .item-name {
-    margin-bottom: 20px;
     border-bottom: 2px solid #e5bd47;
     padding: 10px 20px;
-    font-size: 20px;
+    font-size: 24px;
     text-transform: capitalize;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
     text-align: center; }
+  .item-description {
+    position: relative;
+    padding: 20px;
+    background-size: 100% 100%; }
+    .item-description .filter {
+      z-index: 1;
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background-color: rgba(47, 102, 101, 0.8); }
   .item-weight {
-    margin-bottom: 10px;
-    padding: 0px 20px; }
+    position: relative;
+    z-index: 2;
+    margin-bottom: 10px; }
   .item-calories {
-    margin-bottom: 20px;
-    padding: 0px 20px; }
+    position: relative;
+    z-index: 2;
+    margin-bottom: 20px; }
   .item-components {
-    padding: 0px 20px 10px 20px; }
+    position: relative;
+    z-index: 2; }
     .item-components .component {
       margin-bottom: 10px; }
+      .item-components .component:last-child {
+        margin-bottom: 0px; }
 
 .component-id:after {
   display: inline;
