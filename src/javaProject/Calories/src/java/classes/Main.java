@@ -21,20 +21,19 @@ import java.util.Base64;
  */
 public class Main {
     public static void main(String... args) throws UnsupportedEncodingException, FileNotFoundException, IOException {
-        FileInputStream in = new FileInputStream(new File("lol.txt"));
-        byte[] bytes = new byte[500];
-        int i = -1;
-        int k = 0;
-        while((i=in.read())!=-1) {
-            bytes[k] = (byte)i;
-            k++;
-        }
-        in.close();
-        String code = Base64.getEncoder().encodeToString(bytes);
+        
+        Gson gson = new Gson();
+        String lal = "{\"name\":\"finalTest2\",\"components\":[{\"name\":\"\",\"weight\":0}],\"image\":\"data:image/jpeg;base64,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\"}";
+        Dish dish = gson.fromJson(lal, Dish.class);
+        System.out.println(dish.getImage());
+        String code = dish.getImage();
+        code = code.substring(code.indexOf(',')+1);
         byte[] lol = Base64.getDecoder().decode(code);
-        FileOutputStream out = new FileOutputStream(new File("lol1.txt"));
+        File file = new File("/Users/admin/Desktop/git/calories-app/src/javaProject/Calories/lol1.jpg");
+        FileOutputStream out = new FileOutputStream(file);
         out.write(lol);
         out.close();
+        System.out.println(file.getAbsolutePath());
         
     }
 }

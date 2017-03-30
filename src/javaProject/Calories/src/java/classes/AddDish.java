@@ -82,13 +82,15 @@ public class AddDish extends HttpServlet {
         String inJsonDish = request.getReader().readLine();
         Gson gson = new Gson();
         Dish dish = gson.fromJson(inJsonDish, Dish.class);
+        String code = dish.getImage();
         boolean is = SQL.addDish(dish);
         list.add(SQL.findDishByNameOnly(dish.getName()));
         String outJsonDish = gson.toJson(list);
         if(is) {
-            FileOutputStream out = new FileOutputStream(new File(list.get(0).getSrc()));
-            byte[] file = Base64.getDecoder().decode(list.get(0).getImage());
-            out.write(file);
+            code = code.substring(code.indexOf(',')+1);
+            byte[] lol = Base64.getDecoder().decode(code);
+            FileOutputStream out = new FileOutputStream(new File("/Users/admin/Desktop/git/calories-app/src/img/"+list.get(0).getSrc()));
+            out.write(lol);
             out.close();
             response.getWriter().write(outJsonDish);
         }
