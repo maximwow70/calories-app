@@ -89,7 +89,7 @@ public class AddDish extends HttpServlet {
         if(is) {
             code = code.substring(code.indexOf(',')+1);
             byte[] lol = Base64.getDecoder().decode(code);
-            FileOutputStream out = new FileOutputStream(new File("/Users/admin/Desktop/git/calories-app/src/img/"+list.get(0).getSrc()));
+            FileOutputStream out = new FileOutputStream(new File("/Users/admin/Desktop/git/calories-app/src/javaProject/Calories/build/web/img/"+list.get(0).getSrc()));
             out.write(lol);
             out.close();
             response.getWriter().write(outJsonDish);
