@@ -234,6 +234,16 @@
 
 .select {
   text-align: center; }
+  .select div:last-child {
+    margin-top: 50px; }
+    .select div:last-child div {
+      margin-top: 0px;
+      display: inline-block;
+      vertical-align: top;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      border-bottom: 3px solid #2f6665; }
   .select-title {
     margin-bottom: 40px;
     font-family: exo_r,exo_r, Arial, sans-serif;
@@ -243,7 +253,7 @@
     position: relative;
     margin: 0 28px;
     display: inline-block;
-    vertical-align: top;
+    vertical-align: middle;
     width: 140px;
     height: 140px;
     border-radius: 50%;
@@ -383,6 +393,27 @@
     font-size: 16px;
     font-weight: normal; }
 
+.select_file input[type=file] {
+  display: none; }
+
+.select_file-btn {
+  display: inline-block;
+  min-width: 70px;
+  font-size: 18px;
+  padding: 5px 10px;
+  background-color: #e5bd47;
+  color: #2c363f;
+  text-transform: capitalize;
+  outline: none;
+  cursor: pointer;
+  transition: 0.4s; }
+  .select_file-btn:hover {
+    box-shadow: 0 0 10px rgba(229, 189, 71, 0.7); }
+
+.select_file-reset {
+  margin-left: 5px;
+  font-size: 20px; }
+
 .toolbar {
   box-sizing: border-box;
   padding: 40px 40px;
@@ -424,12 +455,15 @@
     .toolbar-select--weight {
       margin-left: 5%;
       width: 30%; }
+  .toolbar-select_file {
+    margin-bottom: 10px; }
   .toolbar-btn {
     min-width: 70px;
     font-size: 18px;
     padding: 5px 10px;
     background-color: #e5bd47;
     color: #2c363f;
+    font-family: exo_r, Arial, sans-serif;
     text-transform: capitalize;
     outline: none;
     cursor: pointer;
@@ -479,7 +513,7 @@
       right: 0;
       bottom: 0;
       left: 0;
-      background-color: rgba(47, 102, 101, 0.8); }
+      background-color: rgba(0, 0, 0, 0.5); }
   .item-weight {
     position: relative;
     z-index: 2;

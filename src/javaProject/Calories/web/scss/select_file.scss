@@ -1,0 +1,27 @@
+.select_file{
+    input[type=file]{
+        display: none;
+    }
+    &-btn{
+        display: inline-block;
+        min-width: 70px;
+        font-size: 18px;
+        padding: 5px 10px;
+
+        background-color: $yellow-color;
+        color: $dark-color;
+        text-transform: capitalize;
+        outline: none;
+
+        cursor: pointer;
+
+        transition: $transition-time;
+        &:hover{
+            box-shadow: 0 0 10px rgba($yellow-color, 0.7);
+        }
+    }
+    &-reset{
+        margin-left: 5px;
+        font-size: 20px;
+    }
+}

@@ -1,6 +1,7 @@
 function Toolbar(parent, title){
     this.title;
     this.components = [];
+    this.img;
 
     this.dom = parent.querySelector('.toolbar');
     this.addComponentBtn = this.dom.querySelector('.toolbar-btn--add_component');
@@ -103,15 +104,27 @@ Toolbar.prototype.getItemComponents = function(){
 	}
 	return components;
 }
+Toolbar.prototype.getItemImg = function(){
+    try{
+        this.img = this.dom.querySelector('.file_select').files[0];
+    }
+    catch(e){
+        this.img = '';
+    }
+    return this.img;
+}
 Toolbar.prototype.getItem = function(){
-	var dishName = this.dom.querySelector('.toolbar-select--name').value;
-	var dishComponents = this.getItemComponents();
+	var itemName = this.dom.querySelector('.toolbar-select--name').value;
+	var itemComponents = this.getItemComponents();
+
+    var itemImg = this.getItemImg();
     
-    var dish = {
-        name: dishName,
-        components: dishComponents
+    var item = {
+        name: itemName,
+        components: itemComponents,
+        image: itemImg
     };
-	return dish;
+	return item;
 }
 Toolbar.prototype.getDom = function(){
     return this.dom;
