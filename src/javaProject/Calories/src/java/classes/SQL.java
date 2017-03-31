@@ -5,12 +5,15 @@
  */
 package classes;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Base64;
 
 /**
  *
@@ -210,8 +213,14 @@ public class SQL {
                 System.out.println("5");
                 stat.execute("INSERT INTO DishFormulas(DishID,ComponentID,Weight) VALUES ("+id+","+comp.getID()+","+comp.getWeight()+");");
             }
+            String code = dish.getImage();
+            code = code.substring(code.indexOf(',')+1);
+            byte[] lol = Base64.getDecoder().decode(code);
+            FileOutputStream out = new FileOutputStream(new File("/Users/admin/Desktop/git/calories-app/src/javaProject/Calories/build/web/img/"+dish1.getSrc()));
+            out.write(lol);
+            out.close();
             return true;
-        } catch (SQLException ex) {
+        } catch (Exception ex) {
             return false;
         }
     }
