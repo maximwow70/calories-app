@@ -2,7 +2,6 @@ $item-border: 2px solid $yellow-color;
 .item{
     box-sizing: border-box;
     width: 270px;
-    min-height: 320px;
     border: $item-border;
     background-color: $blue-color;
     color: $light-color;
@@ -23,6 +22,7 @@ $item-border: 2px solid $yellow-color;
     &-description{
         position: relative;
         padding: 20px;
+        min-height: 260px;
         //background: url(../img/dish1.jpeg);
         background-size: 100% 100%;
         background-position: center;

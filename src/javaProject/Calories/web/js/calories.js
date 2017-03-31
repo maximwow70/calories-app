@@ -54,6 +54,7 @@ function initAppAdd(){
 
     server.getComponents(toolbar);
     control.addEventListener('click', function(){
+        //appAdd.openAdd();
         var dish = toolbar.getItem();
         server.addDish(itemList, dish);
     });
