@@ -4,9 +4,16 @@
     }
     &-btn{
         display: inline-block;
-        min-width: 70px;
+        vertical-align: middle;
+        //min-width: 70px;
+        //width: 80%;
+        max-width: 200px;
         font-size: 18px;
         padding: 5px 10px;
+
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
 
         background-color: $yellow-color;
         color: $dark-color;
@@ -21,6 +28,8 @@
         }
     }
     &-reset{
+        display: inline-block;
+        vertical-align: middle;
         margin-left: 5px;
         font-size: 20px;
     }

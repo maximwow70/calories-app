@@ -385,9 +385,13 @@
 
 .select_file-btn {
   display: inline-block;
-  min-width: 70px;
+  vertical-align: middle;
+  max-width: 200px;
   font-size: 18px;
   padding: 5px 10px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
   background-color: #e5bd47;
   color: #2c363f;
   text-transform: capitalize;
@@ -398,6 +402,8 @@
     box-shadow: 0 0 10px rgba(229, 189, 71, 0.7); }
 
 .select_file-reset {
+  display: inline-block;
+  vertical-align: middle;
   margin-left: 5px;
   font-size: 20px; }
 
@@ -474,7 +480,6 @@
 .item {
   box-sizing: border-box;
   width: 270px;
-  min-height: 320px;
   border: 2px solid #e5bd47;
   background-color: #2f6665;
   color: #dcdcdd;
@@ -492,6 +497,7 @@
   .item-description {
     position: relative;
     padding: 20px;
+    min-height: 260px;
     background-size: 100% 100%;
     background-position: center; }
     .item-description .filter {

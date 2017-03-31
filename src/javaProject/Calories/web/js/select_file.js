@@ -9,11 +9,16 @@ var fileReset = fileSelect.querySelector('.select_file-reset');
 
 fileInput.addEventListener('change', function(){
     var file = fileInput.files[0];
-    if (file.name != ''){
-        fileLabel.innerHTML = file.name;
+    if (file.size > 2097152){
+        fileInput.value = '';
+        fileLabel.innerHTML = 'Max size: 2mb';
+    }
+    else if(file.name == ''){
+        fileInput.value = '';
+        fileLabel.innerHTML = 'Add Image';
     }
     else{
-        fileLabel.innerHTML = 'Add Image';
+        fileLabel.innerHTML = file.name;
     }
 });
 
