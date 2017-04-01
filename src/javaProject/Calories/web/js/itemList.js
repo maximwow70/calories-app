@@ -52,8 +52,12 @@ ItemList.prototype.addItems = function(items){
 			var itemComponent = new Component(idComponent, nameComponent, weightComponent, caloriesComponent);
 			components.push(itemComponent);
 		}
+        var itemContainer = document.createElement('div');
+        itemContainer.setAttribute('class', 'item_list-item');
+
 		var item = new Item(id, name, components, weight, calories, src);
-		this.dom.appendChild(item.getDom());
+		itemContainer.appendChild(item.getDom());
+        this.dom.appendChild(itemContainer);
     }
 }
 ItemList.prototype.setEmpty = function(){
@@ -65,3 +69,230 @@ ItemList.prototype.setEmpty = function(){
         this.dom.removeChild(items[i]);
     }
 }
+
+
+/*
+    tests:
+
+
+    var a = new ItemList(
+        app.getAppFind(), 
+        [
+            {
+                name: 'apple pie',
+                components: [
+                    {
+                        id: 1,
+                        name: 'pie',
+                        weight: 666,
+                        calories: 300
+                    },
+                    {
+                        id: 2,
+                        name: 'apple',
+                        weight: 666,
+                        calories: 100
+                    },
+                    {
+                        id: 3,
+                        name: 'cream',
+                        weight: 666,
+                        calories: 500
+                    },
+                    {
+                        id: 3,
+                        name: 'cream',
+                        weight: 666,
+                        calories: 500
+                    }
+                ],
+                weight: 100,
+                calories: 666,
+                src: 'dish2.jpg'
+            },
+            {
+                name: 'apple pie',
+                components: [
+                    {
+                        id: 1,
+                        name: 'pie',
+                        weight: 666,
+                        calories: 300
+                    },
+                    {
+                        id: 2,
+                        name: 'apple',
+                        weight: 666,
+                        calories: 100
+                    },
+                    {
+                        id: 3,
+                        name: 'cream',
+                        weight: 666,
+                        calories: 500
+                    },
+                    {
+                        id: 3,
+                        name: 'cream',
+                        weight: 666,
+                        calories: 500
+                    },
+                    {
+                        id: 3,
+                        name: 'cream',
+                        weight: 666,
+                        calories: 500
+                    },
+                    {
+                        id: 3,
+                        name: 'cream',
+                        weight: 666,
+                        calories: 500
+                    },
+                    {
+                        id: 3,
+                        name: 'cream',
+                        weight: 666,
+                        calories: 500
+                    },
+                    {
+                        id: 3,
+                        name: 'cream',
+                        weight: 666,
+                        calories: 500
+                    },
+                    {
+                        id: 3,
+                        name: 'cream',
+                        weight: 666,
+                        calories: 500
+                    },
+                    {
+                        id: 3,
+                        name: 'cream',
+                        weight: 666,
+                        calories: 500
+                    },
+                    {
+                        id: 3,
+                        name: 'cream',
+                        weight: 666,
+                        calories: 500
+                    }
+                ],
+                weight: 100,
+                calories: 666,
+                src: 'dish2.jpg'
+            },
+            {
+                name: 'apple pie',
+                components: [
+                    {
+                        id: 1,
+                        name: 'pie',
+                        weight: 666,
+                        calories: 300
+                    },
+                    {
+                        id: 2,
+                        name: 'apple',
+                        weight: 666,
+                        calories: 100
+                    },
+                    {
+                        id: 3,
+                        name: 'cream',
+                        weight: 666,
+                        calories: 500
+                    },
+                    {
+                        id: 3,
+                        name: 'cream',
+                        weight: 666,
+                        calories: 500
+                    }
+                ],
+                weight: 100,
+                calories: 666,
+                src: 'dish2.jpg'
+            },
+            {
+                name: 'apple pie',
+                components: [
+                    {
+                        id: 1,
+                        name: 'pie',
+                        weight: 666,
+                        calories: 300
+                    },
+                    {
+                        id: 2,
+                        name: 'apple',
+                        weight: 666,
+                        calories: 100
+                    },
+                    {
+                        id: 3,
+                        name: 'cream',
+                        weight: 666,
+                        calories: 500
+                    },
+                    {
+                        id: 3,
+                        name: 'cream',
+                        weight: 666,
+                        calories: 500
+                    },
+                    {
+                        id: 3,
+                        name: 'cream',
+                        weight: 666,
+                        calories: 500
+                    },
+                    {
+                        id: 3,
+                        name: 'cream',
+                        weight: 666,
+                        calories: 500
+                    }
+                ],
+                weight: 100,
+                calories: 666,
+                src: 'dish2.jpg'
+            },
+            {
+                name: 'apple pie',
+                components: [
+                    {
+                        id: 1,
+                        name: 'pie',
+                        weight: 666,
+                        calories: 300
+                    },
+                    {
+                        id: 2,
+                        name: 'apple',
+                        weight: 666,
+                        calories: 100
+                    },
+                    {
+                        id: 3,
+                        name: 'cream',
+                        weight: 666,
+                        calories: 500
+                    },
+                    {
+                        id: 3,
+                        name: 'cream',
+                        weight: 666,
+                        calories: 500
+                    }
+                ],
+                weight: 100,
+                calories: 666,
+                src: 'dish2.jpg'
+            }
+        ], 
+        'kek'
+    )
+*/

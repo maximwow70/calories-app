@@ -34,6 +34,8 @@ $select_btn_size: 140px;
             position: absolute;
             top: 50%;
             left: 50%;
+            width: 0;
+            height: 0;
             transform: translate(-50%, -50%);
             display: block;
             border-radius: 50%;
@@ -43,8 +45,6 @@ $select_btn_size: 140px;
             animation: select_btn_anim_before 3s linear infinite; 
             @keyframes select_btn_anim_before{
                 0%{
-                    width: 0;
-                    height: 0;
                     opacity: 0.5;
                 }
                 100%{
@@ -59,8 +59,6 @@ $select_btn_size: 140px;
             animation-delay: 1s; 
             @keyframes select_btn_anim_after{
                 0%{
-                    width: 0;
-                    height: 0;
                     opacity: 0.3;
                 }
                 100%{

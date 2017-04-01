@@ -46,6 +46,8 @@ $item-border: 2px solid $yellow-color;
     &-components{
         position: relative;
         z-index: 2;
+        max-height: 185px;
+        overflow: hidden;
         .component{
             margin-bottom: 10px;
             &:last-child{
