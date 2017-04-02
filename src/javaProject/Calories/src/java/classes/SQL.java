@@ -53,7 +53,7 @@ public class SQL {
         try {
             ResultSet res = stat.executeQuery("SELECT * FROM Dishes WHERE DishID = "+id+";");
             res.next();
-            return new Dish(res.getInt("DishID"),res.getString("Name"));
+            return new Dish(res.getInt("DishID"),res.getString("Name"),res.getString("typeImage"));
         } catch(SQLException e) {return null;}
     }
     
@@ -71,7 +71,7 @@ public class SQL {
         try{
             ResultSet res =  stat.executeQuery("SELECT * FROM Dishes WHERE Name = \""+name+"\";");
             res.next();
-            return new Dish(res.getInt("DishID"),res.getString("Name"));
+            return new Dish(res.getInt("DishID"),res.getString("Name"),res.getString("typeImage"));
         } catch(SQLException e) {return null;}
     }
     
@@ -188,7 +188,8 @@ public class SQL {
     public static boolean addDish(Dish dish) {
         connect();
         try {
-            System.out.println("1");
+            String code = dish.getImage();
+            String type = code.substring(code.indexOf('/')+1, code.indexOf(';'));
             ResultSet res = stat.executeQuery("SELECT DishID from Dishes WHERE \n" +
                     "Name = \""+dish.getName()+"\";");
             res.next();
@@ -196,29 +197,25 @@ public class SQL {
                 res.getInt("DishID");
                 return false;
             } catch(Exception e) {}
-            System.out.println("2");
-            stat.execute("INSERT INTO Dishes(Name) VALUES(\""+dish.getName()+"\");");
+            stat.execute("INSERT INTO Dishes(Name, typeImage) VALUES(\""+dish.getName()+"\", \""+type+"\");");
             res = stat.executeQuery("SELECT DishID FROM Dishes WHERE Name = \""+dish.getName()+"\";");
             res.next();
             int id = res.getInt("DishID");
-            System.out.println("3");
             Dish dish1 = findDishById(id);
             for(Component c :dish.getComponents()) {
                 Component comp = findComponentByName(c.getName());
-                System.out.println("4");
                 if(!c.getName().equals(""))
                 dish1.addComponent(new Component(comp.getName(),comp.getID(),comp.getCalories(),c.getWeight()));
             }
             for(Component comp : dish1.getComponents()) {
-                System.out.println("5");
                 stat.execute("INSERT INTO DishFormulas(DishID,ComponentID,Weight) VALUES ("+id+","+comp.getID()+","+comp.getWeight()+");");
             }
-            String code = dish.getImage();
+            
             code = code.substring(code.indexOf(',')+1);
             byte[] lol = Base64.getDecoder().decode(code);
-            FileOutputStream out = new FileOutputStream(new File("/Users/admin/Desktop/git/calories-app/src/javaProject/Calories/build/web/img/"+dish1.getSrc()));
-            out.write(lol);
-            out.close();
+            try (FileOutputStream out = new FileOutputStream(new File("/Users/admin/Desktop/git/calories-app/src/javaProject/Calories/build/web/img/"+dish1.getSrc()))) {
+                out.write(lol);
+            }
             return true;
         } catch (Exception ex) {
             return false;

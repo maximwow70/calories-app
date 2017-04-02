@@ -30,6 +30,16 @@ public class Dish {
         weight = getWeight();
         calories = getCalories();
     }
+    public Dish(int id,String name, String type) {
+        components = new ArrayList<>();
+        this.name = name;
+        this.id = id;
+        src = "dish"+id+"."+type;
+        addComponents(SQL.findComponentsByDishId(id));
+        weight = getWeight();
+        calories = getCalories();
+    }
+    
     public void addComponent(Component c) {
         components.add(c);
     }
