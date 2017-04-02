@@ -8,6 +8,11 @@
         &:first-child{
             margin-left: 0;
         }
+        &--search{
+            display: inline-block;
+            margin-top: 2px;
+            font-size: 26px;
+        }
         &--main{
             font-size: 32px;
         }

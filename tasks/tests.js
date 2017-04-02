@@ -34,7 +34,7 @@ var a = new ItemList(
             ],
             weight: 100,
             calories: 666,
-            src: 'dish2.jpg'
+            src: 'dish3.jpg'
         },
         {
             name: 'apple pie',
@@ -140,7 +140,7 @@ var a = new ItemList(
             ],
             weight: 100,
             calories: 666,
-            src: 'dish2.jpg'
+            src: 'dish3.jpg'
         },
         {
             name: 'apple pie',
@@ -184,7 +184,7 @@ var a = new ItemList(
             ],
             weight: 100,
             calories: 666,
-            src: 'dish2.jpg'
+            src: 'dish4.jpg'
         },
         {
             name: 'apple pie',
