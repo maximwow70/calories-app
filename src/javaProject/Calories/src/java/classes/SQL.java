@@ -62,7 +62,7 @@ public class SQL {
         try{
             ResultSet res =  stat.executeQuery("SELECT * FROM Dishes WHERE Name LIKE \"%"+name+"%\";");
             res.next();
-            return new Dish(res.getInt("DishID"),res.getString("Name"));
+            return new Dish(res.getInt("DishID"),res.getString("Name"),res.getString("typeImage"));
         } catch(SQLException e) {return null;}
     }
     
@@ -140,7 +140,7 @@ public class SQL {
                     }
                 }
                 if(!is)
-                list.add(new Dish(res.getInt("DishID"),res.getString("Name")));
+                list.add(new Dish(res.getInt("DishID"),res.getString("Name"),res.getString("typeImage")));
             }
             return list;
         } catch(SQLException e) {return null;}
@@ -179,7 +179,7 @@ public class SQL {
                     }
                 }
                 if(!is)
-                list.add(new Dish(res.getInt("DishID"),res.getString("Name")));
+                list.add(new Dish(res.getInt("DishID"),res.getString("Name"),res.getString("typeImage")));
             }
             return list;
         } catch(SQLException e) {return null;}
