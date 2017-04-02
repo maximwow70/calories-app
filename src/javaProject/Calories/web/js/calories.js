@@ -1,5 +1,6 @@
 var selectFind = document.querySelectorAll('.select-btn--find');
 var selectAdd = document.querySelectorAll('.select-btn--add');
+var selectSearc = document.querySelectorAll('.navigation-list--search');
 var selectMain = document.querySelectorAll('.navigation-list--main');
 var selectAbout = document.querySelectorAll('.navigation-list--about');
 
@@ -18,6 +19,9 @@ function openAdd(){
 function openAbout(){
     app.openAbout();
 }
+function openSearch(){
+    app.openSearch();
+}
 for (var i = 0; i < selectMain.length; i++){
     selectMain[i].addEventListener('click', openSelect);
 }
@@ -26,6 +30,9 @@ for (var i = 0; i < selectFind.length; i++){
 }
 for (var i = 0; i < selectAdd.length; i++){
     selectAdd[i].addEventListener('click', openAdd);
+}
+for (var i = 0; i < selectSearc.length; i++){
+    selectSearc[i].addEventListener('click', openSearch);
 }
 for (var i = 0; i < selectAbout.length; i++){
     selectAbout[i].addEventListener('click', openAbout);
@@ -60,3 +67,9 @@ function initAppAdd(){
     });
 }
 initAppAdd();
+
+function initAppSearch(){
+    var appSearch = app.getAppSearch();
+
+}
+initAppSearch();

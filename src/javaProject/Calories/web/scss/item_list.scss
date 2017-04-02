@@ -1,13 +1,42 @@
 .item_list{
-    text-align: center;
+    overflow: hidden;
+    text-align: left;
+
+    
+
     &-title{
+        width: 100%;
         margin-bottom: 20px;
         text-align: left;
     }
-    .item{
-        margin: 0 20px;
-        margin-bottom: 30px;
-        vertical-align: top;
+    &-item{
         display: inline-block;
+        vertical-align: top;
+        
+        padding-bottom: 30px;
+        width: 33.3333%;
+    }
+    .item{
+        margin: 0 auto;
+    }
+    @media screen and (min-width: 1800px){
+        &-item{
+            width: 25%;
+        }
+    }
+    @media screen and (min-width: 2300px){
+        &-item{
+            width: 20%;
+        }
+    }
+    @media screen and (max-width: 1300px){
+        &-item{
+            width: 50%;
+        }
+    }
+    @media screen and (max-width: 650px){
+        &-item{
+            width: 100%;
+        }
     }
 }

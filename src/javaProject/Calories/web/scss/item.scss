@@ -46,6 +46,8 @@ $item-border: 2px solid $yellow-color;
     &-components{
         position: relative;
         z-index: 2;
+        max-height: 185px;
+        overflow: hidden;
         .component{
             margin-bottom: 10px;
             &:last-child{
@@ -53,4 +55,29 @@ $item-border: 2px solid $yellow-color;
             }
         }
     }
+    /*
+    &-select{
+        display: inline-block;
+        vertical-align: top;
+        box-sizing: border-box;
+        padding: 2px 4px;
+        width: 100%;
+
+        line-height: 30px;  
+        background-color: $dark-color;      
+
+        color: $light-color;
+        font-size: 20px;
+        outline: none;
+
+        text-align: center;
+        text-transform: capitalize;
+
+        cursor: pointer;
+
+        &:hover{
+            background-color: $yellow-color;
+        }
+    }
+    */
 }

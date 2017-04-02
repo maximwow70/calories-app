@@ -27,7 +27,7 @@
             display: none;
         }
     }
-    &-find, &-add, &-about{
+    &-find, &-add, &-about, &-search, &-view{
         flex: 1;
 
         display: flex;
@@ -53,6 +53,14 @@
     }
     &-add{
 
+    }
+    &-search{
+        .search{
+            flex: 1;
+        }
+    }
+    &-view_item{
+        display: none;
     }
     &-about{
         align-items: center;
