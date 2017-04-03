@@ -385,13 +385,20 @@
   margin-left: 5px;
   font-size: 20px; }
 
+.app-search .toolbar-controls {
+  margin-bottom: 20px; }
+
 .toolbar-menu {
-  margin-top: 20px;
   padding: 10px 20px;
   background-color: #dcdcdd; }
 
 .menu {
+  margin-top: 10px;
   color: #2c363f; }
+  .menu:first-child {
+    margin-top: 0; }
+  .menu-control {
+    position: relative; }
   .menu-group {
     height: 0;
     overflow: hidden;
@@ -409,9 +416,16 @@
     font-size: 18px; }
   .menu-title {
     margin-right: 20px; }
-  .menu-btn:before {
-    display: inline-block;
-    margin-top: 2px; }
+  .menu-btn {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%); }
+    .menu-btn:before {
+      display: inline-block;
+      margin-top: 2px; }
   .menu .menu {
     font-size: 18px; }
   .menu--click > .menu-group {

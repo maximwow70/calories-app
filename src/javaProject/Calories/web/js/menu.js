@@ -29,5 +29,7 @@ Menu.prototype.getDom = function(){
     return this.dom;
 }
 
-var a = document.querySelector('.toolbar-menu');
-var menu = new Menu(a);
+var a = document.querySelectorAll('.toolbar-menu');
+for (var i = 0; i < a.length; i++){
+    var menu = new Menu(a[i]);
+}
