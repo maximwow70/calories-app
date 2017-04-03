@@ -62,7 +62,6 @@ public class FindDish extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text.html;charset=UTF-8");
         
-        ArrayList<Dish> lightSet = new ArrayList<>();
         ArrayList<Dish> set = new ArrayList<>();
         
         
@@ -70,12 +69,8 @@ public class FindDish extends HttpServlet {
         
         Gson gson = new Gson();
         Dish dish = gson.fromJson(string, Dish.class);
-        lightSet = SQL.findDishesByNameAndComponents(dish);
-        for(Dish d:lightSet) {
-            System.out.println(d.getName());
-        if(d.getCount() >= dish.length())
-            set.add(d);
-        }
+        set = SQL.findDishesByNameAndComponents(dish);
+        
         String s = gson.toJson(set);
         response.getWriter().write(s);
         

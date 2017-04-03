@@ -107,50 +107,10 @@ public class SQL {
         } catch(SQLException e) {return null;}
     }
     
-    public static ArrayList<Dish> findDishesByNameAndComponents(String dish, ArrayList<String> components) {
-        String url = "Select d.* from Dishes d,Components c,DishFormulas f WHERE\n" +
-"d.Name LIKE \"%"+dish+"%\" AND\n" +
-"(d.DishID = f.DishID AND\n" +
-"c.ComponentID = f.ComponentID)";
-        int i = 0;
-        for(String s: components) {
-            if(!s.equals("")) {
-                if(i == 0)
-                    url+=" AND(\n";
-                if(i>0)
-                    url += " OR ";
-                url+="c.Name = \""+s+"\"\n";
-                i++;
-            }
-        }
-        if(i>0)
-            url+=")";
-        System.out.println(url);
-        ArrayList<Dish> list = new ArrayList<>();
-        connect();
-        try {
-        ResultSet res = stat.executeQuery(url);
-            while(res.next()) {
-                boolean is = false;
-                for(Dish d :list) {
-                    if(d.getId() == res.getInt("DishID")){
-                        d.addCount();
-                        is = true;
-                        break;
-                    }
-                }
-                if(!is)
-                list.add(new Dish(res.getInt("DishID"),res.getString("Name"),res.getString("typeImage")));
-            }
-            return list;
-        } catch(SQLException e) {return null;}
-    }
-    
     public static ArrayList<Dish> findDishesByNameAndComponents(Dish dish) {
-        String url = "Select d.* from Dishes d,Components c,DishFormulas f WHERE\n" +
-"d.Name LIKE \"%"+dish.getName()+"%\" AND\n" +
-"(d.DishID = f.DishID AND\n" +
-"c.ComponentID = f.ComponentID)";
+        String url = "Select DISTINCT d.* from Dishes d,DishFormulas f \n" +
+"INNER JOIN Components c ON\n" +
+"c.ComponentID = f.ComponentID ";
         int i = 0;
         for(Component s : dish.getComponents()) {
             if(!s.getName().equals("")) {
@@ -164,6 +124,11 @@ public class SQL {
         }
         if(i>0)
             url+=")";
+        url+= "AND\n" +
+"(Select COUNT(dish.DishID) from DishFormulas dish where d.DishID = dish.DishID) >="+dish.length()+"\n" +
+"WHERE\n" +
+"d.Name LIKE \"%"+dish.getName()+"%\" AND\n" +
+"d.DishID = f.DishID;";
         System.out.println(url);
         ArrayList<Dish> list = new ArrayList<>();
         connect();
@@ -171,14 +136,6 @@ public class SQL {
         ResultSet res = stat.executeQuery(url);
             while(res.next()) {
                 boolean is = false;
-                for(Dish d :list) {
-                    if(d.getId() == res.getInt("DishID")){
-                        d.addCount();
-                        is = true;
-                        break;
-                    }
-                }
-                if(!is)
                 list.add(new Dish(res.getInt("DishID"),res.getString("Name"),res.getString("typeImage")));
             }
             return list;

@@ -15,7 +15,6 @@ public class Dish {
     private ArrayList<Component> components;
     private String name;
     private int id;
-    private int count = 1;
     private int weight;
     private int calories;
     private String src;
@@ -57,12 +56,6 @@ public class Dish {
     }
     public String getSrc() {
         return src;
-    }
-    public int getCount() {
-        return count;
-    }
-    public void addCount() {
-        count++;
     }
     public ArrayList<Component> getComponents() {
         return components;
