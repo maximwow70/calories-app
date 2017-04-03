@@ -1,0 +1,58 @@
+.toolbar-menu{
+    margin-top: 20px; //timing
+    padding: 10px 20px;
+    background-color: $light-color;
+}
+.menu{
+    //border-radius: 2px;
+
+    //transition: all 0.3s;
+    color: $dark-color;
+    
+    &-control{
+    }
+    &-group{
+        height: 0;
+        overflow: hidden;
+        transition: all 0.3s;
+    }
+    &-list{
+        margin-top: 5px;
+        margin-left: 20px;
+        display: block;
+        font-size: 16px;
+        
+        text-transform: capitalize;
+
+        &--block{
+            display: block;
+        }
+    }
+
+    &-title, &-btn{
+        vertical-align: middle;
+        font-size: 18px;
+    }
+    &-title{
+        margin-right: 20px;
+    }
+    &-btn{
+        &:before{
+            display: inline-block;
+            margin-top: 2px;
+        }
+    }
+    &:hover{
+    }
+    .menu{
+        
+        font-size: 18px;
+    }
+    &--click{
+        .menu-control{
+        }
+        & > .menu-group{
+            height: auto;
+        }
+    }
+}

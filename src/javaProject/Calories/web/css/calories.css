@@ -385,6 +385,38 @@
   margin-left: 5px;
   font-size: 20px; }
 
+.toolbar-menu {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #dcdcdd; }
+
+.menu {
+  color: #2c363f; }
+  .menu-group {
+    height: 0;
+    overflow: hidden;
+    transition: all 0.3s; }
+  .menu-list {
+    margin-top: 5px;
+    margin-left: 20px;
+    display: block;
+    font-size: 16px;
+    text-transform: capitalize; }
+    .menu-list--block {
+      display: block; }
+  .menu-title, .menu-btn {
+    vertical-align: middle;
+    font-size: 18px; }
+  .menu-title {
+    margin-right: 20px; }
+  .menu-btn:before {
+    display: inline-block;
+    margin-top: 2px; }
+  .menu .menu {
+    font-size: 18px; }
+  .menu--click > .menu-group {
+    height: auto; }
+
 .toolbar {
   box-sizing: border-box;
   padding: 40px 40px;
