@@ -43,12 +43,12 @@ Server.prototype.addDish = function (itemList, _dish){
         xhr.send(dish);
         xhr.onreadystatechange = function(){
             if (this.readyState == 4 && this.status == 200){
-                try {
+                if (xhr.responseText){
                     dishes = JSON.parse(xhr.responseText);
                     itemList.setTitle('Your dish: ');
                     itemList.setItems(dishes);
                 }
-                catch(e) {
+                else {
                     itemList.setTitle('Sorry, this dish is already exist. Try again!');
                 }
             }
