@@ -25,7 +25,7 @@
     &-group{
         height: 0;
         overflow: hidden;
-        transition: all 0.3s;
+        transition: all 0.5s;
     }
 
     &-list{
@@ -53,18 +53,20 @@
         top: 50%;
         right: 0;
         transform: translateY(-50%);
+
+        transition: transform 0.3s;
         &:before{
             display: inline-block;
             margin-top: 2px;
         }
     }
-    &:hover{
-    }
     .menu{
-        
         font-size: 18px;
     }
     &--click{
+        & > .menu-control .menu-btn{
+            transform: translateY(-50%) rotate(-45deg);
+        }
         .menu-control{
         }
         & > .menu-group{
