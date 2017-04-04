@@ -452,12 +452,16 @@
   .menu-group {
     height: 0;
     overflow: hidden;
-    transition: all 0.5s; }
+    transition: all 0.5s;
+    max-width: 200px;
+    padding-left: 20px; }
   .menu-list {
-    margin-top: 5px;
-    margin-left: 20px;
-    display: block;
+    margin-top: 8px;
+    display: inline-block;
+    width: 100%;
     font-size: 16px;
+    line-height: 18px;
+    word-break: break-all;
     text-transform: capitalize; }
     .menu-list--block {
       display: block; }
@@ -465,7 +469,8 @@
     vertical-align: middle;
     font-size: 18px; }
   .menu-title {
-    margin-right: 20px; }
+    margin-right: 20px;
+    text-transform: capitalize; }
   .menu-btn {
     position: absolute;
     top: 50%;
@@ -479,8 +484,6 @@
     .menu-btn:before {
       display: inline-block;
       margin-top: 2px; }
-  .menu .menu {
-    font-size: 18px; }
   .menu--click > .menu-control .menu-btn {
     -webkit-transform: translateY(-50%) rotate(-45deg);
     -ms-transform: translateY(-50%) rotate(-45deg);
