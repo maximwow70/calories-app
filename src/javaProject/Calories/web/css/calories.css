@@ -128,8 +128,25 @@
 .info {
   font-family: exo_l,exo_r, Arial, sans-serif; }
   .info-title {
+    font-family: exo_m, exo_r, Arial, sans-serif;
+    font-size: 28px;
+    font-weight: normal;
+    text-transform: capitalize; }
+  .info-img {
+    display: inline-block;
     vertical-align: middle;
-    line-height: 20px;
+    width: 100px;
+    height: 100px; }
+  .info-content {
+    margin-top: 20px;
+    font-size: 20px; }
+  .info-description {
+    margin-top: 10px;
+    font-family: exo_r, Arial, sans-serif;
+    font-weight: normal; }
+  .info-developers {
+    vertical-align: middle;
+    line-height: 26px;
     font-weight: normal; }
 
 .app {
@@ -251,6 +268,25 @@
     -ms-flex: 2;
     flex: 2;
     text-align: justify; }
+  .app-info {
+    -webkit-flex: 2;
+    -ms-flex: 2;
+    flex: 2;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center; }
+    .app-info .info {
+      max-width: 400px;
+      text-align: center; }
   @media screen and (max-width: 900px) {
     .app-toolbar {
       -webkit-flex-basis: 100%;
@@ -453,7 +489,6 @@
     height: 0;
     overflow: hidden;
     transition: all 0.5s;
-    max-width: 200px;
     padding-left: 20px; }
   .menu-list {
     margin-top: 8px;

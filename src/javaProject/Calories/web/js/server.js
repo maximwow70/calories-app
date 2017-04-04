@@ -82,3 +82,29 @@ Server.prototype.getComponents = function (toolbar){
         }
     }
 }
+Server.prototype.getFullComponents = function(toolbar){
+    var components = [];
+    var xhr = this.getNewXhr();
+    xhr.open('POST', '', true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send();
+    xhr.onreadystatechange = function() {
+        if(this.readyState ==4 && this.status == 200){
+            components = JSON.parse(xhr.responseText);
+            toolbar.initMenu(components);
+        }
+    }
+}
+Server.prototype.getInfo = function(app, obj){
+    var object = JSON.stringify(obj);
+    var xhr = this.getNewXhr();
+    xhr.open('POST', '', true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send(object);
+    xhr.onreadystatechange = function() {
+        if(this.readyState ==4 && this.status == 200){
+            info = JSON.parse(xhr.responseText);
+            //app. (info);
+        }
+    }
+}

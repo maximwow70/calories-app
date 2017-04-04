@@ -20,7 +20,7 @@ Menu.prototype.initMenu = function(menuList) {
     this.dom.setAttribute('class', 'menu_list');
     for (var i = 0; i < menuList.length; i++){
         var category = menuList[i].category;
-        var lists = menuList[i].lists;
+        var lists = menuList[i].components;
 
         var menu = document.createElement('div');
         menu.setAttribute('class', 'menu');
@@ -60,6 +60,9 @@ Menu.prototype.initMenu = function(menuList) {
     }
     this.parent.appendChild(this.dom);
 }
+Menu.prototype.getAllLinks = function(){
+    return this.dom.querySelectorAll('.menu-list');
+}
 Menu.prototype.getDom = function () {
     return this.dom;
 }
@@ -71,7 +74,7 @@ var menu1 = new Menu(
     [
         {
             category: 'fish',
-            lists: [
+            components: [
                 'fish1',
                 'fish2 Lorem ipsum dolor sit amet',
                 'fish3',
@@ -82,7 +85,7 @@ var menu1 = new Menu(
         },
         {
             category: 'Fruits',
-            lists: [
+            components: [
                 'fruit1',
                 'fruit2',
                 'fruit3',
@@ -97,7 +100,7 @@ var menu1 = new Menu(
         },
         {
             category: 'Eggs',
-            lists: [
+            components: [
                 'Eggs1',
                 'Eggs2',
                 'Eggs3',
@@ -106,7 +109,7 @@ var menu1 = new Menu(
         },
         {
             category: 'Pokemons',
-            lists: [
+            components: [
                 'Squirtle',
                 'Rattata',
                 'Charmander',
@@ -120,3 +123,4 @@ var menu1 = new Menu(
         }
     ]
 );
+console.log(menu1.getAllLinks());
