@@ -19,7 +19,7 @@ Menu.prototype.initMenu = function(menuList) {
     this.dom =  document.createElement('div');
     this.dom.setAttribute('class', 'menu_list');
     for (var i = 0; i < menuList.length; i++){
-        var category = menuList[i].category;
+        var category = menuList[i].type;
         var lists = menuList[i].components;
 
         var menu = document.createElement('div');
@@ -73,7 +73,7 @@ var menu1 = new Menu(
     par,
     [
         {
-            category: 'fish',
+            type: 'fish',
             components: [
                 'fish1',
                 'fish2 Lorem ipsum dolor sit amet',
@@ -84,7 +84,7 @@ var menu1 = new Menu(
             ]
         },
         {
-            category: 'Fruits',
+            type: 'Fruits',
             components: [
                 'fruit1',
                 'fruit2',
@@ -99,7 +99,7 @@ var menu1 = new Menu(
             ]
         },
         {
-            category: 'Eggs',
+            type: 'Eggs',
             components: [
                 'Eggs1',
                 'Eggs2',
@@ -108,7 +108,7 @@ var menu1 = new Menu(
             ]
         },
         {
-            category: 'Pokemons',
+            type: 'Pokemons',
             components: [
                 'Squirtle',
                 'Rattata',

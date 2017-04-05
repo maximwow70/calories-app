@@ -67,7 +67,7 @@ function initAppAdd(){
 }
 initAppAdd();
 
-//function initAppSearch(){
+function initAppSearch(){
     var appSearch = app.getAppSearch();
     var toolbar = new Toolbar(appSearch);
     var control = toolbar.control;
@@ -80,5 +80,5 @@ initAppAdd();
     );
 
     server.getFullComponents(toolbar);
-//}
-//initAppSearch();
+}
+initAppSearch();
