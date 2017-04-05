@@ -61,7 +61,6 @@ function initAppAdd(){
 
     server.getComponents(toolbar);
     control.addEventListener('click', function(){
-        //appAdd.openAdd();
         var dish = toolbar.getItem();
         server.addDish(itemList, dish);
     });
@@ -70,6 +69,16 @@ initAppAdd();
 
 function initAppSearch(){
     var appSearch = app.getAppSearch();
+    var toolbar = new Toolbar(appSearch);
+    var control = toolbar.control;
+    var info = new Info(
+        appSearch,
+        'Clown Fish',
+        'Lorem ipsum dolor sit amet, consectetur adipisicing elit.Magni magnam, enim odit cumque quaerat iure id sequi doloribus, et error.',
+        'calories: (666c/100g)',
+        'clown-fish.svg'
+    );
 
+    server.getFullComponents(toolbar);
 }
 initAppSearch();

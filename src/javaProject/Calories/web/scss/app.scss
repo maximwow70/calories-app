@@ -93,6 +93,20 @@
             }
         }
     }
+    &-info{
+        flex: 2;
+        
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .info{
+            max-width: 400px;
+            text-align: center;
+        }
+
+    }
     @media screen and (max-width: 900px){
         &-toolbar{
             flex-basis: 100%;

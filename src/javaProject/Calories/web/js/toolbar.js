@@ -4,6 +4,7 @@ function Toolbar(parent, title){
     this.img;
 
     this.dom = parent.querySelector('.toolbar');
+    this.menu;
     this.addComponentBtn = this.dom.querySelector('.toolbar-btn--add_component');
     this.control = this.dom.querySelector('.toolbar-btn--control');
 
@@ -12,9 +13,14 @@ function Toolbar(parent, title){
     }
 
     var _that = this;
-    this.addComponentBtn.addEventListener('click', clickAddComponent);
-    function clickAddComponent(){
-        _that.addSelectComponent();
+    try{
+        this.addComponentBtn.addEventListener('click', clickAddComponent);
+        function clickAddComponent(){
+            _that.addSelectComponent();
+        }
+    }
+    catch (e){
+        
     }
 }
 Toolbar.prototype.setTitle = function(_title){
@@ -32,6 +38,10 @@ Toolbar.prototype.setTitle = function(_title){
         var firstChild = this.dom.firstChild;
         this.dom.insertBefore(title, firstChild);
     }
+}
+Toolbar.prototype.initMenu = function(menuList){
+    this.menu = this.dom.querySelector('.toolbar-menu');
+    this.menu = new Menu(this.menu, menuList);
 }
 Toolbar.prototype.initComponents = function(components){
     this.components = components;

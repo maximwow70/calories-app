@@ -128,8 +128,25 @@
 .info {
   font-family: exo_l,exo_r, Arial, sans-serif; }
   .info-title {
+    font-family: exo_m, exo_r, Arial, sans-serif;
+    font-size: 28px;
+    font-weight: normal;
+    text-transform: capitalize; }
+  .info-img {
+    display: inline-block;
     vertical-align: middle;
-    line-height: 20px;
+    width: 100px;
+    height: 100px; }
+  .info-content {
+    margin-top: 20px;
+    font-size: 20px; }
+  .info-description {
+    margin-top: 10px;
+    font-family: exo_r, Arial, sans-serif;
+    font-weight: normal; }
+  .info-developers {
+    vertical-align: middle;
+    line-height: 26px;
     font-weight: normal; }
 
 .app {
@@ -251,6 +268,25 @@
     -ms-flex: 2;
     flex: 2;
     text-align: justify; }
+  .app-info {
+    -webkit-flex: 2;
+    -ms-flex: 2;
+    flex: 2;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center; }
+    .app-info .info {
+      max-width: 400px;
+      text-align: center; }
   @media screen and (max-width: 900px) {
     .app-toolbar {
       -webkit-flex-basis: 100%;
@@ -436,7 +472,7 @@
   font-size: 20px; }
 
 .app-search .toolbar-controls {
-  margin-bottom: 20px; }
+  margin-top: 20px; }
 
 .toolbar-menu {
   padding: 10px 20px;
@@ -452,12 +488,15 @@
   .menu-group {
     height: 0;
     overflow: hidden;
-    transition: all 0.5s; }
+    transition: all 0.5s;
+    padding-left: 20px; }
   .menu-list {
-    margin-top: 5px;
-    margin-left: 20px;
-    display: block;
+    margin-top: 8px;
+    display: inline-block;
+    width: 100%;
     font-size: 16px;
+    line-height: 18px;
+    word-break: break-all;
     text-transform: capitalize; }
     .menu-list--block {
       display: block; }
@@ -465,7 +504,8 @@
     vertical-align: middle;
     font-size: 18px; }
   .menu-title {
-    margin-right: 20px; }
+    margin-right: 20px;
+    text-transform: capitalize; }
   .menu-btn {
     position: absolute;
     top: 50%;
@@ -479,8 +519,6 @@
     .menu-btn:before {
       display: inline-block;
       margin-top: 2px; }
-  .menu .menu {
-    font-size: 18px; }
   .menu--click > .menu-control .menu-btn {
     -webkit-transform: translateY(-50%) rotate(-45deg);
     -ms-transform: translateY(-50%) rotate(-45deg);
