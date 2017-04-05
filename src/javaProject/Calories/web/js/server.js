@@ -102,11 +102,12 @@ Server.prototype.getInfo = function(info, str){
     xhr.send(str);
     xhr.onreadystatechange = function() {
         if(this.readyState ==4 && this.status == 200){
-            information = JSON.parse(xhr.responseText);
+            var information = JSON.parse(xhr.responseText);
             var title = information.name;
             var content = information.info;
             var description = '(' + information.calories + 'c/100g)';
-            info.setInfo(title, content, description);
+            var img = information.img;
+            info.setInfo(title, content, description, img);
         }
     }
 }
