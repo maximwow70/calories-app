@@ -74,6 +74,25 @@ initAppAdd();
     var info = new Info(appSearch);
 
     server.getFullComponents(toolbar, info);
+
+    toolbar.oncreatemenu = function(){
+        /*
+        var menuControls = this.menu.getAllLinks();
+        for (var i = 0; i < menuControls.length; i++){
+            menuControls[i].addEventListener('click', function(){
+                var name = this.innerHTML;
+                server.getInfo(info, name);
+            });
+        }
+        */
+        this.menu.dom.addEventListener('click', function(){
+            var clickedElem = event.target;
+            if (clickedElem.classList.value.indexOf('menu-list') + 1){
+                var name = clickedElem.innerHTML;
+                server.getInfo(info, name);
+            }
+        });
+    }
 //}
 //initAppSearch();
 

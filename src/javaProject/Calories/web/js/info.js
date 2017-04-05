@@ -9,6 +9,9 @@ function Info(parent, title, content, description, img){
 
     this.initInfo();
 }
+Info.prototype.setEmpty = function(){
+    this.dom.innerHTML = '';
+}
 Info.prototype.initInfo = function(){
     if (this.img){
         var img = document.createElement('img');
@@ -18,12 +21,12 @@ Info.prototype.initInfo = function(){
     }
 
     var title = document.createElement('h2');
-    title.setAttribute('class', 'kek');
+    title.setAttribute('class', 'info-title');
     if (this.title){
         title.innerHTML = this.title;
     }
     else {
-        title.innerHTML = 'nothing is select :c';
+        title.innerHTML = 'something get trouble :c';
     }
     this.dom.appendChild(title);
 
@@ -46,6 +49,17 @@ Info.prototype.setInfo = function(title, content, description, img){
     this.content = content;
     this.description = description;
     this.img = img;
+
+    this.setEmpty();
     this.initInfo();
 }
 
+/*
+var a = new Info(
+    document.querySelector('.app-search'),
+    'Clown Fish',
+    'Lorem ipsum dolor sit amet, consectetur adipisicing elit.Magni magnam, enim odit cumque quaerat iure id sequi doloribus, et error.',
+    'calories: (666c/100g)',
+    'clown-fish.svg'
+);
+*/
