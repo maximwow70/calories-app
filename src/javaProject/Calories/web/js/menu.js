@@ -17,7 +17,7 @@ Menu.prototype.initControls = function(menu, controls){
     }
     
 }
-Menu.prototype.initAllLinks = function(){
+Menu.prototype.initAllLinks = function(callback){
     var menuControls = this.getAllLinks();
 
     for (var i = 0; i < menuControls.length; i++){
