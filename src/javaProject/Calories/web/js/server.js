@@ -91,10 +91,9 @@ Server.prototype.getFullComponents = function(toolbar, info){
     xhr.onreadystatechange = function() {
         if(this.readyState ==4 && this.status == 200){
             components = JSON.parse(xhr.responseText);
-            toolbar.initMenu(components);
-            toolbar.menu.callback = function(compoent){
+            toolbar.initMenu(components, function(component){
                 server.getInfo(info, component);
-            }
+            });
         }
     }
 }
