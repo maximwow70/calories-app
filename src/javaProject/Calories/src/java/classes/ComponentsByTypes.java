@@ -18,6 +18,7 @@ public class ComponentsByTypes {
     public ComponentsByTypes( String type) {
         this.type = type;
         ArrayList<Component> list = SQL.findComponentsByType(type);
+        list.sort(new CustomComparator());
         for(Component c : list) {
             components.add(c.getName());
         }

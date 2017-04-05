@@ -14,7 +14,7 @@ import java.util.ArrayList;
  */
 public class Main {
     public static void main(String... args) {
-        String str = "Apples (dried, uncooked)";
+        String str = "Banana (dehydrated or powder)";
             Component component = SQL.findComponentByName(str);
             Gson gson = new Gson();
             String s = gson.toJson(component);

@@ -32,7 +32,10 @@ public class Component {
         this.name = name;
         this.id = id;
         this.calories = calories;
-        this.info = info;
+        if(info!=null)
+            this.info = info;
+        else 
+            this.info = "";
     }
     public int getID() {
         return id;
