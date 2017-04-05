@@ -15,6 +15,16 @@ Menu.prototype.initControls = function(menu, controls){
     }
     
 }
+Menu.prototype.initAllLinks = function(callback){
+    var menuControls = this.getAllLinks();
+
+    for (var i = 0; i < menuControls.length; i++){
+        menuControls[i].addEventListener('click', function(){
+            var component = this.textContent;
+            server.getInfo(info, component);
+        });
+    }
+}
 Menu.prototype.initMenu = function(menuList) {
     this.dom =  document.createElement('div');
     this.dom.setAttribute('class', 'menu_list');
@@ -50,7 +60,7 @@ Menu.prototype.initMenu = function(menuList) {
             for (var j = 0; j < lists.length; j++){
                 var list = document.createElement('a');
                 list.setAttribute('class', 'menu-list');
-                list.innerHTML = lists[j] + '';
+                list.textContent = lists[j] + '';
                 list.setAttribute('value', lists[j]);
                 menuGroup.appendChild(list);
             }
@@ -59,6 +69,8 @@ Menu.prototype.initMenu = function(menuList) {
         this.dom.appendChild(menu);
     }
     this.parent.appendChild(this.dom);
+
+    this.initAllLinks();
 }
 Menu.prototype.getAllLinks = function(){
     return this.dom.querySelectorAll('.menu-list');
