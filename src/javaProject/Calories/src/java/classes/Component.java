@@ -14,7 +14,7 @@ public class Component {
     private int calories;
     private int weight;
     private int id;
-    
+    private String info;
     
     public Component(String name, int id,int calories) {
         this.name = name;
@@ -27,6 +27,12 @@ public class Component {
         this.id = id;
         this.calories = calories;
         this.weight = weight;
+    }
+    public Component(String name, int id, int calories, String info) {
+        this.name = name;
+        this.id = id;
+        this.calories = calories;
+        this.info = info;
     }
     public int getID() {
         return id;

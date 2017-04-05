@@ -14,15 +14,10 @@ import java.util.ArrayList;
  */
 public class Main {
     public static void main(String... args) {
-        Gson gson = new Gson();
-        ArrayList<ComponentsByTypes> list = new ArrayList<>();
-        ArrayList<String> types = SQL.findTypesComponents();
-        if(types==null)
-            System.out.println("lol");
-        for(String type : types) {
-            list.add(new ComponentsByTypes(type));
-        }
-        String s = gson.toJson(list);
+        String str = "Apples (dried, uncooked)";
+            Component component = SQL.findComponentByName(str);
+            Gson gson = new Gson();
+            String s = gson.toJson(component);
         System.out.println(s);
     }
 }

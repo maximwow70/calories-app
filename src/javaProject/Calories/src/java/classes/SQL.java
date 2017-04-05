@@ -113,7 +113,7 @@ public class SQL {
         try {
             ResultSet res = stat.executeQuery("SELECT * FROM Components WHERE Name LIKE \"%"+name+"%\";");
             res.next();
-            return new Component(res.getString("Name"),res.getInt("ComponentID"),res.getInt("Calories"));
+            return new Component(res.getString("Name"),res.getInt("ComponentID"),res.getInt("Calories"),res.getString("Info"));
         } catch(SQLException e) {return null;}
     }
     
