@@ -40,7 +40,7 @@ public class SQL {
         connect();
         ArrayList<Component> list = new ArrayList<>();
         try {
-            ResultSet res =  stat.executeQuery("SELECT * FROM Components;");
+            ResultSet res =  stat.executeQuery("SELECT * FROM Components ORDER BY Name;");
             while(res.next()) {
                 list.add(new Component(res.getString("Name"),res.getInt("ComponentID"),res.getInt("Calories")));
             }
