@@ -67,15 +67,15 @@ function initAppAdd(){
 }
 initAppAdd();
 
-function initAppSearch(){
+//function initAppSearch(){
     var appSearch = app.getAppSearch();
     var toolbar = new Toolbar(appSearch);
     var control = toolbar.control;
     var info = new Info(appSearch);
 
-    server.getFullComponents(toolbar);
-}
-initAppSearch();
+    server.getFullComponents(toolbar, info);
+//}
+//initAppSearch();
 
 /*
     'Clown Fish',

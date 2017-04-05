@@ -1,7 +1,9 @@
-function Menu(parent, menuList) {
+function Menu(parent, menuList, callback) {
     this.parent = parent;
     this.dom;
     this.controls = [];
+
+    this.callback = callback;
 
     if(menuList){
         this.initMenu(menuList);
@@ -15,13 +17,13 @@ Menu.prototype.initControls = function(menu, controls){
     }
     
 }
-Menu.prototype.initAllLinks = function(callback){
+Menu.prototype.initAllLinks = function(){
     var menuControls = this.getAllLinks();
 
     for (var i = 0; i < menuControls.length; i++){
         menuControls[i].addEventListener('click', function(){
             var component = this.textContent;
-            server.getInfo(info, component);
+            this.callback(component);
         });
     }
 }
