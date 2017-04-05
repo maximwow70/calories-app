@@ -82,7 +82,7 @@ Server.prototype.getComponents = function (toolbar){
         }
     }
 }
-Server.prototype.getFullComponents = function(toolbar, info){
+Server.prototype.getFullComponents = function(toolbar){
     var components = [];
     var xhr = this.getNewXhr();
     xhr.open('POST', 'GetFullComponents', true);
@@ -91,9 +91,7 @@ Server.prototype.getFullComponents = function(toolbar, info){
     xhr.onreadystatechange = function() {
         if(this.readyState ==4 && this.status == 200){
             components = JSON.parse(xhr.responseText);
-            toolbar.initMenu(components, function(component){
-                server.getInfo(info, component);
-            });
+            toolbar.initMenu(components);
         }
     }
 }
