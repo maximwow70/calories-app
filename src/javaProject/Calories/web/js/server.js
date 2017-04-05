@@ -85,7 +85,7 @@ Server.prototype.getComponents = function (toolbar){
 Server.prototype.getFullComponents = function(toolbar){
     var components = [];
     var xhr = this.getNewXhr();
-    xhr.open('POST', '', true);
+    xhr.open('POST', 'GetFullComponents', true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.send();
     xhr.onreadystatechange = function() {

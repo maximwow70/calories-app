@@ -23,7 +23,7 @@ Info.prototype.initInfo = function(){
         title.innerHTML = this.title;
     }
     else {
-        title.innerHTML = 'something get trouble :c';
+        title.innerHTML = 'nothing is select :c';
     }
     this.dom.appendChild(title);
 
@@ -49,10 +49,3 @@ Info.prototype.setInfo = function(title, content, description, img){
     this.initInfo();
 }
 
-var a = new Info(
-    document.querySelector('.app-search'),
-    'Clown Fish',
-    'Lorem ipsum dolor sit amet, consectetur adipisicing elit.Magni magnam, enim odit cumque quaerat iure id sequi doloribus, et error.',
-    'calories: (666c/100g)',
-    'clown-fish.svg'
-);

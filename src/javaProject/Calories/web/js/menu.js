@@ -67,7 +67,7 @@ Menu.prototype.getDom = function () {
     return this.dom;
 }
 
-
+/*
 var par = document.querySelector('.toolbar-menu');
 var menu1 = new Menu(
     par,
@@ -123,4 +123,4 @@ var menu1 = new Menu(
         }
     ]
 );
-console.log(menu1.getAllLinks());
+*/
