@@ -95,12 +95,11 @@ Server.prototype.getFullComponents = function(toolbar){
         }
     }
 }
-Server.prototype.getInfo = function(info, obj){
-    var object = JSON.stringify(obj);
+Server.prototype.getInfo = function(info, str){
     var xhr = this.getNewXhr();
     xhr.open('POST', 'GetInfoComponent', true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.send(object);
+    xhr.send(str);
     xhr.onreadystatechange = function() {
         if(this.readyState ==4 && this.status == 200){
             information = JSON.parse(xhr.responseText);
