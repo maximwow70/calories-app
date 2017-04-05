@@ -62,7 +62,6 @@ public class BeginFindComponents extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text.html;charset=UTF-8");
         ArrayList<Component> set = SQL.findComponents();
-        set.sort(new CustomComparator());
         Gson g = new Gson();
         String str = g.toJson(set);
         response.getWriter().write(str);

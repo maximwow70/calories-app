@@ -40,7 +40,7 @@ public class SQL {
         connect();
         ArrayList<Component> list = new ArrayList<>();
         try {
-            ResultSet res =  stat.executeQuery("SELECT * FROM Components;");
+            ResultSet res =  stat.executeQuery("SELECT * FROM Components ORDER BY Name;");
             while(res.next()) {
                 list.add(new Component(res.getString("Name"),res.getInt("ComponentID"),res.getInt("Calories")));
             }
@@ -52,7 +52,7 @@ public class SQL {
         connect();
         ArrayList<Component> list = new ArrayList<>();
         try {
-            ResultSet res = stat.executeQuery("SELECT * FROM Components WHERE Type = \""+type+"\";");
+            ResultSet res = stat.executeQuery("SELECT * FROM Components WHERE Type = \""+type+"\" ORDER BY Name");
             while(res.next()) {
                 list.add(new Component(res.getString("Name"),res.getInt("ComponentID"),res.getInt("Calories")));
             }
@@ -113,7 +113,7 @@ public class SQL {
         try {
             ResultSet res = stat.executeQuery("SELECT * FROM Components WHERE Name LIKE \"%"+name+"%\";");
             res.next();
-            return new Component(res.getString("Name"),res.getInt("ComponentID"),res.getInt("Calories"),res.getString("Info"));
+            return new Component(res.getString("Name"),res.getInt("ComponentID"),res.getInt("Calories"),res.getString("Info"),res.getString("Type"),res.getInt("isImage"));
         } catch(SQLException e) {return null;}
     }
     
