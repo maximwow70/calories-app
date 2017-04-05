@@ -8,6 +8,8 @@ function Toolbar(parent, title){
     this.addComponentBtn = this.dom.querySelector('.toolbar-btn--add_component');
     this.control = this.dom.querySelector('.toolbar-btn--control');
 
+    this.oncreatemenu = function(){}
+
     if(title){
         this.setTitle(title);
     }
@@ -40,10 +42,12 @@ Toolbar.prototype.setTitle = function(_title){
     }
 }
 Toolbar.prototype.initMenu = function(menuList){
-    this.menu = this.dom.querySelector('.toolbar-menu');
-    var menu = new Menu(this.menu, menuList);
+    var that = this;
 
-    this.menuControls = menu.getAllLinks();
+    var menu = this.dom.querySelector('.toolbar-menu');
+    this.menu = new Menu(menu, menuList);
+
+    this.oncreatemenu();
 }
 Toolbar.prototype.initComponents = function(components){
     this.components = components;

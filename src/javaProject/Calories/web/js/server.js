@@ -110,4 +110,5 @@ Server.prototype.getInfo = function(info, obj){
             info.setInfo(title, content, description);
         }
     }
+    info.setInfo('lal', 'kek', 'chebyrek');
 }

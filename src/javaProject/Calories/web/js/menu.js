@@ -2,6 +2,7 @@ function Menu(parent, menuList) {
     this.parent = parent;
     this.dom;
     this.controls = [];
+    this.callback;
 
     if(menuList){
         this.initMenu(menuList);
@@ -11,17 +12,6 @@ Menu.prototype.initControls = function(menu, controls){
     for (var i = 0; i < controls.length; i++) {
         controls[i].addEventListener('click', function () {
             $(menu).toggleClass('menu--click');
-        });
-    }
-    
-}
-Menu.prototype.initAllLinks = function(callback){
-    var menuControls = this.getAllLinks();
-
-    for (var i = 0; i < menuControls.length; i++){
-        menuControls[i].addEventListener('click', function(){
-            var component = this.textContent;
-            server.getInfo(info, component);
         });
     }
 }
@@ -60,7 +50,7 @@ Menu.prototype.initMenu = function(menuList) {
             for (var j = 0; j < lists.length; j++){
                 var list = document.createElement('a');
                 list.setAttribute('class', 'menu-list');
-                list.textContent = lists[j] + '';
+                list.innerHTML = lists[j] + '';
                 list.setAttribute('value', lists[j]);
                 menuGroup.appendChild(list);
             }
@@ -69,8 +59,6 @@ Menu.prototype.initMenu = function(menuList) {
         this.dom.appendChild(menu);
     }
     this.parent.appendChild(this.dom);
-
-    this.initAllLinks();
 }
 Menu.prototype.getAllLinks = function(){
     return this.dom.querySelectorAll('.menu-list');
