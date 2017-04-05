@@ -48,6 +48,30 @@ public class SQL {
         } catch (SQLException e) {return null;}
     }
     
+    public static ArrayList<Component> findComponentsByType(String type) {
+        connect();
+        ArrayList<Component> list = new ArrayList<>();
+        try {
+            ResultSet res = stat.executeQuery("SELECT * FROM Components WHERE Type = \""+type+"\";");
+            while(res.next()) {
+                list.add(new Component(res.getString("Name"),res.getInt("ComponentID"),res.getInt("Calories")));
+            }
+            return list;
+        } catch (SQLException e) { return null;}
+    }
+    
+    public static ArrayList<String> findTypesComponents() {
+        connect();
+        ArrayList<String> list = new ArrayList<>();
+        try {
+            ResultSet res = stat.executeQuery("SELECT DISTINCT Type FROM Components");
+            while(res.next()) {
+                list.add(res.getString("Type"));
+            }
+            return list;
+        } catch(SQLException e) {return null;}
+    }
+    
     public static Dish findDishById(int id) {
         connect(); 
         try {

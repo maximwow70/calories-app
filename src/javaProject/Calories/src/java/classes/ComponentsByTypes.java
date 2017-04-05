@@ -11,15 +11,18 @@ import java.util.ArrayList;
  *
  * @author admin
  */
-public class Components {
-    private ArrayList<Component> components;
+public class ComponentsByTypes {
+    private ArrayList<String> components = new ArrayList<>();
     private String type;
     
-    public Components(ArrayList<Component> components, String type) {
-        this.components = components;
+    public ComponentsByTypes( String type) {
         this.type = type;
+        ArrayList<Component> list = SQL.findComponentsByType(type);
+        for(Component c : list) {
+            components.add(c.getName());
+        }
     }
-    public ArrayList<Component> getComponents() {
+    public ArrayList<String> getComponents() {
         return components;
     }
     public String getType() {

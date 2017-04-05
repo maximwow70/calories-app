@@ -5,35 +5,24 @@
  */
 package classes;
 
+import com.google.gson.Gson;
+import java.util.ArrayList;
+
 /**
  *
  * @author admin
  */
 public class Main {
     public static void main(String... args) {
-        Dish dish = new Dish(6,"");
-        //dish.addComponents(SQL.findComponentsByDishId(1));
-        String url = "Select DISTINCT d.* from Dishes d,DishFormulas f \n" +
-"INNER JOIN Components c ON\n" +
-"c.ComponentID = f.ComponentID ";
-        int i = 0;
-        for(Component s : dish.getComponents()) {
-            if(!s.getName().equals("")) {
-                if(i == 0)
-                    url+=" AND(\n";
-                if(i>0)
-                    url += " OR ";
-                url+="c.Name = \""+s.getName()+"\"\n";
-                i++;
-            }
+        Gson gson = new Gson();
+        ArrayList<ComponentsByTypes> list = new ArrayList<>();
+        ArrayList<String> types = SQL.findTypesComponents();
+        if(types==null)
+            System.out.println("lol");
+        for(String type : types) {
+            list.add(new ComponentsByTypes(type));
         }
-        if(i>0)
-            url+=")";
-        url+= "AND\n" +
-"(Select COUNT(dish.DishID) from DishFormulas dish where d.DishID = dish.DishID) ="+dish.length()+"\n" +
-"WHERE\n" +
-"d.Name LIKE \"%"+dish.getName()+"%\" AND\n" +
-"d.DishID = f.DishID;";
-        System.out.println(url);
+        String s = gson.toJson(list);
+        System.out.println(s);
     }
 }
