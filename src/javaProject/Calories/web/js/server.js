@@ -95,16 +95,19 @@ Server.prototype.getFullComponents = function(toolbar){
         }
     }
 }
-Server.prototype.getInfo = function(app, obj){
+Server.prototype.getInfo = function(info, obj){
     var object = JSON.stringify(obj);
     var xhr = this.getNewXhr();
-    xhr.open('POST', '', true);
+    xhr.open('POST', 'GetInfoComponent', true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.send(object);
     xhr.onreadystatechange = function() {
         if(this.readyState ==4 && this.status == 200){
-            info = JSON.parse(xhr.responseText);
-            //app. (info);
+            information = JSON.parse(xhr.responseText);
+            var title = information.name;
+            var content = information.info;
+            var description = '(' + information.calories + 'c/100g)';
+            info.setInfo(title, content, description);
         }
     }
 }
