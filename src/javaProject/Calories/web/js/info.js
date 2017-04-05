@@ -49,6 +49,8 @@ Info.prototype.setInfo = function(title, content, description, img){
     this.content = content;
     this.description = description;
     this.img = img;
+    var path = this.path;
+    this.path = path + this.img + '';
 
     this.setEmpty();
     this.initInfo();
