@@ -64,7 +64,7 @@ public class SQL {
         connect();
         ArrayList<String> list = new ArrayList<>();
         try {
-            ResultSet res = stat.executeQuery("SELECT DISTINCT Type FROM Components");
+            ResultSet res = stat.executeQuery("SELECT DISTINCT Type FROM Components ORDER BY Type");
             while(res.next()) {
                 list.add(res.getString("Type"));
             }
