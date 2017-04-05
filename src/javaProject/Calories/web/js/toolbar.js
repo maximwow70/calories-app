@@ -42,8 +42,6 @@ Toolbar.prototype.setTitle = function(_title){
     }
 }
 Toolbar.prototype.initMenu = function(menuList){
-    var that = this;
-
     var menu = this.dom.querySelector('.toolbar-menu');
     this.menu = new Menu(menu, menuList);
 
