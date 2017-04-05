@@ -15,23 +15,28 @@ public class Component {
     private int weight;
     private int id;
     private String info;
+    private String img;
     
     public Component(String name, int id,int calories) {
         this.name = name;
         this.id = id;
         this.calories = calories;
         weight = 0;
+        img = "Component"+id+".svg";
     }
     public Component(String name, int id, int calories, int weight) {
         this.name = name;
         this.id = id;
         this.calories = calories;
         this.weight = weight;
+        img = "Component"+id+".svg";
     }
     public Component(String name, int id, int calories, String info) {
         this.name = name;
         this.id = id;
         this.calories = calories;
+        weight = 0;
+        img = "Component"+id+".svg";
         if(info!=null)
             this.info = info;
         else 
