@@ -700,11 +700,21 @@
   display: inline;
   content: ''; }
 
-.component-name:after {
-  display: inline;
-  content: ': '; }
+.component-name {
+  vertical-align: middle; }
+  .component-name:after {
+    display: inline;
+    content: ': '; }
+
+.component-img {
+  margin-right: 5px;
+  display: inline-block;
+  vertical-align: middle;
+  width: 40px;
+  height: 40px; }
 
 .component-description {
+  vertical-align: middle;
   /*
         &:before{
             display: inline;
