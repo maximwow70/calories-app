@@ -114,7 +114,7 @@ public class SQL {
             ResultSet res = stat.executeQuery("SELECT * FROM Components WHERE Name LIKE \"%"+name+"%\";");
             res.next();
             return new Component(res.getString("Name"),res.getInt("ComponentID"),res.getInt("Calories"),res.getString("Info"),res.getString("Type"),res.getInt("isImage"));
-        } catch(SQLException e) {return null;}
+        } catch(SQLException e) {System.out.println("ByName ERROR");return null;}
     }
     
     public static ArrayList<Component> findComponentsByDishId(int id) {
@@ -125,10 +125,10 @@ public class SQL {
                     + "f.DishID = "+id+" AND\n"
                     + "c.ComponentID = f.ComponentID ;");
             while(res.next()) {
-                list.add(new Component(res.getString("Name"),res.getInt("ComponentID"),res.getInt("Calories"),res.getInt("Weight")));
+                list.add(new Component(res.getString("Name"),res.getInt("ComponentID"),res.getInt("Calories"),res.getInt("Weight"),res.getString("Info"),res.getString("Type"),res.getInt("isImage")));
             }
             return list;
-        } catch(SQLException e) {return null;}
+        } catch(SQLException e) {System.out.println("ByDishId ERROR");return null;}
     }
     
     public static ArrayList<Dish> findDishesByNameAndComponents(Dish dish) {
