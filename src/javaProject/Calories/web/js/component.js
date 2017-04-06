@@ -1,8 +1,10 @@
-function Component(id, name, weight, calories){
+function Component(id, name, weight, calories, img){
     this.id = id;
     this.name = name;
     this.calories = calories;
     this.weight = weight;
+    this.img = img;
+    this.path = './img/components/' + this.img;
 
     this.dom = document.createElement('div');
     
@@ -11,6 +13,12 @@ function Component(id, name, weight, calories){
     /*var componentIdHtml = document.createElement('span');
     componentIdHtml.setAttribute('class', 'component-id');
     componentIdHtml.textContent = id;*/
+    if (this.img){
+        var componentImg = document.createElement('img');
+        componentImg.setAttribute('class', 'component-img');
+        componentImg.setAttribute('src', this.path);
+        this.dom.appendChild(componentImg);
+    }
 
     var componentNameHtml = document.createElement('span');
     componentNameHtml.setAttribute('class', 'component-name');
