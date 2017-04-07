@@ -61,6 +61,7 @@
     }
     &-calculator{
         .app-toolbar{
+            box-sizing: border-box;
             padding: 20px;
         }
         .app-toolbar, .app-info{
