@@ -41,7 +41,7 @@ public class Component {
         if(isImage == 1)
             img = "Component"+id+".svg";
         else
-            img = type+".svg";
+            img = "Default/"+type+".svg";
         if(info!=null)
             this.info = info;
         else 
