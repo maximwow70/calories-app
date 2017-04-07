@@ -35,7 +35,7 @@
                 <div class="app-loading app-loading--close">
                     <div class="loading">loading..</div>
                 </div>
-                <div class="app-select ">
+                <div class="app-select app-select--close">
                     <div class="select">
                         <div class="select-title">Choose your action</div>
                         <a class="select-btn select-btn--find" href="#"><span>Find the dish</span></a>
@@ -68,7 +68,7 @@
                 </div>
                 <div class="app-add app-add--close">
                     <div class="app-toolbar">
-                        <div class="toolbar toolbar--find_dish">
+                        <div class="toolbar toolbar--add_dish">
                             <div class="toolbar-title">Add the dish!</div>
                             <input type="text" class="toolbar-select toolbar-select--name" placeholder="Dish's name">
                             <div class="toolbar-select_component">
@@ -111,6 +111,27 @@
                     <div class="app-info">
                         <div class="info">
                             
+                        </div>
+                    </div>
+                </div>
+                <div class="app-calculator app-calculalor--close">
+                    <div class="app-toolbar">
+                        <div class="toolbar toolbar--find_dish">
+                            <div class="toolbar-title">Calculate Calories!</div>
+                            <div class="toolbar-select_component">
+                                <select class="toolbar-select toolbar-select--component">
+                                    <option class="toolbar-select--empty" value=""></option>
+                                </select>
+                                <input class="toolbar-select toolbar-select--weight" type="number" min="0" placeholder="weight">
+                            </div>
+                            <div class="toolbar-controls">
+                                <button class="toolbar-btn toolbar-btn--add_component">Add component</button>
+                                <button class="toolbar-btn toolbar-btn--control toolbar-btn--calculate">calculate</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="app-info">
+                        <div class="info">
                         </div>
                     </div>
                 </div>
@@ -168,8 +189,10 @@
             </div>
         </div>
     </div>
+    
 
     <script src="libs/jquery-1.11.1.min.js"></script>
+    <script src="js/calculator.js"></script>
     <script src="js/menu.js"></script>
     <script src="js/select_file.js"></script>
     <script src="js/server.js"></script>

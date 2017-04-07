@@ -97,6 +97,49 @@ function initAppSearch(){
 }
 initAppSearch();
 
+//function initCalculator() {
+    var calculator = new Calculator();
+
+    var appCalculator = app.getAppCalculator();
+    var info = new Info(appCalculator, 'Total Calories:');
+
+    var toolbar = new Toolbar(appCalculator);
+    var control = toolbar.control;
+
+    function calculateCalories(){
+        var components = toolbar.getItemComponents();
+
+        var calories = [];
+        for (var i = 0; i < components.length; i++){
+            calories.push(components[i].weight);
+        }
+
+        var totalCalories = calculator.sumOfArray(calories);
+        info.setInfo('Total Calories:', totalCalories);
+        if (totalCalories <= 500) {
+            info.setContentImportant(1);
+        }
+        else if (totalCalories <= 1000) {
+            info.setContentImportant(2);
+        }
+        else if (totalCalories > 1000) {
+            info.setContentImportant(3);
+        }
+    }
+
+    
+    toolbar.onaddselect = function(){
+        var toolbarSelects = this.getDom().querySelectorAll('.toolbar-select');
+        for (var i = 0; i < toolbarSelects.length; i++){
+            toolbarSelects[i].addEventListener('input', calculateCalories);
+        }
+    }
+    toolbar.onaddselect();
+    control.addEventListener('click', calculateCalories);
+
+//}
+//initCalculator();
+
 /*
     'Clown Fish',
     'Lorem ipsum dolor sit amet, consectetur adipisicing elit.Magni magnam, enim odit cumque quaerat iure id sequi doloribus, et error.',

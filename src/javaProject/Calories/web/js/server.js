@@ -68,10 +68,7 @@ Server.prototype.findDish = function (itemList, _dish){
 	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
   	xhr.send(dish);
 	xhr.onreadystatechange = function(){
-        if (this.readyState != 4){
-            return;
-        }
-		if (this.status == 200){
+		if (this.readyState == 4 && this.status == 200){
             dishes = JSON.parse(xhr.responseText);
             itemList.setItems(dishes);
         }
