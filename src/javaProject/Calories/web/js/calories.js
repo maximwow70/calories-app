@@ -55,15 +55,15 @@ function initAppFind(){
     server.getComponents(toolbar);
 
     // init action
-    var itemList = appFind.querySelector('.app-item_list');
+    /*ar itemList = appFind.querySelector('.app-item_list');
     var loading = appFind.querySelector('.app-loading');
     server.onfind = function(){
         $(loading).addClass('app-loading--close');
         $(itemList).removeClass('app-item_list--close');
-    }
+    }*/
 	control.addEventListener('click', function(){
-        $(itemList).addClass('app-item_list--close');
-        $(loading).removeClass('app-loading--close');
+        //$(itemList).addClass('app-item_list--close');
+        //$(loading).removeClass('app-loading--close');
 		var dish = toolbar.getItem();
 		server.findDish(itemList, dish);
 	});

@@ -63,7 +63,7 @@ Info.prototype.setContentImportant = function(importance){
 
     try{
         if (importance == 1) {
-            content.style.color = '#197b30';
+            content.style.color = '#22bf65';
         }
         else if (importance == 2) {
             content.style.color = '#fff568';

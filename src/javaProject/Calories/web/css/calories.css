@@ -241,6 +241,7 @@
     -ms-flex: 1;
     flex: 1; }
   .app-calculator .app-toolbar {
+    box-sizing: border-box;
     padding: 20px; }
   .app-calculator .app-toolbar, .app-calculator .app-info {
     -webkit-flex: 1;
