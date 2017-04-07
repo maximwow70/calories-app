@@ -57,7 +57,7 @@ Toolbar.prototype.initComponents = function(components){
 }
 Toolbar.prototype.setComponents = function(selectElement, components){
     for (var j = 0; j < components.length; j++){
-        var component = this.createSelectComponentName(components[j].name);
+        var component = this.createSelectComponentByName(components[j].name);
         selectElement.appendChild(component);
     }
 }
@@ -76,7 +76,7 @@ Toolbar.prototype.createSelectComponent = function(){
     select.setAttribute('class', 'toolbar-select toolbar-select--component');
     selectComponent.appendChild(select);
 
-    var option = this.createSelectComponentName();   
+    var option = this.createSelectComponentByName();   
     option.setAttribute('class', 'toolbar-select--empty');
     select.appendChild(option);
     this.setComponents(select, this.components); 
@@ -90,7 +90,7 @@ Toolbar.prototype.createSelectComponent = function(){
 
     return selectComponent;
 }
-Toolbar.prototype.createSelectComponentName = function(name){
+Toolbar.prototype.createSelectComponentByName = function(name){
     var option = document.createElement('option');
     if (name){
         option.value = name;
@@ -103,7 +103,6 @@ Toolbar.prototype.getItemComponents = function(){
 	var components = [];
 	for (var i = 0; i < selects.length; i++){
         var componentName = selects[i].querySelector('.toolbar-select--component').value;
-        console.log(componentName);
         var componentWeight = 0;
         try{
             componentWeight = selects[i].querySelector('.toolbar-select--weight').value;

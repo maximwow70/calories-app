@@ -55,7 +55,7 @@ Info.prototype.setInfo = function(title, content, description, img){
     this.setEmpty();
     this.initInfo();
 }
-Info.setContentUsial = function(){
+Info.prototype.setContentUsial = function(){
     var content = this.dom.querySelector('.info-content');
 }
 Info.prototype.setContentImportant = function(importance){
