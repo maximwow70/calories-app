@@ -106,25 +106,24 @@ initAppSearch();
     var toolbar = new Toolbar(appCalculator);
     var control = toolbar.control;
 
+    server.getComponents(toolbar);
+
     function calculateCalories(){
         var components = toolbar.getItemComponents();
 
         var calories = [];
         for (var i = 0; i < components.length; i++){
-            calories.push(components[i].weight);
+            var calori = 1;
+            for (var j = 0; j < toolbar.components.length; j++) {
+                if (toolbar.components[j].name == components[i].name) {
+                    calori = toolbar.components[j].calories;
+                }
+            }
+            calories.push(components[i].weight * calori / 100);
         }
 
         var totalCalories = calculator.sumOfArray(calories);
         info.setInfo('Total Calories:', totalCalories);
-        if (totalCalories <= 500) {
-            info.setContentImportant(1);
-        }
-        else if (totalCalories <= 1000) {
-            info.setContentImportant(2);
-        }
-        else if (totalCalories > 1000) {
-            info.setContentImportant(3);
-        }
     }
 
     
@@ -136,7 +135,7 @@ initAppSearch();
     }
     toolbar.onaddselect();
     control.addEventListener('click', calculateCalories);
-
+    
 //}
 //initCalculator();
 
@@ -145,4 +144,15 @@ initAppSearch();
     'Lorem ipsum dolor sit amet, consectetur adipisicing elit.Magni magnam, enim odit cumque quaerat iure id sequi doloribus, et error.',
     'calories: (666c/100g)',
     'clown-fish.svg'
+*/
+
+/*
+toolbar.initComponents([
+		{name: 'apple', calories: 100},
+		{name: 'coca-cola', calories: 200},
+		{name: 'pie', calories: 300},
+		{name: 'cherries', calories: 50},
+		{name: 'ice', calories: 10},
+		{name: 'tomatoes', calories: 666},
+	])
 */
