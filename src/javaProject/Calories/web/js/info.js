@@ -61,14 +61,19 @@ Info.prototype.setContentUsial = function(){
 Info.prototype.setContentImportant = function(importance){
     var content = this.dom.querySelector('.info-content');
 
-    if (importance == 1) {
-        content.style.color = '#197b30';
+    try{
+        if (importance == 1) {
+            content.style.color = '#197b30';
+        }
+        else if (importance == 2) {
+            content.style.color = '#fff568';
+        }
+        else if (importance == 3) {
+            content.style.color = '#f72f5f';
+        }
     }
-    else if (importance == 2) {
-        content.style.color = '#fff568';
-    }
-    else if (importance == 3) {
-        content.style.color = '#f72f5f';
+    catch (e) {
+        
     }
 }
 

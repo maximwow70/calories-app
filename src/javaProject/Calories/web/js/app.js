@@ -15,6 +15,7 @@ App.prototype.closeAll = function(){
     $(this.appFind).addClass('app-find--close');
     $(this.appAdd).addClass('app-add--close');
     $(this.appSearch).addClass('app-search--close');
+    $(this.appCalculator).addClass('app-calculator--close');
     $(this.appView).addClass('app-view--close');
     $(this.about).addClass('app-about--close');
     $(this.loading).removeClass('app-loading--close');
@@ -57,6 +58,14 @@ App.prototype.openSearch = function(){
     setTimeout(function(){
         $(that.loading).addClass('app-loading--close');
         $(that.appSearch).removeClass('app-search--close');
+    }, 500);
+}
+App.prototype.openCalculator = function(){
+    var that = this;
+    that.closeAll();
+    setTimeout(function(){
+        $(that.loading).addClass('app-loading--close');
+        $(that.appCalculator).removeClass('app-calculator--close');
     }, 500);
 }
 App.prototype.openView = function(){
