@@ -72,9 +72,6 @@ Server.prototype.findDish = function (itemList, _dish){
             dishes = JSON.parse(xhr.responseText);
             itemList.setItems(dishes);
         }
-        else {
-            itemList.setTitle('Some troubles. Please, try again');
-        }
         that.onfind();
 	}
 } 
