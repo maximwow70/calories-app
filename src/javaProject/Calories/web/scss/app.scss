@@ -27,7 +27,7 @@
             display: none;
         }
     }
-    &-find, &-add, &-about, &-search, &-view{
+    &-find, &-add, &-about, &-search, &-view, &-calculator{
         flex: 1;
 
         display: flex;
@@ -57,6 +57,45 @@
     &-search{
         .search{
             flex: 1;
+        }
+    }
+    &-calculator{
+        .app-toolbar{
+            padding: 20px;
+        }
+        .app-toolbar, .app-info{
+            flex: 1;
+
+            align-items: center;
+            justify-content: center;
+        }
+        .toolbar{
+            flex: 0;
+
+            border: none;
+            max-width: 350px;
+
+            text-align: center;
+            .toolbar-btn{
+                width: 100%;
+            }
+        }
+        .info{
+            &-title{
+                font-size: 32px;
+            }
+            &-content{
+                max-width: 200px;
+                padding: 10px 10px;
+                background-color: $dark-color; 
+
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+
+                font-size: 30px;
+                color: $light-color;
+            }
         }
     }
     &-view_item{
@@ -112,7 +151,7 @@
 
     }
     @media screen and (max-width: 900px){
-        &-toolbar{
+        &-toolbar, .app-calculator &-toolbar{
             flex-basis: 100%;
         }
     }

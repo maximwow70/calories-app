@@ -5,6 +5,7 @@ function App(){
     this.appFind = this.dom.querySelector('.app-find');
     this.appAdd = this.dom.querySelector('.app-add');
     this.appSearch = this.dom.querySelector('.app-search');
+    this.appCalculator = this.dom.querySelector('.app-calculator');
     this.appView = this.dom.querySelector('.app-view');
     this.about = this.dom.querySelector('.app-about');
     this.loading = this.dom.querySelector('.app-loading');
@@ -74,6 +75,9 @@ App.prototype.getAppAdd = function(){
 }
 App.prototype.getAppSearch = function(){
     return this.appSearch;
+}
+App.prototype.getAppCalculator = function(){
+    return this.appCalculator;
 }
 App.prototype.getAppView = function(){
     return this.appView;

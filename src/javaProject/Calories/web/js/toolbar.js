@@ -8,7 +8,8 @@ function Toolbar(parent, title){
     this.addComponentBtn = this.dom.querySelector('.toolbar-btn--add_component');
     this.control = this.dom.querySelector('.toolbar-btn--control');
 
-    this.oncreatemenu = function(){}
+    this.oncreatemenu = function(){};
+    this.onaddselect = function(){};
 
     if(title){
         this.setTitle(title);
@@ -64,6 +65,8 @@ Toolbar.prototype.addSelectComponent = function(component){
     var selectComponent = this.createSelectComponent();
     var lastChild = this.dom.lastElementChild;
     this.dom.insertBefore(selectComponent, lastChild);
+
+    this.onaddselect();
 }
 Toolbar.prototype.createSelectComponent = function(){
     var selectComponent = document.createElement('div');
@@ -100,15 +103,12 @@ Toolbar.prototype.getItemComponents = function(){
 	var components = [];
 	for (var i = 0; i < selects.length; i++){
         var componentName = selects[i].querySelector('.toolbar-select--component').value;
-        var componentWeight;
+        console.log(componentName);
+        var componentWeight = 0;
         try{
             componentWeight = selects[i].querySelector('.toolbar-select--weight').value;
-            if (!componentWeight){
-                componentWeight = 0;
-            }
         }
         catch(e){
-            componentWeight = 0;
         }
 
 		var component = {};

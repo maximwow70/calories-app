@@ -55,6 +55,22 @@ Info.prototype.setInfo = function(title, content, description, img){
     this.setEmpty();
     this.initInfo();
 }
+Info.setContentUsial = function(){
+    var content = this.dom.querySelector('.info-content');
+}
+Info.prototype.setContentImportant = function(importance){
+    var content = this.dom.querySelector('.info-content');
+
+    if (importance == 1) {
+        content.style.color = '#197b30';
+    }
+    else if (importance == 2) {
+        content.style.color = '#fff568';
+    }
+    else if (importance == 3) {
+        content.style.color = '#f72f5f';
+    }
+}
 
 /*
 var a = new Info(
