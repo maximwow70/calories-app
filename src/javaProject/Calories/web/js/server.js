@@ -1,4 +1,7 @@
 function Server(){
+    this.onfind = function(){};
+    this.onadd = function(){};
+    this.ongetinfo = function(){};
 }
 Server.prototype.getNewXhr = function(){
     var xmlreq = false;
@@ -51,11 +54,13 @@ Server.prototype.addDish = function (itemList, _dish){
                 else {
                     itemList.setTitle('Sorry, this dish is already exist. Try again!');
                 }
+                that.onadd();
             }
         }
     }
 }
 Server.prototype.findDish = function (itemList, _dish){
+    var that = this;
 	var dishes = [];
 	var dish = JSON.stringify(_dish);
 	var xhr = this.getNewXhr();
@@ -63,10 +68,17 @@ Server.prototype.findDish = function (itemList, _dish){
 	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
   	xhr.send(dish);
 	xhr.onreadystatechange = function(){
-		if (this.readyState == 4 && this.status == 200){
+        if (this.readyState != 4){
+            return;
+        }
+		if (this.status == 200){
             dishes = JSON.parse(xhr.responseText);
             itemList.setItems(dishes);
         }
+        else {
+            itemList.setTitle('Some troubles. Please, try again');
+        }
+        that.onfind();
 	}
 } 
 Server.prototype.getComponents = function (toolbar){
@@ -96,6 +108,7 @@ Server.prototype.getFullComponents = function(toolbar){
     }
 }
 Server.prototype.getInfo = function(info, str){
+    var that = this;
     var xhr = this.getNewXhr();
     xhr.open('POST', 'GetInfoComponent', true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -108,6 +121,7 @@ Server.prototype.getInfo = function(info, str){
             var description = '(' + information.calories + 'c/100g)';
             var img = information.img;
             info.setInfo(title, content, description, img);
+            that.ongetinfo();
         }
     }
 }
