@@ -8,6 +8,9 @@
         &:first-child{
             margin-left: 0;
         }
+        &--calculate{
+            font-size: 26px;
+        }
         &--search{
             display: inline-block;
             margin-top: 2px;

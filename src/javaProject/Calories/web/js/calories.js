@@ -1,8 +1,9 @@
 var selectFind = document.querySelectorAll('.select-btn--find');
 var selectAdd = document.querySelectorAll('.select-btn--add');
-var selectSearc = document.querySelectorAll('.navigation-list--search');
+var selectSearch = document.querySelectorAll('.navigation-list--search');
 var selectMain = document.querySelectorAll('.navigation-list--main');
 var selectAbout = document.querySelectorAll('.navigation-list--about');
+var selectCalculator = document.querySelectorAll('.navigation-list--calculate');
 
 var app = new App();
 var server = new Server();
@@ -22,6 +23,9 @@ function openAbout(){
 function openSearch(){
     app.openSearch();
 }
+function openCalculator(){
+    app.openCalculator();
+}
 for (var i = 0; i < selectMain.length; i++){
     selectMain[i].addEventListener('click', openSelect);
 }
@@ -31,8 +35,11 @@ for (var i = 0; i < selectFind.length; i++){
 for (var i = 0; i < selectAdd.length; i++){
     selectAdd[i].addEventListener('click', openAdd);
 }
-for (var i = 0; i < selectSearc.length; i++){
-    selectSearc[i].addEventListener('click', openSearch);
+for (var i = 0; i < selectSearch.length; i++){
+    selectSearch[i].addEventListener('click', openSearch);
+}
+for (var i = 0; i < selectCalculator.length; i++){
+    selectCalculator[i].addEventListener('click', openCalculator);
 }
 for (var i = 0; i < selectAbout.length; i++){
     selectAbout[i].addEventListener('click', openAbout);
@@ -124,6 +131,15 @@ initAppSearch();
 
         var totalCalories = calculator.sumOfArray(calories);
         info.setInfo('Total Calories:', totalCalories);
+        if (totalCalories <= 500){
+            info.setContentImportant(1);
+        }
+        else if (totalCalories <= 1000){
+            info.setContentImportant(2);
+        }
+        else if (totalCalories > 1000){
+            info.setContentImportant(3);
+        }
     }
 
     
