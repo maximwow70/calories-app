@@ -1,8 +1,10 @@
 var selectFind = document.querySelectorAll('.select-btn--find');
 var selectAdd = document.querySelectorAll('.select-btn--add');
 var selectSearch = document.querySelectorAll('.navigation-list--search');
+var selectAddComponent = document.querySelectorAll('.navigation-list--add');
 var selectMain = document.querySelectorAll('.navigation-list--main');
 var selectAbout = document.querySelectorAll('.navigation-list--about');
+var selectUser = document.querySelectorAll('.navigation-list--user');
 var selectCalculator = document.querySelectorAll('.navigation-list--calculate');
 
 var app = new App();
@@ -23,8 +25,14 @@ function openAbout(){
 function openSearch(){
     app.openSearch();
 }
+function openAddComponent(){
+    app.openAddComponent();
+}
 function openCalculator(){
     app.openCalculator();
+}
+function openUser(){
+    app.openUser();
 }
 for (var i = 0; i < selectMain.length; i++){
     selectMain[i].addEventListener('click', openSelect);
@@ -38,8 +46,14 @@ for (var i = 0; i < selectAdd.length; i++){
 for (var i = 0; i < selectSearch.length; i++){
     selectSearch[i].addEventListener('click', openSearch);
 }
+for (var i = 0; i < selectAddComponent.length; i++){
+    selectAddComponent[i].addEventListener('click', openAddComponent);
+}
 for (var i = 0; i < selectCalculator.length; i++){
     selectCalculator[i].addEventListener('click', openCalculator);
+}
+for (var i = 0; i < selectUser.length; i++){
+    selectUser[i].addEventListener('click', openUser);
 }
 for (var i = 0; i < selectAbout.length; i++){
     selectAbout[i].addEventListener('click', openAbout);
@@ -105,6 +119,19 @@ function initAppSearch(){
 }
 initAppSearch();
 
+//function initAppAddComponents(){
+    var appAddComponents = app.getAppAddComponent();
+    var toolbar = new Toolbar(appAddComponents);
+    var control = toolbar.control;
+    var info = new Info(appAddComponents, 'Add new components', 'People can use them in their dishes!');
+
+    control.addEventListener('click', function(){
+        var component = toolbar.getNewComponent();
+        server.addComponent(info, component);
+    });
+//}
+//initAppAddComponents();
+
 function initCalculator() {
     var calculator = new Calculator();
 
@@ -135,7 +162,7 @@ function initCalculator() {
         if (totalCalories <= 500){
             info.setContentImportant(1);
         }
-        else if (totalCalories <= 1000){
+        else if (totalCalories <= 1800){
             info.setContentImportant(2);
         }
         else if (totalCalories <= 100000){

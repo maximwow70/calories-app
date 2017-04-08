@@ -7,7 +7,7 @@ src/\.DS_Store
 /src/javaProject/Calories/dist/
 
 
-
+/src/javaProject/Calories/web/components
 /node_modules
 /package.json
 /.babelrc

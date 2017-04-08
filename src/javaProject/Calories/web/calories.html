@@ -20,10 +20,12 @@
                 </div><!--
                 --><div class="header-navigation">
                     <div class="navigation">
+                        <a class="navigation-list navigation-list--user fi flaticon-man-user"></a>
                         <a class="navigation-list navigation-list--calculate fa fa-calculator"></a>
                         <a class="navigation-list navigation-list--search icon-search"></a>
-                        <a class="navigation-list navigation-list--about fa fa-info-circle"></a>
+                        <a class="navigation-list navigation-list--add fi flaticon-interface"></a>
                         <a class="navigation-list navigation-list--main fa fa-home"></a>
+                        <a class="navigation-list navigation-list--about fa fa-info-circle"></a>
                         <span class="navigation-description">
                             Find dishes and create new 
                         </span>
@@ -115,6 +117,34 @@
                         </div>
                     </div>
                 </div>
+                <div class="app-add_component app-add_component--close">
+                    <div class="app-toolbar">
+                        <div class="toolbar toolbar--add_component">
+                            <div class="toolbar-title">Add the component!</div>
+                            <input type="text" class="toolbar-select toolbar-select--name" placeholder="Component's name">
+                            <input type="text" class="toolbar-select toolbar-select--category" placeholder="Component's category">
+                            <div class="toolbar-select_component">
+                                <input class="toolbar-select toolbar-select--calories" type="number" min="0" placeholder="Calories on 100g">
+                            </div>
+                            <textarea class="toolbar-select toolbar-select--description" placeholder="Component's description"></textarea>
+                            <div class="toolbar-controls">
+                                <div class="toolbar-select_file">
+                                    <div class="select_file">
+                                        <input class="file_select" id="file_select2" type="file" accept="image/svg">
+                                        <label class="select_file-btn" for="file_select2">Add Image</label><!--
+                                        --><a class="select_file-reset fa fa-close"></a>
+                                    </div>
+                                </div>
+                                <button class="toolbar-btn toolbar-btn--control toolbar-btn--add_dish">add</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="app-info">
+                        <div class="info">
+                            
+                        </div>
+                    </div>
+                </div>
                 <div class="app-calculator app-calculator--close">
                     <div class="app-toolbar">
                         <div class="toolbar toolbar--find_dish">
@@ -133,6 +163,17 @@
                     </div>
                     <div class="app-info">
                         <div class="info">
+                        </div>
+                    </div>
+                </div>
+                <div class="app-user app-user--close">
+                    <div class="info">
+                        <img src="./img/development.svg" class="info-img">
+                        <div class="info-title">
+                            User
+                        </div>
+                        <div class="info-description">
+                            In development
                         </div>
                     </div>
                 </div>

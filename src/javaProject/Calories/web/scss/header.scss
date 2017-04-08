@@ -3,12 +3,12 @@
     &-logo{
         display: inline-block;
         vertical-align: middle;
-        width: 50%;
+        width: 30%;
     }
     &-navigation{
         display: inline-block;
         vertical-align: middle;
-        width: 50%;
+        width: 70%;
         text-align: right;
         .navigation{
             font-size: 16px;
@@ -26,6 +26,11 @@
         &-navigation{
             width: 100%;
             text-align: center;
+            .navigation-description{
+                margin: 0;
+                display: inline-block;
+                width: 100%;
+            }
         }
     }
 }

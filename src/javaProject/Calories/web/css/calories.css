@@ -47,6 +47,70 @@
 .flaticon-mathematics:before {
   content: "\f100"; }
 
+/*
+    Flaticon icon font: Flaticon
+    Creation date: 08/04/2017 18:30
+    */
+@font-face {
+  font-family: "Flaticon2";
+  src: url("../icons/user/Flaticon.eot");
+  src: url("../icons/user/Flaticon.eot?#iefix") format("embedded-opentype"), url("../icons/user/Flaticon.woff") format("woff"), url("../icons/user/Flaticon.ttf") format("truetype"), url("../icons/user/Flaticon.svg#Flaticon") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  @font-face {
+    font-family: "Flaticon2";
+    src: url("../icons/user/Flaticon.svg#Flaticon") format("svg"); } }
+
+.fi:before {
+  display: inline-block;
+  font-family: "Flaticon2";
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  line-height: 1;
+  text-decoration: inherit;
+  text-rendering: optimizeLegibility;
+  text-transform: none;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased; }
+
+.flaticon-man-user:before {
+  content: "\f100"; }
+
+/*
+    Flaticon icon font: Flaticon
+    Creation date: 08/04/2017 19:03
+    */
+@font-face {
+  font-family: "Flaticon3";
+  src: url("../icons/add/Flaticon.eot");
+  src: url("../icons/add/Flaticon.eot?#iefix") format("embedded-opentype"), url("../icons/add/Flaticon.woff") format("woff"), url("../icons/add/Flaticon.ttf") format("truetype"), url("../icons/add/Flaticon.svg#Flaticon") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  @font-face {
+    font-family: "Flaticon3";
+    src: url("../icons/add/Flaticon.svg#Flaticon") format("svg"); } }
+
+.flaticon-interface:before {
+  display: inline-block;
+  font-family: "Flaticon3";
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  line-height: 1;
+  text-decoration: inherit;
+  text-rendering: optimizeLegibility;
+  text-transform: none;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+  content: "\f100"; }
+
 @font-face {
   font-family: 'icomoon';
   src: url("../icons/search/icomoon.eot?8rrzkm");
@@ -79,6 +143,10 @@
     margin-left: 15px; }
     .navigation-list:first-child {
       margin-left: 0; }
+    .navigation-list--add {
+      font-size: 26px; }
+    .navigation-list--user {
+      font-size: 26px; }
     .navigation-list--calculate {
       margin-top: 2px;
       font-size: 26px; }
@@ -115,11 +183,11 @@
   .header-logo {
     display: inline-block;
     vertical-align: middle;
-    width: 50%; }
+    width: 30%; }
   .header-navigation {
     display: inline-block;
     vertical-align: middle;
-    width: 50%;
+    width: 70%;
     text-align: right; }
     .header-navigation .navigation {
       font-size: 16px; }
@@ -133,7 +201,11 @@
         text-align: center; }
       .header-navigation {
         width: 100%;
-        text-align: center; } }
+        text-align: center; }
+        .header-navigation .navigation-description {
+          margin: 0;
+          display: inline-block;
+          width: 100%; } }
 
 .logo-title {
   display: inline-block;
@@ -224,7 +296,7 @@
     align-items: center; }
     .app-select--close {
       display: none; }
-  .app-find, .app-add, .app-about, .app-search, .app-view, .app-calculator {
+  .app-find, .app-add, .app-about, .app-search, .app-view, .app-calculator, .app-add_component, .app-user {
     -webkit-flex: 1;
     -ms-flex: 1;
     flex: 1;
@@ -243,17 +315,13 @@
     -webkit-flex-wrap: wrap;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap; }
-    .app-find--close, .app-add--close, .app-about--close, .app-search--close, .app-view--close, .app-calculator--close {
+    .app-find--close, .app-add--close, .app-about--close, .app-search--close, .app-view--close, .app-calculator--close, .app-add_component--close, .app-user--close {
       display: none; }
   .app-find .toolbar-select--component {
     width: 100%; }
   .app-find .toolbar-select--weight {
     display: none;
     width: 0%; }
-  .app-search .search {
-    -webkit-flex: 1;
-    -ms-flex: 1;
-    flex: 1; }
   .app-calculator .app-toolbar, .app-calculator .app-info {
     -webkit-flex: 1;
     -ms-flex: 1;
@@ -290,6 +358,14 @@
     transition: box-shadow 0.3s; }
     .app-calculator .info-content:hover {
       box-shadow: 0 0 20px #2c363f; }
+  .app-user {
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    text-align: center; }
   .app-view_item {
     display: none; }
   .app-about {
@@ -346,6 +422,7 @@
     -ms-flex-align: center;
     align-items: center; }
     .app-info .info {
+      margin: 20px;
       max-width: 400px;
       text-align: center; }
   @media screen and (max-width: 900px) {
@@ -626,6 +703,13 @@
     .toolbar-select--weight {
       margin-left: 5%;
       width: 30%; }
+    .toolbar-select--description {
+      margin-bottom: 10px;
+      display: block;
+      resize: none;
+      height: 100px; }
+    .toolbar-select--category {
+      margin-bottom: 10px; }
   .toolbar-select_file {
     margin-bottom: 10px; }
   .toolbar-btn {

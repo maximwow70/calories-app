@@ -104,7 +104,7 @@ Toolbar.prototype.getItemComponents = function(){
 	for (var i = 0; i < selects.length; i++){
         var componentName = selects[i].querySelector('.toolbar-select--component').value;
         var componentWeight = 0;
-        try{
+        try {
             componentWeight = selects[i].querySelector('.toolbar-select--weight').value;
         }
         catch(e){
@@ -138,6 +138,22 @@ Toolbar.prototype.getItem = function(){
         image: itemImg
     };
 	return item;
+}
+Toolbar.prototype.getNewComponent = function(){
+	var componentName = this.dom.querySelector('.toolbar-select--name').value;
+    var componentCategory = this.dom.querySelector('.toolbar-select--category').value;
+    var componentCalories = this.dom.querySelector('.toolbar-select--calories').value;
+    var componentInfo = this.dom.querySelector('.toolbar-select--description').value;
+
+    var componentImg = this.getItemImg();
+
+    return {
+        name: componentName,
+        category: componentCategory,
+        calories: componentCalories,
+        info: componentInfo,
+        img: componentImg,
+    }
 }
 Toolbar.prototype.getDom = function(){
     return this.dom;

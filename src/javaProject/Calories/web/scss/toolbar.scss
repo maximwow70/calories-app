@@ -55,6 +55,15 @@
             margin-left: 5%;
             width: 30%;
         }
+        &--description{
+            margin-bottom: 10px;
+            display: block;
+            resize: none;
+            height: 100px;
+        }
+        &--category{
+            margin-bottom: 10px;
+        }
     }
     &-select_file{
         margin-bottom: 10px;

@@ -4,6 +4,8 @@
     justify-content: space-between;
     align-items: stretch;
     flex-wrap: wrap;
+    
+    // modules
     &-loading{
         flex: 2;
 
@@ -27,7 +29,9 @@
             display: none;
         }
     }
-    &-find, &-add, &-about, &-search, &-view, &-calculator{
+    &-find, &-add, &-about, 
+    &-search, &-view, &-calculator,
+    &-add_component, &-user{
         flex: 1;
 
         display: flex;
@@ -55,9 +59,9 @@
 
     }
     &-search{
-        .search{
-            flex: 1;
-        }
+        
+    }
+    &-add_component{
     }
     &-calculator{
         .app-toolbar{
@@ -105,6 +109,11 @@
             }
         }
     }
+    &-user{
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
     &-view_item{
         display: none;
     }
@@ -116,6 +125,7 @@
             max-width: 300px;
         }
     }
+    // components
     &-toolbar{
         flex: 1;
         display: flex;
@@ -152,6 +162,7 @@
         align-items: center;
 
         .info{
+            margin: 20px;
             max-width: 400px;
             text-align: center;
         }
