@@ -1,10 +1,10 @@
     /*
     Flaticon icon font: Flaticon
-    Creation date: 07/04/2017 20:57
+    Creation date: 08/04/2017 09:29
     */
 
     @font-face {
-  font-family: "Flaticon1";
+  font-family: "Flaticon";
   src: url("../icons/calculator/Flaticon.eot");
   src: url("../icons/calculator/Flaticon.eot?#iefix") format("embedded-opentype"),
        url("../icons/calculator/Flaticon.woff") format("woff"),
@@ -16,14 +16,14 @@
 
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   @font-face {
-    font-family: "Flaticon1";
+    font-family: "Flaticon";
     src: url("../icons/calculator/Flaticon.svg#Flaticon") format("svg");
   }
 }
 
     .fi:before{
         display: inline-block;
-  font-family: "Flaticon1";
+  font-family: "Flaticon";
   font-style: normal;
   font-weight: normal;
   font-variant: normal;
@@ -36,8 +36,6 @@
   font-smoothing: antialiased;
     }
 
-    .flaticon-technology:before { content: "\f100"; }
-.flaticon-money:before { content: "\f101"; }
+    .flaticon-mathematics:before { content: "\f100"; }
     
-    $font-Flaticon-technology: "\f100";
-    $font-Flaticon-money: "\f101";
+    $font-Flaticon-mathematics: "\f100";

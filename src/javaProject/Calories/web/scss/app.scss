@@ -61,8 +61,6 @@
     }
     &-calculator{
         .app-toolbar{
-            box-sizing: border-box;
-            padding: 20px;
         }
         .app-toolbar, .app-info{
             flex: 1;
@@ -72,11 +70,13 @@
         }
         .toolbar{
             flex: 0;
-
+            
+            margin: 20px;
             border: none;
             max-width: 350px;
 
             text-align: center;
+            box-shadow: 0 0 40px $blue-color;
             .toolbar-btn{
                 width: 100%;
             }
@@ -96,6 +96,12 @@
 
                 font-size: 30px;
                 color: $light-color;
+
+                box-shadow: 0 0 10px $dark-color;
+                transition: box-shadow 0.3s;
+                &:hover{
+                    box-shadow: 0 0 20px $dark-color;
+                }
             }
         }
     }

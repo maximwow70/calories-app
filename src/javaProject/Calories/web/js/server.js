@@ -114,6 +114,9 @@ Server.prototype.getInfo = function(info, str){
             var content = information.info;
             var description = '(' + information.calories + 'c/100g)';
             var img = information.img;
+            if (!title){
+                title = 'Something get trouble :c';
+            }
             info.setInfo(title, content, description, img);
             that.ongetinfo();
         }

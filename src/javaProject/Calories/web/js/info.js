@@ -20,15 +20,7 @@ Info.prototype.initInfo = function(){
         this.dom.appendChild(img);
     }
 
-    var title = document.createElement('h2');
-    title.setAttribute('class', 'info-title');
-    if (this.title){
-        title.innerHTML = this.title;
-    }
-    else {
-        title.innerHTML = 'something get trouble :c';
-    }
-    this.dom.appendChild(title);
+    this.setTitle(this.title);
 
     if (this.description){
         var description = document.createElement('h3');
@@ -37,12 +29,7 @@ Info.prototype.initInfo = function(){
         this.dom.appendChild(description);
     }
 
-    if (this.content){
-        var content = document.createElement('p');
-        content.setAttribute('class', 'info-content');
-        content.innerHTML = this.content;
-        this.dom.appendChild(content);
-    }
+    this.setContent(this.content);
 }
 Info.prototype.setInfo = function(title, content, description, img){
     this.title = title;
@@ -54,6 +41,32 @@ Info.prototype.setInfo = function(title, content, description, img){
 
     this.setEmpty();
     this.initInfo();
+}
+Info.prototype.setTitle = function(title) {
+    this.title = title;
+
+    if (title){
+        var titleDom = this.dom.querySelector('.info-title');
+        if (!titleDom){
+            titleDom = document.createElement('h2');
+            titleDom.setAttribute('class', 'info-title');
+            this.dom.appendChild(titleDom);
+        }
+        titleDom.innerHTML = this.title;
+    }
+}
+Info.prototype.setContent = function(content) {
+    this.content = content;
+
+    if (content) {
+        var contentDom = this.dom.querySelector('.info-content');
+        if (!contentDom) {
+            contentDom = document.createElement('p');
+            contentDom.setAttribute('class', 'info-content');
+            this.dom.appendChild(contentDom);
+        }
+        contentDom.innerHTML = this.content;
+    }
 }
 Info.prototype.setContentUsial = function(){
     var content = this.dom.querySelector('.info-content');

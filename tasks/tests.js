@@ -296,3 +296,20 @@ a.setItems([
         }
     ]
 );
+
+toolbar.initComponents([
+    {name: 'apple', calories: 100},
+    {name: 'coca-cola', calories: 200},
+    {name: 'pie', calories: 300},
+    {name: 'cherries', calories: 50},
+    {name: 'ice', calories: 10},
+    {name: 'tomatoes', calories: 666},
+    {name: 'bread', calories: 33},
+    {name: 'apple juice', calories: 45},
+    {name: 'milk', calories: 23},
+    {name: 'chicken', calories: 300},
+    {name: 'vodka', calories: 287},
+    {name: 'red bull', calories: 123},
+    {name: 'fish', calories: 252},
+    {name: 'banana', calories: 187},
+])

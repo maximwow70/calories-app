@@ -3,12 +3,14 @@
     text-transform: uppercase;
     text-align: inherit;
     &-list{
+        position: relative;
         margin-left: 15px;
 
         &:first-child{
             margin-left: 0;
         }
         &--calculate{
+            margin-top: 2px;
             font-size: 26px;
         }
         &--search{
@@ -23,9 +25,31 @@
             margin-top: 2px;
             font-size: 32px;
         }
+        &:hover{
+            .navigation-helper{
+                display: block;
+                color: $light-color;
+            }
+        }
     }
     &-description{
         margin-left: 10px;
         vertical-align: middle;
+    }
+    &-helper{
+        display: none;
+        position: absolute;
+        top: 125%;
+        right: 0%;
+
+        padding: 4px 6px;
+        background: $dark-color;
+        box-shadow: 0 0 10px $dark-color;
+
+        font-size: 16px;
+        text-align: center;
+        text-transform: capitalize;
+        line-height: 18px;
+            
     }
 }

@@ -16,10 +16,10 @@
 
 /*
     Flaticon icon font: Flaticon
-    Creation date: 07/04/2017 20:57
+    Creation date: 08/04/2017 09:29
     */
 @font-face {
-  font-family: "Flaticon1";
+  font-family: "Flaticon";
   src: url("../icons/calculator/Flaticon.eot");
   src: url("../icons/calculator/Flaticon.eot?#iefix") format("embedded-opentype"), url("../icons/calculator/Flaticon.woff") format("woff"), url("../icons/calculator/Flaticon.ttf") format("truetype"), url("../icons/calculator/Flaticon.svg#Flaticon") format("svg");
   font-weight: normal;
@@ -27,12 +27,12 @@
 
 @media screen and (-webkit-min-device-pixel-ratio: 0) {
   @font-face {
-    font-family: "Flaticon1";
+    font-family: "Flaticon";
     src: url("../icons/calculator/Flaticon.svg#Flaticon") format("svg"); } }
 
 .fi:before {
   display: inline-block;
-  font-family: "Flaticon1";
+  font-family: "Flaticon";
   font-style: normal;
   font-weight: normal;
   font-variant: normal;
@@ -44,11 +44,8 @@
   -webkit-font-smoothing: antialiased;
   font-smoothing: antialiased; }
 
-.flaticon-technology:before {
+.flaticon-mathematics:before {
   content: "\f100"; }
-
-.flaticon-money:before {
-  content: "\f101"; }
 
 @font-face {
   font-family: 'icomoon';
@@ -78,10 +75,12 @@
   text-transform: uppercase;
   text-align: inherit; }
   .navigation-list {
+    position: relative;
     margin-left: 15px; }
     .navigation-list:first-child {
       margin-left: 0; }
     .navigation-list--calculate {
+      margin-top: 2px;
       font-size: 26px; }
     .navigation-list--search {
       display: inline-block;
@@ -92,9 +91,24 @@
     .navigation-list--about {
       margin-top: 2px;
       font-size: 32px; }
+    .navigation-list:hover .navigation-helper {
+      display: block;
+      color: #dcdcdd; }
   .navigation-description {
     margin-left: 10px;
     vertical-align: middle; }
+  .navigation-helper {
+    display: none;
+    position: absolute;
+    top: 125%;
+    right: 0%;
+    padding: 4px 6px;
+    background: #2c363f;
+    box-shadow: 0 0 10px #2c363f;
+    font-size: 16px;
+    text-align: center;
+    text-transform: capitalize;
+    line-height: 18px; }
 
 .header {
   color: #dcdcdd; }
@@ -240,9 +254,6 @@
     -webkit-flex: 1;
     -ms-flex: 1;
     flex: 1; }
-  .app-calculator .app-toolbar {
-    box-sizing: border-box;
-    padding: 20px; }
   .app-calculator .app-toolbar, .app-calculator .app-info {
     -webkit-flex: 1;
     -ms-flex: 1;
@@ -257,9 +268,11 @@
     -webkit-flex: 0;
     -ms-flex: 0;
     flex: 0;
+    margin: 20px;
     border: none;
     max-width: 350px;
-    text-align: center; }
+    text-align: center;
+    box-shadow: 0 0 40px #2f6665; }
     .app-calculator .toolbar .toolbar-btn {
       width: 100%; }
   .app-calculator .info-title {
@@ -272,7 +285,11 @@
     white-space: nowrap;
     text-overflow: ellipsis;
     font-size: 30px;
-    color: #dcdcdd; }
+    color: #dcdcdd;
+    box-shadow: 0 0 10px #2c363f;
+    transition: box-shadow 0.3s; }
+    .app-calculator .info-content:hover {
+      box-shadow: 0 0 20px #2c363f; }
   .app-view_item {
     display: none; }
   .app-about {
