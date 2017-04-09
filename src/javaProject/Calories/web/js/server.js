@@ -113,7 +113,7 @@ Server.prototype.getInfo = function(info, str){
             var title = information.name;
             var content = information.info;
             var description = '(' + information.calories + 'c/100g)';
-            var img = information.img;
+            var img = information.src;
             if (!title){
                 title = 'Something get trouble :c';
             }
@@ -144,7 +144,7 @@ Server.prototype.addComponent = function(info, component){
                 var title = information.name;
                 var content = information.info;
                 var description = '(' + information.calories + 'c/100g)';
-                var img = information.img;
+                var img = information.src;
                 if (!title){
                     title = 'Something get trouble :c';
                 }

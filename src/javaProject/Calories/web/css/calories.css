@@ -155,6 +155,7 @@
       margin-top: 2px;
       font-size: 26px; }
     .navigation-list--main {
+      margin-top: 1px;
       font-size: 32px; }
     .navigation-list--about {
       margin-top: 2px;
@@ -260,6 +261,26 @@
   -webkit-flex-wrap: wrap;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap; }
+  .app-user {
+    width: 100%;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    text-align: center;
+    border-top: 2px solid #e5bd47;
+    background-color: #2f6665;
+    color: #dcdcdd; }
+    .app-user--close {
+      display: none; }
+    .app-user .user {
+      padding: 50px 5%;
+      width: 100%; }
   .app-loading {
     -webkit-flex: 2;
     -ms-flex: 2;
@@ -275,7 +296,8 @@
     justify-content: center;
     -webkit-align-items: center;
     -ms-flex-align: center;
-    align-items: center; }
+    align-items: center;
+    min-height: 450px; }
     .app-loading--close {
       display: none; }
   .app-select {
@@ -293,10 +315,11 @@
     justify-content: center;
     -webkit-align-items: center;
     -ms-flex-align: center;
-    align-items: center; }
+    align-items: center;
+    min-height: 450px; }
     .app-select--close {
       display: none; }
-  .app-find, .app-add, .app-about, .app-search, .app-view, .app-calculator, .app-add_component, .app-user {
+  .app-find, .app-add, .app-about, .app-search, .app-view, .app-calculator, .app-add_component {
     -webkit-flex: 1;
     -ms-flex: 1;
     flex: 1;
@@ -314,8 +337,9 @@
     align-items: stretch;
     -webkit-flex-wrap: wrap;
     -ms-flex-wrap: wrap;
-    flex-wrap: wrap; }
-    .app-find--close, .app-add--close, .app-about--close, .app-search--close, .app-view--close, .app-calculator--close, .app-add_component--close, .app-user--close {
+    flex-wrap: wrap;
+    min-height: 450px; }
+    .app-find--close, .app-add--close, .app-about--close, .app-search--close, .app-view--close, .app-calculator--close, .app-add_component--close {
       display: none; }
   .app-find .toolbar-select--component {
     width: 100%; }
@@ -358,14 +382,6 @@
     transition: box-shadow 0.3s; }
     .app-calculator .info-content:hover {
       box-shadow: 0 0 20px #2c363f; }
-  .app-user {
-    -webkit-justify-content: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-    -webkit-align-items: center;
-    -ms-flex-align: center;
-    align-items: center;
-    text-align: center; }
   .app-view_item {
     display: none; }
   .app-about {
@@ -889,6 +905,70 @@
     .footer-navigation, .footer-info {
       width: 100%;
       text-align: center; } }
+
+.user-portfolio {
+  margin-bottom: 50px; }
+
+.portfolio {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-align-items: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  text-align: left; }
+  .portfolio-photo {
+    padding: 10px;
+    width: 200px;
+    height: 200px;
+    background-color: #dcdcdd;
+    border-radius: 5px; }
+  .portfolio-data {
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    margin-left: 50px;
+    padding: 10px 20px;
+    background-color: #dcdcdd;
+    border-radius: 5px;
+    color: #2c363f; }
+  .portfolio-img {
+    display: block;
+    width: 100%;
+    height: 100%; }
+  .portfolio-name {
+    margin-bottom: 20px;
+    font-size: 24px; }
+  .portfolio-country {
+    margin-bottom: 10px;
+    font-size: 18px; }
+  .portfolio-city {
+    margin-bottom: 10px;
+    font-size: 18px; }
+  .portfolio-contacts {
+    margin-bottom: 20px;
+    font-size: 18px; }
+  .portfolio-about {
+    font-size: 18px; }
+  @media screen and (max-width: 700px) {
+    .portfolio {
+      -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+      flex-direction: column; }
+      .portfolio-photo {
+        margin: 0 auto;
+        margin-bottom: 20px; }
+      .portfolio-data {
+        margin-left: 0; } }
 
 * {
   margin: 0;

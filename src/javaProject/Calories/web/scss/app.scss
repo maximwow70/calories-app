@@ -6,6 +6,25 @@
     flex-wrap: wrap;
     
     // modules
+    &-user{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+
+        border-top: 2px solid $yellow-color;
+        background-color: $blue-color;
+        color: $light-color;
+        
+        &--close{
+            display: none;
+        }
+        .user{
+            padding: 50px 5%;
+            width: 100%;
+        }
+    }
     &-loading{
         flex: 2;
 
@@ -13,6 +32,8 @@
         flex-direction: row;
         justify-content: center;
         align-items: center;
+
+        min-height: 450px;
         &--close{
             display: none;
         }
@@ -25,13 +46,14 @@
         justify-content: center;
         align-items: center;
         
+        min-height: 450px;
         &--close{
             display: none;
         }
     }
     &-find, &-add, &-about, 
     &-search, &-view, &-calculator,
-    &-add_component, &-user{
+    &-add_component{
         flex: 1;
 
         display: flex;
@@ -39,6 +61,8 @@
         justify-content: space-between;
         align-items: stretch;
         flex-wrap: wrap;
+
+        min-height: 450px;
         &--close{
             display: none;
         }
@@ -108,11 +132,6 @@
                 }
             }
         }
-    }
-    &-user{
-        justify-content: center;
-        align-items: center;
-        text-align: center;
     }
     &-view_item{
         display: none;
