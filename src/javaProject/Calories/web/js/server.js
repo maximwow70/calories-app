@@ -2,6 +2,7 @@ function Server(){
     this.onfind = function(){};
     this.onadd = function(){};
     this.ongetinfo = function(){};
+    this.onaddcomponent = function(){};
 }
 Server.prototype.getNewXhr = function(){
     var xmlreq = false;
@@ -36,7 +37,6 @@ Server.prototype.addDish = function (itemList, _dish){
 
     reader.onload = function(){
         _dish.image = reader.result;
-        console.log(_dish.image);
 
         var dishes = [];
         var dish = JSON.stringify(_dish);
@@ -108,14 +108,49 @@ Server.prototype.getInfo = function(info, str){
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.send(str);
     xhr.onreadystatechange = function() {
-        if(this.readyState ==4 && this.status == 200){
+        if(this.readyState == 4 && this.status == 200){
             var information = JSON.parse(xhr.responseText);
             var title = information.name;
             var content = information.info;
             var description = '(' + information.calories + 'c/100g)';
             var img = information.img;
+            if (!title){
+                title = 'Something get trouble :c';
+            }
             info.setInfo(title, content, description, img);
             that.ongetinfo();
+        }
+    }
+}
+Server.prototype.addComponent = function(info, component){
+    var that = this;
+
+    var reader = new FileReader();
+    file = component.img;
+    reader.readAsDataURL(file);
+
+    reader.onload = function(){
+        component.img = reader.result;
+        console.log(component);
+
+        var _component = JSON.stringify(component);
+        var xhr = that.getNewXhr();
+        xhr.open('POST', 'AddComponent', true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.send(_component);
+        xhr.onreadystatechange = function(){
+            if (this.readyState == 4 && this.status == 200){
+                var information = JSON.parse(xhr.responseText);
+                var title = information.name;
+                var content = information.info;
+                var description = '(' + information.calories + 'c/100g)';
+                var img = information.img;
+                if (!title){
+                    title = 'Something get trouble :c';
+                }
+                info.setInfo(title, content, description, img);
+                that.ongetinfo();
+            }
         }
     }
 }

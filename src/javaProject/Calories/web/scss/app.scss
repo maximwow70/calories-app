@@ -4,6 +4,8 @@
     justify-content: space-between;
     align-items: stretch;
     flex-wrap: wrap;
+    
+    // modules
     &-loading{
         flex: 2;
 
@@ -27,7 +29,9 @@
             display: none;
         }
     }
-    &-find, &-add, &-about, &-search, &-view, &-calculator{
+    &-find, &-add, &-about, 
+    &-search, &-view, &-calculator,
+    &-add_component, &-user{
         flex: 1;
 
         display: flex;
@@ -55,14 +59,12 @@
 
     }
     &-search{
-        .search{
-            flex: 1;
-        }
+        
+    }
+    &-add_component{
     }
     &-calculator{
         .app-toolbar{
-            box-sizing: border-box;
-            padding: 20px;
         }
         .app-toolbar, .app-info{
             flex: 1;
@@ -72,11 +74,13 @@
         }
         .toolbar{
             flex: 0;
-
+            
+            margin: 20px;
             border: none;
             max-width: 350px;
 
             text-align: center;
+            box-shadow: 0 0 40px $blue-color;
             .toolbar-btn{
                 width: 100%;
             }
@@ -96,8 +100,19 @@
 
                 font-size: 30px;
                 color: $light-color;
+
+                box-shadow: 0 0 10px $dark-color;
+                transition: box-shadow 0.3s;
+                &:hover{
+                    box-shadow: 0 0 20px $dark-color;
+                }
             }
         }
+    }
+    &-user{
+        justify-content: center;
+        align-items: center;
+        text-align: center;
     }
     &-view_item{
         display: none;
@@ -110,6 +125,7 @@
             max-width: 300px;
         }
     }
+    // components
     &-toolbar{
         flex: 1;
         display: flex;
@@ -146,6 +162,7 @@
         align-items: center;
 
         .info{
+            margin: 20px;
             max-width: 400px;
             text-align: center;
         }

@@ -1,8 +1,10 @@
 var selectFind = document.querySelectorAll('.select-btn--find');
 var selectAdd = document.querySelectorAll('.select-btn--add');
 var selectSearch = document.querySelectorAll('.navigation-list--search');
+var selectAddComponent = document.querySelectorAll('.navigation-list--add');
 var selectMain = document.querySelectorAll('.navigation-list--main');
 var selectAbout = document.querySelectorAll('.navigation-list--about');
+var selectUser = document.querySelectorAll('.navigation-list--user');
 var selectCalculator = document.querySelectorAll('.navigation-list--calculate');
 
 var app = new App();
@@ -23,8 +25,14 @@ function openAbout(){
 function openSearch(){
     app.openSearch();
 }
+function openAddComponent(){
+    app.openAddComponent();
+}
 function openCalculator(){
     app.openCalculator();
+}
+function openUser(){
+    app.openUser();
 }
 for (var i = 0; i < selectMain.length; i++){
     selectMain[i].addEventListener('click', openSelect);
@@ -38,8 +46,14 @@ for (var i = 0; i < selectAdd.length; i++){
 for (var i = 0; i < selectSearch.length; i++){
     selectSearch[i].addEventListener('click', openSearch);
 }
+for (var i = 0; i < selectAddComponent.length; i++){
+    selectAddComponent[i].addEventListener('click', openAddComponent);
+}
 for (var i = 0; i < selectCalculator.length; i++){
     selectCalculator[i].addEventListener('click', openCalculator);
+}
+for (var i = 0; i < selectUser.length; i++){
+    selectUser[i].addEventListener('click', openUser);
 }
 for (var i = 0; i < selectAbout.length; i++){
     selectAbout[i].addEventListener('click', openAbout);
@@ -89,6 +103,7 @@ function initAppSearch(){
     var toolbar = new Toolbar(appSearch);
     var control = toolbar.control;
     var info = new Info(appSearch);
+    info.setTitle('Search components and enjoy');
 
     server.getFullComponents(toolbar, info);
 
@@ -104,7 +119,20 @@ function initAppSearch(){
 }
 initAppSearch();
 
-//function initCalculator() {
+//function initAppAddComponents(){
+    var appAddComponents = app.getAppAddComponent();
+    var toolbar = new Toolbar(appAddComponents);
+    var control = toolbar.control;
+    var info = new Info(appAddComponents, 'Add new components', 'People can use them in their dishes!');
+
+    control.addEventListener('click', function(){
+        var component = toolbar.getNewComponent();
+        server.addComponent(info, component);
+    });
+//}
+//initAppAddComponents();
+
+function initCalculator() {
     var calculator = new Calculator();
 
     var appCalculator = app.getAppCalculator();
@@ -130,15 +158,18 @@ initAppSearch();
         }
 
         var totalCalories = calculator.sumOfArray(calories);
-        info.setInfo('Total Calories:', totalCalories);
+        info.setContent(totalCalories);
         if (totalCalories <= 500){
             info.setContentImportant(1);
         }
-        else if (totalCalories <= 1000){
+        else if (totalCalories <= 1800){
             info.setContentImportant(2);
         }
-        else if (totalCalories > 1000){
+        else if (totalCalories <= 100000){
             info.setContentImportant(3);
+        }
+        else {
+            info.setContent('Too much..');
         }
     }
 
@@ -152,23 +183,6 @@ initAppSearch();
     toolbar.onaddselect();
     control.addEventListener('click', calculateCalories);
     
-//}
-//initCalculator();
+}
+initCalculator();
 
-/*
-    'Clown Fish',
-    'Lorem ipsum dolor sit amet, consectetur adipisicing elit.Magni magnam, enim odit cumque quaerat iure id sequi doloribus, et error.',
-    'calories: (666c/100g)',
-    'clown-fish.svg'
-*/
-
-/*
-toolbar.initComponents([
-		{name: 'apple', calories: 100},
-		{name: 'coca-cola', calories: 200},
-		{name: 'pie', calories: 300},
-		{name: 'cherries', calories: 50},
-		{name: 'ice', calories: 10},
-		{name: 'tomatoes', calories: 666},
-	])
-*/
