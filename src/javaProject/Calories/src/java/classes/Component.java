@@ -15,7 +15,8 @@ public class Component {
     private int weight;
     private int id;
     private String info;
-    private String img;
+    private String image;
+    private String src;
     private String type;
     
     public Component(String name, int id,int calories) {
@@ -23,14 +24,14 @@ public class Component {
         this.id = id;
         this.calories = calories;
         weight = 0;
-        img = "Component"+id+".svg";
+        src = "Component"+id+".svg";
     }
     public Component(String name, int id, int calories, int weight) {
         this.name = name;
         this.id = id;
         this.calories = calories;
         this.weight = weight;
-        img = "Component"+id+".svg";
+        src = "Component"+id+".svg";
     }
     public Component(String name, int id, int calories, int weight, String info, String type, int isImage) {
         this.name = name;
@@ -39,9 +40,9 @@ public class Component {
         this.type = type;
         this.weight = weight;
         if(isImage == 1)
-            img = "Component"+id+".svg";
+            src = "Component"+id+".svg";
         else
-            img = "Default/"+type+".svg";
+            src = "Default/"+type+".svg";
         if(info!=null)
             this.info = info;
         else 
@@ -54,9 +55,9 @@ public class Component {
         this.type = type;
         weight = 0;
         if(isImage == 1)
-            img = "Component"+id+".svg";
+            src = "Component"+id+".svg";
         else
-            img = "Default/"+type+".svg";
+            src = "Default/"+type+".svg";
         if(info!=null)
             this.info = info;
         else 

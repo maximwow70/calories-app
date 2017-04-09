@@ -203,4 +203,9 @@ public class SQL {
         }
     }
     
+    public static boolean addComponent(Component component) {
+        
+        return false;
+    }
+    
 }
