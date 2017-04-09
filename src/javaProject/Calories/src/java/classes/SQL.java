@@ -6,6 +6,7 @@
 package classes;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -14,6 +15,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Base64;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -193,9 +196,9 @@ public class SQL {
             }
             
             code = code.substring(code.indexOf(',')+1);
-            byte[] lol = Base64.getDecoder().decode(code);
+            byte[] byteImage = Base64.getDecoder().decode(code);
             try (FileOutputStream out = new FileOutputStream(new File("/Users/admin/Desktop/git/calories-app/src/javaProject/Calories/build/web/img/"+dish1.getSrc()))) {
-                out.write(lol);
+                out.write(byteImage);
             }
             return true;
         } catch (Exception ex) {
@@ -204,8 +207,34 @@ public class SQL {
     }
     
     public static boolean addComponent(Component component) {
+        connect();
+        try {
+            String code = component.getImage();
+            int isImage = 1;
+            if(code.equals(""))
+                isImage = 0;
+            ResultSet res = stat.executeQuery("SELECT * FROM Components WHERE Name = \""+component.getName()+"\"");
+            System.out.println("1");
+            res.next();
+            try{
+                res.getInt("ComponentID");
+                return false;
+            } catch(Exception e){}
+            System.out.println("2");
+            stat.execute("INSERT INTO Components(Name,Calories,Type,Info,isImage) \n"
+                    + "VALUES (\""+component.getName()+"\","+component.getCalories()+",\""+component.getType()+"\",\""+component.getInfo()+"\","+isImage+");");
+            res = stat.executeQuery("SELECT * FROM Components WHERE Name = \""+component.getName()+"\"");
+            res.next();
+            System.out.println("3");
+            component = new Component(res.getString("Name"),res.getInt("ComponentID"),res.getInt("Calories"),res.getString("Info"),res.getString("Type"),res.getInt("isImage"));
+            byte[] byteImage = Base64.getDecoder().decode(code.substring(code.indexOf(',')+1));
+            try (FileOutputStream out = new FileOutputStream(new File("/Users/admin/Desktop/git/calories-app/src/javaProject/Calories/build/web/img/Components/"+component.getSrc()))) {
+                out.write(byteImage);
+            }
+            System.out.println("4");
+            return true;
+        } catch (Exception e) {return false;}
         
-        return false;
     }
     
 }

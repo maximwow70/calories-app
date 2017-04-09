@@ -75,4 +75,16 @@ public class Component {
     public int getCalories() {
         return calories;
     }
+    public String getImage() {
+        return image;
+    }
+    public String getType() {
+        return type;
+    }
+    public String getInfo() {
+        return info;
+    }
+    public String getSrc() {
+        return "Component"+id+".svg";
+    }
 }

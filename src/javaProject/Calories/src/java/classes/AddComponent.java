@@ -77,6 +77,13 @@ public class AddComponent extends HttpServlet {
         String jsonComponent = request.getReader().readLine();
         Gson gson = new Gson();
         Component component = gson.fromJson(jsonComponent, Component.class);
+        boolean isAdd = SQL.addComponent(component);
+        String result = "";
+        if(isAdd) {
+            component = SQL.findComponentByName(component.getName());
+            result = gson.toJson(component);
+        }
+        response.getWriter().write(result);
     }
 
     /**
