@@ -49,7 +49,7 @@ ItemList.prototype.addItems = function(items){
 			var nameComponent = itemComponentsList[j].name;
 			var weightComponent = itemComponentsList[j].weight;
 			var caloriesComponent = itemComponentsList[j].calories;
-            var imgComponent = itemComponentsList[j].img;
+            var imgComponent = itemComponentsList[j].src;
 			var itemComponent = new Component(idComponent, nameComponent, weightComponent, caloriesComponent, imgComponent);
 			components.push(itemComponent);
 		}

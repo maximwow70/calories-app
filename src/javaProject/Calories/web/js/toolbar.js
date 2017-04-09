@@ -149,10 +149,10 @@ Toolbar.prototype.getNewComponent = function(){
 
     return {
         name: componentName,
-        category: componentCategory,
+        type: componentCategory,
         calories: componentCalories,
         info: componentInfo,
-        img: componentImg,
+        image: componentImg,
     }
 }
 Toolbar.prototype.getDom = function(){
