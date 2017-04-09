@@ -114,7 +114,7 @@ public class SQL {
     public static Component findComponentByName(String name) {
         connect();
         try {
-            ResultSet res = stat.executeQuery("SELECT * FROM Components WHERE Name LIKE \"%"+name+"%\";");
+            ResultSet res = stat.executeQuery("SELECT * FROM Components WHERE Name LIKE \""+name+"\";");
             res.next();
             return new Component(res.getString("Name"),res.getInt("ComponentID"),res.getInt("Calories"),res.getString("Info"),res.getString("Type"),res.getInt("isImage"));
         } catch(SQLException e) {System.out.println("ByName ERROR");return null;}

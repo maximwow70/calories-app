@@ -126,11 +126,11 @@ Server.prototype.addComponent = function(info, component){
     var that = this;
 
     var reader = new FileReader();
-    file = component.img;
+    file = component.image;
     reader.readAsDataURL(file);
-
+    
     reader.onload = function(){
-        component.img = reader.result;
+        component.image = reader.result;
         console.log(component);
 
         var _component = JSON.stringify(component);
