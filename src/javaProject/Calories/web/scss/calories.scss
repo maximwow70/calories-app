@@ -55,6 +55,10 @@ li{
 
     background-color: $light-color;
     font-family: $font-stack;
+
+    &-navigation{
+        color: $blue-color;
+    }
     &-header{
         background-color: $blue-color;
         padding: 0 5%;

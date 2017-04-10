@@ -313,3 +313,11 @@ toolbar.initComponents([
     {name: 'fish', calories: 252},
     {name: 'banana', calories: 187},
 ])
+
+info.setInfo(
+    document.querySelector('.app-search'),
+    'Clown Fish',
+    'Lorem ipsum dolor sit amet, consectetur adipisicing elit.Magni magnam, enim odit cumque quaerat iure id sequi doloribus, et error.',
+    'calories: (666c/100g)',
+    'clown-fish.svg'
+);

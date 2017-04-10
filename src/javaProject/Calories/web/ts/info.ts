@@ -1,39 +1,50 @@
-var Info = (function () {
-    function Info(parent, title, content, description, img) {
-        this.path = './img/components/';
+class Info{
+    private dom: any;
+    private title: string;
+    private content: string;
+    private description: string;
+    private img: string;
+    private path: string = './img/components/';
+
+    constructor(parent: any, title: string, content: string, description: string, img: string) {
         this.dom = parent.querySelector('.info');
+
         this.setInfo(title, content, description, img);
-    }
-    Info.prototype.setInfo = function (title, content, description, img) {
+    }    
+    public setInfo(title: string, content: string, description: string, img: string): void{
         this.setEmpty();
+
         this.setImg(img);
         this.setTitle(title);
         this.setDescription(description);
         this.setContent(content);
-    };
-    Info.prototype.setTitle = function (title) {
+    }
+    public setTitle(title: string): void{
         this.title = title;
-        if (title) {
+
+        if (title){
             var titleDom = this.dom.querySelector('.info-title');
-            if (!titleDom) {
+            if (!titleDom){
                 titleDom = document.createElement('h2');
                 titleDom.setAttribute('class', 'info-title');
                 this.dom.appendChild(titleDom);
             }
             titleDom.innerHTML = this.title;
         }
-    };
-    Info.prototype.setDescription = function (description) {
+    }
+    public setDescription(description: string): void{
         this.description = description;
-        if (description) {
-            var description_1 = document.createElement('h3');
-            description_1.setAttribute('class', 'info-description');
-            description_1.innerHTML = this.description;
-            this.dom.appendChild(description_1);
+        
+        if (description){
+            let description = document.createElement('h3');
+            description.setAttribute('class', 'info-description');
+            description.innerHTML = this.description;
+            this.dom.appendChild(description);
         }
-    };
-    Info.prototype.setContent = function (content) {
+    }
+    public setContent(content: string): void{
         this.content = content;
+
         if (content) {
             var contentDom = this.dom.querySelector('.info-content');
             if (!contentDom) {
@@ -43,26 +54,28 @@ var Info = (function () {
             }
             contentDom.innerHTML = this.content;
         }
-    };
-    Info.prototype.setImg = function (img) {
+    }
+    public setImg(img: string): void{
         this.img = img;
-        if (img) {
-            var img_1 = document.createElement('img');
-            img_1.setAttribute('class', 'info-img');
-            img_1.setAttribute('src', this.path + this.img);
-            this.dom.appendChild(img_1);
+        if (img){
+            let img = document.createElement('img');
+            img.setAttribute('class', 'info-img');
+            img.setAttribute('src', this.path + this.img);
+            this.dom.appendChild(img);
         }
-    };
-    Info.prototype.setEmpty = function () {
+    }
+    public setEmpty(): void{
         this.title = '';
         this.img = '';
         this.content = '';
         this.description = '';
+
         this.dom.innerHTML = '';
-    };
-    Info.prototype.setContentImportant = function (importance) {
+    }
+    public setContentImportant(importance: number): void{
         var content = this.dom.querySelector('.info-content');
-        try {
+
+        try{
             if (importance == 1) {
                 content.style.color = '#22bf65';
             }
@@ -74,7 +87,7 @@ var Info = (function () {
             }
         }
         catch (e) {
+            
         }
-    };
-    return Info;
-}());
+    }
+}

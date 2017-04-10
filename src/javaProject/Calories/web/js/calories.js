@@ -1,63 +1,5 @@
-var selectFind = document.querySelectorAll('.select-btn--find');
-var selectAdd = document.querySelectorAll('.select-btn--add');
-var selectSearch = document.querySelectorAll('.navigation-list--search');
-var selectAddComponent = document.querySelectorAll('.navigation-list--add');
-var selectMain = document.querySelectorAll('.navigation-list--main');
-var selectAbout = document.querySelectorAll('.navigation-list--about');
-var selectUser = document.querySelectorAll('.navigation-list--user');
-var selectCalculator = document.querySelectorAll('.navigation-list--calculate');
-
 var app = new App();
 var server = new Server();
-
-function openSelect(){
-    app.openSelect();
-}
-function openFind(){
-    app.openFind();
-}
-function openAdd(){
-    app.openAdd();
-}
-function openAbout(){
-    app.openAbout();
-}
-function openSearch(){
-    app.openSearch();
-}
-function openAddComponent(){
-    app.openAddComponent();
-}
-function openCalculator(){
-    app.openCalculator();
-}
-function openUser(){
-    app.openUser();
-}
-for (var i = 0; i < selectMain.length; i++){
-    selectMain[i].addEventListener('click', openSelect);
-}
-for (var i = 0; i < selectFind.length; i++){
-    selectFind[i].addEventListener('click', openFind);
-}
-for (var i = 0; i < selectAdd.length; i++){
-    selectAdd[i].addEventListener('click', openAdd);
-}
-for (var i = 0; i < selectSearch.length; i++){
-    selectSearch[i].addEventListener('click', openSearch);
-}
-for (var i = 0; i < selectAddComponent.length; i++){
-    selectAddComponent[i].addEventListener('click', openAddComponent);
-}
-for (var i = 0; i < selectCalculator.length; i++){
-    selectCalculator[i].addEventListener('click', openCalculator);
-}
-for (var i = 0; i < selectUser.length; i++){
-    selectUser[i].addEventListener('click', openUser);
-}
-for (var i = 0; i < selectAbout.length; i++){
-    selectAbout[i].addEventListener('click', openAbout);
-}
 
 function initAppFind(){
     var appFind = app.getAppFind();
@@ -68,16 +10,7 @@ function initAppFind(){
     server.findDish(itemList, toolbar.getItem());
     server.getComponents(toolbar);
 
-    // init action
-    /*ar itemList = appFind.querySelector('.app-item_list');
-    var loading = appFind.querySelector('.app-loading');
-    server.onfind = function(){
-        $(loading).addClass('app-loading--close');
-        $(itemList).removeClass('app-item_list--close');
-    }*/
 	control.addEventListener('click', function(){
-        //$(itemList).addClass('app-item_list--close');
-        //$(loading).removeClass('app-loading--close');
 		var dish = toolbar.getItem();
 		server.findDish(itemList, dish);
 	});
@@ -98,7 +31,7 @@ function initAppAdd(){
 }
 initAppAdd();
 
-function initAppSearch(){
+//function initAppSearch(){
     var appSearch = app.getAppSearch();
     var toolbar = new Toolbar(appSearch);
     var control = toolbar.control;
@@ -116,10 +49,10 @@ function initAppSearch(){
             }
         });
     }
-}
-initAppSearch();
+//}
+//initAppSearch();
 
-//function initAppAddComponents(){
+function initAppAddComponents(){
     var appAddComponents = app.getAppAddComponent();
     var toolbar = new Toolbar(appAddComponents);
     var control = toolbar.control;
@@ -129,8 +62,8 @@ initAppSearch();
         var component = toolbar.getNewComponent();
         server.addComponent(info, component);
     });
-//}
-//initAppAddComponents();
+}
+initAppAddComponents();
 
 function initCalculator() {
     var calculator = new Calculator();

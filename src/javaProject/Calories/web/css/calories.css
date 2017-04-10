@@ -161,23 +161,56 @@
       margin-top: 2px;
       font-size: 32px; }
     .navigation-list:hover .navigation-helper {
-      display: block;
-      color: #dcdcdd; }
+      display: inline-block; }
   .navigation-description {
     margin-left: 10px;
     vertical-align: middle; }
   .navigation-helper {
     display: none;
     position: absolute;
-    top: 125%;
-    right: 0%;
+    left: -100%;
+    top: 50%;
+    -webkit-transform: translate(-100%, -50%);
+    -ms-transform: translate(-100%, -50%);
+    transform: translate(-100%, -50%);
     padding: 4px 6px;
-    background: #2c363f;
-    box-shadow: 0 0 10px #2c363f;
+    background-color: #FFF;
+    border: 1px solid #2c363f;
+    border-radius: 2px;
+    color: #2c363f;
+    font-family: exo_r, exo_r, Arial, sans-serif;
     font-size: 16px;
     text-align: center;
     text-transform: capitalize;
-    line-height: 18px; }
+    white-space: nowrap; }
+  .navigation--fixed {
+    position: fixed;
+    top: 50%;
+    right: 20px;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    width: 30px;
+    padding: 5px 5px;
+    background-color: #FFF;
+    border: 2px solid #2c363f;
+    border-radius: 5px;
+    text-align: center; }
+    .navigation--fixed .navigation-list {
+      margin: 0;
+      margin-bottom: 5px;
+      display: inline-block;
+      font-size: 22px; }
+      .navigation--fixed .navigation-list:first-child {
+        margin-bottom: 5px; }
+      .navigation--fixed .navigation-list:hover .navigation-helper {
+        display: block; }
+      .navigation--fixed .navigation-list--calculate {
+        margin-left: 2px; }
+      .navigation--fixed .navigation-list--main {
+        font-size: 24px; }
+      .navigation--fixed .navigation-list--about {
+        font-size: 24px; }
 
 .header {
   color: #dcdcdd; }
@@ -262,6 +295,12 @@
   -ms-flex-wrap: wrap;
   flex-wrap: wrap; }
   .app-user {
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    -webkit-flex-basis: 100%;
+    -ms-flex-preferred-size: 100%;
+    flex-basis: 100%;
     width: 100%;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -1007,6 +1046,8 @@ li {
   min-height: 100vh;
   background-color: #dcdcdd;
   font-family: exo_r, Arial, sans-serif; }
+  .calories-navigation {
+    color: #2f6665; }
   .calories-header {
     background-color: #2f6665;
     padding: 0 5%; }

@@ -18,6 +18,76 @@ function App(){
     this.about = this.dom.querySelector('.app-about');
     this.loading = this.dom.querySelector('.app-loading');
 
+    this.initControls();
+
+}
+App.prototype.initControls = function() {
+    var that = this;
+
+    var selectMain = document.querySelectorAll('.navigation-list--main');
+    function openSelect(){
+        that.openSelect();
+    }
+    for (var i = 0; i < selectMain.length; i++){
+        selectMain[i].addEventListener('click', openSelect);
+    }
+
+    var selectFind = document.querySelectorAll('.select-btn--find');
+    function openFind(){
+        that.openFind();
+    }
+    for (var i = 0; i < selectFind.length; i++){
+        selectFind[i].addEventListener('click', openFind);
+    }
+
+    var selectAdd = document.querySelectorAll('.select-btn--add');
+    function openAdd(){
+        that.openAdd();
+    }
+    for (var i = 0; i < selectAdd.length; i++){
+        selectAdd[i].addEventListener('click', openAdd);
+    }
+
+    var selectSearch = document.querySelectorAll('.navigation-list--search');
+    function openSearch(){
+        that.openSearch();
+    }
+    for (var i = 0; i < selectSearch.length; i++){
+        selectSearch[i].addEventListener('click', openSearch);
+    }
+
+    var selectAddComponent = document.querySelectorAll('.navigation-list--add');
+    function openAddComponent(){
+        that.openAddComponent();
+    }
+    for (var i = 0; i < selectAddComponent.length; i++){
+        selectAddComponent[i].addEventListener('click', openAddComponent);
+    }
+
+
+    var selectCalculator = document.querySelectorAll('.navigation-list--calculate');
+    function openCalculator(){
+        that.openCalculator();
+    }
+    for (var i = 0; i < selectCalculator.length; i++){
+        selectCalculator[i].addEventListener('click', openCalculator);
+    }
+
+    var selectUser = document.querySelectorAll('.navigation-list--user');
+    function openUser(){
+        that.openUser();
+    }
+    for (var i = 0; i < selectUser.length; i++){
+        selectUser[i].addEventListener('click', openUser);
+    }
+
+    var selectAbout = document.querySelectorAll('.navigation-list--about');
+    function openAbout(){
+        that.openAbout();
+    }
+    for (var i = 0; i < selectAbout.length; i++){
+        selectAbout[i].addEventListener('click', openAbout);
+    }
 }
 App.prototype.closeAll = function(){
     $(this.select).addClass('app-select--close');
