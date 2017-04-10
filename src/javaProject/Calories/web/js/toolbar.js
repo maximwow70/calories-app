@@ -50,12 +50,18 @@ Toolbar.prototype.initMenu = function(menuList){
 }
 Toolbar.prototype.initComponents = function(components){
     this.components = components;
+
     var selectElements = this.dom.querySelectorAll('.toolbar-select--component');
     for (var i = 0; i < selectElements.length; i++){
+        selectElements[i].innerHTML = '';
         this.setComponents(selectElements[i], this.components);
     }
 }
 Toolbar.prototype.setComponents = function(selectElement, components){
+    var selectEmpty = this.createSelectComponentByName('');
+    selectEmpty.setAttribute('class', 'toolbar-select--empty');
+    selectElement.appendChild(selectEmpty);
+
     for (var j = 0; j < components.length; j++){
         var component = this.createSelectComponentByName(components[j].name);
         selectElement.appendChild(component);
@@ -95,6 +101,9 @@ Toolbar.prototype.createSelectComponentByName = function(name){
     if (name){
         option.value = name;
 	    option.innerHTML = name;
+    }
+    else{
+        option.value = '';
     }
     return option;
 }

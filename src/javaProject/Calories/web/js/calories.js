@@ -3,7 +3,7 @@ var server = new Server();
 
 var links = app.getAllControls();
 
-function findItem(){
+//function findItem(){
     var appFind = app.getAppFind();
     var toolbarFind = new Toolbar(appFind);
     var controlFind = toolbarFind.control;
@@ -23,8 +23,8 @@ function findItem(){
         server.getComponents(toolbarFind);
     }
     initAppFind();
-}
-findItem();
+//}
+//findItem();
 
 function addItem(){
     for (var i = 0; i < links.add.length; i++){
@@ -144,7 +144,7 @@ function calculateCalories(){
         server.getComponents(toolbar);
     }
     initCalculator();
-    
+
     for (var i = 0; i < links.calculator.length; i++){
         links.calculator[i].addEventListener('click', initCalculator);
     }
