@@ -52,7 +52,7 @@ Toolbar.prototype.initComponents = function(components){
     this.components = components;
     var selectElements = this.dom.querySelectorAll('.toolbar-select--component');
     for (var i = 0; i < selectElements.length; i++){
-        this.setComponents(selectElements[i], components);
+        this.setComponents(selectElements[i], this.components);
     }
 }
 Toolbar.prototype.setComponents = function(selectElement, components){
