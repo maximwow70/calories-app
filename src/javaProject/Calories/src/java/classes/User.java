@@ -39,4 +39,26 @@ public class User {
         this.contact = contact;
         this.access = access;
     }
+    public String getEMail() {
+        return eMail;
+    }
+    public String getPassword() {
+        return password;
+    }
+    public String getName() {
+        return name;
+    }
+    public String getInfo() {
+        return info;
+    }
+    public String getCountry() {
+        return country;
+    }
+    public String getCity() {
+        return city;
+    }
+    public String getContact() {
+        return contact;
+    }
+    
 }

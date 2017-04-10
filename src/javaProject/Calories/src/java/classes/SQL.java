@@ -211,30 +211,39 @@ public class SQL {
             if(code.equals(""))
                 isImage = 0;
             ResultSet res = stat.executeQuery("SELECT * FROM Components WHERE Name = \""+component.getName()+"\"");
-            System.out.println("1");
             res.next();
             try{
                 res.getInt("ComponentID");
                 return false;
             } catch(Exception e){}
-            System.out.println("2");
             stat.execute("INSERT INTO Components(Name,Calories,Type,Info,isImage) \n"
                     + "VALUES (\""+component.getName()+"\","+component.getCalories()+",\""+component.getType()+"\",\""+component.getInfo()+"\","+isImage+");");
             res = stat.executeQuery("SELECT * FROM Components WHERE Name = \""+component.getName()+"\"");
             res.next();
-            System.out.println("3");
             component = new Component(res.getString("Name"),res.getInt("ComponentID"),res.getInt("Calories"),res.getString("Info"),res.getString("Type"),res.getInt("isImage"));
             byte[] byteImage = Base64.getDecoder().decode(code.substring(code.indexOf(',')+1));
             try (FileOutputStream out = new FileOutputStream(new File("/Users/admin/Desktop/git/calories-app/src/javaProject/Calories/build/web/img/Components/"+component.getSrc()))) {
                 out.write(byteImage);
             }
-            System.out.println("4");
             return true;
         } catch (Exception e) {return false;}   
     }
     
-    public static void addUser() {
-        
+    public static boolean addUser(User user) {
+        connect();
+        try{
+            ResultSet res = stat.executeQuery("SELECT * FROM Users WHERE eMail = \""+user.getEMail()+"\"");
+            res.next();
+            try{
+                res.getInt("UserID");
+                return false;
+            } catch (Exception e) {}
+            String execute = "INSERT INTO Users(eMail,Name,Country,City,Contact,Info,Password)\n" +
+"values(\""+user.getEMail()+"\",\""+user.getName()+"\",\""+user.getCountry()+"\",\""+user.getCity()+"\",\""+user.getContact()+"\",\""+user.getInfo()+"\",\n" +
+"\""+user.getPassword()+"\")";
+            stat.execute(execute);
+            return true;
+        } catch (Exception e) {return false;}
     }
     
 }
