@@ -24,69 +24,69 @@ function App(){
 App.prototype.initControls = function() {
     var that = this;
 
-    var selectMain = document.querySelectorAll('.navigation-list--main');
+    this.selectMain = document.querySelectorAll('.navigation-list--main');
     function openSelect(){
         that.openSelect();
     }
-    for (var i = 0; i < selectMain.length; i++){
-        selectMain[i].addEventListener('click', openSelect);
+    for (var i = 0; i < this.selectMain.length; i++){
+        this.selectMain[i].addEventListener('click', openSelect);
     }
 
-    var selectFind = document.querySelectorAll('.select-btn--find');
+    this.selectFind = document.querySelectorAll('.select-btn--find');
     function openFind(){
         that.openFind();
     }
-    for (var i = 0; i < selectFind.length; i++){
-        selectFind[i].addEventListener('click', openFind);
+    for (var i = 0; i < this.selectFind.length; i++){
+        this.selectFind[i].addEventListener('click', openFind);
     }
 
-    var selectAdd = document.querySelectorAll('.select-btn--add');
+    this.selectAdd = document.querySelectorAll('.select-btn--add');
     function openAdd(){
         that.openAdd();
     }
-    for (var i = 0; i < selectAdd.length; i++){
-        selectAdd[i].addEventListener('click', openAdd);
+    for (var i = 0; i < this.selectAdd.length; i++){
+        this.selectAdd[i].addEventListener('click', openAdd);
     }
 
-    var selectSearch = document.querySelectorAll('.navigation-list--search');
+    this.selectSearch = document.querySelectorAll('.navigation-list--search');
     function openSearch(){
         that.openSearch();
     }
-    for (var i = 0; i < selectSearch.length; i++){
-        selectSearch[i].addEventListener('click', openSearch);
+    for (var i = 0; i < this.selectSearch.length; i++){
+        this.selectSearch[i].addEventListener('click', openSearch);
     }
 
-    var selectAddComponent = document.querySelectorAll('.navigation-list--add');
+    this.selectAddComponent = document.querySelectorAll('.navigation-list--add');
     function openAddComponent(){
         that.openAddComponent();
     }
-    for (var i = 0; i < selectAddComponent.length; i++){
-        selectAddComponent[i].addEventListener('click', openAddComponent);
+    for (var i = 0; i < this.selectAddComponent.length; i++){
+        this.selectAddComponent[i].addEventListener('click', openAddComponent);
     }
 
 
-    var selectCalculator = document.querySelectorAll('.navigation-list--calculate');
+    this.selectCalculator = document.querySelectorAll('.navigation-list--calculate');
     function openCalculator(){
         that.openCalculator();
     }
-    for (var i = 0; i < selectCalculator.length; i++){
-        selectCalculator[i].addEventListener('click', openCalculator);
+    for (var i = 0; i < this.selectCalculator.length; i++){
+        this.selectCalculator[i].addEventListener('click', openCalculator);
     }
 
-    var selectUser = document.querySelectorAll('.navigation-list--user');
+    this.selectUser = document.querySelectorAll('.navigation-list--user');
     function openUser(){
         that.openUser();
     }
-    for (var i = 0; i < selectUser.length; i++){
-        selectUser[i].addEventListener('click', openUser);
+    for (var i = 0; i < this.selectUser.length; i++){
+        this.selectUser[i].addEventListener('click', openUser);
     }
 
-    var selectAbout = document.querySelectorAll('.navigation-list--about');
+    this.selectAbout = document.querySelectorAll('.navigation-list--about');
     function openAbout(){
         that.openAbout();
     }
-    for (var i = 0; i < selectAbout.length; i++){
-        selectAbout[i].addEventListener('click', openAbout);
+    for (var i = 0; i < this.selectAbout.length; i++){
+        this.selectAbout[i].addEventListener('click', openAbout);
     }
 }
 App.prototype.closeAll = function(){
@@ -185,4 +185,16 @@ App.prototype.getAppView = function(){
 }
 App.prototype.getAppAddComponent = function(){
     return this.appAddComponent;
+}
+App.prototype.getAllControls = function(){
+    return {
+        main: this.selectMain,
+        find: this.selectFind,
+        add: this.selectAdd,
+        search: this.selectSearch,
+        addComponent: this.selectAddComponent,
+        calculator: this.selectCalculator,
+        user: this.selectUser,
+        about: this.selectAbout,
+    }
 }

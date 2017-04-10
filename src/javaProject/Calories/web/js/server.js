@@ -3,6 +3,7 @@ function Server(){
     this.onadd = function(){};
     this.ongetinfo = function(){};
     this.onaddcomponent = function(){};
+    this.ongetcomponents = function(){};
 }
 Server.prototype.getNewXhr = function(){
     var xmlreq = false;
