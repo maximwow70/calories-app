@@ -1,71 +1,98 @@
 var app = new App();
 var server = new Server();
 
-function initAppFind(){
+var links = app.getAllControls();
+
+function findItem(){
     var appFind = app.getAppFind();
-    var toolbar = new Toolbar(appFind);
-    var control = toolbar.control;
-    var itemList = new ItemList(appFind);
-    
-    server.findDish(itemList, toolbar.getItem());
-    server.getComponents(toolbar);
+    var toolbarFind = new Toolbar(appFind);
+    var controlFind = toolbarFind.control;
+    var itemListFind = new ItemList(appFind);
 
-	control.addEventListener('click', function(){
-		var dish = toolbar.getItem();
-		server.findDish(itemList, dish);
-	});
+    for (var i = 0; i < links.find.length; i++){
+        links.find[i].addEventListener('click', initAppFind);
+    }
+
+    controlFind.addEventListener('click', function(){
+        var dish = toolbarFind.getItem();
+        server.findDish(itemListFind, dish);
+    });
+
+    function initAppFind(){
+        server.findDish(itemListFind, toolbarFind.getItem());
+        server.getComponents(toolbarFind);
+    }
+    initAppFind();
 }
-initAppFind();
+findItem();
 
-function initAppAdd(){
+function addItem(){
+    for (var i = 0; i < links.add.length; i++){
+        links.add[i].addEventListener('click', initAppAdd);
+    }
     var appAdd = app.getAppAdd();
     var toolbar = new Toolbar(appAdd);
     var control = toolbar.control;
     var itemList = new ItemList(appAdd);
-
-    server.getComponents(toolbar);
     control.addEventListener('click', function(){
         var dish = toolbar.getItem();
         server.addDish(itemList, dish);
     });
+    function initAppAdd(){
+        server.getComponents(toolbar);
+    }
+    initAppAdd();
 }
-initAppAdd();
+addItem();
 
-//function initAppSearch(){
+function searchComponents(){
+
+    for (var i = 0; i < links.search.length; i++){
+        links.search[i].addEventListener('click', initAppSearch);
+    }
+
     var appSearch = app.getAppSearch();
     var toolbar = new Toolbar(appSearch);
     var control = toolbar.control;
     var info = new Info(appSearch);
     info.setTitle('Search components and enjoy');
 
-    server.getFullComponents(toolbar, info);
+    function initAppSearch(){
 
-    toolbar.oncreatemenu = function(){
-        this.menu.dom.addEventListener('click', function(){
-            var clickedElem = event.target;
-            if (clickedElem.classList.value.indexOf('menu-list') + 1){
-                var name = clickedElem.innerHTML;
-                server.getInfo(info, name);
-            }
-        });
+        server.getFullComponents(toolbar, info);
+
+        toolbar.oncreatemenu = function(){
+            this.menu.dom.addEventListener('click', function(){
+                var clickedElem = event.target;
+                if (clickedElem.classList.value.indexOf('menu-list') + 1){
+                    var name = clickedElem.innerHTML;
+                    server.getInfo(info, name);
+                }
+            });
+        }
     }
-//}
-//initAppSearch();
+    initAppSearch();
+}
+searchComponents();
 
-function initAppAddComponents(){
+function addComponents(){
     var appAddComponents = app.getAppAddComponent();
     var toolbar = new Toolbar(appAddComponents);
     var control = toolbar.control;
     var info = new Info(appAddComponents, 'Add new components', 'People can use them in their dishes!');
 
-    control.addEventListener('click', function(){
-        var component = toolbar.getNewComponent();
-        server.addComponent(info, component);
-    });
+    function initAppAddComponents(){
+        control.addEventListener('click', function(){
+            var component = toolbar.getNewComponent();
+            server.addComponent(info, component);
+        });
+    }
+    initAppAddComponents();
 }
-initAppAddComponents();
+addComponents();
 
-function initCalculator() {
+function calculateCalories(){
+
     var calculator = new Calculator();
 
     var appCalculator = app.getAppCalculator();
@@ -73,8 +100,6 @@ function initCalculator() {
 
     var toolbar = new Toolbar(appCalculator);
     var control = toolbar.control;
-
-    server.getComponents(toolbar);
 
     function calculateCalories(){
         var components = toolbar.getItemComponents();
@@ -106,7 +131,6 @@ function initCalculator() {
         }
     }
 
-    
     toolbar.onaddselect = function(){
         var toolbarSelects = this.getDom().querySelectorAll('.toolbar-select');
         for (var i = 0; i < toolbarSelects.length; i++){
@@ -114,8 +138,17 @@ function initCalculator() {
         }
     }
     toolbar.onaddselect();
-    control.addEventListener('click', calculateCalories);
+    control.addEventListener('click', calculateCalories);  
+      
+    function initCalculator() {
+        server.getComponents(toolbar);
+    }
+    initCalculator();
     
+    for (var i = 0; i < links.calculator.length; i++){
+        links.calculator[i].addEventListener('click', initCalculator);
+    }
 }
-initCalculator();
+calculateCalories();
+
 
