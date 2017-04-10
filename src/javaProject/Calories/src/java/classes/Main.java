@@ -6,11 +6,8 @@
 package classes;
 
 import com.google.gson.Gson;
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.Base64;
 
 /**
  *
@@ -18,10 +15,11 @@ import java.util.Base64;
  */
 public class Main {
     public static void main(String... args) throws FileNotFoundException, IOException {
-        String str = "{name: \"awdwa\", type: \"dwad\", calories: \"123\", info: \"dawdaw\", image: \"data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTguMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCIKCSB2aWV3Qm94PSIwIDAgNTYuNjczIDU2LjY3MyIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNTYuNjczIDU2LjY3MzsiIHhtbDpzcGFjZT0icHJlc2VydmUiPgo8Zz4KCTxwYXRoIHN0eWxlPSJmaWxsOiNEMTM4MzQ7IiBkPSJNMzEuNDgzLDE2LjIxM2MtMi4wNjUsMC41MTEtNC4yMjcsMC41MTEtNi4yOTIsMGMtMTAuNzU2LTIuNjYtMTkuNzYyLTEuNjQtMTkuNjU4LDE4LjY0MwoJCWMwLjA1MywxMC4zOSw5Ljc4MywyMy44NjIsMjAuMDA5LDIxLjU1N2MxLjgzNC0wLjQxMywzLjc1NS0wLjQxMyw1LjU4OSwwYzEwLjIyNiwyLjMwNSwxOS45NTYtMTEuMTY3LDIwLjAwOS0yMS41NTcKCQlDNTEuMjQ0LDE0LjU3NCw0Mi4yMzksMTMuNTUzLDMxLjQ4MywxNi4yMTN6Ii8+Cgk8cGF0aCBzdHlsZT0iZmlsbDojRjc1QjU3OyIgZD0iTTEwLjUzMywyOS42NzRjLTAuNTUzLDAtMS0wLjQ0OC0xLTFjMC01LjUxNCw0LjAzNy0xMCw5LTEwYzAuNTUzLDAsMSwwLjQ0OCwxLDFzLTAuNDQ3LDEtMSwxCgkJYy0zLjg1OSwwLTcsMy41ODktNyw4QzExLjUzMywyOS4yMjYsMTEuMDg1LDI5LjY3NCwxMC41MzMsMjkuNjc0eiIvPgoJPHBhdGggc3R5bGU9ImZpbGw6IzRDMzEyQzsiIGQ9Ik0yOC4yNjUsMTkuOTk5Yy0wLjUzNywwLTAuOTgxLTAuNDI3LTAuOTk4LTAuOTY4Yy0wLjEzNS00LjIzMi0xLjc2MS05LjU0NS01LjkyMi0xMS43NjQKCQljLTAuNDg3LTAuMjYtMC42NzItMC44NjUtMC40MTItMS4zNTNjMC4yNjEtMC40ODcsMC44NjQtMC42NzIsMS4zNTQtMC40MTJjNC45MTQsMi42Miw2LjgyNyw4LjY3Myw2Ljk3OSwxMy40NjUKCQljMC4wMTgsMC41NTItMC40MTUsMS4wMTQtMC45NjgsMS4wMzFDMjguMjg2LDE5Ljk5OSwyOC4yNzYsMTkuOTk5LDI4LjI2NSwxOS45OTl6Ii8+Cgk8cGF0aCBzdHlsZT0iZmlsbDojOTk0NTMwOyIgZD0iTTI4LjE3NiwyMy41OTJjLTEuNjgsMC0zLjI2MS0wLjY1NS00LjQ1LTEuODQ1Yy0wLjM5MS0wLjM5LTAuMzkxLTEuMDIzLDAtMS40MTQKCQlzMS4wMjMtMC4zOTEsMS40MTQsMGMwLjgxMiwwLjgxMiwxLjg5MSwxLjI1OSwzLjAzNiwxLjI1OXMyLjIyNC0wLjQ0NywzLjAzNS0xLjI1OWMwLjM5MS0wLjM5MSwxLjAyMy0wLjM5MSwxLjQxNCwwCgkJYzAuMzkxLDAuMzksMC4zOTEsMS4wMjMsMCwxLjQxNEMzMS40MzYsMjIuOTM3LDI5Ljg1NiwyMy41OTIsMjguMTc2LDIzLjU5MnoiLz4KCTxwYXRoIHN0eWxlPSJmaWxsOiM2NTlDMzU7IiBkPSJNMjcuMzA1LDEzLjA0bDAuNjA5LTQuMDg2YzAuNjQzLTQuMzE1LDQuMDMxLTcuNzAzLDguMzQ2LTguMzQ2TDQwLjM0NSwwbC0wLjYwOSw0LjA4NgoJCWMtMC42NDMsNC4zMTUtNC4wMzEsNy43MDMtOC4zNDYsOC4zNDZMMjcuMzA1LDEzLjA0eiIvPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+Cjwvc3ZnPgo=\"}";
-            Gson g= new Gson();
-            Component c = g.fromJson(str, Component.class);
-            System.out.println(SQL.addComponent(c));
-        System.out.println();
+        User user;
+        String t = "test";
+        user = SQL.findUser(t, t);
+        Gson gson = new Gson();
+        String str = gson.toJson(user);
+        System.out.println(SQL.getUserAccess(user));
     }
 }

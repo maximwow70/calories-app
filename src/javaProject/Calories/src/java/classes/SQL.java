@@ -36,6 +36,7 @@ public class SQL {
         }
     }
     
+    //Component
     public static ArrayList<Component> findComponents() {
         connect();
         ArrayList<Component> list = new ArrayList<>();
@@ -72,33 +73,6 @@ public class SQL {
         } catch(SQLException e) {return null;}
     }
     
-    public static Dish findDishById(int id) {
-        connect(); 
-        try {
-            ResultSet res = stat.executeQuery("SELECT * FROM Dishes WHERE DishID = "+id+";");
-            res.next();
-            return new Dish(res.getInt("DishID"),res.getString("Name"),res.getString("typeImage"));
-        } catch(SQLException e) {return null;}
-    }
-    
-    public static Dish findDishByName(String name) {
-        connect();
-        try{
-            ResultSet res =  stat.executeQuery("SELECT * FROM Dishes WHERE Name LIKE \"%"+name+"%\";");
-            res.next();
-            return new Dish(res.getInt("DishID"),res.getString("Name"),res.getString("typeImage"));
-        } catch(SQLException e) {return null;}
-    }
-    
-    public static Dish findDishByNameOnly(String name) {
-        connect();
-        try{
-            ResultSet res =  stat.executeQuery("SELECT * FROM Dishes WHERE Name = \""+name+"\";");
-            res.next();
-            return new Dish(res.getInt("DishID"),res.getString("Name"),res.getString("typeImage"));
-        } catch(SQLException e) {return null;}
-    }
-    
     public static Component findComponentById(int id) {
         connect();
         try {
@@ -129,6 +103,60 @@ public class SQL {
             }
             return list;
         } catch(SQLException e) {System.out.println("ByDishId ERROR");return null;}
+    }
+    
+    public static boolean addComponent(Component component) {
+        connect();
+        try {
+            String code = component.getImage();
+            int isImage = 1;
+            if(code.equals(""))
+                isImage = 0;
+            ResultSet res = stat.executeQuery("SELECT * FROM Components WHERE Name = \""+component.getName()+"\"");
+            res.next();
+            try{
+                res.getInt("ComponentID");
+                return false;
+            } catch(Exception e){}
+            stat.execute("INSERT INTO Components(Name,Calories,Type,Info,isImage) \n"
+                    + "VALUES (\""+component.getName()+"\","+component.getCalories()+",\""+component.getType()+"\",\""+component.getInfo()+"\","+isImage+");");
+            res = stat.executeQuery("SELECT * FROM Components WHERE Name = \""+component.getName()+"\"");
+            res.next();
+            component = new Component(res.getString("Name"),res.getInt("ComponentID"),res.getInt("Calories"),res.getString("Info"),res.getString("Type"),res.getInt("isImage"));
+            byte[] byteImage = Base64.getDecoder().decode(code.substring(code.indexOf(',')+1));
+            try (FileOutputStream out = new FileOutputStream(new File("/Users/admin/Desktop/git/calories-app/src/javaProject/Calories/build/web/img/Components/"+component.getSrc()))) {
+                out.write(byteImage);
+            }
+            return true;
+        } catch (Exception e) {return false;}   
+    }
+    
+    //Dish
+    public static Dish findDishById(int id) {
+        connect(); 
+        try {
+            ResultSet res = stat.executeQuery("SELECT * FROM Dishes WHERE DishID = "+id+";");
+            res.next();
+            return new Dish(res.getInt("DishID"),res.getString("Name"),res.getString("typeImage"));
+        } catch(SQLException e) {return null;}
+    }
+    
+    public static Dish findDishByName(String name) {
+        connect();
+        try{
+            ResultSet res =  stat.executeQuery("SELECT * FROM Dishes WHERE Name LIKE \"%"+name+"%\";");
+            res.next();
+            return new Dish(res.getInt("DishID"),res.getString("Name"),res.getString("typeImage"));
+        } catch(SQLException e) {return null;}
+    }
+    
+    public static Dish findDishByNameOnly(String name) {
+        connect();
+        try{
+            ResultSet res =  stat.executeQuery("SELECT * FROM Dishes WHERE Name = \""+name+"\";");
+            res.next();
+            return new Dish(res.getInt("DishID"),res.getString("Name"),res.getString("typeImage"));
+        } catch(SQLException e) {return null;}
     }
     
     public static ArrayList<Dish> findDishesByNameAndComponents(Dish dish) {
@@ -203,32 +231,7 @@ public class SQL {
         }
     }
     
-    public static boolean addComponent(Component component) {
-        connect();
-        try {
-            String code = component.getImage();
-            int isImage = 1;
-            if(code.equals(""))
-                isImage = 0;
-            ResultSet res = stat.executeQuery("SELECT * FROM Components WHERE Name = \""+component.getName()+"\"");
-            res.next();
-            try{
-                res.getInt("ComponentID");
-                return false;
-            } catch(Exception e){}
-            stat.execute("INSERT INTO Components(Name,Calories,Type,Info,isImage) \n"
-                    + "VALUES (\""+component.getName()+"\","+component.getCalories()+",\""+component.getType()+"\",\""+component.getInfo()+"\","+isImage+");");
-            res = stat.executeQuery("SELECT * FROM Components WHERE Name = \""+component.getName()+"\"");
-            res.next();
-            component = new Component(res.getString("Name"),res.getInt("ComponentID"),res.getInt("Calories"),res.getString("Info"),res.getString("Type"),res.getInt("isImage"));
-            byte[] byteImage = Base64.getDecoder().decode(code.substring(code.indexOf(',')+1));
-            try (FileOutputStream out = new FileOutputStream(new File("/Users/admin/Desktop/git/calories-app/src/javaProject/Calories/build/web/img/Components/"+component.getSrc()))) {
-                out.write(byteImage);
-            }
-            return true;
-        } catch (Exception e) {return false;}   
-    }
-    
+    //User
     public static boolean addUser(User user) {
         connect();
         try{
@@ -244,6 +247,25 @@ public class SQL {
             stat.execute(execute);
             return true;
         } catch (Exception e) {return false;}
+    }
+    
+    public static User findUser(String eMail, String password) {
+        connect();
+        try {
+            ResultSet res = stat.executeQuery("SELECT * FROM Users WHERE Password = \""+password+"\" AND eMail = \""+eMail+"\"");
+            res.next();
+            User user = new User(res.getString("eMail"),res.getString("Password"),res.getString("Name"),res.getString("Info"),res.getString("Country"),res.getString("City"),res.getString("Contact"),res.getInt("Access"));
+            return user;
+        } catch(Exception e) { return null;}
+    }
+    
+    public static int getUserAccess(User user) {
+        connect();
+        try {
+            ResultSet res = stat.executeQuery("SELECT Access FROM Users WHERE Password = \""+user.getPassword()+"\" AND eMail = \""+user.getEMail()+"\"");
+            res.next();
+            return res.getInt("Access");
+        } catch(Exception e) { return 0;}
     }
     
 }
