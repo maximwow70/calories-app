@@ -6,7 +6,6 @@
 package classes;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -15,8 +14,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Base64;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -233,7 +230,10 @@ public class SQL {
             }
             System.out.println("4");
             return true;
-        } catch (Exception e) {return false;}
+        } catch (Exception e) {return false;}   
+    }
+    
+    public static void addUser() {
         
     }
     
