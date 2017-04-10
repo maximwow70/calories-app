@@ -39,5 +39,4 @@ public class User {
         this.contact = contact;
         this.access = access;
     }
-    
 }
