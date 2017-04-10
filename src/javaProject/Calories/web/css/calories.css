@@ -1047,6 +1047,7 @@ li {
   background-color: #dcdcdd;
   font-family: exo_r, Arial, sans-serif; }
   .calories-navigation {
+    z-index: 10;
     color: #2f6665; }
   .calories-header {
     background-color: #2f6665;
