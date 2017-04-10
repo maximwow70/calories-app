@@ -16,6 +16,7 @@ Menu.prototype.initControls = function(menu, controls){
     }
 }
 Menu.prototype.initMenu = function(menuList) {
+    this.parent.innerHTML = '';
     this.dom =  document.createElement('div');
     this.dom.setAttribute('class', 'menu_list');
     for (var i = 0; i < menuList.length; i++){
