@@ -171,6 +171,7 @@ var User = (function () {
         this._contacts = user.contact;
         this._info = user.info;
         this._access = user.access;
+        this.updateControlsVM(false);
         this.updateVM();
     };
     User.prototype.outUser = function () {
