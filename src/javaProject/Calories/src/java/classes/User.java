@@ -43,8 +43,8 @@ public class User {
     }
     
     private void setSRCServer(int id, String type) {
-        if(type.equals("")||type==null||type.equals("Null"))
-            srcServer=FolderImages+"user.jpg";
+        if(type.equals("NAN"))
+            srcServer=FolderImages+"user.png";
         else {
             if(type.equals("jpeg"))
                 srcServer=FolderImages+"user"+id+".jpg";
@@ -53,8 +53,8 @@ public class User {
         }
     }
     private void setSRC(int id, String type) {
-        if(type.equals("")||type==null||type.equals("Null"))
-            src="./img/users/user.jpg";
+        if(type.equals("NAN"))
+            src="./img/users/user.png";
         else {
             if(type.equals("jpeg"))
                 src="./img/users/user"+id+".jpg";

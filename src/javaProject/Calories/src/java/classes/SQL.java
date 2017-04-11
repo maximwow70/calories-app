@@ -267,7 +267,7 @@ public class SQL {
                 res.getInt("UserID");
                 return false;
             } catch (Exception e) {}
-            String type = "";
+            String type = "NAN";
             if(isImage) {
                 type = code.substring(code.indexOf('/')+1, code.indexOf(';'));
             }
@@ -292,7 +292,6 @@ public class SQL {
         try {
             ResultSet res = stat.executeQuery("SELECT * FROM Users WHERE Password = \""+password+"\" AND eMail = \""+eMail+"\"");
             res.next();
-            System.out.println("1");
             User user = initUser(res);
             return user;
         } catch(Exception e) {return null;}
