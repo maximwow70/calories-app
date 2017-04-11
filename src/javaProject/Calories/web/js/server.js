@@ -155,3 +155,28 @@ Server.prototype.addComponent = function(info, component){
         }
     }
 }
+Server.prototype.addUser = function (regUser, user) {
+    var that = this;
+
+    var reader = new FileReader();
+    file = regUser.image;
+    reader.readAsDataURL(file);
+
+    reader.onload = function(){
+        regUser.image = reader.result;
+        var _user = JSON.stringify(regUser);
+        var xhr = that.getNewXhr();
+        xhr.open('POST', 'AddUser', true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.send(_user);
+        xhr.onreadystatechange = function(){
+            if (this.readyState == 4 && this.status == 200){
+                var user = JSON.parse(xhr.responseText);
+                console.log(user);
+            }
+        }
+    }
+
+}
+
+

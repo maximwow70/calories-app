@@ -151,4 +151,27 @@ function calculateCalories(){
 }
 calculateCalories();
 
+function initUser(){ 
+    var regParent = document.querySelector('.registration');
+    var registration = new Registration(regParent);
+
+    var user = new User(
+        document.querySelector('.user'),
+        'Maksim Samuilionak',
+        'maximwow70@gmail.com',
+        'maxGotic',
+        './img/users/user3.jpg',
+        'Belarus',
+        'Mogilev',
+        'maximGotik@gmail.com',
+        'Web-Deadveloper',
+        3
+    );
+
+    registration.onsubmit = function(){
+        var regUser = registration.getUser()
+        server.addUser(regUser, user);
+    }   
+}
+initUser();
 

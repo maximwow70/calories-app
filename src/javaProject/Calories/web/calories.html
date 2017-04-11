@@ -59,6 +59,30 @@
             <div class="app">
                 <div class="app-user app-user--close">
                     <div class="user">
+                        <div class="user-registration">
+                            <form class="registration">
+                                <div class="registration-title">Registration</div>
+                                <input class="registration-select registration-select--name" type="text" placeholder="*name" required>
+                                <input type="mail" class="registration-select registration-select--mail" placeholder="*email" required>
+                                <input type="password" class="registration-select registration-select--password" placeholder="*password" required>
+                                <input type="text" class="registration-select registration-select--country" placeholder="country">
+                                <input type="text" class="registration-select registration-select--city" placeholder="city">
+                                <input type="text" class="registration-select registration-select--contacts" placeholder="contacts">
+                                <textarea type="text" class="registration-select registration-select--info" placeholder="About Yourself"></textarea>
+                                <div class="registration-select registration-select--file">
+                                    <div class="select_file">
+                                        <input class="file_select" id="file_select3" type="file" accept="image/*">
+                                        <label class="select_file-btn" for="file_select3">Add Photo</label><!--
+                                        --><a class="select_file-reset fa fa-close"></a>
+                                    </div>
+                                </div>
+                                <div class="registration-select registration-select--isrobot">
+                                    <input type="checkbox" id="not_robot_1" required>
+                                    <label for="not_robot_1">I'm not a robot :3</label>
+                                </div>
+                                <button class="registration-btn registration-btn--submit">Sign Up</button>
+                            </form>
+                        </div>
                         <div class="user-portfolio">
                             <div class="portfolio">
                                 <div class="portfolio-photo">
@@ -284,6 +308,7 @@
     <script src="js/itemList.js"></script>
     <script src="js/toolbar.js"></script>
     <script src="js/info.js"></script>
+    <script src="js/registration.js"></script>
     <script src="js/user.js"></script>
     <script src="js/calories.js"></script>
 </body>

@@ -282,9 +282,9 @@
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
   justify-content: space-between;
@@ -295,12 +295,6 @@
   -ms-flex-wrap: wrap;
   flex-wrap: wrap; }
   .app-user {
-    -webkit-flex: 1;
-    -ms-flex: 1;
-    flex: 1;
-    -webkit-flex-basis: 100%;
-    -ms-flex-preferred-size: 100%;
-    flex-basis: 100%;
     width: 100%;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -481,7 +475,12 @@
       max-width: 400px;
       text-align: center; }
   @media screen and (max-width: 900px) {
-    .app-toolbar, .app-calculator .app-toolbar {
+    .app-toolbar, .app-info, .app-item_list,
+    .app-calculator .app-toolbar, .app-calculator .app-info {
+      -webkit-flex: 1;
+      -ms-flex: 1;
+      flex: 1;
+      width: 100%;
       -webkit-flex-basis: 100%;
       -ms-flex-preferred-size: 100%;
       flex-basis: 100%; } }
@@ -945,8 +944,44 @@
       width: 100%;
       text-align: center; } }
 
-.user-portfolio {
-  margin-bottom: 50px; }
+.registration {
+  text-align: left; }
+  .registration-title {
+    margin-bottom: 20px;
+    font-size: 24px;
+    text-transform: capitalize; }
+  .registration-select {
+    margin-bottom: 10px;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 5px;
+    font-size: 18px;
+    transition: outline 0.3s; }
+    .registration-select:focus {
+      outline-color: #e5bd47; }
+    .registration-select--password {
+      margin-bottom: 20px; }
+    .registration-select--info {
+      max-width: 100%;
+      max-height: 150px; }
+    .registration-select--file {
+      margin-bottom: 20px;
+      padding: 0; }
+    .registration-select--isrobot {
+      padding: 0 1px; }
+      .registration-select--isrobot input {
+        outline: none; }
+  .registration-btn {
+    padding: 5px;
+    background-color: #e5bd47;
+    color: #2c363f;
+    font-size: 18px;
+    outline: none;
+    cursor: pointer;
+    transition: 0.3s; }
+    .registration-btn:hover {
+      box-shadow: 0 0 10px rgba(229, 189, 71, 0.6); }
 
 .portfolio {
   display: -webkit-flex;
@@ -1008,6 +1043,18 @@
         margin-bottom: 20px; }
       .portfolio-data {
         margin-left: 0; } }
+
+.user-registration {
+  margin: 0 auto;
+  margin-bottom: 20px;
+  padding: 20px;
+  background-color: #2c363f;
+  border-radius: 5px;
+  box-shadow: 0 0 20px rgba(44, 54, 63, 0.5);
+  max-width: 400px; }
+
+.user-portfolio {
+  margin-bottom: 50px; }
 
 * {
   margin: 0;

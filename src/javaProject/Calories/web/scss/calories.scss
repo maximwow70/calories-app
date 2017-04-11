@@ -3,21 +3,19 @@
 @import 'navigation.scss';
 @import 'header.scss';
 @import 'logo.scss';
-@import 'info.scss';
+@import '../components/info/info.scss';
 @import 'app.scss';
 @import 'select.scss';
 @import 'loading.scss';
 @import 'about.scss';
-@import 'select_file.scss';
+@import '../components/selectFile/select_file.scss';
 @import 'menu.scss';
 @import 'toolbar.scss';
 @import 'item_list';
 @import 'item.scss';
 @import 'component.scss';
 @import 'footer.scss';
-@import 'user.scss';
-@import 'portfolio.scss';
-@import 'dashboard.scss';
+@import '../components/user/user.scss';
 *{
     margin: 0;
     padding: 0;
