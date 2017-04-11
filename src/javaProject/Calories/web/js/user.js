@@ -1,3 +1,59 @@
+var RegistrationAssistant = (function () {
+    function RegistrationAssistant(parent) {
+        var that = this;
+        this._dom = parent;
+        this._dom.addEventListener('submit', function () {
+            event.preventDefault();
+            that.onsubmit();
+        });
+    }
+    RegistrationAssistant.prototype.onsubmit = function () { };
+    ;
+    RegistrationAssistant.prototype.getUser = function () {
+        var userName = this._dom.querySelector('.registration-select--name').value;
+        var userMail = this._dom.querySelector('.registration-select--mail').value;
+        var userPassword = this._dom.querySelector('.registration-select--password').value;
+        var userCounty = this._dom.querySelector('.registration-select--country').value;
+        var userCity = this._dom.querySelector('.registration-select--city').value;
+        var userContacts = this._dom.querySelector('.registration-select--contacts').value;
+        var userInfo = this._dom.querySelector('.registration-select--info').value;
+        var userPhoto = this._dom.querySelector('.registration-select--file .file_select').files[0];
+        var user = {
+            name: userName,
+            eMail: userMail,
+            password: userPassword,
+            country: userCounty,
+            city: userCity,
+            contact: userContacts,
+            info: userInfo,
+            image: userPhoto
+        };
+        return user;
+    };
+    return RegistrationAssistant;
+}());
+var signInAssistant = (function () {
+    function signInAssistant(parent) {
+        var that = this;
+        this._dom = parent;
+        this._dom.addEventListener('submit', function () {
+            event.preventDefault();
+            that.onsubmit();
+        });
+    }
+    signInAssistant.prototype.onsubmit = function () { };
+    ;
+    signInAssistant.prototype.getUser = function () {
+        var userMail = this._dom.querySelector('.registration-select--mail').value;
+        var userPassword = this._dom.querySelector('.registration-select--password').value;
+        var user = {
+            eMail: userMail,
+            password: userPassword
+        };
+        return user;
+    };
+    return signInAssistant;
+}());
 var User = (function () {
     function User(parent, name, mail, password, photo, country, city, contacts, info, access) {
         this._parent = parent;

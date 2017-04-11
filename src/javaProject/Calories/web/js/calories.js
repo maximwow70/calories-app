@@ -153,7 +153,7 @@ calculateCalories();
 
 function initUser(){ 
     var regParent = document.querySelector('.registration');
-    var registration = new Registration(regParent);
+    var ra = new RegistrationAssistant(regParent);
 
     var user = new User(
         document.querySelector('.user'),
@@ -168,8 +168,8 @@ function initUser(){
         3
     );
 
-    registration.onsubmit = function(){
-        var regUser = registration.getUser()
+    ra.onsubmit = function(){
+        var regUser = ra.getUser()
         server.addUser(regUser, user);
     }   
 }
