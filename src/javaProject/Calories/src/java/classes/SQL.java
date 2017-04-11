@@ -295,7 +295,7 @@ public class SQL {
             System.out.println("1");
             User user = initUser(res);
             return user;
-        } catch(Exception e) { System.out.println("error");return null;}
+        } catch(Exception e) {return null;}
     }
     
     public static int getUserAccess(User user) {
