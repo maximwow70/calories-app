@@ -164,15 +164,15 @@ Server.prototype.addUser = function (regUser, user) {
 
     reader.onload = function(){
         regUser.image = reader.result;
-        var _user = JSON.stringify(regUser);
+        var _regUser = JSON.stringify(regUser);
         var xhr = that.getNewXhr();
         xhr.open('POST', 'AddUser', true);
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        xhr.send(_user);
+        xhr.send(_regUser);
         xhr.onreadystatechange = function(){
             if (this.readyState == 4 && this.status == 200){
-                var user = JSON.parse(xhr.responseText);
-                console.log(user);
+                var regUser = JSON.parse(xhr.responseText);
+                user.setUserByObj(regUser);
             }
         }
     }
