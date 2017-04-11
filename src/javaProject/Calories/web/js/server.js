@@ -182,7 +182,7 @@ Server.prototype.signInUser = function(inUser, user){
     
     var _inUser = JSON.stringify(inUser);
     var xhr = that.getNewXhr();
-    xhr.open('POST', 'SignInUser', true);
+    xhr.open('POST', 'UserLogin', true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.send(_inUser);
     xhr.onreadystatechange = function(){
