@@ -33,12 +33,12 @@ public class Component {
         this.weight = weight;
         src = "Component"+id+".svg";
     }
-    public Component(String name, int id, int calories, int weight, String info, String type, int isImage) {
+    public Component(String name, int id, int calories, String info, String type, int isImage) {
         this.name = name;
         this.id = id;
         this.calories = calories;
         this.type = type;
-        this.weight = weight;
+        this.weight = 0;
         if(isImage == 1)
             src = "Component"+id+".svg";
         else
@@ -48,12 +48,12 @@ public class Component {
         else 
             this.info = "";
     }
-    public Component(String name, int id, int calories, String info, String type, int isImage) {
+    public Component(String name, int id, int calories, int weight, String info, String type, int isImage) {
         this.name = name;
         this.id = id;
         this.calories = calories;
         this.type = type;
-        weight = 0;
+        this.weight = weight;
         if(isImage == 1)
             src = "Component"+id+".svg";
         else

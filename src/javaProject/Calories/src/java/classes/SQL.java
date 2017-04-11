@@ -37,13 +37,25 @@ public class SQL {
     }
     
     //Component
+    private static Component initComponentWithoutInfo(ResultSet res) throws SQLException {
+        return new Component(res.getString("Name"),res.getInt("ComponentID"),res.getInt("Calories"));
+    }
+    
+    private static Component initComponentWithInfo(ResultSet res) throws SQLException {
+        return new Component(res.getString("Name"),res.getInt("ComponentID"),res.getInt("Calories"),res.getInt("Weight"),res.getString("Info"),res.getString("Type"),res.getInt("isImage"));
+    }
+    
+    private static Component initComponentWithInfoWithoutWeight(ResultSet res) throws SQLException {
+        return new Component(res.getString("Name"),res.getInt("ComponentID"),res.getInt("Calories"),res.getString("Info"),res.getString("Type"),res.getInt("isImage"));
+    }
+    
     public static ArrayList<Component> findComponents() {
         connect();
         ArrayList<Component> list = new ArrayList<>();
         try {
             ResultSet res =  stat.executeQuery("SELECT * FROM Components ORDER BY Name;");
             while(res.next()) {
-                list.add(new Component(res.getString("Name"),res.getInt("ComponentID"),res.getInt("Calories")));
+                list.add(initComponentWithoutInfo(res));
             }
             return list;
         } catch (SQLException e) {return null;}
@@ -55,7 +67,7 @@ public class SQL {
         try {
             ResultSet res = stat.executeQuery("SELECT * FROM Components WHERE Type = \""+type+"\" ORDER BY Name");
             while(res.next()) {
-                list.add(new Component(res.getString("Name"),res.getInt("ComponentID"),res.getInt("Calories")));
+                list.add(initComponentWithoutInfo(res));
             }
             return list;
         } catch (SQLException e) { return null;}
@@ -78,7 +90,7 @@ public class SQL {
         try {
             ResultSet res = stat.executeQuery("SELECT * FROM Components WHERE ComponentID = "+id+";");
             res.next();
-            return new Component(res.getString("Name"),res.getInt("ComponentID"),res.getInt("Calories"));
+            return initComponentWithoutInfo(res);
         } catch(SQLException e) {return null;}
     }
     
@@ -87,7 +99,7 @@ public class SQL {
         try {
             ResultSet res = stat.executeQuery("SELECT * FROM Components WHERE Name LIKE \""+name+"\";");
             res.next();
-            return new Component(res.getString("Name"),res.getInt("ComponentID"),res.getInt("Calories"),res.getString("Info"),res.getString("Type"),res.getInt("isImage"));
+            return initComponentWithInfoWithoutWeight(res);
         } catch(SQLException e) {System.out.println("ByName ERROR");return null;}
     }
     
@@ -99,7 +111,7 @@ public class SQL {
                     + "f.DishID = "+id+" AND\n"
                     + "c.ComponentID = f.ComponentID ;");
             while(res.next()) {
-                list.add(new Component(res.getString("Name"),res.getInt("ComponentID"),res.getInt("Calories"),res.getInt("Weight"),res.getString("Info"),res.getString("Type"),res.getInt("isImage")));
+                list.add(initComponentWithInfo(res));
             }
             return list;
         } catch(SQLException e) {System.out.println("ByDishId ERROR");return null;}
@@ -122,7 +134,7 @@ public class SQL {
                     + "VALUES (\""+component.getName()+"\","+component.getCalories()+",\""+component.getType()+"\",\""+component.getInfo()+"\","+isImage+");");
             res = stat.executeQuery("SELECT * FROM Components WHERE Name = \""+component.getName()+"\"");
             res.next();
-            component = new Component(res.getString("Name"),res.getInt("ComponentID"),res.getInt("Calories"),res.getString("Info"),res.getString("Type"),res.getInt("isImage"));
+            component = initComponentWithInfo(res);
             byte[] byteImage = Base64.getDecoder().decode(code.substring(code.indexOf(',')+1));
             try (FileOutputStream out = new FileOutputStream(new File("/Users/admin/Desktop/git/calories-app/src/javaProject/Calories/build/web/img/Components/"+component.getSrc()))) {
                 out.write(byteImage);
@@ -132,12 +144,17 @@ public class SQL {
     }
     
     //Dish
+    
+    private static Dish initDish(ResultSet res) throws SQLException {
+        return new Dish(res.getInt("DishID"),res.getString("Name"),res.getString("typeImage"));
+    }
+    
     public static Dish findDishById(int id) {
         connect(); 
         try {
             ResultSet res = stat.executeQuery("SELECT * FROM Dishes WHERE DishID = "+id+";");
             res.next();
-            return new Dish(res.getInt("DishID"),res.getString("Name"),res.getString("typeImage"));
+            return initDish(res);
         } catch(SQLException e) {return null;}
     }
     
@@ -146,7 +163,7 @@ public class SQL {
         try{
             ResultSet res =  stat.executeQuery("SELECT * FROM Dishes WHERE Name LIKE \"%"+name+"%\";");
             res.next();
-            return new Dish(res.getInt("DishID"),res.getString("Name"),res.getString("typeImage"));
+            return initDish(res);
         } catch(SQLException e) {return null;}
     }
     
@@ -155,7 +172,7 @@ public class SQL {
         try{
             ResultSet res =  stat.executeQuery("SELECT * FROM Dishes WHERE Name = \""+name+"\";");
             res.next();
-            return new Dish(res.getInt("DishID"),res.getString("Name"),res.getString("typeImage"));
+            return initDish(res);
         } catch(SQLException e) {return null;}
     }
     
@@ -188,7 +205,7 @@ public class SQL {
         ResultSet res = stat.executeQuery(url);
             while(res.next()) {
                 boolean is = false;
-                list.add(new Dish(res.getInt("DishID"),res.getString("Name"),res.getString("typeImage")));
+                list.add(initDish(res));
             }
             return list;
         } catch(SQLException e) {return null;}
@@ -232,19 +249,40 @@ public class SQL {
     }
     
     //User
+    private static User initUser(ResultSet res) throws SQLException {
+        return new User(res.getInt("UserID"),res.getString("eMail"),res.getString("Password"),res.getString("Name"),res.getString("Info"),
+                    res.getString("Country"),res.getString("City"),res.getString("Contact"),res.getInt("Access"),res.getString("TypeImage"));
+    }
     public static boolean addUser(User user) {
         connect();
         try{
+            String code = user.getImage();
+            boolean isImage = true;
+            if(code.equals("")) {
+                isImage = false;
+            }
             ResultSet res = stat.executeQuery("SELECT * FROM Users WHERE eMail = \""+user.getEMail()+"\"");
             res.next();
             try{
                 res.getInt("UserID");
                 return false;
             } catch (Exception e) {}
-            String execute = "INSERT INTO Users(eMail,Name,Country,City,Contact,Info,Password)\n" +
+            String type = "";
+            if(isImage) {
+                type = code.substring(code.indexOf('/')+1, code.indexOf(';'));
+            }
+            String execute = "INSERT INTO Users(eMail,Name,Country,City,Contact,Info,Password,TypeImage)\n" +
 "values(\""+user.getEMail()+"\",\""+user.getName()+"\",\""+user.getCountry()+"\",\""+user.getCity()+"\",\""+user.getContact()+"\",\""+user.getInfo()+"\",\n" +
-"\""+user.getPassword()+"\")";
+"\""+user.getPassword()+"\", \""+type+"\")";
             stat.execute(execute);
+            if(isImage) {
+                user = findUser(user.getEMail(),user.getPassword());
+                code = code.substring(code.indexOf(',')+1);
+                byte[] byteImage = Base64.getDecoder().decode(code);
+                try(FileOutputStream out = new FileOutputStream(new File(user.FolderImages+user.getSRC()))) {
+                    out.write(byteImage);
+                }
+            }
             return true;
         } catch (Exception e) {return false;}
     }
@@ -254,9 +292,10 @@ public class SQL {
         try {
             ResultSet res = stat.executeQuery("SELECT * FROM Users WHERE Password = \""+password+"\" AND eMail = \""+eMail+"\"");
             res.next();
-            User user = new User(res.getString("eMail"),res.getString("Password"),res.getString("Name"),res.getString("Info"),res.getString("Country"),res.getString("City"),res.getString("Contact"),res.getInt("Access"));
+            System.out.println("1");
+            User user = initUser(res);
             return user;
-        } catch(Exception e) { return null;}
+        } catch(Exception e) { System.out.println("error");return null;}
     }
     
     public static int getUserAccess(User user) {
@@ -268,4 +307,15 @@ public class SQL {
         } catch(Exception e) { return 0;}
     }
     
+    public static ArrayList<Dish> findDishesByUserId(int id) {
+        connect();
+        try {
+            ArrayList<Dish> list = new ArrayList<>();
+            ResultSet res = stat.executeQuery("SELECT d.* FROM Dishes d \n" +
+"INNER JOIN DishList dl ON dl.DishID = d.DishID AND dl.UserID = "+id+";");
+            while(res.next())
+                list.add(initDish(res));
+            return list;
+        } catch (Exception e) {return null;}
+    }
 }

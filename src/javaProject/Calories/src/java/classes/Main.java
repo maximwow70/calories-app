@@ -15,11 +15,17 @@ import java.io.IOException;
  */
 public class Main {
     public static void main(String... args) throws FileNotFoundException, IOException {
-        User user;
-        String t = "test";
-        user = SQL.findUser(t, t);
+        String jsonUser = "{\"name\":\"qwe\",\"eMail\":\"qwe\",\"password\":\"qwe\",\"country\""
+                + ":\"qwe\",\"city\":\"qwe\",\"contact\":\"wqe\",\"info\":\"qwe\",\"image\":\"\"}";
         Gson gson = new Gson();
-        String str = gson.toJson(user);
-        System.out.println(SQL.getUserAccess(user));
+        User user = gson.fromJson(jsonUser, User.class);
+        String answer =  "";
+        boolean lol = SQL.addUser(user);
+        System.out.println(lol);
+        //if(lol) {
+            user = SQL.findUser(user.getEMail(), user.getPassword());
+            answer = gson.toJson(user);
+        //}
+        System.out.println(answer);
     }
 }
