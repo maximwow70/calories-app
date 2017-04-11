@@ -1,0 +1,13 @@
+.account{
+    &-sign_in, &-registration{
+        margin: 0 auto;
+        margin-bottom: 20px;
+
+        padding: 20px;
+        background-color: $dark-color;
+        border-radius: 5px;
+        box-shadow: 0 0 20px rgba($dark-color, 0.5);
+        
+        max-width: 400px;
+    }
+}

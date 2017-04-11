@@ -1,0 +1,56 @@
+.registration{
+    text-align: left;
+    &-title{
+        margin-bottom: 20px;
+
+        font-size: 24px;
+        text-transform: capitalize;
+    }
+    &-select{
+        margin-bottom: 10px;
+
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 5px;
+        
+        font-size: 18px;
+
+        transition: outline 0.3s;
+
+        &:focus{
+            outline-color: $yellow-color;
+        }
+        &--password{
+            margin-bottom: 20px;
+        }
+        &--info{
+            max-width: 100%;
+            max-height: 150px;
+        }
+        &--file{
+            margin-bottom: 20px;
+            padding: 0;
+        }
+        &--isrobot{
+            padding: 0 1px;
+            input{
+                outline: none;
+            }
+        }
+    }
+    &-btn{
+        padding: 5px;
+        background-color: $yellow-color;
+
+        color: $dark-color;
+        font-size: 18px;
+        outline: none;
+
+        cursor: pointer;
+        transition: 0.3s;
+        &:hover{
+            box-shadow: 0 0 10px rgba($yellow-color, 0.6);
+        }
+    }
+}
