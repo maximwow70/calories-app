@@ -1,7 +1,6 @@
 {
     "compilerOptions": {
         "outDir": "./js",
-        "module": "none",
         "noImplicitAny": true,
         "removeComments": true,
         "preserveConstEnums": true,

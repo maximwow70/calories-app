@@ -944,6 +944,19 @@
       width: 100%;
       text-align: center; } }
 
+.account-header {
+  margin-bottom: 20px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  background-color: #dcdcdd; }
+  .account-header .header {
+    color: #2c363f; }
+  .account-header .logo {
+    text-align: left; }
+    .account-header .logo-title {
+      font-family: exo_r, exo_r, Arial, sans-serif;
+      font-size: 24px; }
+
 .account-sign_in, .account-registration {
   margin: 0 auto;
   margin-bottom: 20px;
@@ -952,6 +965,8 @@
   border-radius: 5px;
   box-shadow: 0 0 20px rgba(44, 54, 63, 0.5);
   max-width: 400px; }
+  .account-sign_in--close, .account-registration--close {
+    display: none; }
 
 .registration {
   text-align: left; }
@@ -990,6 +1005,45 @@
     cursor: pointer;
     transition: 0.3s; }
     .registration-btn:hover {
+      box-shadow: 0 0 10px rgba(229, 189, 71, 0.6); }
+
+.sign_in {
+  text-align: left; }
+  .sign_in-title {
+    margin-bottom: 20px;
+    font-size: 24px;
+    text-transform: capitalize; }
+  .sign_in-select {
+    margin-bottom: 10px;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 5px;
+    font-size: 18px;
+    transition: outline 0.3s; }
+    .sign_in-select:focus {
+      outline-color: #e5bd47; }
+    .sign_in-select--password {
+      margin-bottom: 20px; }
+    .sign_in-select--info {
+      max-width: 100%;
+      max-height: 150px; }
+    .sign_in-select--file {
+      margin-bottom: 20px;
+      padding: 0; }
+    .sign_in-select--isrobot {
+      padding: 0 1px; }
+      .sign_in-select--isrobot input {
+        outline: none; }
+  .sign_in-btn {
+    padding: 5px;
+    background-color: #e5bd47;
+    color: #2c363f;
+    font-size: 18px;
+    outline: none;
+    cursor: pointer;
+    transition: 0.3s; }
+    .sign_in-btn:hover {
       box-shadow: 0 0 10px rgba(229, 189, 71, 0.6); }
 
 .portfolio {

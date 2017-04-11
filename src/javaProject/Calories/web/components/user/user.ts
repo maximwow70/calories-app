@@ -1,5 +1,78 @@
+declare var $: Function;
+class RegistrationAssistant{
+    private _dom: any;
+
+    private _control: any;
+    private onsubmit(): void {};
+
+    constructor (parent: any){
+        var that = this;
+
+        this._dom = parent.querySelector('.registration');
+
+        this._dom.addEventListener('submit', function(){
+            event.preventDefault();
+            that.onsubmit();
+        });
+    }
+    
+    public getUser(){
+        var userName = this._dom.querySelector('.registration-select--name').value;
+        var userMail = this._dom.querySelector('.registration-select--mail').value;
+        var userPassword = this._dom.querySelector('.registration-select--password').value;
+        
+        var userCounty = this._dom.querySelector('.registration-select--country').value;
+        var userCity = this._dom.querySelector('.registration-select--city').value;
+        var userContacts = this._dom.querySelector('.registration-select--contacts').value;
+        var userInfo = this._dom.querySelector('.registration-select--info').value;
+
+        var userPhoto = this._dom.querySelector('.registration-select--file .file_select').files[0];
+        
+        var user = {
+            name: userName,
+            eMail: userMail,
+            password: userPassword,
+            country: userCounty,
+            city: userCity,
+            contact: userContacts,
+            info: userInfo,
+            image: userPhoto
+        }
+        return user;
+    }
+}
+
+class SignInAssistant{
+    private _dom : any;
+
+    private _control: any;
+    private onsubmit(): void {};
+
+    constructor (parent: any){
+        var that = this;
+        
+        this._dom = parent.querySelector('.sign_in');
+
+        this._dom.addEventListener('submit', function(){
+            event.preventDefault();
+            that.onsubmit();
+        });
+    }
+    
+    public getUser(){
+        var userMail = this._dom.querySelector('.sign_in-select--mail').value;
+        var userPassword = this._dom.querySelector('.sign_in-select--password').value;
+        
+        var user = {
+            eMail: userMail,
+            password: userPassword
+        }
+        return user;
+    }
+}
+
 class User{
-    private _parent: any;
+    private _dom: any;
 
     private _name: string;
     private _mail: string;
@@ -13,6 +86,69 @@ class User{
 
     private _access: number;
     
+    public _registrationAssistant: RegistrationAssistant;
+    public _signInAssistant: SignInAssistant;
+    private _controlAssistants: any;
+
+    
+    constructor(parent: any, name: string, mail: string, password: string, photo:string, country: string,
+        city: string, contacts: string, info: string, access: number) {
+
+        this._dom = parent;
+        this._name = name;
+        this._mail = mail;
+        this._password = password;
+        this._photo = photo;
+        this._country = country;
+        this._city = city;
+        this._contacts = contacts;
+        this._info = info;
+        this._access = access;
+
+        this._registrationAssistant = new RegistrationAssistant(this._dom);
+        this._signInAssistant = new SignInAssistant(this._dom);
+        
+        this.initControlAssistants();
+        this.updateControlsVM(false);
+        this.updateVM();
+    }
+
+    private initControlAssistants(): void{
+        let that = this;
+
+        var controlsRegistration = this._dom.querySelectorAll('.navigation-list--registrate');
+        var controlsSignIn = this._dom.querySelectorAll('.navigation-list--sign_in');
+        var controlsSignOut = this._dom.querySelectorAll('.navigation-list--sign_out');
+
+        function initControlRegistration(){
+            let reg = that._dom.querySelector('.account-registration');
+            $(reg).toggleClass('account-registration--close');
+        }        
+        for (let i = 0; i < controlsRegistration.length; i++){
+            controlsRegistration[i].addEventListener('click', initControlRegistration);
+        }
+    
+        function initControlSignIn(){
+            let signIn = that._dom.querySelector('.account-sign_in');
+            $(signIn).toggleClass('account-sign_in--close');
+        }
+        for (let i = 0; i < controlsSignIn.length; i++){
+            controlsSignIn[i].addEventListener('click', initControlSignIn);
+        }
+
+        this._controlAssistants = {
+            registrate: controlsRegistration,
+            signIn: controlsSignIn,
+            signOut: controlsSignOut
+        }
+
+        function initControlSignOut(){
+            that.outUser();
+        }
+        for (let i = 0; i < controlsSignOut.length; i++){
+            controlsSignOut[i].addEventListener('click', initControlSignOut);
+        }
+    }
 
     private updateAccessVM(access: number): string{
         var accessVM: string;
@@ -29,44 +165,41 @@ class User{
         
         return accessVM;
     }
-
+    private updateControlsVM(isOut: boolean): void{
+        var controlReg = this._controlAssistants.registrate;
+        for (let i = 0; i < controlReg.length; i++){
+            controlReg[i].style.display = isOut ? 'inline-block' : 'none';
+        }
+        var controlSignIn = this._controlAssistants.signIn;
+        for (let i = 0; i < controlSignIn.length; i++){
+            controlSignIn[i].style.display = isOut ? 'inline-block' : 'none';
+        }
+        var controlSignOut = this._controlAssistants.signOut;
+        for (let i = 0; i < controlSignOut.length; i++){
+            controlSignOut[i].style.display = isOut ? 'none' : 'inline-block';
+        }
+    }
     private updateVM(): void {
-        var photoVM = this._parent.querySelector('.portfolio-img');
+        var photoVM = this._dom.querySelector('.portfolio-img');
         photoVM.setAttribute('src', this._photo);
 
-        var nameVM = this._parent.querySelector('.portfolio-name');
+        var nameVM = this._dom.querySelector('.portfolio-name');
         var accessVM = this.updateAccessVM(this._access);
         nameVM.innerHTML = this._name + ' ' + '(' + accessVM + ')';
 
-        var countryVM = this._parent.querySelector('.portfolio-country');
+        var countryVM = this._dom.querySelector('.portfolio-country');
         countryVM.innerHTML = 'Country: ' + this._country;
 
-        var cityVM = this._parent.querySelector('.portfolio-city');
+        var cityVM = this._dom.querySelector('.portfolio-city');
         cityVM.innerHTML = 'City: ' + this._city;
 
-        var contactsVM = this._parent.querySelector('.portfolio-contacts');
+        var contactsVM = this._dom.querySelector('.portfolio-contacts');
         contactsVM.innerHTML = 'Contacts: ' + this._contacts;
 
-        var infoVM = this._parent.querySelector('.portfolio-about');
+        var infoVM = this._dom.querySelector('.portfolio-about');
         infoVM.innerHTML = 'About Myself: ' + this._info;
     }
 
-    constructor(parent: any, name: string, mail: string, password: string, photo:string, country: string,
-        city: string, contacts: string, info: string, access: number) {
-
-        this._parent = parent;
-        this._name = name;
-        this._mail = mail;
-        this._password = password;
-        this._photo = photo;
-        this._country = country;
-        this._city = city;
-        this._contacts = contacts;
-        this._info = info;
-        this._access = access;
-        
-        this.updateVM();
-    }
 
     public setUser(name: string, mail: string, password: string, photo:string, country: string,
         city: string, contacts: string, info: string, access: number): void{
@@ -81,6 +214,7 @@ class User{
         this._info = info;
         this._access = access;
         
+        this.updateControlsVM(false);
         this.updateVM();
     }
     public setUserByObj(user: any): void{
@@ -96,5 +230,13 @@ class User{
         
         this.updateVM();
     }
+    public outUser(){
+        this.setUser('', '', '', '', '', '', '', '', 0);
+
+        this.updateControlsVM(true);
+        this.updateVM();
+    }
 
 }
+
+

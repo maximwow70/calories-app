@@ -1,4 +1,23 @@
 .account{
+    &-header{
+        margin-bottom: 20px; 
+        
+        padding: 10px 20px;
+        border-radius: 5px;
+        background-color: $light-color;
+        .header{
+            color: $dark-color;
+            
+        }
+        .logo{
+            text-align: left;
+            &-title{
+                font-family: exo_r, $font-stack;
+                font-size: 24px;
+            }
+
+        }
+    }
     &-sign_in, &-registration{
         margin: 0 auto;
         margin-bottom: 20px;
@@ -9,5 +28,8 @@
         box-shadow: 0 0 20px rgba($dark-color, 0.5);
         
         max-width: 400px;
+        &--close{
+            display: none;
+        }
     }
 }
