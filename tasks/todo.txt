@@ -26,6 +26,7 @@ todo list:
         UserStatistic
         UserDashboard
 
+        сохранение данных user в LocalStorage
         уровень доступа у User 
             ( от него зависят доступные действия для User)
         при регистрации сделать фото необязательным
