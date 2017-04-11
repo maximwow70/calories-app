@@ -22,10 +22,10 @@ public class Main {
         String answer =  "";
         boolean lol = SQL.addUser(user);
         System.out.println(lol);
-        //if(lol) {
+        if(lol) {
             user = SQL.findUser(user.getEMail(), user.getPassword());
             answer = gson.toJson(user);
-        //}
+        }
         System.out.println(answer);
     }
 }
