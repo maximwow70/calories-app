@@ -228,6 +228,7 @@ class User{
         this._info = user.info;
         this._access = user.access;
         
+        this.updateControlsVM(false);
         this.updateVM();
     }
     public outUser(){
