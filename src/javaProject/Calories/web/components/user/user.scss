@@ -1,0 +1,14 @@
+@import 'account.scss';
+@import 'registration.scss';
+@import 'sign_in.scss';
+@import 'portfolio.scss';
+@import 'dashboard.scss';
+
+.user{
+    &-account{
+
+    }
+    &-portfolio{
+        margin-bottom: 50px;
+    }
+}
