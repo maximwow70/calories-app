@@ -321,3 +321,61 @@ info.setInfo(
     'calories: (666c/100g)',
     'clown-fish.svg'
 );
+
+/*
+var par = document.querySelector('.toolbar-menu');
+var menu1 = new Menu(
+    par,
+    [
+        {
+            type: 'fish',
+            components: [
+                'fish1',
+                'fish2 Lorem ipsum dolor sit amet',
+                'fish3',
+                'fish4',
+                'fish5 , consectetur adipisicing elit.',
+                'fish6'
+            ]
+        },
+        {
+            type: 'Fruits',
+            components: [
+                'fruit1',
+                'fruit2',
+                'fruit3',
+                'fruit4',
+                'fruit5',
+                'fruit6',
+                'fruit7',
+                'fruit8',
+                'fruit9',
+                'fruit10'
+            ]
+        },
+        {
+            type: 'Eggs',
+            components: [
+                'Eggs1',
+                'Eggs2',
+                'Eggs3',
+                'Eggs4'
+            ]
+        },
+        {
+            type: 'Pokemons',
+            components: [
+                'Squirtle',
+                'Rattata',
+                'Charmander',
+                'Venusaur',
+                'Zubat',
+                'Wooper',
+                'Bulbasaur',
+                'Pidgeotto',
+                'Lotad'
+            ]
+        }
+    ]
+);
+*/

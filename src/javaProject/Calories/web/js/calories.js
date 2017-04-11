@@ -3,7 +3,7 @@ var server = new Server();
 
 var links = app.getAllControls();
 
-//function findItem(){
+function findItem(){
     var appFind = app.getAppFind();
     var toolbarFind = new Toolbar(appFind);
     var controlFind = toolbarFind.control;
@@ -23,8 +23,8 @@ var links = app.getAllControls();
         server.getComponents(toolbarFind);
     }
     initAppFind();
-//}
-//findItem();
+}
+findItem();
 
 function addItem(){
     for (var i = 0; i < links.add.length; i++){
@@ -151,4 +151,27 @@ function calculateCalories(){
 }
 calculateCalories();
 
+function initUser(){ 
+    var regParent = document.querySelector('.registration');
+    var registration = new Registration(regParent);
+
+    var user = new User(
+        document.querySelector('.user'),
+        'Maksim Samuilionak',
+        'maximwow70@gmail.com',
+        'maxGotic',
+        './img/users/user3.jpg',
+        'Belarus',
+        'Mogilev',
+        'maximGotik@gmail.com',
+        'Web-Deadveloper',
+        3
+    );
+
+    registration.onsubmit = function(){
+        var regUser = registration.getUser()
+        server.addUser(regUser, user);
+    }   
+}
+initUser();
 
