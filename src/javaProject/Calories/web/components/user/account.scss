@@ -1,4 +1,5 @@
 .account{
+    position: relative;
     &-header{
         margin-bottom: 20px; 
         
@@ -19,13 +20,19 @@
         }
     }
     &-sign_in, &-registration{
+        position: absolute;
+        top: 0%;
+        left: 0;
+        right: 0;
+        max-width: 400px;
+
         margin: 0 auto;
         margin-bottom: 20px;
 
         padding: 20px;
         background-color: $dark-color;
         border-radius: 5px;
-        box-shadow: 0 0 20px rgba($dark-color, 0.5);
+        box-shadow: 0 0 50px rgba($dark-color, 0.8);
         
         max-width: 400px;
         &--close{

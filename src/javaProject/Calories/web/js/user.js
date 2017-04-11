@@ -6,6 +6,11 @@ var RegistrationAssistant = (function () {
             event.preventDefault();
             that.onsubmit();
         });
+        var btnClose = this._dom.querySelector('.registration-btn--close');
+        btnClose.addEventListener('click', function () {
+            var ar = parent.querySelector('.account-registration');
+            $(ar).addClass('account-registration--close');
+        });
     }
     RegistrationAssistant.prototype.onsubmit = function () { };
     ;
@@ -17,7 +22,13 @@ var RegistrationAssistant = (function () {
         var userCity = this._dom.querySelector('.registration-select--city').value;
         var userContacts = this._dom.querySelector('.registration-select--contacts').value;
         var userInfo = this._dom.querySelector('.registration-select--info').value;
-        var userPhoto = this._dom.querySelector('.registration-select--file .file_select').files[0];
+        var userPhoto;
+        try {
+            userPhoto = this._dom.querySelector('.registration-select--file .file_select').files[0];
+        }
+        catch (e) {
+            userPhoto = '';
+        }
         var user = {
             name: userName,
             eMail: userMail,
@@ -39,6 +50,11 @@ var SignInAssistant = (function () {
         this._dom.addEventListener('submit', function () {
             event.preventDefault();
             that.onsubmit();
+        });
+        var btnClose = this._dom.querySelector('.sign_in-btn--close');
+        btnClose.addEventListener('click', function () {
+            var ar = parent.querySelector('.account-sign_in');
+            $(ar).addClass('account-sign_in--close');
         });
     }
     SignInAssistant.prototype.onsubmit = function () { };
@@ -77,16 +93,18 @@ var User = (function () {
         var controlsRegistration = this._dom.querySelectorAll('.navigation-list--registrate');
         var controlsSignIn = this._dom.querySelectorAll('.navigation-list--sign_in');
         var controlsSignOut = this._dom.querySelectorAll('.navigation-list--sign_out');
+        var reg = that._dom.querySelector('.account-registration');
+        var signIn = that._dom.querySelector('.account-sign_in');
         function initControlRegistration() {
-            var reg = that._dom.querySelector('.account-registration');
-            $(reg).toggleClass('account-registration--close');
+            $(reg).removeClass('account-registration--close');
+            $(signIn).addClass('account-sign_in--close');
         }
         for (var i = 0; i < controlsRegistration.length; i++) {
             controlsRegistration[i].addEventListener('click', initControlRegistration);
         }
         function initControlSignIn() {
-            var signIn = that._dom.querySelector('.account-sign_in');
-            $(signIn).toggleClass('account-sign_in--close');
+            $(signIn).removeClass('account-sign_in--close');
+            $(reg).addClass('account-registration--close');
         }
         for (var i = 0; i < controlsSignIn.length; i++) {
             controlsSignIn[i].addEventListener('click', initControlSignIn);
@@ -102,6 +120,12 @@ var User = (function () {
         for (var i = 0; i < controlsSignOut.length; i++) {
             controlsSignOut[i].addEventListener('click', initControlSignOut);
         }
+    };
+    User.prototype.removeAssistentsVM = function () {
+        var reg = this._dom.querySelector('.account-registration');
+        $(reg).addClass('account-registration--close');
+        var si = this._dom.querySelector('.account-sign_in');
+        $(si).addClass('account-sign_in--close');
     };
     User.prototype.updateAccessVM = function (access) {
         var accessVM;
@@ -159,6 +183,7 @@ var User = (function () {
         this._info = info;
         this._access = access;
         this.updateControlsVM(false);
+        this.removeAssistentsVM();
         this.updateVM();
     };
     User.prototype.setUserByObj = function (user) {
@@ -172,6 +197,7 @@ var User = (function () {
         this._info = user.info;
         this._access = user.access;
         this.updateControlsVM(false);
+        this.removeAssistentsVM();
         this.updateVM();
     };
     User.prototype.outUser = function () {

@@ -14,6 +14,12 @@ class RegistrationAssistant{
             event.preventDefault();
             that.onsubmit();
         });
+
+        var btnClose = this._dom.querySelector('.registration-btn--close');
+        btnClose.addEventListener('click', function(){
+            var ar = parent.querySelector('.account-registration');
+            $(ar).addClass('account-registration--close');
+        });
     }
     
     public getUser(){
@@ -25,8 +31,13 @@ class RegistrationAssistant{
         var userCity = this._dom.querySelector('.registration-select--city').value;
         var userContacts = this._dom.querySelector('.registration-select--contacts').value;
         var userInfo = this._dom.querySelector('.registration-select--info').value;
-
-        var userPhoto = this._dom.querySelector('.registration-select--file .file_select').files[0];
+        
+        var userPhoto: any;
+        try{
+            userPhoto = this._dom.querySelector('.registration-select--file .file_select').files[0];
+        } catch(e){
+            userPhoto = '';
+        }
         
         var user = {
             name: userName,
@@ -57,6 +68,12 @@ class SignInAssistant{
             event.preventDefault();
             that.onsubmit();
         });
+
+        var btnClose = this._dom.querySelector('.sign_in-btn--close');
+        btnClose.addEventListener('click', function(){
+            var ar = parent.querySelector('.account-sign_in');
+            $(ar).addClass('account-sign_in--close');
+        });
     }
     
     public getUser(){
@@ -69,6 +86,10 @@ class SignInAssistant{
         }
         return user;
     }
+}
+
+class StatisticAssistant{
+
 }
 
 class User{
@@ -88,6 +109,7 @@ class User{
     
     public _registrationAssistant: RegistrationAssistant;
     public _signInAssistant: SignInAssistant;
+    public _statisticAssistant: StatisticAssistant;
     private _controlAssistants: any;
 
     
@@ -120,17 +142,21 @@ class User{
         var controlsSignIn = this._dom.querySelectorAll('.navigation-list--sign_in');
         var controlsSignOut = this._dom.querySelectorAll('.navigation-list--sign_out');
 
+
+        let reg = that._dom.querySelector('.account-registration');
+        let signIn = that._dom.querySelector('.account-sign_in');
+
         function initControlRegistration(){
-            let reg = that._dom.querySelector('.account-registration');
-            $(reg).toggleClass('account-registration--close');
+            $(reg).removeClass('account-registration--close');
+            $(signIn).addClass('account-sign_in--close');
         }        
         for (let i = 0; i < controlsRegistration.length; i++){
             controlsRegistration[i].addEventListener('click', initControlRegistration);
         }
     
         function initControlSignIn(){
-            let signIn = that._dom.querySelector('.account-sign_in');
-            $(signIn).toggleClass('account-sign_in--close');
+            $(signIn).removeClass('account-sign_in--close');
+            $(reg).addClass('account-registration--close');
         }
         for (let i = 0; i < controlsSignIn.length; i++){
             controlsSignIn[i].addEventListener('click', initControlSignIn);
@@ -149,7 +175,14 @@ class User{
             controlsSignOut[i].addEventListener('click', initControlSignOut);
         }
     }
+    
+    private removeAssistentsVM(){
+        var reg = this._dom.querySelector('.account-registration');
+        $(reg).addClass('account-registration--close');
 
+        var si = this._dom.querySelector('.account-sign_in');
+        $(si).addClass('account-sign_in--close');
+    }
     private updateAccessVM(access: number): string{
         var accessVM: string;
 
@@ -215,6 +248,7 @@ class User{
         this._access = access;
         
         this.updateControlsVM(false);
+        this.removeAssistentsVM();
         this.updateVM();
     }
     public setUserByObj(user: any): void{
@@ -229,6 +263,7 @@ class User{
         this._access = user.access;
         
         this.updateControlsVM(false);
+        this.removeAssistentsVM();
         this.updateVM();
     }
     public outUser(){

@@ -2,6 +2,7 @@
 @import 'registration.scss';
 @import 'sign_in.scss';
 @import 'portfolio.scss';
+@import 'statistic.scss';
 @import 'dashboard.scss';
 
 .user{
@@ -9,6 +10,9 @@
 
     }
     &-portfolio{
+        margin-bottom: 20px;
+    }
+    &-statistic{
         margin-bottom: 50px;
     }
 }
