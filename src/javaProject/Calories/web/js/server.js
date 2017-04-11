@@ -176,7 +176,21 @@ Server.prototype.addUser = function (regUser, user) {
             }
         }
     }
-
+}
+Server.prototype.signInUser = function(inUser, user){
+    var that = this;
+    
+    var _inUser = JSON.stringify(inUser);
+    var xhr = that.getNewXhr();
+    xhr.open('POST', 'SignInUser', true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send(_inUser);
+    xhr.onreadystatechange = function(){
+        if (this.readyState == 4 && this.status == 200){
+            var regUser = JSON.parse(xhr.responseText);
+            user.setUserByObj(regUser);
+        }
+    }
 }
 
 

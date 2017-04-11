@@ -944,6 +944,19 @@
       width: 100%;
       text-align: center; } }
 
+.account-header {
+  margin-bottom: 20px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  background-color: #dcdcdd; }
+  .account-header .header {
+    color: #2c363f; }
+  .account-header .logo {
+    text-align: left; }
+    .account-header .logo-title {
+      font-family: exo_r, exo_r, Arial, sans-serif;
+      font-size: 24px; }
+
 .account-sign_in, .account-registration {
   margin: 0 auto;
   margin-bottom: 20px;
@@ -952,6 +965,8 @@
   border-radius: 5px;
   box-shadow: 0 0 20px rgba(44, 54, 63, 0.5);
   max-width: 400px; }
+  .account-sign_in--close, .account-registration--close {
+    display: none; }
 
 .registration {
   text-align: left; }

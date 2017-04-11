@@ -151,10 +151,7 @@ function calculateCalories(){
 }
 calculateCalories();
 
-function initUser(){ 
-    var regParent = document.querySelector('.registration');
-    var ra = new RegistrationAssistant(regParent);
-
+//function initUser(){ 
     var user = new User(
         document.querySelector('.user'),
         'Maksim Samuilionak',
@@ -168,10 +165,16 @@ function initUser(){
         3
     );
 
+    var ra = user._registrationAssistant;
+    var sia = user._signInAssistant;
     ra.onsubmit = function(){
         var regUser = ra.getUser()
         server.addUser(regUser, user);
     }   
-}
-initUser();
+    sia.onsubmit = function(){
+        var inUser = sia.getUser();
+        server.signInUser(inUser, user);
+    }
+//}
+//initUser();
 
