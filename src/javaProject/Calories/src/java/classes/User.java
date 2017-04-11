@@ -24,6 +24,7 @@ public class User {
     private int access;
     private String image;
     private String src;
+    private String srcServer;
     private ArrayList<Dish> dishes;
     
     public User(int id,String eMail, String password, String name, String info, String country, String city, String contact, int access, String type) {
@@ -37,15 +38,29 @@ public class User {
         this.contact = contact;
         this.access = access;
         setDishes(id);
-        System.out.println("not err");
         setSRC(id,type);
+        setSRCServer(id,type);
     }
     
+    private void setSRCServer(int id, String type) {
+        if(type.equals("")||type==null||type.equals("Null"))
+            srcServer=FolderImages+"user.jpg";
+        else {
+            if(type.equals("jpeg"))
+                srcServer=FolderImages+"user"+id+".jpg";
+            else
+                srcServer=FolderImages+"user"+id+"."+type;
+        }
+    }
     private void setSRC(int id, String type) {
         if(type.equals("")||type==null||type.equals("Null"))
-            src=FolderImages+"user.jpg";
-        else
-            src=FolderImages+"user"+id+"."+type;
+            src="./img/users/user.jpg";
+        else {
+            if(type.equals("jpeg"))
+                src="./img/users/user"+id+".jpg";
+            else
+                src="./img/users/user"+id+"."+type;
+        }
     }
     
     private void setDishes(int id) {
@@ -72,6 +87,9 @@ public class User {
     }
     public String getContact() {
         return contact;
+    }
+    public String getSRCServer() {
+        return srcServer;
     }
     public String getSRC() {
         return src;

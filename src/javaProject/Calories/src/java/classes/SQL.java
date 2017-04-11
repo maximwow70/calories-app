@@ -279,7 +279,7 @@ public class SQL {
                 user = findUser(user.getEMail(),user.getPassword());
                 code = code.substring(code.indexOf(',')+1);
                 byte[] byteImage = Base64.getDecoder().decode(code);
-                try(FileOutputStream out = new FileOutputStream(new File(user.FolderImages+user.getSRC()))) {
+                try(FileOutputStream out = new FileOutputStream(new File(user.getSRCServer()))) {
                     out.write(byteImage);
                 }
             }

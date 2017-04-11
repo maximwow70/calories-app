@@ -82,6 +82,7 @@ public class AddUser extends HttpServlet {
             user = SQL.findUser(user.getEMail(), user.getPassword());
             answer = gson.toJson(user);
         }
+        System.out.println(answer);
         response.getWriter().write(answer);
     }
 
