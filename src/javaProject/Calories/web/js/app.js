@@ -91,6 +91,7 @@ App.prototype.initControls = function() {
 }
 App.prototype.closeAll = function(){
     $(this.select).addClass('app-select--close');
+    $(this.appUser).addClass('app-user--close');
     $(this.appFind).addClass('app-find--close');
     $(this.appAdd).addClass('app-add--close');
     $(this.appSearch).addClass('app-search--close');
@@ -158,7 +159,11 @@ App.prototype.openCalculator = function(){
 }
 App.prototype.openUser = function(){
     var that = this;
-    $(that.appUser).toggleClass('app-user--close');
+    that.closeAll();
+    setTimeout(function(){
+        $(that.loading).addClass('app-loading--close');
+        $(that.appUser).removeClass('app-user--close');
+    }, 500);
 }
 App.prototype.openView = function(){
     var that = this;

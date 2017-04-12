@@ -167,7 +167,7 @@ var StatisticAssistant = (function () {
     return StatisticAssistant;
 }());
 var User = (function () {
-    function User(parent, name, mail, password, photo, country, city, contacts, info, access) {
+    function User(parent, name, mail, password, photo, country, city, contacts, info, access, items) {
         this._dom = parent;
         this._name = name;
         this._mail = mail;
@@ -178,6 +178,8 @@ var User = (function () {
         this._contacts = contacts;
         this._info = info;
         this._access = access;
+        //console.log(parent.querySelector('.item_list'));
+        this._itemList = new ItemList(parent, items, 'My Dishes');
         this._vm = new UserVM(parent);
         this._registrationAssistant = new RegistrationAssistant(parent);
         this._signInAssistant = new SignInAssistant(parent);
@@ -210,6 +212,7 @@ var User = (function () {
         this._contacts = user.contact;
         this._info = user.info;
         this._access = user.access;
+        this._itemList.setItems(user.dishes);
         this._vm.initControlAssistants(this);
         this._vm.updateControlsVM(false);
         this._vm.removeAssistentsVM();

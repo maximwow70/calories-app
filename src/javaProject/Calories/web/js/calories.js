@@ -6,15 +6,113 @@ var links = app.getAllControls();
 //function initUser(){ 
     var user = new User(
         document.querySelector('.user'),
-        'Maksim Samuilionak',
-        'maximwow70@gmail.com',
-        'maxGotic',
-        './img/users/user3.jpg',
-        'Belarus',
-        'Mogilev',
-        'maximGotik@gmail.com',
-        'Web-Deadveloper',
-        3
+        '',
+        '',
+        '',
+        '',
+        '',
+        '',
+        '',
+        '',
+        0,
+        [
+            {
+                name: 'apple pie',
+                components: [
+                    {
+                        id: 1,
+                        name: 'pie',
+                        weight: 666,
+                        calories: 300
+                    },
+                    {
+                        id: 2,
+                        name: 'apple',
+                        weight: 666,
+                        calories: 100
+                    },
+                    {
+                        id: 3,
+                        name: 'cream',
+                        weight: 666,
+                        calories: 500
+                    },
+                    {
+                        id: 3,
+                        name: 'cream',
+                        weight: 666,
+                        calories: 500
+                    }
+                ],
+                weight: 100,
+                calories: 666,
+                src: 'dish3.jpg'
+            },
+            {
+                name: 'apple pie',
+                components: [
+                    {
+                        id: 1,
+                        name: 'pie',
+                        weight: 666,
+                        calories: 300
+                    },
+                    {
+                        id: 2,
+                        name: 'apple',
+                        weight: 666,
+                        calories: 100
+                    },
+                    {
+                        id: 3,
+                        name: 'cream',
+                        weight: 666,
+                        calories: 500
+                    },
+                    {
+                        id: 3,
+                        name: 'cream',
+                        weight: 666,
+                        calories: 500
+                    }
+                ],
+                weight: 100,
+                calories: 666,
+                src: 'dish4.jpg'
+            },
+            {
+                name: 'apple pie',
+                components: [
+                    {
+                        id: 1,
+                        name: 'pie',
+                        weight: 666,
+                        calories: 300
+                    },
+                    {
+                        id: 2,
+                        name: 'apple',
+                        weight: 666,
+                        calories: 100
+                    },
+                    {
+                        id: 3,
+                        name: 'cream',
+                        weight: 666,
+                        calories: 500
+                    },
+                    {
+                        id: 3,
+                        name: 'cream',
+                        weight: 666,
+                        calories: 500
+                    }
+                ],
+                weight: 100,
+                calories: 666,
+                src: 'dish3.jpg'
+            }
+        ]
     );
 
     var ra = user._registrationAssistant;
@@ -53,7 +151,7 @@ function findItem(){
 }
 findItem();
 
-function addItem(){
+//function addItem(){
     for (var i = 0; i < links.add.length; i++){
         links.add[i].addEventListener('click', initAppAdd);
     }
@@ -69,8 +167,8 @@ function addItem(){
         server.getComponents(toolbar);
     }
     initAppAdd();
-}
-addItem();
+//}
+//addItem();
 
 function searchComponents(){
 

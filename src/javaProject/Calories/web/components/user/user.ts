@@ -1,4 +1,5 @@
 declare var $: Function;
+declare var ItemList: any;
 
 class UserVM{
     private _dom: any;
@@ -218,7 +219,7 @@ class User{
 
     private _access: number;
 
-    private _itemList: [any];
+    private _itemList: any;
     
     public _vm: UserVM;
     public _registrationAssistant: RegistrationAssistant;
@@ -228,7 +229,7 @@ class User{
 
     
     constructor(parent: any, name: string, mail: string, password: string, photo:string, country: string,
-        city: string, contacts: string, info: string, access: number) {
+        city: string, contacts: string, info: string, access: number, items: any) {
 
         this._dom = parent;
         this._name = name;
@@ -240,6 +241,9 @@ class User{
         this._contacts = contacts;
         this._info = info;
         this._access = access;
+    
+        //console.log(parent.querySelector('.item_list'));
+        this._itemList = new ItemList(parent, items, 'My Dishes');
 
         this._vm = new UserVM(parent);
         this._registrationAssistant = new RegistrationAssistant(parent);
@@ -278,6 +282,8 @@ class User{
         this._contacts = user.contact;
         this._info = user.info;
         this._access = user.access;
+        
+        this._itemList.setItems(user.dishes);
         
         this._vm.initControlAssistants(this);
         this._vm.updateControlsVM(false);
