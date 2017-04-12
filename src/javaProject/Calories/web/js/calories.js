@@ -6,15 +6,15 @@ var links = app.getAllControls();
 //function initUser(){ 
     var user = new User(
         document.querySelector('.user'),
-        'Maksim Samuilionak',
-        'maximwow70@gmail.com',
-        'maxGotic',
-        './img/users/user3.jpg',
-        'Belarus',
-        'Mogilev',
-        'maximGotik@gmail.com',
-        'Web-Deadveloper',
-        3
+        '',
+        '',
+        '',
+        '',
+        '',
+        '',
+        '',
+        '',
+        0
     );
 
     var ra = user._registrationAssistant;
