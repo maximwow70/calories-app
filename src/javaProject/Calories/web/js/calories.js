@@ -151,7 +151,7 @@ function findItem(){
 }
 findItem();
 
-//function addItem(){
+function addItem(){
     for (var i = 0; i < links.add.length; i++){
         links.add[i].addEventListener('click', initAppAdd);
     }
@@ -167,8 +167,8 @@ findItem();
         server.getComponents(toolbar);
     }
     initAppAdd();
-//}
-//addItem();
+}
+addItem();
 
 function searchComponents(){
 
@@ -209,7 +209,7 @@ function addComponents(){
     function initAppAddComponents(){
         control.addEventListener('click', function(){
             var component = toolbar.getNewComponent();
-            server.addComponent(info, component);
+            server.addComponent(info, user, component);
         });
     }
     initAppAddComponents();
