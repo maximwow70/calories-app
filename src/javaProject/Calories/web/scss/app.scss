@@ -7,14 +7,16 @@
     
     // modules
     &-user{
+        flex: 1;
         width: 100%;
 
         display: flex;
         justify-content: center;
-        align-items: center;
+        align-items: flex-start;
         text-align: center;
 
         border-top: 2px solid $yellow-color;
+        border-bottom: 2px solid $yellow-color;
         background-color: $blue-color;
         color: $light-color;
         
