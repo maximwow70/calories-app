@@ -83,7 +83,10 @@ public class AddDish extends HttpServlet {
         String result = SQL.addDish(input.dish,input.user);
         list.add(SQL.findDishByNameOnly(input.dish.getName()));
         String jsonList = gson.toJson(list);
+        if(list.get(0)==null)
+            jsonList = "[]";
         String outJson = "{\"result\" : \""+result+"\", \"dish\":"+jsonList+"}";
+        System.out.println(outJson);
         response.getWriter().write(outJson);
     }
     
