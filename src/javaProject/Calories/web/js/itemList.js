@@ -10,6 +10,10 @@ function ItemList(parent, _items, _title){
     if (_items){
         this.addItems(_items);
     }
+
+    this.onaddtouser = function(){
+        alert('kek');
+    };
 }
 ItemList.prototype.setTitle = function(_title){
     this.title = _title;
@@ -33,7 +37,6 @@ ItemList.prototype.setItems = function(items){
 }
 ItemList.prototype.addItems = function(items){
     for (var i = 0; i < items.length; i++){
-        this.items.push(items[i]);
 
         // dom
         var id = items[i].id;
@@ -57,8 +60,11 @@ ItemList.prototype.addItems = function(items){
         itemContainer.setAttribute('class', 'item_list-item');
 
 		var item = new Item(id, name, components, weight, calories, src);
+        item.onadditem = this.onaddtouser;
 		itemContainer.appendChild(item.getDom());
         this.dom.appendChild(itemContainer);
+
+        this.items.push(items[i]);
     }
 }
 ItemList.prototype.setEmpty = function(){
