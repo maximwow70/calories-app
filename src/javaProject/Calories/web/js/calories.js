@@ -3,6 +3,33 @@ var server = new Server();
 
 var links = app.getAllControls();
 
+//function initUser(){ 
+    var user = new User(
+        document.querySelector('.user'),
+        'Maksim Samuilionak',
+        'maximwow70@gmail.com',
+        'maxGotic',
+        './img/users/user3.jpg',
+        'Belarus',
+        'Mogilev',
+        'maximGotik@gmail.com',
+        'Web-Deadveloper',
+        3
+    );
+
+    var ra = user._registrationAssistant;
+    var sia = user._signInAssistant;
+    ra.onsubmit = function(){
+        var regUser = ra.getUser()
+        server.addUser(regUser, user);
+    }   
+    sia.onsubmit = function(){
+        var inUser = sia.getUser();
+        server.signInUser(inUser, user);
+    }
+//}
+//initUser();
+
 function findItem(){
     var appFind = app.getAppFind();
     var toolbarFind = new Toolbar(appFind);
@@ -36,7 +63,7 @@ function addItem(){
     var itemList = new ItemList(appAdd);
     control.addEventListener('click', function(){
         var dish = toolbar.getItem();
-        server.addDish(itemList, dish);
+        server.addDish(itemList, user, dish);
     });
     function initAppAdd(){
         server.getComponents(toolbar);
@@ -151,30 +178,4 @@ function calculateCalories(){
 }
 calculateCalories();
 
-//function initUser(){ 
-    var user = new User(
-        document.querySelector('.user'),
-        'Maksim Samuilionak',
-        'maximwow70@gmail.com',
-        'maxGotic',
-        './img/users/user3.jpg',
-        'Belarus',
-        'Mogilev',
-        'maximGotik@gmail.com',
-        'Web-Deadveloper',
-        3
-    );
-
-    var ra = user._registrationAssistant;
-    var sia = user._signInAssistant;
-    ra.onsubmit = function(){
-        var regUser = ra.getUser()
-        server.addUser(regUser, user);
-    }   
-    sia.onsubmit = function(){
-        var inUser = sia.getUser();
-        server.signInUser(inUser, user);
-    }
-//}
-//initUser();
 
