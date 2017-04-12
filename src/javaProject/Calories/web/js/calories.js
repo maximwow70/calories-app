@@ -17,6 +17,7 @@ var links = app.getAllControls();
         0,
         [
             {
+                id: 1,
                 name: 'apple pie',
                 components: [
                     {
@@ -48,7 +49,8 @@ var links = app.getAllControls();
                 calories: 666,
                 src: 'dish3.jpg'
             },
-            {
+            {   
+                id: 2,
                 name: 'apple pie',
                 components: [
                     {
@@ -81,6 +83,7 @@ var links = app.getAllControls();
                 src: 'dish4.jpg'
             },
             {
+                id: 3,
                 name: 'apple pie',
                 components: [
                     {
@@ -128,11 +131,24 @@ var links = app.getAllControls();
 //}
 //initUser();
 
-function findItem(){
+//function findItem(){
     var appFind = app.getAppFind();
     var toolbarFind = new Toolbar(appFind);
     var controlFind = toolbarFind.control;
     var itemListFind = new ItemList(appFind);
+
+    itemListFind.onsetitems = function(){
+        var items = itemListFind.items;
+        for (var i = 0; i < items.length; i++){
+            btn = items[i].getDom().querySelector('.item-select--add');
+
+            btn.addEventListener('click', function(){
+                var id = this.getAttribute('data-id');
+                var item = itemListFind.getItemById(id);
+                server.userAddItem(item, user);
+            });
+        }
+    }
 
     for (var i = 0; i < links.find.length; i++){
         links.find[i].addEventListener('click', initAppFind);
@@ -148,8 +164,8 @@ function findItem(){
         server.getComponents(toolbarFind);
     }
     initAppFind();
-}
-findItem();
+//}
+//findItem();
 
 function addItem(){
     for (var i = 0; i < links.add.length; i++){

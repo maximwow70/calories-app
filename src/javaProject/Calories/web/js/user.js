@@ -72,6 +72,12 @@ var UserVM = (function () {
         }
         return accessVM;
     };
+    UserVM.prototype.updateItemBtnVM = function (user) {
+        var btns = user.getItemList().getDom().querySelectorAll('.item-select--add');
+        for (var i = 0; i < btns.length; i++) {
+            $(btns[i]).addClass('item-select--added');
+        }
+    };
     UserVM.prototype.updateVM = function (user) {
         var photoVM = this._dom.querySelector('.portfolio-img');
         photoVM.setAttribute('src', user.getPhoto());
@@ -86,6 +92,7 @@ var UserVM = (function () {
         contactsVM.innerHTML = 'Contacts: ' + user.getContacts();
         var infoVM = this._dom.querySelector('.portfolio-about');
         infoVM.innerHTML = 'About Myself: ' + user.getInfo();
+        this.updateItemBtnVM(user);
     };
     return UserVM;
 }());
@@ -180,6 +187,7 @@ var User = (function () {
         this._access = access;
         //console.log(parent.querySelector('.item_list'));
         this._itemList = new ItemList(parent, items, 'My Dishes');
+        //this._itemList.onaddtouser = function(){alert('lel')};
         this._vm = new UserVM(parent);
         this._registrationAssistant = new RegistrationAssistant(parent);
         this._signInAssistant = new SignInAssistant(parent);
@@ -203,6 +211,7 @@ var User = (function () {
         this._vm.updateVM(this);
     };
     User.prototype.setUserFromServer = function (user) {
+        this._id = user.id;
         this._name = user.name;
         this._mail = user.eMail;
         this._password = user.password;
@@ -222,6 +231,18 @@ var User = (function () {
         this.setUser('', '', '', '', '', '', '', '', 0);
         this._vm.initControlAssistants(this);
         this._vm.updateControlsVM(true);
+    };
+    User.prototype.addItems = function (items) {
+        this._itemList.addItems(items);
+    };
+    User.prototype.getDom = function () {
+        return this._dom;
+    };
+    User.prototype.getItemList = function () {
+        return this._itemList;
+    };
+    User.prototype.getId = function () {
+        return this._id;
     };
     User.prototype.getName = function () {
         return this._name;

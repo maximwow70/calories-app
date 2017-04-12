@@ -20,6 +20,7 @@
         }
     }
     &-sign_in, &-registration{
+        z-index: 10;
         position: absolute;
         top: 0%;
         left: 0;

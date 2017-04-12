@@ -884,6 +884,10 @@
       left: 20px; }
     .item-select--add {
       right: 20px; }
+    .item-select--added {
+      -webkit-transform: rotate(-45deg);
+      -ms-transform: rotate(-45deg);
+      transform: rotate(-45deg); }
   .item-components {
     overflow: hidden;
     max-height: 270px; }
@@ -963,6 +967,7 @@
         font-family: exo_r, exo_r, Arial, sans-serif;
         font-size: 24px; }
   .account-sign_in, .account-registration {
+    z-index: 10;
     position: absolute;
     top: 0%;
     left: 0;
