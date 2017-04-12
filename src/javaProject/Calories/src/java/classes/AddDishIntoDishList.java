@@ -75,6 +75,7 @@ public class AddDishIntoDishList extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String jsonInput = request.getReader().readLine();
+        System.out.println(jsonInput);
         Gson gson = new Gson();
         Input input = gson.fromJson(jsonInput, Input.class);
         String result = SQL.AddDishIntoDishList(input.dish, input.user);
