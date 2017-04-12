@@ -221,7 +221,7 @@ Server.prototype.signInUser = function(inUser, user){
 }
 Server.prototype.userAddItem = function(_item, user){
     var that = this;
-    
+
     var addUser = {
         id: user.getId(),
         eMail: user.getMail(),
@@ -229,7 +229,7 @@ Server.prototype.userAddItem = function(_item, user){
     }
     var addInfo = {
         user: addUser,
-        item: _item
+        dish: _item
     }
     var _addInfo = JSON.stringify(addInfo);
     
