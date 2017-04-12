@@ -3,10 +3,13 @@ declare var ItemList: any;
 
 class UserVM{
     private _dom: any;
+    private _statistic: any;
     private _controlAssistants: any;
     
     constructor (dom: any){
         this._dom = dom;
+
+        this._statistic = dom.querySelector('.statistic');
     }
     public initControlAssistants(user: User): void{
         let that = this;
@@ -86,6 +89,17 @@ class UserVM{
         }
         
         return accessVM;
+    }
+
+    public updateStatisticVM(statistic: any): void{
+        let averageCaloriesVM = this._statistic.querySelector('.statistic-type--average_calories .statistic-value');
+        averageCaloriesVM.innerHTML = statistic.averageCalories;
+
+        let countItemsVM = this._statistic.querySelector('.statistic-type--count_items .statistic-value');
+        countItemsVM.innerHTML = statistic.countItems;
+
+        let favoriteComponentVM = this._statistic.querySelector('.statistic-type--favorite_component .statistic-value');
+        favoriteComponentVM.innerHTML = ':3';
     }
     
     public updateItemBtnVM(user: User){
@@ -210,7 +224,39 @@ class SignInAssistant{
 }
 
 class StatisticAssistant{
-    
+    constructor(){
+
+    }
+
+    private getCountItems(user: User){
+        let count = user.getItemList().items.length;
+        return count;
+    }
+    private getAverageCalories(user: User){
+        let items = user.getItemList().items;
+        let calories = 0;
+        for (let i = 0; i < items.length; i++){
+            calories += parseInt(items[i].calories);
+        }
+        calories = Math.round(calories / items.length);
+        return (isNaN(calories)) ?  0 : calories;   
+    }
+    private getFavoriteComponent(user: User){
+        let items = user.getItemList().items;
+        let components = [];
+        for (let i = 0; i < items.length; i++){
+            let components = items[i].components;
+            for (let j = 0; j < items; j++){
+
+            }
+        } 
+    }
+    public getStatistic(user: User){
+        return {
+            averageCalories: this.getAverageCalories(user),
+            countItems: this.getCountItems(user)
+        }
+    }
 }
 
 class User{
@@ -231,6 +277,7 @@ class User{
     private _access: number;
 
     private _itemList: any;
+    private _statistic: any;
     
     public _vm: UserVM;
     public _registrationAssistant: RegistrationAssistant;
@@ -259,9 +306,17 @@ class User{
         this._vm = new UserVM(parent);
         this._registrationAssistant = new RegistrationAssistant(parent);
         this._signInAssistant = new SignInAssistant(parent);
+        this._statisticAssistant = new StatisticAssistant();
+    
+        this._statistic = this._statisticAssistant.getStatistic(this);
+        this._vm.updateStatisticVM(this._statistic);
         
         this._vm.initControlAssistants(this);
-        this._vm.updateControlsVM(false);
+        if (name == "") {
+            this._vm.updateControlsVM(true);
+        } else {
+            this._vm.updateControlsVM(false);
+        }
         this._vm.updateVM(this);
     }
 
@@ -279,9 +334,16 @@ class User{
         this._access = access;
         
         this._vm.initControlAssistants(this);
-        this._vm.updateControlsVM(false);
+        if (name == "") {
+            this._vm.updateControlsVM(true);
+        } else {
+            this._vm.updateControlsVM(false);
+        }
         this._vm.removeAssistentsVM();
         this._vm.updateVM(this);
+
+        this._statistic = this._statisticAssistant.getStatistic(this);
+        this._vm.updateStatisticVM(this._statistic);
     }
     public setUserFromServer(user: any): void{
         this._id = user.id;
@@ -298,20 +360,35 @@ class User{
         this._itemList.setItems(user.dishes);
         
         this._vm.initControlAssistants(this);
-        this._vm.updateControlsVM(false);
+        if (name == "") {
+            this._vm.updateControlsVM(true);
+        } else {
+            this._vm.updateControlsVM(false);
+        }
         this._vm.removeAssistentsVM();
         this._vm.updateVM(this);
+
+        this._statistic = this._statisticAssistant.getStatistic(this);
+        this._vm.updateStatisticVM(this._statistic);
     }
     public outUser(){
         this.setUser('', '', '', '', '', '', '', '', 0);
+        this._itemList.setEmpty();
         
         this._vm.initControlAssistants(this);
         this._vm.updateControlsVM(true);
+
+        this._statistic = this._statisticAssistant.getStatistic(this);
+        this._vm.updateStatisticVM(this._statistic);
     }
     public addItems(items: any): void{
         this._itemList.addItems(items);
+
+        this._statistic = this._statisticAssistant.getStatistic(this);
+        this._vm.updateStatisticVM(this._statistic);
     }
     
+
     public getDom(): any{
         return this._dom;
     }

@@ -1,6 +1,7 @@
 var UserVM = (function () {
     function UserVM(dom) {
         this._dom = dom;
+        this._statistic = dom.querySelector('.statistic');
     }
     UserVM.prototype.initControlAssistants = function (user) {
         var that = this;
@@ -71,6 +72,14 @@ var UserVM = (function () {
             accessVM = 'Slave';
         }
         return accessVM;
+    };
+    UserVM.prototype.updateStatisticVM = function (statistic) {
+        var averageCaloriesVM = this._statistic.querySelector('.statistic-type--average_calories .statistic-value');
+        averageCaloriesVM.innerHTML = statistic.averageCalories;
+        var countItemsVM = this._statistic.querySelector('.statistic-type--count_items .statistic-value');
+        countItemsVM.innerHTML = statistic.countItems;
+        var favoriteComponentVM = this._statistic.querySelector('.statistic-type--favorite_component .statistic-value');
+        favoriteComponentVM.innerHTML = ':3';
     };
     UserVM.prototype.updateItemBtnVM = function (user) {
         var btns = user.getItemList().getDom().querySelectorAll('.item-select--add');
@@ -171,6 +180,34 @@ var SignInAssistant = (function () {
 var StatisticAssistant = (function () {
     function StatisticAssistant() {
     }
+    StatisticAssistant.prototype.getCountItems = function (user) {
+        var count = user.getItemList().items.length;
+        return count;
+    };
+    StatisticAssistant.prototype.getAverageCalories = function (user) {
+        var items = user.getItemList().items;
+        var calories = 0;
+        for (var i = 0; i < items.length; i++) {
+            calories += parseInt(items[i].calories);
+        }
+        calories = Math.round(calories / items.length);
+        return (isNaN(calories)) ? 0 : calories;
+    };
+    StatisticAssistant.prototype.getFavoriteComponent = function (user) {
+        var items = user.getItemList().items;
+        var components = [];
+        for (var i = 0; i < items.length; i++) {
+            var components_1 = items[i].components;
+            for (var j = 0; j < items; j++) {
+            }
+        }
+    };
+    StatisticAssistant.prototype.getStatistic = function (user) {
+        return {
+            averageCalories: this.getAverageCalories(user),
+            countItems: this.getCountItems(user)
+        };
+    };
     return StatisticAssistant;
 }());
 var User = (function () {
@@ -191,8 +228,16 @@ var User = (function () {
         this._vm = new UserVM(parent);
         this._registrationAssistant = new RegistrationAssistant(parent);
         this._signInAssistant = new SignInAssistant(parent);
+        this._statisticAssistant = new StatisticAssistant();
+        this._statistic = this._statisticAssistant.getStatistic(this);
+        this._vm.updateStatisticVM(this._statistic);
         this._vm.initControlAssistants(this);
-        this._vm.updateControlsVM(false);
+        if (name == "") {
+            this._vm.updateControlsVM(true);
+        }
+        else {
+            this._vm.updateControlsVM(false);
+        }
         this._vm.updateVM(this);
     }
     User.prototype.setUser = function (name, mail, password, photo, country, city, contacts, info, access) {
@@ -206,9 +251,16 @@ var User = (function () {
         this._info = info;
         this._access = access;
         this._vm.initControlAssistants(this);
-        this._vm.updateControlsVM(false);
+        if (name == "") {
+            this._vm.updateControlsVM(true);
+        }
+        else {
+            this._vm.updateControlsVM(false);
+        }
         this._vm.removeAssistentsVM();
         this._vm.updateVM(this);
+        this._statistic = this._statisticAssistant.getStatistic(this);
+        this._vm.updateStatisticVM(this._statistic);
     };
     User.prototype.setUserFromServer = function (user) {
         this._id = user.id;
@@ -223,17 +275,29 @@ var User = (function () {
         this._access = user.access;
         this._itemList.setItems(user.dishes);
         this._vm.initControlAssistants(this);
-        this._vm.updateControlsVM(false);
+        if (name == "") {
+            this._vm.updateControlsVM(true);
+        }
+        else {
+            this._vm.updateControlsVM(false);
+        }
         this._vm.removeAssistentsVM();
         this._vm.updateVM(this);
+        this._statistic = this._statisticAssistant.getStatistic(this);
+        this._vm.updateStatisticVM(this._statistic);
     };
     User.prototype.outUser = function () {
         this.setUser('', '', '', '', '', '', '', '', 0);
+        this._itemList.setEmpty();
         this._vm.initControlAssistants(this);
         this._vm.updateControlsVM(true);
+        this._statistic = this._statisticAssistant.getStatistic(this);
+        this._vm.updateStatisticVM(this._statistic);
     };
     User.prototype.addItems = function (items) {
         this._itemList.addItems(items);
+        this._statistic = this._statisticAssistant.getStatistic(this);
+        this._vm.updateStatisticVM(this._statistic);
     };
     User.prototype.getDom = function () {
         return this._dom;
