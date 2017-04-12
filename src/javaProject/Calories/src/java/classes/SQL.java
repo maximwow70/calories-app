@@ -268,6 +268,30 @@ public class SQL {
         }
     }
     
+   public static String AddDishIntoDishList(Dish dish, User user) {
+       connect();
+       try {
+            ResultSet res = stat.executeQuery("SELECT COUNT(*) as count FROM DishList WHERE UserID = "+user.getId()+" AND DishID = "+dish.getId());
+            res.next();
+            int count = res.getInt("count");
+            res = stat.executeQuery("SELECT COUNT(*) as count FROM DishList WHERE UserID = "+user.getId());
+            res.next();
+            int countDishes = res.getInt("count");
+            if(count==0&&countDishes<=20) {
+                stat.execute("INSERT INTO DishList(UserID,DishID) VALUES("+user.getId()+","+dish.getId()+")");
+                return "true"; 
+            }
+            return "false";
+       } catch(SQLException e) {return "false";}
+   }
+   
+   public static void RemoveDishFromDishList(Dish dish,User user) {
+       connect();
+       try {
+           stat.execute("DELETE FROM DishList WHERE UserID = "+user.getId()+" AND DishID = "+dish.getId());
+       } catch(Exception e) {}
+   }
+    
     //User
     private static User initUser(ResultSet res) throws SQLException {
         return new User(res.getInt("UserID"),res.getString("eMail"),res.getString("Password"),res.getString("Name"),res.getString("Info"),
