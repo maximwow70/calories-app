@@ -151,7 +151,7 @@ Server.prototype.addComponent = function(info, user, _component){
         }
         var addInfo = {
             user: addUser,
-            copmonent: _component
+            component: _component
         }
         var _addInfo = JSON.stringify(addInfo);
 
