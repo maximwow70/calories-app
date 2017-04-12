@@ -6,6 +6,10 @@ function Item(id, name, components, weight, calories, src){
     this.components = components;
 	this.src = src;
 	this.imgPath = 'img/' + this.src + '';
+
+    this.onadditem = function(){
+        alert('pesos');
+    };
 	
     this.dom = document.createElement('div');
     this.dom.setAttribute('class', 'item');
@@ -55,6 +59,10 @@ function Item(id, name, components, weight, calories, src){
 
 	var itemSelectAdd= document.createElement('a');
 	itemSelectAdd.setAttribute('class', 'item-select item-select--add fa fa-plus');
+    var that = this;
+    itemSelectAdd.addEventListener('click', function(){
+        that.onadditem();
+    });
 	itemFront.appendChild(itemSelectAdd);
 
 	//itemBack

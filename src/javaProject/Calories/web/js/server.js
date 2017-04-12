@@ -49,7 +49,6 @@ Server.prototype.addDish = function (itemList, user, _dish){
         }
         var _addInfo = JSON.stringify(addInfo);
         
-        console.log(_addInfo);
         var xhr = that.getNewXhr();
         xhr.open('POST', 'AddDish', true);
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -136,22 +135,30 @@ Server.prototype.getInfo = function(info, str){
         }
     }
 }
-Server.prototype.addComponent = function(info, component){
+Server.prototype.addComponent = function(info, user, _component){
     var that = this;
 
     var reader = new FileReader();
-    file = component.image;
+    file = _component.image;
     reader.readAsDataURL(file);
     
     reader.onload = function(){
-        component.image = reader.result;
-        console.log(component);
+        _component.image = reader.result;
 
-        var _component = JSON.stringify(component);
+        var addUser = {
+            eMail: user.getMail(),
+            password: user.getPassword()
+        }
+        var addInfo = {
+            user: addUser,
+            copmonent: _component
+        }
+        var _addInfo = JSON.stringify(addInfo);
+
         var xhr = that.getNewXhr();
         xhr.open('POST', 'AddComponent', true);
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        xhr.send(_component);
+        xhr.send(_addInfo);
         xhr.onreadystatechange = function(){
             if (this.readyState == 4 && this.status == 200){
                 var information = JSON.parse(xhr.responseText);
