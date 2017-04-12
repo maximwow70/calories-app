@@ -117,30 +117,34 @@ public class SQL {
         } catch(SQLException e) {System.out.println("ByDishId ERROR");return null;}
     }
     
-    public static boolean addComponent(Component component) {
+    public static String addComponent(Component component, User user) {
         connect();
         try {
-            String code = component.getImage();
-            int isImage = 1;
-            if(code.equals(""))
-                isImage = 0;
-            ResultSet res = stat.executeQuery("SELECT * FROM Components WHERE Name = \""+component.getName()+"\"");
-            res.next();
-            try{
-                res.getInt("ComponentID");
-                return false;
-            } catch(Exception e){}
-            stat.execute("INSERT INTO Components(Name,Calories,Type,Info,isImage) \n"
-                    + "VALUES (\""+component.getName()+"\","+component.getCalories()+",\""+component.getType()+"\",\""+component.getInfo()+"\","+isImage+");");
-            res = stat.executeQuery("SELECT * FROM Components WHERE Name = \""+component.getName()+"\"");
-            res.next();
-            component = initComponentWithInfo(res);
-            byte[] byteImage = Base64.getDecoder().decode(code.substring(code.indexOf(',')+1));
-            try (FileOutputStream out = new FileOutputStream(new File("/Users/admin/Desktop/git/calories-app/src/javaProject/Calories/build/web/img/Components/"+component.getSrc()))) {
-                out.write(byteImage);
+            if(getUserAccess(user)>2) {
+                String code = component.getImage();
+                int isImage = 1;
+                if(code.equals(""))
+                    isImage = 0;
+                ResultSet res = stat.executeQuery("SELECT * FROM Components WHERE Name = \""+component.getName()+"\"");
+                res.next();
+                try{
+                    res.getInt("ComponentID");
+                    return "Component in BD";
+                } catch(Exception e){}
+                stat.execute("INSERT INTO Components(Name,Calories,Type,Info,isImage) \n"
+                        + "VALUES (\""+component.getName()+"\","+component.getCalories()+",\""+component.getType()+"\",\""+component.getInfo()+"\","+isImage+");");
+                res = stat.executeQuery("SELECT * FROM Components WHERE Name = \""+component.getName()+"\"");
+                res.next();
+                component = initComponentWithInfo(res);
+                byte[] byteImage = Base64.getDecoder().decode(code.substring(code.indexOf(',')+1));
+                try (FileOutputStream out = new FileOutputStream(new File("/Users/admin/Desktop/git/calories-app/src/javaProject/Calories/build/web/img/Components/"+component.getSrc()))) {
+                    out.write(byteImage);
+                }
+                return "Vse norm";
             }
-            return true;
-        } catch (Exception e) {return false;}   
+            else 
+                return "net prav";
+        } catch (Exception e) {return "oshibochka";}   
     }
     
     //Dish
@@ -263,6 +267,30 @@ public class SQL {
             return "ne norm";
         }
     }
+    
+   public static String AddDishIntoDishList(Dish dish, User user) {
+       connect();
+       try {
+            ResultSet res = stat.executeQuery("SELECT COUNT(*) as count FROM DishList WHERE UserID = "+user.getId()+" AND DishID = "+dish.getId());
+            res.next();
+            int count = res.getInt("count");
+            res = stat.executeQuery("SELECT COUNT(*) as count FROM DishList WHERE UserID = "+user.getId());
+            res.next();
+            int countDishes = res.getInt("count");
+            if(count==0&&countDishes<=20) {
+                stat.execute("INSERT INTO DishList(UserID,DishID) VALUES("+user.getId()+","+dish.getId()+")");
+                return "true"; 
+            }
+            return "false";
+       } catch(SQLException e) {return "false";}
+   }
+   
+   public static void RemoveDishFromDishList(Dish dish,User user) {
+       connect();
+       try {
+           stat.execute("DELETE FROM DishList WHERE UserID = "+user.getId()+" AND DishID = "+dish.getId());
+       } catch(Exception e) {}
+   }
     
     //User
     private static User initUser(ResultSet res) throws SQLException {

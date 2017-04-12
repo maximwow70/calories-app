@@ -29,6 +29,7 @@ public class Dish {
         weight = getWeight();
         calories = getCalories();
     }
+    
     public Dish(int id,String name, String type) {
         components = new ArrayList<>();
         this.name = name;
@@ -45,6 +46,17 @@ public class Dish {
     public void addComponents(ArrayList<Component> list) {
         components.addAll(list);
     }
+    
+    public int length() {
+        int count = 0;
+        for(Component c : components) {
+            if(!c.getName().equals(""))
+                count++;
+        }
+        return count;
+    }
+    
+    //gets
     public int getId() {
         return id;
     }
@@ -73,13 +85,5 @@ public class Dish {
             result+=(c.getWeight()*c.getCalories())/100;
         }
         return result;
-    }
-    public int length() {
-        int count = 0;
-        for(Component c : components) {
-            if(!c.getName().equals(""))
-                count++;
-        }
-        return count;
     }
 }

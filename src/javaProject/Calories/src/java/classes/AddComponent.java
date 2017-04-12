@@ -74,16 +74,22 @@ public class AddComponent extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String jsonComponent = request.getReader().readLine();
+        String jsonInput = request.getReader().readLine();
         Gson gson = new Gson();
-        Component component = gson.fromJson(jsonComponent, Component.class);
-        boolean isAdd = SQL.addComponent(component);
-        String result = "";
-        if(isAdd) {
-            component = SQL.findComponentByName(component.getName());
-            result = gson.toJson(component);
-        }
-        response.getWriter().write(result);
+        Input input = gson.fromJson(jsonInput, Input.class);
+        String result = SQL.addComponent(input.component,input.user);
+        Component component = SQL.findComponentByName(input.component.getName());
+        String jsonComponent = "\"\"";
+        if(component!=null)
+            jsonComponent = gson.toJson(component);
+        String outJson = "{\"result\" : \""+result+"\", \"component\":"+jsonComponent+"}";
+        System.out.println(outJson);
+        response.getWriter().write(outJson);
+    }
+    
+    class Input {
+        User user;
+        Component component;
     }
 
     /**

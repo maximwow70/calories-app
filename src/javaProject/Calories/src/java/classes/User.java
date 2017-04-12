@@ -67,6 +67,7 @@ public class User {
         dishes = SQL.findDishesByUserId(id);
     }
     
+    //gets
     public String getEMail() {
         return eMail;
     }
@@ -96,6 +97,9 @@ public class User {
     }
     public String getImage() {
         return image;
+    }
+    public int getId() {
+        return id;
     }
     
 }

@@ -8,7 +8,6 @@ package classes;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,8 +18,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author admin
  */
-@WebServlet(name = "AddDish", urlPatterns = {"/AddDish"})
-public class AddDish extends HttpServlet {
+@WebServlet(name = "AddDishIntoDishList", urlPatterns = {"/AddDishIntoDishList"})
+public class AddDishIntoDishList extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,10 +38,10 @@ public class AddDish extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet AddDish</title>");            
+            out.println("<title>Servlet AddDishIntoDishList</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet AddDish at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet AddDishIntoDishList at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -75,18 +74,12 @@ public class AddDish extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        ArrayList<Dish> list = new ArrayList<>();
+        String jsonInput = request.getReader().readLine();
+        System.out.println(jsonInput);
         Gson gson = new Gson();
-        String inJson = request.getReader().readLine();
-        Input input = gson.fromJson(inJson, Input.class);
-        String result = SQL.addDish(input.dish,input.user);
-        list.add(SQL.findDishByNameOnly(input.dish.getName()));
-        String jsonList = gson.toJson(list);
-        if(list.get(0)==null)
-            jsonList = "[]";
-        String outJson = "{\"result\" : \""+result+"\", \"dish\":"+jsonList+"}";
-        System.out.println(outJson);
-        response.getWriter().write(outJson);
+        Input input = gson.fromJson(jsonInput, Input.class);
+        String result = SQL.AddDishIntoDishList(input.dish, input.user);
+        response.getWriter().write("\"result\":\""+result+"\"");
     }
     
     class Input {
