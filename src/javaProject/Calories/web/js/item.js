@@ -8,9 +8,7 @@ function Item(id, name, components, weight, calories, src){
 	this.imgPath = 'img/' + this.src + '';
 
     var that = this;
-    this.onadditem = function(){
-        return that.id;
-    };
+    this.onadditem = function(){};
 	
     this.dom = document.createElement('div');
     this.dom.setAttribute('class', 'item');
@@ -60,10 +58,7 @@ function Item(id, name, components, weight, calories, src){
 
 	var itemSelectAdd= document.createElement('a');
 	itemSelectAdd.setAttribute('class', 'item-select item-select--add fa fa-plus');
-    var that = this;
-    itemSelectAdd.addEventListener('click', function(){
-        that.onadditem();
-    });
+    itemSelectAdd.setAttribute('data-id', this.id);
 	itemFront.appendChild(itemSelectAdd);
 
 	//itemBack
@@ -115,8 +110,8 @@ Item.prototype.addComponent = function(component){
     this.components.push(component);
     //this.dom.addComponent(component);
 }
-Item.prototype.setId = function(){
-    return this.dom;
+Item.prototype.getId = function(){
+    return this.id;
 }
 Item.prototype.getDom = function(){
     return this.dom;

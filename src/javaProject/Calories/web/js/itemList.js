@@ -11,9 +11,7 @@ function ItemList(parent, _items, _title){
         this.addItems(_items);
     }
 
-    this.onaddtouser = function(){
-        alert('kek');
-    };
+    this.onsetitems = function(){};
 }
 ItemList.prototype.setTitle = function(_title){
     this.title = _title;
@@ -34,8 +32,11 @@ ItemList.prototype.setTitle = function(_title){
 ItemList.prototype.setItems = function(items){
     this.setEmpty();
     this.addItems(items);
+
+    this.onsetitems();
 }
 ItemList.prototype.addItems = function(items){
+    var that = this;
     for (var i = 0; i < items.length; i++){
 
         // dom
@@ -63,8 +64,6 @@ ItemList.prototype.addItems = function(items){
         this.items.push(item);
 		itemContainer.appendChild(item.getDom());
         this.dom.appendChild(itemContainer);
-
-        
     }
 }
 ItemList.prototype.setEmpty = function(){
@@ -75,4 +74,14 @@ ItemList.prototype.setEmpty = function(){
     for (var i = 0; i < items.length; i++){
         this.dom.removeChild(items[i]);
     }
+}
+ItemList.prototype.getItemById = function(id){
+    for (var i = 0; i < this.items.length; i++){
+        if (this.items[i].id == id){
+            return this.items[i];
+        }
+    }
+}
+ItemList.prototype.getDom = function(){
+    return this.dom;
 }

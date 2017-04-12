@@ -88,6 +88,13 @@ class UserVM{
         return accessVM;
     }
     
+    public updateItemBtnVM(user: User){
+        var btns = user.getItemList().getDom().querySelectorAll('.item-select--add');
+        for (let i = 0; i < btns.length; i++){
+            $(btns[i]).addClass('item-select--added');
+        }
+    }
+
     public updateVM(user: User): void {
         var photoVM = this._dom.querySelector('.portfolio-img');
         photoVM.setAttribute('src', user.getPhoto());
@@ -107,6 +114,8 @@ class UserVM{
 
         var infoVM = this._dom.querySelector('.portfolio-about');
         infoVM.innerHTML = 'About Myself: ' + user.getInfo();
+
+        this.updateItemBtnVM(user);
     }
     
 }
@@ -206,6 +215,8 @@ class StatisticAssistant{
 
 class User{
     private _dom : any;
+    
+    private _id: number;
 
     private _name: string;
     private _mail: string;
@@ -244,7 +255,7 @@ class User{
     
         //console.log(parent.querySelector('.item_list'));
         this._itemList = new ItemList(parent, items, 'My Dishes');
-
+        //this._itemList.onaddtouser = function(){alert('lel')};
         this._vm = new UserVM(parent);
         this._registrationAssistant = new RegistrationAssistant(parent);
         this._signInAssistant = new SignInAssistant(parent);
@@ -273,6 +284,7 @@ class User{
         this._vm.updateVM(this);
     }
     public setUserFromServer(user: any): void{
+        this._id = user.id;
         this._name = user.name;
         this._mail = user.eMail;
         this._password = user.password;
@@ -296,7 +308,20 @@ class User{
         this._vm.initControlAssistants(this);
         this._vm.updateControlsVM(true);
     }
-
+    public addItems(items: any): void{
+        this._itemList.addItems(items);
+    }
+    
+    public getDom(): any{
+        return this._dom;
+    }
+    public getItemList(): any{
+        return this._itemList;
+    }
+    
+    public getId(): number{
+        return this._id;
+    }
     public getName(): string{
         return this._name;
     }

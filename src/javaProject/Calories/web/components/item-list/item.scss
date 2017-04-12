@@ -75,6 +75,9 @@ $item-border: 2px solid $yellow-color;
         &--add{
             right: 20px;
         }
+        &--added{
+            transform: rotate(-45deg);
+        }
     }
 
     &-components{

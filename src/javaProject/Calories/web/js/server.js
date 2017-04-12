@@ -219,5 +219,38 @@ Server.prototype.signInUser = function(inUser, user){
         }
     }
 }
+Server.prototype.userAddItem = function(_item, user){
+    var that = this;
+    
+    var addUser = {
+        id: user.getId(),
+        eMail: user.getMail(),
+        password: user.getPassword()
+    }
+    var addInfo = {
+        user: addUser,
+        item: _item
+    }
+    var _addInfo = JSON.stringify(addInfo);
+    
+    var xhr = that.getNewXhr();
+    xhr.open('POST', 'AddDishIntoDishList', true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send(_addInfo);
+    xhr.onreadystatechange = function(){
+        if (this.readyState == 4 && this.status == 200){
+            if (xhr.responseText){
+                var result = xhr.responseText;
+                if (result){
+                    var items = [_item];
+                    user.addItems(items);
+                }
+                else {
+                    alert('pesos');
+                }
+            }
+        }
+    }
+}
 
 
