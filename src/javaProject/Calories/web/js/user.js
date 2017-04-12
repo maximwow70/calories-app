@@ -1,3 +1,94 @@
+var UserVM = (function () {
+    function UserVM(dom) {
+        this._dom = dom;
+    }
+    UserVM.prototype.initControlAssistants = function (user) {
+        var that = this;
+        var controlsRegistration = this._dom.querySelectorAll('.navigation-list--registrate');
+        var controlsSignIn = this._dom.querySelectorAll('.navigation-list--sign_in');
+        var controlsSignOut = this._dom.querySelectorAll('.navigation-list--sign_out');
+        var reg = that._dom.querySelector('.account-registration');
+        var signIn = that._dom.querySelector('.account-sign_in');
+        function initControlRegistration() {
+            $(reg).removeClass('account-registration--close');
+            $(signIn).addClass('account-sign_in--close');
+        }
+        for (var i = 0; i < controlsRegistration.length; i++) {
+            controlsRegistration[i].addEventListener('click', initControlRegistration);
+        }
+        function initControlSignIn() {
+            $(signIn).removeClass('account-sign_in--close');
+            $(reg).addClass('account-registration--close');
+        }
+        for (var i = 0; i < controlsSignIn.length; i++) {
+            controlsSignIn[i].addEventListener('click', initControlSignIn);
+        }
+        this._controlAssistants = {
+            registrate: controlsRegistration,
+            signIn: controlsSignIn,
+            signOut: controlsSignOut
+        };
+        function initControlSignOut() {
+            that.updateControlsVM(true);
+            user.outUser();
+        }
+        for (var i = 0; i < controlsSignOut.length; i++) {
+            controlsSignOut[i].addEventListener('click', initControlSignOut);
+        }
+    };
+    UserVM.prototype.updateControlsVM = function (isOut) {
+        var controlReg = this._controlAssistants.registrate;
+        for (var i = 0; i < controlReg.length; i++) {
+            controlReg[i].style.display = isOut ? 'inline-block' : 'none';
+        }
+        var controlSignIn = this._controlAssistants.signIn;
+        for (var i = 0; i < controlSignIn.length; i++) {
+            controlSignIn[i].style.display = isOut ? 'inline-block' : 'none';
+        }
+        var controlSignOut = this._controlAssistants.signOut;
+        for (var i = 0; i < controlSignOut.length; i++) {
+            controlSignOut[i].style.display = isOut ? 'none' : 'inline-block';
+        }
+    };
+    UserVM.prototype.removeAssistentsVM = function () {
+        var reg = this._dom.querySelector('.account-registration');
+        $(reg).addClass('account-registration--close');
+        var si = this._dom.querySelector('.account-sign_in');
+        $(si).addClass('account-sign_in--close');
+    };
+    UserVM.prototype.updateAccessVM = function (access) {
+        var accessVM;
+        if (access == 1) {
+            accessVM = 'User';
+        }
+        else if (access == 2) {
+            accessVM = 'Developer';
+        }
+        else if (access == 3) {
+            accessVM = 'God';
+        }
+        else {
+            accessVM = 'Slave';
+        }
+        return accessVM;
+    };
+    UserVM.prototype.updateVM = function (user) {
+        var photoVM = this._dom.querySelector('.portfolio-img');
+        photoVM.setAttribute('src', user.getPhoto());
+        var nameVM = this._dom.querySelector('.portfolio-name');
+        var accessVM = this.updateAccessVM(user.getAccess());
+        nameVM.innerHTML = user.getName() + ' ' + '(' + accessVM + ')';
+        var countryVM = this._dom.querySelector('.portfolio-country');
+        countryVM.innerHTML = 'Country: ' + user.getCountry();
+        var cityVM = this._dom.querySelector('.portfolio-city');
+        cityVM.innerHTML = 'City: ' + user.getCity();
+        var contactsVM = this._dom.querySelector('.portfolio-contacts');
+        contactsVM.innerHTML = 'Contacts: ' + user.getContacts();
+        var infoVM = this._dom.querySelector('.portfolio-about');
+        infoVM.innerHTML = 'About Myself: ' + user.getInfo();
+    };
+    return UserVM;
+}());
 var RegistrationAssistant = (function () {
     function RegistrationAssistant(parent) {
         var that = this;
@@ -70,6 +161,11 @@ var SignInAssistant = (function () {
     };
     return SignInAssistant;
 }());
+var StatisticAssistant = (function () {
+    function StatisticAssistant() {
+    }
+    return StatisticAssistant;
+}());
 var User = (function () {
     function User(parent, name, mail, password, photo, country, city, contacts, info, access) {
         this._dom = parent;
@@ -82,96 +178,13 @@ var User = (function () {
         this._contacts = contacts;
         this._info = info;
         this._access = access;
-        this._registrationAssistant = new RegistrationAssistant(this._dom);
-        this._signInAssistant = new SignInAssistant(this._dom);
-        this.initControlAssistants();
-        this.updateControlsVM(false);
-        this.updateVM();
+        this._vm = new UserVM(parent);
+        this._registrationAssistant = new RegistrationAssistant(parent);
+        this._signInAssistant = new SignInAssistant(parent);
+        this._vm.initControlAssistants(this);
+        this._vm.updateControlsVM(false);
+        this._vm.updateVM(this);
     }
-    User.prototype.initControlAssistants = function () {
-        var that = this;
-        var controlsRegistration = this._dom.querySelectorAll('.navigation-list--registrate');
-        var controlsSignIn = this._dom.querySelectorAll('.navigation-list--sign_in');
-        var controlsSignOut = this._dom.querySelectorAll('.navigation-list--sign_out');
-        var reg = that._dom.querySelector('.account-registration');
-        var signIn = that._dom.querySelector('.account-sign_in');
-        function initControlRegistration() {
-            $(reg).removeClass('account-registration--close');
-            $(signIn).addClass('account-sign_in--close');
-        }
-        for (var i = 0; i < controlsRegistration.length; i++) {
-            controlsRegistration[i].addEventListener('click', initControlRegistration);
-        }
-        function initControlSignIn() {
-            $(signIn).removeClass('account-sign_in--close');
-            $(reg).addClass('account-registration--close');
-        }
-        for (var i = 0; i < controlsSignIn.length; i++) {
-            controlsSignIn[i].addEventListener('click', initControlSignIn);
-        }
-        this._controlAssistants = {
-            registrate: controlsRegistration,
-            signIn: controlsSignIn,
-            signOut: controlsSignOut
-        };
-        function initControlSignOut() {
-            that.outUser();
-        }
-        for (var i = 0; i < controlsSignOut.length; i++) {
-            controlsSignOut[i].addEventListener('click', initControlSignOut);
-        }
-    };
-    User.prototype.removeAssistentsVM = function () {
-        var reg = this._dom.querySelector('.account-registration');
-        $(reg).addClass('account-registration--close');
-        var si = this._dom.querySelector('.account-sign_in');
-        $(si).addClass('account-sign_in--close');
-    };
-    User.prototype.updateAccessVM = function (access) {
-        var accessVM;
-        if (access == 1) {
-            accessVM = 'User';
-        }
-        else if (access == 2) {
-            accessVM = 'Developer';
-        }
-        else if (access == 3) {
-            accessVM = 'God';
-        }
-        else {
-            accessVM = 'Slave';
-        }
-        return accessVM;
-    };
-    User.prototype.updateControlsVM = function (isOut) {
-        var controlReg = this._controlAssistants.registrate;
-        for (var i = 0; i < controlReg.length; i++) {
-            controlReg[i].style.display = isOut ? 'inline-block' : 'none';
-        }
-        var controlSignIn = this._controlAssistants.signIn;
-        for (var i = 0; i < controlSignIn.length; i++) {
-            controlSignIn[i].style.display = isOut ? 'inline-block' : 'none';
-        }
-        var controlSignOut = this._controlAssistants.signOut;
-        for (var i = 0; i < controlSignOut.length; i++) {
-            controlSignOut[i].style.display = isOut ? 'none' : 'inline-block';
-        }
-    };
-    User.prototype.updateVM = function () {
-        var photoVM = this._dom.querySelector('.portfolio-img');
-        photoVM.setAttribute('src', this._photo);
-        var nameVM = this._dom.querySelector('.portfolio-name');
-        var accessVM = this.updateAccessVM(this._access);
-        nameVM.innerHTML = this._name + ' ' + '(' + accessVM + ')';
-        var countryVM = this._dom.querySelector('.portfolio-country');
-        countryVM.innerHTML = 'Country: ' + this._country;
-        var cityVM = this._dom.querySelector('.portfolio-city');
-        cityVM.innerHTML = 'City: ' + this._city;
-        var contactsVM = this._dom.querySelector('.portfolio-contacts');
-        contactsVM.innerHTML = 'Contacts: ' + this._contacts;
-        var infoVM = this._dom.querySelector('.portfolio-about');
-        infoVM.innerHTML = 'About Myself: ' + this._info;
-    };
     User.prototype.setUser = function (name, mail, password, photo, country, city, contacts, info, access) {
         this._name = name;
         this._mail = mail;
@@ -182,11 +195,12 @@ var User = (function () {
         this._contacts = contacts;
         this._info = info;
         this._access = access;
-        this.updateControlsVM(false);
-        this.removeAssistentsVM();
-        this.updateVM();
+        this._vm.initControlAssistants(this);
+        this._vm.updateControlsVM(false);
+        this._vm.removeAssistentsVM();
+        this._vm.updateVM(this);
     };
-    User.prototype.setUserByObj = function (user) {
+    User.prototype.setUserFromServer = function (user) {
         this._name = user.name;
         this._mail = user.eMail;
         this._password = user.password;
@@ -196,14 +210,42 @@ var User = (function () {
         this._contacts = user.contact;
         this._info = user.info;
         this._access = user.access;
-        this.updateControlsVM(false);
-        this.removeAssistentsVM();
-        this.updateVM();
+        this._vm.initControlAssistants(this);
+        this._vm.updateControlsVM(false);
+        this._vm.removeAssistentsVM();
+        this._vm.updateVM(this);
     };
     User.prototype.outUser = function () {
         this.setUser('', '', '', '', '', '', '', '', 0);
-        this.updateControlsVM(true);
-        this.updateVM();
+        this._vm.initControlAssistants(this);
+        this._vm.updateControlsVM(true);
+    };
+    User.prototype.getName = function () {
+        return this._name;
+    };
+    User.prototype.getMail = function () {
+        return this._mail;
+    };
+    User.prototype.getPassword = function () {
+        return this._password;
+    };
+    User.prototype.getPhoto = function () {
+        return this._photo;
+    };
+    User.prototype.getAccess = function () {
+        return this._access;
+    };
+    User.prototype.getCountry = function () {
+        return this._country;
+    };
+    User.prototype.getCity = function () {
+        return this._city;
+    };
+    User.prototype.getContacts = function () {
+        return this._contacts;
+    };
+    User.prototype.getInfo = function () {
+        return this._info;
     };
     return User;
 }());

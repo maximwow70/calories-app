@@ -29,9 +29,9 @@ Server.prototype.getNewXhr = function(){
     }
     return xmlreq;
 }
-Server.prototype.addDish = function (itemList, _dish){
+Server.prototype.addDish = function (itemList, user, _dish){
     var that = this;
-
+    
     var reader = new FileReader();
     file = _dish.image;
     reader.readAsDataURL(file);
@@ -39,21 +39,34 @@ Server.prototype.addDish = function (itemList, _dish){
     reader.onload = function(){
         _dish.image = reader.result;
 
-        var dishes = [];
-        var dish = JSON.stringify(_dish);
+        var addUser = {
+            eMail: user.getMail(),
+            password: user.getPassword()
+        }
+        var addInfo = {
+            user: addUser,
+            dish: _dish
+        }
+        var _addInfo = JSON.stringify(addInfo);
+        
+        console.log(_addInfo);
         var xhr = that.getNewXhr();
         xhr.open('POST', 'AddDish', true);
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        xhr.send(dish);
+        xhr.send(_addInfo);
         xhr.onreadystatechange = function(){
             if (this.readyState == 4 && this.status == 200){
                 if (xhr.responseText){
-                    dishes = JSON.parse(xhr.responseText);
-                    itemList.setTitle('Your dish: ');
+                    var obj = JSON.parse(xhr.responseText);
+                    
+                    var result = obj.result;
+                    var dishes = obj.dish;
+
+                    itemList.setTitle(result);
                     itemList.setItems(dishes);
                 }
                 else {
-                    itemList.setTitle('Sorry, this dish is already exist. Try again!');
+                    itemList.setTitle('Sorry, something get trouble. Try again!');
                 }
                 that.onadd();
             }
@@ -172,7 +185,7 @@ Server.prototype.addUser = function (regUser, user) {
         xhr.onreadystatechange = function(){
             if (this.readyState == 4 && this.status == 200){
                 var regUser = JSON.parse(xhr.responseText);
-                user.setUserByObj(regUser);
+                user.setUserFromServer(regUser);
             }
         }
     }
