@@ -78,7 +78,8 @@ public class UserLogin extends HttpServlet {
         Gson gson = new Gson();
         User user = gson.fromJson(jsonUser, User.class);
         user = SQL.findUser(user.getEMail(), user.getPassword());
-        String answer = "";
+        User user1 = new User(0,"","","","","","","",0,"");
+        String answer = gson.toJson(user1);
         if(user!=null) {
             answer = gson.toJson(user);
         }
