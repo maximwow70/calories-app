@@ -161,13 +161,17 @@ Server.prototype.addComponent = function(info, user, _component){
         xhr.send(_addInfo);
         xhr.onreadystatechange = function(){
             if (this.readyState == 4 && this.status == 200){
-                var information = JSON.parse(xhr.responseText);
-                var title = information.name;
-                var content = information.info;
-                var description = '(' + information.calories + 'c/100g)';
-                var img = information.src;
+                var obj = JSON.parse(xhr.responseText);
+                    
+                var result = obj.result;
+                var component = obj.component;
+
+                var title = component.name;
+                var content = component.info;
+                var description = '(' + component.calories + 'c/100g)';
+                var img = component.src;
                 if (!title){
-                    title = 'Something get trouble :c';
+                    title = result;
                 }
                 info.setInfo(title, content, description, img);
                 that.ongetinfo();
