@@ -60,11 +60,11 @@ ItemList.prototype.addItems = function(items){
         itemContainer.setAttribute('class', 'item_list-item');
 
 		var item = new Item(id, name, components, weight, calories, src);
-        item.onadditem = this.onaddtouser;
+        this.items.push(item);
 		itemContainer.appendChild(item.getDom());
         this.dom.appendChild(itemContainer);
 
-        this.items.push(items[i]);
+        
     }
 }
 ItemList.prototype.setEmpty = function(){

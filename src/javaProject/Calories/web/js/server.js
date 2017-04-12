@@ -172,6 +172,9 @@ Server.prototype.addComponent = function(info, user, _component){
                 var img = component.src;
                 if (!title){
                     title = result;
+                    content = '';
+                    description = '';
+                    img = '';
                 }
                 info.setInfo(title, content, description, img);
                 that.ongetinfo();

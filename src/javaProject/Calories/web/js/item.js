@@ -7,8 +7,9 @@ function Item(id, name, components, weight, calories, src){
 	this.src = src;
 	this.imgPath = 'img/' + this.src + '';
 
+    var that = this;
     this.onadditem = function(){
-        alert('pesos');
+        return that.id;
     };
 	
     this.dom = document.createElement('div');
@@ -109,14 +110,13 @@ function Item(id, name, components, weight, calories, src){
 			$(that.dom).removeClass('item--hover');
 		});
 	}
-	
-	
-
-
 }
 Item.prototype.addComponent = function(component){
     this.components.push(component);
     //this.dom.addComponent(component);
+}
+Item.prototype.setId = function(){
+    return this.dom;
 }
 Item.prototype.getDom = function(){
     return this.dom;
