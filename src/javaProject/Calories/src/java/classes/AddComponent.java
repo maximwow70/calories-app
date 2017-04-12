@@ -79,10 +79,11 @@ public class AddComponent extends HttpServlet {
         Input input = gson.fromJson(jsonInput, Input.class);
         String result = SQL.addComponent(input.component,input.user);
         Component component = SQL.findComponentByName(input.component.getName());
-        String jsonComponent = "";
+        String jsonComponent = "\"\"";
         if(component!=null)
             jsonComponent = gson.toJson(component);
         String outJson = "{\"result\" : \""+result+"\", \"component\":"+jsonComponent+"}";
+        System.out.println(outJson);
         response.getWriter().write(outJson);
     }
     
