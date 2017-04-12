@@ -9,6 +9,7 @@ import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -76,19 +77,20 @@ public class AddDish extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         ArrayList<Dish> list = new ArrayList<>();
-        String inJsonDish = request.getReader().readLine();
         Gson gson = new Gson();
-        Dish dish = gson.fromJson(inJsonDish, Dish.class);
-        boolean is = SQL.addDish(dish);
-        list.add(SQL.findDishByNameOnly(dish.getName()));
-        String outJsonDish = gson.toJson(list);
-        if(is) {
-            response.getWriter().write(outJsonDish);
-        }
-        else
-            response.getWriter().write("");
+        String inJson = request.getReader().readLine();
+        testClass lol = gson.fromJson(inJson, testClass.class);
+        String result = SQL.addDish(lol.dish,lol.user);
+        list.add(SQL.findDishByNameOnly(lol.dish.getName()));
+        
+        String outJson = "{\"result\" : \""+result+"\", \"dish\":"+gson.toJson(list)+"}";
+        response.getWriter().write(outJson);
     }
-
+    
+    class testClass {
+        Dish dish;
+        User user;
+    }
     /**
      * Returns a short description of the servlet.
      *

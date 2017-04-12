@@ -176,6 +176,18 @@ public class SQL {
         } catch(SQLException e) {return null;}
     }
     
+    public static ArrayList<Dish> findDishesByUserId(int id) {
+        connect();
+        try {
+            ArrayList<Dish> list = new ArrayList<>();
+            ResultSet res = stat.executeQuery("SELECT d.* FROM Dishes d \n" +
+"INNER JOIN DishList dl ON dl.DishID = d.DishID AND dl.UserID = "+id+";");
+            while(res.next())
+                list.add(initDish(res));
+            return list;
+        } catch (Exception e) {return null;}
+    }
+    
     public static ArrayList<Dish> findDishesByNameAndComponents(Dish dish) {
         String url = "Select DISTINCT d.* from Dishes d,DishFormulas f \n" +
 "INNER JOIN Components c ON\n" +
@@ -211,9 +223,10 @@ public class SQL {
         } catch(SQLException e) {return null;}
     }
     
-    public static boolean addDish(Dish dish) {
+    public static String addDish(Dish dish, User user) {
         connect();
         try {
+            if(getUserAccess(user)>0) {
             String code = dish.getImage();
             String type = code.substring(code.indexOf('/')+1, code.indexOf(';'));
             ResultSet res = stat.executeQuery("SELECT DishID from Dishes WHERE \n" +
@@ -221,7 +234,7 @@ public class SQL {
             res.next();
             try {
                 res.getInt("DishID");
-                return false;
+                return "the dish in DB";
             } catch(Exception e) {}
             stat.execute("INSERT INTO Dishes(Name, typeImage) VALUES(\""+dish.getName()+"\", \""+type+"\");");
             res = stat.executeQuery("SELECT DishID FROM Dishes WHERE Name = \""+dish.getName()+"\";");
@@ -242,9 +255,12 @@ public class SQL {
             try (FileOutputStream out = new FileOutputStream(new File("/Users/admin/Desktop/git/calories-app/src/javaProject/Calories/build/web/img/"+dish1.getSrc()))) {
                 out.write(byteImage);
             }
-            return true;
+            return "norm";
+            }
+            else
+                return "malo dostupa";
         } catch (Exception ex) {
-            return false;
+            return "ne norm";
         }
     }
     
@@ -304,17 +320,5 @@ public class SQL {
             res.next();
             return res.getInt("Access");
         } catch(Exception e) { return 0;}
-    }
-    
-    public static ArrayList<Dish> findDishesByUserId(int id) {
-        connect();
-        try {
-            ArrayList<Dish> list = new ArrayList<>();
-            ResultSet res = stat.executeQuery("SELECT d.* FROM Dishes d \n" +
-"INNER JOIN DishList dl ON dl.DishID = d.DishID AND dl.UserID = "+id+";");
-            while(res.next())
-                list.add(initDish(res));
-            return list;
-        } catch (Exception e) {return null;}
     }
 }

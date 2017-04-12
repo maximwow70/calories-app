@@ -12,7 +12,6 @@ import java.util.ArrayList;
  * @author admin
  */
 public class User {
-    public final String FolderImages = "/Users/admin/Desktop/git/calories-app/src/javaProject/Calories/build/web/img/users/";
     private int id;
     private String eMail;
     private String password;
@@ -38,28 +37,29 @@ public class User {
         this.contact = contact;
         this.access = access;
         setDishes(id);
-        setSRC(id,type);
-        setSRCServer(id,type);
+        setLocalSRC(id,type);
+        setFullSRC(id,type);
     }
     
-    private void setSRCServer(int id, String type) {
+    private void setFullSRC(int id, String type) {
         if(type.equals("NAN"))
-            srcServer=FolderImages+"user.png";
+            srcServer=Constants.FOLDER_USER_IMAGE_FULL+"user.png";
         else {
             if(type.equals("jpeg"))
-                srcServer=FolderImages+"user"+id+".jpg";
+                srcServer=Constants.FOLDER_USER_IMAGE_FULL+"user"+id+".jpg";
             else
-                srcServer=FolderImages+"user"+id+"."+type;
+                srcServer=Constants.FOLDER_USER_IMAGE_FULL+"user"+id+"."+type;
         }
     }
-    private void setSRC(int id, String type) {
+    
+    private void setLocalSRC(int id, String type) {
         if(type.equals("NAN"))
-            src="./img/users/user.png";
+            src=Constants.FOLDER_USER_IMAGE_LOCAL+"user.png";
         else {
             if(type.equals("jpeg"))
-                src="./img/users/user"+id+".jpg";
+                src=Constants.FOLDER_USER_IMAGE_LOCAL+"user"+id+".jpg";
             else
-                src="./img/users/user"+id+"."+type;
+                src=Constants.FOLDER_USER_IMAGE_LOCAL+"user"+id+"."+type;
         }
     }
     
