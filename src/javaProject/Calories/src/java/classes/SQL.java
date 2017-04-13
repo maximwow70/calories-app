@@ -120,7 +120,7 @@ public class SQL {
     public static String addComponent(Component component, User user) {
         connect();
         try {
-            if(getUserAccess(user)>2) {
+            if(getUserAccess(user)>1) {
                 String code = component.getImage();
                 int isImage = 1;
                 if(code.equals(""))
@@ -133,11 +133,11 @@ public class SQL {
                 } catch(Exception e){}
                 stat.execute("INSERT INTO Components(Name,Calories,Type,Info,isImage) \n"
                         + "VALUES (\""+component.getName()+"\","+component.getCalories()+",\""+component.getType()+"\",\""+component.getInfo()+"\","+isImage+");");
-                res = stat.executeQuery("SELECT * FROM Components WHERE Name = \""+component.getName()+"\"");
-                res.next();
-                component = initComponentWithInfo(res);
+                component = SQL.findComponentByName(component.getName());
+                System.out.println(Constants.FOLDER_COMPONENT_IMAGE_FULL+component.getSrc());
                 byte[] byteImage = Base64.getDecoder().decode(code.substring(code.indexOf(',')+1));
-                try (FileOutputStream out = new FileOutputStream(new File("/Users/admin/Desktop/git/calories-app/src/javaProject/Calories/build/web/img/Components/"+component.getSrc()))) {
+                System.out.println("norm");
+                try (FileOutputStream out = new FileOutputStream(new File(Constants.FOLDER_COMPONENT_IMAGE_FULL+component.getSrc()))) {
                     out.write(byteImage);
                 }
                 return "Vse norm";
@@ -193,27 +193,39 @@ public class SQL {
     }
     
     public static ArrayList<Dish> findDishesByNameAndComponents(Dish dish) {
-        String url = "Select DISTINCT d.* from Dishes d,DishFormulas f \n" +
-"INNER JOIN Components c ON\n" +
-"c.ComponentID = f.ComponentID ";
-        int i = 0;
-        for(Component s : dish.getComponents()) {
-            if(!s.getName().equals("")) {
-                if(i == 0)
-                    url+=" AND(\n";
-                if(i>0)
-                    url += " OR ";
-                url+="c.Name = \""+s.getName()+"\"\n";
-                i++;
+        String url = "";
+        if(dish.length()==0) {
+            url = "Select DISTINCT d.* from Dishes d" + 
+                    "\nWHERE\n" + 
+                    "d.Name LIKE \"%"+dish.getName()+"%\"";
+        }
+        else {
+            int count = 0;
+            for(Component s : dish.getComponents()) {
+                if(!s.getName().equals("")) {
+                    if(count != 0)
+                        url+=" AND\n" +
+                            "d.DishID in\n" +
+                            "(";
+                    url+="Select DISTINCT ";
+                    if(count == 0)
+                        url+="d.*";
+                    else
+                        url+="d.DishID";
+                    url+=" from Dishes d,DishFormulas f \n" +
+                    "INNER JOIN Components c ON\n" +
+                    "c.ComponentID = f.ComponentID  AND\n" +
+                    "c.Name = \""+s.getName()+"\"\n" +
+                    "WHERE\n" +
+                    "d.Name LIKE \"%"+dish.getName()+"%\" AND\n" +
+                    "d.DishID = f.DishID";
+                    count++;
+                }
+            }
+            for(int i = 0; i < count-1; i++) {
+                url+=")";
             }
         }
-        if(i>0)
-            url+=")";
-        url+= "AND\n" +
-"(Select COUNT(dish.DishID) from DishFormulas dish where d.DishID = dish.DishID) >="+dish.length()+"\n" +
-"WHERE\n" +
-"d.Name LIKE \"%"+dish.getName()+"%\" AND\n" +
-"d.DishID = f.DishID;";
         System.out.println(url);
         ArrayList<Dish> list = new ArrayList<>();
         connect();
