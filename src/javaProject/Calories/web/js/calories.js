@@ -46,7 +46,7 @@ var links = app.getAllControls();
                     }
                 ],
                 weight: 100,
-                calories: 666,
+                calories: 336,
                 src: 'dish3.jpg'
             },
             {   
@@ -79,7 +79,7 @@ var links = app.getAllControls();
                     }
                 ],
                 weight: 100,
-                calories: 666,
+                calories: 126,
                 src: 'dish4.jpg'
             },
             {
@@ -108,11 +108,11 @@ var links = app.getAllControls();
                         id: 3,
                         name: 'cream',
                         weight: 666,
-                        calories: 500
+                        calories: 880
                     }
                 ],
                 weight: 100,
-                calories: 666,
+                calories: 649,
                 src: 'dish3.jpg'
             }
         ]
