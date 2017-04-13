@@ -23,11 +23,11 @@ todo list:
     9:
         //User
         //UserProfile
-        UserStatistic
-        UserDashboard
+        //UserStatistic
+        //UserItemList
 
         сохранение данных user в LocalStorage
-        уровень доступа у User 
+        //уровень доступа у User 
             ( от него зависят доступные действия для User)
         при регистрации сделать фото необязательным
     10:
