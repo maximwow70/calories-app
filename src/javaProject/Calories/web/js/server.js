@@ -219,6 +219,9 @@ Server.prototype.signInUser = function(inUser, user){
         }
     }
 }
+Server.prototype.updateUserData = function(user){
+
+}
 Server.prototype.userAddItem = function(_item, user){
     var that = this;
 
