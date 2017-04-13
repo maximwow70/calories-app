@@ -246,7 +246,11 @@ Server.prototype.userAddItem = function(_item, user){
                 var result = JSON.parse(xhr.responseText);
                 console.log(result);
                 if (result.result=="true"){
-                    that.signInUser(user, user);
+                    var addUser = {
+                        eMail: user.getMail(),
+                        password: user.getPassword()
+                    }
+                    that.signInUser(addUser, user);
                 }
                 else {
                     alert('pesos');
