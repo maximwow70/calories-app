@@ -240,8 +240,9 @@ Server.prototype.userAddItem = function(_item, user){
     xhr.onreadystatechange = function(){
         if (this.readyState == 4 && this.status == 200){
             if (xhr.responseText){
-                var result = xhr.responseText;
-                if (result){
+                var result = JSON.parse(xhr.responseText);
+                console.log(result);
+                if (result.result=="true"){
                     var items = [_item];
                     user.addItems(items);
                 }

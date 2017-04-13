@@ -68,6 +68,7 @@ public class FindDish extends HttpServlet {
         String string = request.getReader().readLine();
         
         Gson gson = new Gson();
+        System.out.println(string);
         Dish dish = gson.fromJson(string, Dish.class);
         set = SQL.findDishesByNameAndComponents(dish);
         

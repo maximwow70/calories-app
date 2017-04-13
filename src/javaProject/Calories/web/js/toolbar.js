@@ -82,9 +82,6 @@ Toolbar.prototype.createSelectComponent = function(){
     select.setAttribute('class', 'toolbar-select toolbar-select--component');
     selectComponent.appendChild(select);
 
-    var option = this.createSelectComponentByName();   
-    option.setAttribute('class', 'toolbar-select--empty');
-    select.appendChild(option);
     this.setComponents(select, this.components); 
 
     var input = document.createElement('input');
@@ -115,6 +112,9 @@ Toolbar.prototype.getItemComponents = function(){
         var componentWeight = 0;
         try {
             componentWeight = selects[i].querySelector('.toolbar-select--weight').value;
+            if(componentWeight=="") {
+                componentWeight = 0;
+            }
         }
         catch(e){
         }

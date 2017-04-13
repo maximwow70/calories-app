@@ -83,7 +83,6 @@ public class AddComponent extends HttpServlet {
         if(component!=null)
             jsonComponent = gson.toJson(component);
         String outJson = "{\"result\" : \""+result+"\", \"component\":"+jsonComponent+"}";
-        System.out.println(outJson);
         response.getWriter().write(outJson);
     }
     
