@@ -99,7 +99,7 @@ class UserVM{
         countItemsVM.innerHTML = statistic.countItems;
 
         let favoriteComponentVM = this._statistic.querySelector('.statistic-type--favorite_component .statistic-value');
-        favoriteComponentVM.innerHTML = ':3';
+        favoriteComponentVM.innerHTML = statistic.favoriteComponent;
     }
     
     public updateItemBtnVM(user: User){
@@ -246,11 +246,35 @@ class StatisticAssistant{
         let components = [];
         for (let i = 0; i < items.length; i++){
             for (let j = 0; j < items[i].components.length; j++){
-                components.push(items[i].components[j]);
+                components.push(items[i].components[j].name);
             }
-        } 
-        console.log(components + 'comp');
-        return components;
+        }
+        let statistic = [];
+        for (let i = 0; i < components.length; i++){
+            let count = 0;
+            let name = components[i];
+            for (let j = 0; j < components.length; j++){
+                count = (name == components[j]) ? count+1 : count;
+            }
+            statistic.push({
+                _name: name,
+                _count: count
+            });
+        }
+        let name;
+        if (statistic.length != 0){
+            let max = statistic[0]._count;
+            name = statistic[0]._name;
+            for (let i = 0; i < statistic.length; i++){
+                if (max < statistic[i]._count){
+                    max = statistic[i]._count;
+                    name = statistic[i]._name;
+                }
+            }
+        } else {
+            name = '-';
+        }
+        return name;
     }
     public getStatistic(user: User){
         return {

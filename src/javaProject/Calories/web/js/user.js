@@ -79,7 +79,7 @@ var UserVM = (function () {
         var countItemsVM = this._statistic.querySelector('.statistic-type--count_items .statistic-value');
         countItemsVM.innerHTML = statistic.countItems;
         var favoriteComponentVM = this._statistic.querySelector('.statistic-type--favorite_component .statistic-value');
-        favoriteComponentVM.innerHTML = ':3';
+        favoriteComponentVM.innerHTML = statistic.favoriteComponent;
     };
     UserVM.prototype.updateItemBtnVM = function (user) {
         var btns = user.getItemList().getDom().querySelectorAll('.item-select--add');
@@ -198,11 +198,36 @@ var StatisticAssistant = (function () {
         var components = [];
         for (var i = 0; i < items.length; i++) {
             for (var j = 0; j < items[i].components.length; j++) {
-                components.push(items[i].components[j]);
+                components.push(items[i].components[j].name);
             }
         }
-        console.log(components + 'comp');
-        return components;
+        var statistic = [];
+        for (var i = 0; i < components.length; i++) {
+            var count = 0;
+            var name_1 = components[i];
+            for (var j = 0; j < components.length; j++) {
+                count = (name_1 == components[j]) ? count + 1 : count;
+            }
+            statistic.push({
+                _name: name_1,
+                _count: count
+            });
+        }
+        var name;
+        if (statistic.length != 0) {
+            var max = statistic[0]._count;
+            name = statistic[0]._name;
+            for (var i = 0; i < statistic.length; i++) {
+                if (max < statistic[i]._count) {
+                    max = statistic[i]._count;
+                    name = statistic[i]._name;
+                }
+            }
+        }
+        else {
+            name = '-';
+        }
+        return name;
     };
     StatisticAssistant.prototype.getStatistic = function (user) {
         return {
