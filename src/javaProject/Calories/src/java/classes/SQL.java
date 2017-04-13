@@ -131,8 +131,8 @@ public class SQL {
                     res.getInt("ComponentID");
                     return "Component in BD";
                 } catch(Exception e){}
-                stat.execute("INSERT INTO Components(Name,Calories,Type,Info,isImage) \n"
-                        + "VALUES (\""+component.getName()+"\","+component.getCalories()+",\""+component.getType()+"\",\""+component.getInfo()+"\","+isImage+");");
+                stat.execute("INSERT INTO Components(Name,Calories,Type,Info,isImage,autor) \n"
+                        + "VALUES (\""+component.getName()+"\","+component.getCalories()+",\""+component.getType()+"\",\""+component.getInfo()+"\","+isImage+",\""+user.getEMail()+"\");");
                 component = SQL.findComponentByName(component.getName());
                 System.out.println(Constants.FOLDER_COMPONENT_IMAGE_FULL+component.getSrc());
                 byte[] byteImage = Base64.getDecoder().decode(code.substring(code.indexOf(',')+1));
@@ -252,7 +252,7 @@ public class SQL {
                 res.getInt("DishID");
                 return "the dish in DB";
             } catch(Exception e) {}
-            stat.execute("INSERT INTO Dishes(Name, typeImage) VALUES(\""+dish.getName()+"\", \""+type+"\");");
+            stat.execute("INSERT INTO Dishes(Name, typeImage,autor) VALUES(\""+dish.getName()+"\", \""+type+"\", \""+user.getEMail()+"\");");
             res = stat.executeQuery("SELECT DishID FROM Dishes WHERE Name = \""+dish.getName()+"\";");
             res.next();
             int id = res.getInt("DishID");
