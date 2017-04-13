@@ -246,8 +246,7 @@ Server.prototype.userAddItem = function(_item, user){
                 var result = JSON.parse(xhr.responseText);
                 console.log(result);
                 if (result.result=="true"){
-                    var items = [_item];
-                    user.addItems(items);
+                    that.signInUser(user, user);
                 }
                 else {
                     alert('pesos');
