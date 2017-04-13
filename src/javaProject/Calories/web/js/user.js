@@ -197,15 +197,18 @@ var StatisticAssistant = (function () {
         var items = user.getItemList().items;
         var components = [];
         for (var i = 0; i < items.length; i++) {
-            var components_1 = items[i].components;
-            for (var j = 0; j < items; j++) {
+            for (var j = 0; j < items[i].components.length; j++) {
+                components.push(items[i].components[j]);
             }
         }
+        console.log(components + 'comp');
+        return components;
     };
     StatisticAssistant.prototype.getStatistic = function (user) {
         return {
             averageCalories: this.getAverageCalories(user),
-            countItems: this.getCountItems(user)
+            countItems: this.getCountItems(user),
+            favoriteComponent: this.getFavoriteComponent(user)
         };
     };
     return StatisticAssistant;

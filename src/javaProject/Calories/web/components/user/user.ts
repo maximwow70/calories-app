@@ -245,16 +245,18 @@ class StatisticAssistant{
         let items = user.getItemList().items;
         let components = [];
         for (let i = 0; i < items.length; i++){
-            let components = items[i].components;
-            for (let j = 0; j < items; j++){
-
+            for (let j = 0; j < items[i].components.length; j++){
+                components.push(items[i].components[j]);
             }
         } 
+        console.log(components + 'comp');
+        return components;
     }
     public getStatistic(user: User){
         return {
             averageCalories: this.getAverageCalories(user),
-            countItems: this.getCountItems(user)
+            countItems: this.getCountItems(user),
+            favoriteComponent: this.getFavoriteComponent(user)
         }
     }
 }
