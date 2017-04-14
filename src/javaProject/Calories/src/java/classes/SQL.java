@@ -7,6 +7,7 @@ package classes;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -31,7 +32,7 @@ public class SQL {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             connect = DriverManager.getConnection(url, userName, password);
             stat = connect.createStatement();
-        } catch(Exception e) {
+        } catch(ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e) {
             System.out.println("Error driver");
         }
     }
@@ -144,7 +145,15 @@ public class SQL {
             }
             else 
                 return "net prav";
-        } catch (Exception e) {return "oshibochka";}   
+        } catch (SQLException | IOException e) {return "oshibochka";}   
+    }
+    
+    public static boolean removerComponent(Component component) {
+        connect();
+        try {
+            stat.execute("DELETE FROM Components WHERE ComponentID = " + component.getId());
+            return true;
+        } catch (Exception e) { return false;}
     }
     
     //Dish
@@ -193,9 +202,9 @@ public class SQL {
     }
     
     public static ArrayList<Dish> findDishesByNameAndComponents(Dish dish) {
-        String url = "";
+        String execute = "";
         if(dish.length()==0) {
-            url = "Select DISTINCT d.* from Dishes d" + 
+            execute = "Select DISTINCT d.* from Dishes d" + 
                     "\nWHERE\n" + 
                     "d.Name LIKE \"%"+dish.getName()+"%\"";
         }
@@ -204,15 +213,15 @@ public class SQL {
             for(Component s : dish.getComponents()) {
                 if(!s.getName().equals("")) {
                     if(count != 0)
-                        url+=" AND\n" +
+                        execute+=" AND\n" +
                             "d.DishID in\n" +
                             "(";
-                    url+="Select DISTINCT ";
+                    execute+="Select DISTINCT ";
                     if(count == 0)
-                        url+="d.*";
+                        execute+="d.*";
                     else
-                        url+="d.DishID";
-                    url+=" from Dishes d,DishFormulas f \n" +
+                        execute+="d.DishID";
+                    execute+=" from Dishes d,DishFormulas f \n" +
                     "INNER JOIN Components c ON\n" +
                     "c.ComponentID = f.ComponentID  AND\n" +
                     "c.Name = \""+s.getName()+"\"\n" +
@@ -223,14 +232,14 @@ public class SQL {
                 }
             }
             for(int i = 0; i < count-1; i++) {
-                url+=")";
+                execute+=")";
             }
         }
-        System.out.println(url);
+        System.out.println(execute);
         ArrayList<Dish> list = new ArrayList<>();
         connect();
         try {
-        ResultSet res = stat.executeQuery(url);
+        ResultSet res = stat.executeQuery(execute);
             while(res.next()) {
                 boolean is = false;
                 list.add(initDish(res));
@@ -257,13 +266,14 @@ public class SQL {
             res.next();
             int id = res.getInt("DishID");
             Dish dish1 = findDishById(id);
-            for(Component c :dish.getComponents()) {
+            dish.getComponents().stream().forEach((c) -> {
                 Component comp = findComponentByName(c.getName());
-                if(!c.getName().equals(""))
-                dish1.addComponent(new Component(comp.getName(),comp.getID(),comp.getCalories(),c.getWeight()));
-            }
+                if (!c.getName().equals("")) {
+                    dish1.addComponent(new Component(comp.getName(),comp.getId(),comp.getCalories(),c.getWeight()));
+                }
+                });
             for(Component comp : dish1.getComponents()) {
-                stat.execute("INSERT INTO DishFormulas(DishID,ComponentID,Weight) VALUES ("+id+","+comp.getID()+","+comp.getWeight()+");");
+                stat.execute("INSERT INTO DishFormulas(DishID,ComponentID,Weight) VALUES ("+id+","+comp.getId()+","+comp.getWeight()+");");
             }
             
             code = code.substring(code.indexOf(',')+1);
@@ -275,7 +285,7 @@ public class SQL {
             }
             else
                 return "malo dostupa";
-        } catch (Exception ex) {
+        } catch (SQLException | IOException ex) {
             return "ne norm";
         }
     }
@@ -302,6 +312,19 @@ public class SQL {
        try {
            stat.execute("DELETE FROM DishList WHERE UserID = "+user.getId()+" AND DishID = "+dish.getId());
        } catch(Exception e) {}
+   }
+   
+   public static boolean RemoveDish(Dish dish,User user) {
+       connect();
+       try {
+           if(getUserAccess(user)>2) {
+           stat.execute("DELETE FROM DishList WHERE DishID = " + dish.getId());
+           stat.execute("DELETE FROM DishFormulas WHERE DishID = " + dish.getId());
+           stat.execute("DELETE FROM Dishes WHERE DishID = " + dish.getId());
+           return true;
+           }
+           return false;
+       } catch (SQLException e) { return false;}
    }
     
     //User
@@ -340,7 +363,7 @@ public class SQL {
                 }
             }
             return true;
-        } catch (Exception e) {return false;}
+        } catch (SQLException | IOException e) {return false;}
     }
     
     public static User findUser(String eMail, String password) {
@@ -360,5 +383,14 @@ public class SQL {
             res.next();
             return res.getInt("Access");
         } catch(Exception e) { return 0;}
+    }
+    public static boolean removeUser(User user) {
+        connect();
+        try {
+            user = findUser(user.getEMail(), user.getPassword());
+            stat.execute("DELETE FROM DishList WHERE UserID = "+user.getId());
+            stat.execute("DELETE FROM Users WHERE UserID = " + user.getId());
+            return true;
+        } catch (Exception e) { return false;}
     }
 }

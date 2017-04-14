@@ -68,7 +68,7 @@ public class Component {
     }
     
     //gets
-    public int getID() {
+    public int getId() {
         return id;
     }
     public int getWeight() {
