@@ -17,6 +17,56 @@ var links = app.getAllControls();
         0,
         []
     );
+    var itemListUser = user.getItemList();
+    function initBtn(){
+        var id = this.getAttribute('data-id');
+        var item = itemListUser.getItemById(id);
+
+        var userItems = user.getItemList().items;
+        var isInUser = false;
+        for (var i = 0; i < userItems.length; i++){
+            if (id == userItems[i].id){
+                isInUser = true;
+            }
+        }
+        if (isInUser) {
+            console.log('remove');
+            $(this).removeClass('item-select--added');
+            server.userRemoveItem(item, user);
+        } else {
+            console.log('add');
+            $(this).addClass('item-select--added');
+            server.userAddItem(item, user);
+        }
+    }
+    itemListUser.onsetitems = function(){
+        var items = itemListUser.items;
+        for (var i = 0; i < items.length; i++){
+            console.log(i);
+            btn = items[i].getDom().querySelector('.item-select--add');
+
+            
+            btn.addEventListener('click', initBtn);
+            
+            var id = btn.getAttribute('data-id');
+            var item = itemListUser.getItemById(id);
+
+            var userItems = user.getItemList().items;
+            var isInUser = false;
+            for (var j = 0; j < userItems.length; j++){
+                if (id == userItems[j].id){
+                    isInUser = true;
+                }
+            }
+            if (isInUser) {
+                console.log('added');
+                $(btn).addClass('item-select--added');
+            } else {
+                console.log('removed');
+                $(btn).removeClass('item-select--added');
+            }
+        }
+    }
 
     var ra = user._registrationAssistant;
     var sia = user._signInAssistant;
@@ -31,13 +81,13 @@ var links = app.getAllControls();
 //}
 //initUser();
 
-//function findItem(){
+function findItem(){
     var appFind = app.getAppFind();
     var toolbarFind = new Toolbar(appFind);
     var controlFind = toolbarFind.control;
     var itemListFind = new ItemList(appFind);
 
-    function isInUser(){
+    function initBtn(){
         var id = this.getAttribute('data-id');
         var item = itemListFind.getItemById(id);
 
@@ -48,28 +98,36 @@ var links = app.getAllControls();
                 isInUser = true;
             }
         }
-        return isInUser;
+        if (isInUser) {
+            console.log('remove');
+            $(this).removeClass('item-select--added');
+            server.userRemoveItem(item, user);
+        } else {
+            console.log('add');
+            $(this).addClass('item-select--added');
+            server.userAddItem(item, user);
+        }
     }
     itemListFind.onsetitems = function(){
         var items = itemListFind.items;
         for (var i = 0; i < items.length; i++){
+            console.log(i);
             btn = items[i].getDom().querySelector('.item-select--add');
 
-            btn.addEventListener('click', function(){
-                var flag = isInUser.call(this);
-                if (flag) {
-                    console.log('remove');
-                    $(this).removeClass('item-select--added');
-                    server.userRemoveItem(item, user);
-                } else {
-                    console.log('add');
-                    $(this).addClass('item-select--added');
-                    server.userAddItem(item, user);
-                }
-            });
+            
+            btn.addEventListener('click', initBtn);
+            
+            var id = btn.getAttribute('data-id');
+            var item = itemListFind.getItemById(id);
 
-            var flag = isInUser.call(btn);
-            if (flag) {
+            var userItems = user.getItemList().items;
+            var isInUser = false;
+            for (var j = 0; j < userItems.length; j++){
+                if (id == userItems[j].id){
+                    isInUser = true;
+                }
+            }
+            if (isInUser) {
                 console.log('added');
                 $(btn).addClass('item-select--added');
             } else {
@@ -93,8 +151,8 @@ var links = app.getAllControls();
         server.getComponents(toolbarFind);
     }
     initAppFind();
-//}
-//findItem();
+}
+findItem();
 
 function addItem(){
     for (var i = 0; i < links.add.length; i++){
