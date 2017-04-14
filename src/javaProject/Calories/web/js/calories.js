@@ -37,16 +37,51 @@ var links = app.getAllControls();
     var controlFind = toolbarFind.control;
     var itemListFind = new ItemList(appFind);
 
+    function isInUser(){
+        var id = this.getAttribute('data-id');
+        var item = itemListFind.getItemById(id);
+
+        var userItems = user.getItemList().items;
+        var isInUser = false;
+        for (var i = 0; i < userItems.length; i++){
+            if (id == userItems[i].id){
+                isInUser = true;
+            }
+        }
+        if (isInUser) {
+            console.log('remove');
+            $(this).removeClass('item-select--added');
+            server.userRemoveItem(item, user);
+        } else {
+            console.log('add');
+            $(this).addClass('item-select--added');
+            server.userAddItem(item, user);
+        }
+    }
     itemListFind.onsetitems = function(){
         var items = itemListFind.items;
         for (var i = 0; i < items.length; i++){
             btn = items[i].getDom().querySelector('.item-select--add');
 
-            btn.addEventListener('click', function(){
-                var id = this.getAttribute('data-id');
-                var item = itemListFind.getItemById(id);
-                server.userAddItem(item, user);
-            });
+            btn.addEventListener('click', initBtn);
+            
+            var id = btn.getAttribute('data-id');
+            var item = itemListFind.getItemById(id);
+
+            var userItems = user.getItemList().items;
+            var isInUser = false;
+            for (var j = 0; j < userItems.length; j++){
+                if (id == userItems[j].id){
+                    isInUser = true;
+                }
+            }
+            if (isInUser) {
+                console.log('added');
+                $(btn).addClass('item-select--added');
+            } else {
+                console.log('removed');
+                $(btn).removeClass('item-select--added');
+            }
         }
     }
 

@@ -244,7 +244,6 @@ Server.prototype.userAddItem = function(_item, user){
         if (this.readyState == 4 && this.status == 200){
             if (xhr.responseText){
                 var result = JSON.parse(xhr.responseText);
-                console.log(result);
                 if (result.result=="true"){
                     var addUser = {
                         eMail: user.getMail(),

@@ -30,8 +30,8 @@ $item-border: 2px solid $yellow-color;
         position: absolute;
         top: 0; left: 0; bottom: 0; right: 0;
 
-        -moz-transform: translateZ(-0.5px) rotateY(180deg);
-        -webkit-transform: translateZ(-0.5px) rotateY(180deg);
+        -moz-transform: translateZ(-1px) rotateY(180deg);
+        -webkit-transform: translateZ(-1px) rotateY(180deg);
         transform: translateZ(-1px) rotateY(180deg);
         
         background-color: $blue-color;
@@ -69,6 +69,7 @@ $item-border: 2px solid $yellow-color;
         position: absolute;
         bottom: 20px;
         font-size: 24px;
+        transition: color 0.3s;
         &--info{
             left: 20px;
         }
@@ -76,7 +77,7 @@ $item-border: 2px solid $yellow-color;
             right: 20px;
         }
         &--added{
-            transform: rotate(-45deg);
+            transform: rotate(45deg)
         }
     }
 
