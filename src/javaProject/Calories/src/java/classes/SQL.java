@@ -151,7 +151,10 @@ public class SQL {
     public static boolean removerComponent(Component component) {
         connect();
         try {
+            component = findComponentById(component.getId());
             stat.execute("DELETE FROM Components WHERE ComponentID = " + component.getId());
+            File file = new File(Constants.FOLDER_COMPONENT_IMAGE_FULL+component.getSrc());
+            file.delete();
             return true;
         } catch (Exception e) { return false;}
     }
@@ -278,7 +281,7 @@ public class SQL {
             
             code = code.substring(code.indexOf(',')+1);
             byte[] byteImage = Base64.getDecoder().decode(code);
-            try (FileOutputStream out = new FileOutputStream(new File("/Users/admin/Desktop/git/calories-app/src/javaProject/Calories/build/web/img/"+dish1.getSrc()))) {
+            try (FileOutputStream out = new FileOutputStream(new File(Constants.FOLDER_IMAGE_FULL+dish1.getSrc()))) {
                 out.write(byteImage);
             }
             return "norm";
@@ -358,7 +361,7 @@ public class SQL {
                 user = findUser(user.getEMail(),user.getPassword());
                 code = code.substring(code.indexOf(',')+1);
                 byte[] byteImage = Base64.getDecoder().decode(code);
-                try(FileOutputStream out = new FileOutputStream(new File(user.getSRCServer()))) {
+                try(FileOutputStream out = new FileOutputStream(new File(user.getLongSRC()))) {
                     out.write(byteImage);
                 }
             }
