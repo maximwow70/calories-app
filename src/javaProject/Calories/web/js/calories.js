@@ -48,34 +48,28 @@ var links = app.getAllControls();
                 isInUser = true;
             }
         }
-        if (isInUser) {
-            console.log('remove');
-            $(this).removeClass('item-select--added');
-            server.userRemoveItem(item, user);
-        } else {
-            console.log('add');
-            $(this).addClass('item-select--added');
-            server.userAddItem(item, user);
-        }
+        return isInUser;
     }
     itemListFind.onsetitems = function(){
         var items = itemListFind.items;
         for (var i = 0; i < items.length; i++){
             btn = items[i].getDom().querySelector('.item-select--add');
 
-            btn.addEventListener('click', initBtn);
-            
-            var id = btn.getAttribute('data-id');
-            var item = itemListFind.getItemById(id);
-
-            var userItems = user.getItemList().items;
-            var isInUser = false;
-            for (var j = 0; j < userItems.length; j++){
-                if (id == userItems[j].id){
-                    isInUser = true;
+            btn.addEventListener('click', function(){
+                var flag = isInUser.call(this);
+                if (flag) {
+                    console.log('remove');
+                    $(this).removeClass('item-select--added');
+                    server.userRemoveItem(item, user);
+                } else {
+                    console.log('add');
+                    $(this).addClass('item-select--added');
+                    server.userAddItem(item, user);
                 }
-            }
-            if (isInUser) {
+            });
+
+            var flag = isInUser.call(btn);
+            if (flag) {
                 console.log('added');
                 $(btn).addClass('item-select--added');
             } else {
