@@ -239,6 +239,13 @@
                         opacity: 1;
                     }
                 }
+                &--selected{
+                    transform: translateX(-20px);
+                    color: $yellow-color;
+                    &:after{
+                        opacity: 1;
+                    }
+                }
                 &--close_app{
                     margin-top: 50px;
                 }

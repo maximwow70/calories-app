@@ -634,6 +634,13 @@
           transform: translateX(-20px); }
           .app-navigation .navigation-list:hover:after {
             opacity: 1; }
+        .app-navigation .navigation-list--selected {
+          -webkit-transform: translateX(-20px);
+          -ms-transform: translateX(-20px);
+          transform: translateX(-20px);
+          color: #e5bd47; }
+          .app-navigation .navigation-list--selected:after {
+            opacity: 1; }
         .app-navigation .navigation-list--close_app {
           margin-top: 50px; }
     .app-navigation-btn {

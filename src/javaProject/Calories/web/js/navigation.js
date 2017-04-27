@@ -6,6 +6,16 @@ function initNavigation(){
         $(navigation).toggleClass('app-navigation--open');
     });
 
+    var navLists = navigation.querySelectorAll('.navigation-list');
+    for (var i = 0; i < navLists.length; i++){
+        navLists[i].addEventListener('click', function(event){
+            for (var i = 0; i < navLists.length; i++){
+                $(navLists[i]).removeClass('navigation-list--selected');
+            }
+            $(this).addClass('navigation-list--selected');
+        });
+    }
+
 
     var app = document.querySelector('.calories-app');
 
