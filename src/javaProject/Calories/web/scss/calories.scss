@@ -64,8 +64,8 @@ li{
     &-parallax{
         z-index: -1;
         position: fixed;
-        width: 100%;
-        min-height: 100vh;
+        width: 100vw;
+        height: 100vh;
         background-color: #333;
         background-image: url(../components/introduction/intro.jpg);
         background-position: center;
