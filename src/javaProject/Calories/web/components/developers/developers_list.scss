@@ -1,0 +1,15 @@
+@import './developer.scss';
+
+.developers_list{
+
+    text-align: center;
+    &-developer{
+        margin: 20px 20px 20px;
+
+        display: inline-block;
+        vertical-align: top;
+
+        width: 275px;
+
+    }
+}

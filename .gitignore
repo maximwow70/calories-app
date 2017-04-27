@@ -10,3 +10,4 @@ src/\.DS_Store
 /node_modules
 /package.json
 /.babelrc
+/nbproject/private/
