@@ -7,11 +7,13 @@ function initNavigation(){
     });
 
     var navLists = navigation.querySelectorAll('.navigation-list');
+    function closeNavLists(){
+        for (var i = 0; i < navLists.length; i++){
+            $(navLists[i]).removeClass('navigation-list--selected');
+        }
+    }
     for (var i = 0; i < navLists.length; i++){
         navLists[i].addEventListener('click', function(event){
-            for (var i = 0; i < navLists.length; i++){
-                $(navLists[i]).removeClass('navigation-list--selected');
-            }
             $(this).addClass('navigation-list--selected');
         });
     }
@@ -34,12 +36,14 @@ function initNavigation(){
     var btnOpenApp = document.querySelector('.introduction-select--app');
     btnOpenApp.addEventListener('click', function(){
         closeAllSections();
+        closeNavLists();
         $(app).removeClass('close');
     });
 
     var btnCloseApp = document.querySelector('.navigation-list--close_app');
     btnCloseApp.addEventListener('click', function(){
         openAllSections();
+        closeNavLists();
         $(app).addClass('close');
         btn.click();
     });
