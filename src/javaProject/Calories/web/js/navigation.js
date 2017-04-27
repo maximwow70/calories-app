@@ -14,6 +14,7 @@ function initNavigation(){
     }
     for (var i = 0; i < navLists.length; i++){
         navLists[i].addEventListener('click', function(event){
+            closeNavLists();
             $(this).addClass('navigation-list--selected');
         });
     }
