@@ -17,6 +17,7 @@ public class Component {
     private String info;
     private String image;
     private String src;
+    private String longSrc;
     private String type;
     
     public Component(String name, int id,int calories) {
@@ -24,7 +25,7 @@ public class Component {
         this.id = id;
         this.calories = calories;
         weight = 0;
-        src = "Component"+id+".svg";
+        setSRC();
     }
     
     public Component(String name, int id, int calories, int weight) {
@@ -41,10 +42,7 @@ public class Component {
         this.calories = calories;
         this.type = type;
         this.weight = 0;
-        if(isImage == 1)
-            src = "Component"+id+".svg";
-        else
-            src = "Default/"+type+".svg";
+        setSRC(isImage,type);
         if(info!=null)
             this.info = info;
         else 
@@ -57,18 +55,25 @@ public class Component {
         this.calories = calories;
         this.type = type;
         this.weight = weight;
-        if(isImage == 1)
-            src = "Component"+id+".svg";
-        else
-            src = "Default/"+type+".svg";
+        setSRC(isImage,type);
         if(info!=null)
             this.info = info;
         else 
             this.info = "";
     }
     
+    private void setSRC() {
+        src = "Component"+id+".svg";
+    }
+    private void setSRC(int isImage,String type) {
+        if(isImage == 1)
+            src = "Component"+id+".svg";
+        else
+            src = "Default/"+type+".svg";
+    }
+    
     //gets
-    public int getID() {
+    public int getId() {
         return id;
     }
     public int getWeight() {
@@ -90,6 +95,9 @@ public class Component {
         return info;
     }
     public String getSrc() {
-        return "Component"+id+".svg";
+        if(src!=null)
+            return src;
+        else
+            return "Component"+id+".svg";
     }
 }

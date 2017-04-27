@@ -10,4 +10,8 @@ src/\.DS_Store
 /node_modules
 /package.json
 /.babelrc
+<<<<<<< HEAD
 /nbproject/private/
+=======
+src/img/svg/
+>>>>>>> backend

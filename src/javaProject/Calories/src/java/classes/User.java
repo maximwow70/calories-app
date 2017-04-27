@@ -23,7 +23,7 @@ public class User {
     private int access;
     private String image;
     private String src;
-    private String srcServer;
+    private String longSrc;
     private ArrayList<Dish> dishes;
     
     public User(int id,String eMail, String password, String name, String info, String country, String city, String contact, int access, String type) {
@@ -37,22 +37,22 @@ public class User {
         this.contact = contact;
         this.access = access;
         setDishes(id);
-        setLocalSRC(id,type);
-        setFullSRC(id,type);
+        setSRC(id,type);
+        setLongSRC(id,type);
     }
     
-    private void setFullSRC(int id, String type) {
+    private void setLongSRC(int id, String type) {
         if(type.equals("NAN"))
-            srcServer=Constants.FOLDER_USER_IMAGE_FULL+"user.png";
+            longSrc=Constants.FOLDER_USER_IMAGE_FULL+"user.png";
         else {
             if(type.equals("jpeg"))
-                srcServer=Constants.FOLDER_USER_IMAGE_FULL+"user"+id+".jpg";
+                longSrc=Constants.FOLDER_USER_IMAGE_FULL+"user"+id+".jpg";
             else
-                srcServer=Constants.FOLDER_USER_IMAGE_FULL+"user"+id+"."+type;
+                longSrc=Constants.FOLDER_USER_IMAGE_FULL+"user"+id+"."+type;
         }
     }
     
-    private void setLocalSRC(int id, String type) {
+    private void setSRC(int id, String type) {
         if(type.equals("NAN"))
             src=Constants.FOLDER_USER_IMAGE_LOCAL+"user.png";
         else {
@@ -89,8 +89,8 @@ public class User {
     public String getContact() {
         return contact;
     }
-    public String getSRCServer() {
-        return srcServer;
+    public String getLongSRC() {
+        return longSrc;
     }
     public String getSRC() {
         return src;
