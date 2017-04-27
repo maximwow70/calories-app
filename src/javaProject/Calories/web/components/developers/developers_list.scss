@@ -3,6 +3,12 @@
 .developers_list{
 
     text-align: center;
+    &-title{
+        margin-bottom: 20px;
+
+        color: $light-color;
+        font-size: 32px;
+    }
     &-developer{
         margin: 20px 20px 20px;
 

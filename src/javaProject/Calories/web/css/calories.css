@@ -244,6 +244,10 @@
 
 .developers_list {
   text-align: center; }
+  .developers_list-title {
+    margin-bottom: 20px;
+    color: #dcdcdd;
+    font-size: 32px; }
   .developers_list-developer {
     margin: 20px 20px 20px;
     display: inline-block;
@@ -646,7 +650,7 @@
     .app-navigation-btn {
       position: absolute;
       top: 0;
-      left: 0;
+      left: 1px;
       -webkit-transform: translateX(-100%);
       -ms-transform: translateX(-100%);
       transform: translateX(-100%);
@@ -1424,10 +1428,19 @@ li {
   -ms-flex-align: stretch;
   align-items: stretch;
   min-height: 100vh;
-  background-color: #dcdcdd;
   font-family: exo_r, Arial, sans-serif; }
   .calories > div.close {
     display: none; }
+  .calories-parallax {
+    z-index: -1;
+    position: fixed;
+    width: 100%;
+    min-height: 100vh;
+    background-color: #333;
+    background-image: url(../components/introduction/intro.jpg);
+    background-position: center;
+    background-size: 100% 120%;
+    background-repeat: no-repeat; }
   .calories-introduction {
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -1442,27 +1455,23 @@ li {
     -ms-flex-align: center;
     align-items: center;
     min-height: 100vh;
-    background-color: #333;
-    background-image: url(../components/introduction/intro.jpg);
-    background-position: center;
-    background-size: 100% 120%;
-    background-repeat: no-repeat;
     color: #FFF; }
   .calories-features_list {
-    padding: 100px 5%; }
+    padding: 100px 5%;
+    background-color: #dcdcdd; }
     @media screen and (max-width: 750px) {
       .calories-features_list {
         padding: 50px 5%; } }
   .calories-developers {
-    padding: 100px 5%;
-    background-color: #333;
-    background-image: url(../components/developers/dev.jpg);
-    background-size: 100% 140%;
-    background-position: bottom;
-    background-repeat: no-repeat; }
+    padding: 100px 5%; }
     @media screen and (max-width: 750px) {
       .calories-developers {
         padding: 50px 5%; } }
+  .calories-send_message {
+    padding: 100px;
+    background-color: #dcdcdd;
+    text-align: center;
+    font-size: 40px; }
   .calories-navigation {
     z-index: 10;
     color: #2f6665; }
