@@ -106,8 +106,46 @@
                 </div>
             </div>
         </div>
-        <div class="calories-send_message">
-            Send Message
+        <div class="calories-about">
+            <div class="about about--app">
+                <div class="about-logo">
+                    <div class="logo">
+                        <h1 class="logo-title">Calories App</h1>
+                        <img class="logo-img" src="img/logo.svg" alt="">
+                    </div>
+                </div>
+                <p class="about-description">
+                    Find and Add the Dish.
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Odit nostrum neque officiis labore numquam molestiae placeat veritatis qui,
+                    harum molestias alias nisi facere doloremque dolorem amet reprehenderit magnam
+                    velit possimus deserunt voluptate! Quod magnam minus debitis sit expedita
+                    accusamus saepe eius facere dolorem a delectus impedit nesciunt facilis
+                    perferendis ut neque, temporibus, ad sequi, aliquam quos. Mollitia est eius,
+                    iusto autem. Quo qui, quos saepe rerum, asperiores culpa quia nobis placeat expedita
+                    ratione hic, maxime voluptates dolore. Dolorem in ipsam ipsum quam enim veritatis aut,
+                    harum nostrum quae? Explicabo, sequi. Facilis, quis, soluta. Nobis iste
+                    similique necessitatibus eum doloribus consequatur!
+                </p>
+                <div class="about-developer">
+                    <a href="https://github.com/maximwow70" target="_blank">Maksim Samuilionak</a>
+                </div>
+                <div class="about-developer">
+                    <a class="link" href="https://github.com/muska2203" target="_blank">Dima Kovalenko</a>
+                </div>
+                <h3 class="about-version">
+                    © 2017 version 1.0.0 
+                </h3>
+            </div><!--
+            --><form class="send_message" name="send_message" method="POST" action="mailto:maximwow70@gmail.com">
+                <h2 class="send_message-title">
+                    Send Message
+                </h2>
+                <input type="text" class="send_message-select" placeholder="*name" required>
+                <input type="mail" class="send_message-select" placeholder="*mail" required>
+                <textarea class="send_message-select send_message-select--message" placeholder="*message" required></textarea>
+                <button type="submit" class="send_message-btn">Send</button>
+            </form>
         </div>
         <div class="calories-footer">
             <div class="footer">
@@ -389,7 +427,14 @@
                     </div>
                 </div>
 
-                <div class="app-navigation">
+                <div class="app-navigation smart_navigation">
+                    <a class="smart_navigation-btn">
+                        <div class="bars">
+                            <div class="bar"></div>
+                            <div class="bar"></div>
+                            <div class="bar"></div>
+                        </div>
+                    </a>
                     <div class="navigation">
                         <a class="navigation-list navigation-list--user">Your Account</a>
                         <a class="navigation-list navigation-list--calculate">Calculator</a>
@@ -399,7 +444,6 @@
                         <a class="navigation-list navigation-list--about">About App</a>
                         <a class="navigation-list navigation-list--close_app">Close App</a>
                     </div>
-                    <a class="app-navigation-btn fa fa-bars"></a>
                 </div>
             </div>
         </div>
@@ -414,6 +458,8 @@
     <script src="js/server.js"></script>
     <script src="js/app.js"></script>
     <script src="js/navigation.js"></script>
+    <script src="./components/send_message/send_message.js"></script>
+    <script src="./components/smart_navigation/smart_navigation.js"></script>
     <script src="js/component.js"></script>
     <script src="js/item.js"></script>
     <script src="js/itemList.js"></script>

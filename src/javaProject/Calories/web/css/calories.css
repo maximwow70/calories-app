@@ -253,6 +253,174 @@
     display: inline-block;
     vertical-align: top;
     width: 275px; }
+  @media screen and (max-width: 750px) {
+    .developers_list-developer {
+      margin: 0 0 20px 0; } }
+
+.send_message {
+  display: block;
+  box-sizing: border-box;
+  padding: 20px 20px;
+  border-radius: 20px;
+  color: #2c363f; }
+  .send_message-title {
+    margin-bottom: 20px;
+    font-size: 32px;
+    font-weight: normal; }
+  .send_message-select {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+    padding: 4px 8px;
+    border: 2px solid #2c363f;
+    outline: none;
+    color: #2c363f;
+    font-size: 24px;
+    transition: border-color 0.3s; }
+    .send_message-select:not(:last-child) {
+      margin-bottom: 20px; }
+    .send_message-select:focus {
+      border-color: #e5bd47; }
+    .send_message-select--message {
+      min-width: 100%;
+      max-width: 100%;
+      width: 100%;
+      min-height: 100px;
+      max-height: 600px; }
+  .send_message-btn {
+    display: inline-block;
+    box-sizing: border-box;
+    width: 200px;
+    padding: 4px 10px;
+    background-color: #2c363f;
+    outline: none;
+    color: #dcdcdd;
+    font-size: 24px;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.3s; }
+    .send_message-btn:hover {
+      box-shadow: 0 0 20px rgba(44, 54, 63, 0.5); }
+
+.smart_navigation {
+  z-index: 5;
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  -webkit-transform: translateX(100%);
+  -ms-transform: translateX(100%);
+  transform: translateX(100%);
+  width: 200px;
+  background-color: #2c363f;
+  -webkit-perspective: 1000px;
+  perspective: 1000px;
+  transition: 0.3s; }
+  .smart_navigation .navigation {
+    position: relative;
+    -webkit-transform: rotateY(-30deg);
+    transform: rotateY(-30deg);
+    text-align: right;
+    padding: 40px 20px;
+    color: #dcdcdd;
+    transition: 0.3s; }
+    .smart_navigation .navigation-list {
+      position: relative;
+      margin: 0 0 20px 0;
+      width: 100%;
+      display: inline-block;
+      vertical-align: middle;
+      font-size: 20px; }
+      .smart_navigation .navigation-list:after {
+        content: '\2014';
+        position: absolute;
+        right: -5px;
+        top: 50%;
+        -webkit-transform: translate(100%, -50%);
+        -ms-transform: translate(100%, -50%);
+        transform: translate(100%, -50%);
+        opacity: 0;
+        transition: opacity 0.3s; }
+      .smart_navigation .navigation-list:hover {
+        -webkit-transform: translateX(-20px);
+        -ms-transform: translateX(-20px);
+        transform: translateX(-20px); }
+        .smart_navigation .navigation-list:hover:after {
+          opacity: 1; }
+      .smart_navigation .navigation-list--selected {
+        -webkit-transform: translateX(-20px);
+        -ms-transform: translateX(-20px);
+        transform: translateX(-20px);
+        color: #e5bd47; }
+        .smart_navigation .navigation-list--selected:after {
+          opacity: 1; }
+      .smart_navigation .navigation-list--close_app {
+        margin-top: 50px; }
+  .smart_navigation-btn {
+    position: absolute;
+    top: 0;
+    left: 0px;
+    -webkit-transform: translateX(-100%);
+    -ms-transform: translateX(-100%);
+    transform: translateX(-100%);
+    box-sizing: border-box;
+    width: 60px;
+    height: 60px;
+    border-right: 1px solid #e5bd47;
+    border-bottom-left-radius: 10px;
+    background-color: #2c363f;
+    line-height: 60px;
+    color: #dcdcdd;
+    font-size: 36px;
+    text-align: center; }
+    .smart_navigation-btn .bars {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 50%;
+      -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%); }
+      .smart_navigation-btn .bars .bar {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        width: 100%;
+        height: 4px;
+        background-color: #dcdcdd;
+        transition: all 0.3s; }
+        .smart_navigation-btn .bars .bar:nth-child(1) {
+          top: -10px; }
+        .smart_navigation-btn .bars .bar:nth-child(2) {
+          opacity: 1; }
+        .smart_navigation-btn .bars .bar:nth-child(3) {
+          top: 10px; }
+    .smart_navigation-btn:hover + .navigation {
+      -webkit-transform: rotateY(-15deg);
+      transform: rotateY(-15deg); }
+  .smart_navigation--open {
+    -webkit-transform: translateX(0%);
+    -ms-transform: translateX(0%);
+    transform: translateX(0%); }
+    .smart_navigation--open .navigation {
+      -webkit-transform: rotateY(0deg);
+      transform: rotateY(0deg); }
+    .smart_navigation--open .bars .bar:nth-child(1) {
+      top: 0px;
+      -webkit-transform: translate(-50%, -25%) rotate(45deg);
+      -ms-transform: translate(-50%, -25%) rotate(45deg);
+      transform: translate(-50%, -25%) rotate(45deg); }
+    .smart_navigation--open .bars .bar:nth-child(2) {
+      opacity: 0; }
+    .smart_navigation--open .bars .bar:nth-child(3) {
+      top: 0px;
+      -webkit-transform: translate(-50%, -50%) rotate(-45deg);
+      -ms-transform: translate(-50%, -50%) rotate(-45deg);
+      transform: translate(-50%, -50%) rotate(-45deg); }
 
 .navigation {
   font-size: 24px;
@@ -599,75 +767,6 @@
       margin: 20px;
       max-width: 400px;
       text-align: center; }
-  .app-navigation {
-    z-index: 5;
-    position: absolute;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    -webkit-transform: translateX(100%);
-    -ms-transform: translateX(100%);
-    transform: translateX(100%);
-    width: 200px;
-    background-color: #2c363f;
-    transition: 0.3s; }
-    .app-navigation .navigation {
-      text-align: right;
-      padding: 40px 20px;
-      color: #dcdcdd; }
-      .app-navigation .navigation-list {
-        position: relative;
-        margin: 0 0 20px 0;
-        width: 100%;
-        display: inline-block;
-        vertical-align: middle;
-        font-size: 20px; }
-        .app-navigation .navigation-list:after {
-          content: '\2014';
-          position: absolute;
-          right: -5px;
-          top: 50%;
-          -webkit-transform: translate(100%, -50%);
-          -ms-transform: translate(100%, -50%);
-          transform: translate(100%, -50%);
-          opacity: 0;
-          transition: opacity 0.3s; }
-        .app-navigation .navigation-list:hover {
-          -webkit-transform: translateX(-20px);
-          -ms-transform: translateX(-20px);
-          transform: translateX(-20px); }
-          .app-navigation .navigation-list:hover:after {
-            opacity: 1; }
-        .app-navigation .navigation-list--selected {
-          -webkit-transform: translateX(-20px);
-          -ms-transform: translateX(-20px);
-          transform: translateX(-20px);
-          color: #e5bd47; }
-          .app-navigation .navigation-list--selected:after {
-            opacity: 1; }
-        .app-navigation .navigation-list--close_app {
-          margin-top: 50px; }
-    .app-navigation-btn {
-      position: absolute;
-      top: 0;
-      left: 0px;
-      -webkit-transform: translateX(-100%);
-      -ms-transform: translateX(-100%);
-      transform: translateX(-100%);
-      box-sizing: border-box;
-      width: 60px;
-      height: 60px;
-      border-right: 1px solid #e5bd47;
-      border-bottom-left-radius: 10px;
-      background-color: #2c363f;
-      line-height: 60px;
-      color: #dcdcdd;
-      font-size: 36px;
-      text-align: center; }
-    .app-navigation--open {
-      -webkit-transform: translateX(0%);
-      -ms-transform: translateX(0%);
-      transform: translateX(0%); }
   @media screen and (max-width: 900px) {
     .app-toolbar, .app-info, .app-item_list,
     .app-calculator .app-toolbar, .app-calculator .app-info {
@@ -820,6 +919,8 @@
   .about-logo {
     margin-bottom: 10px;
     font-size: 26px; }
+  .about-title {
+    font-size: 32px; }
   .about-description {
     margin-bottom: 10px; }
   .about-developer {
@@ -829,6 +930,20 @@
   .about-version {
     font-size: 16px;
     font-weight: normal; }
+  .about--app {
+    text-align: left; }
+    .about--app .about-logo {
+      margin-bottom: 30px; }
+      .about--app .about-logo .logo-title {
+        color: #2c363f;
+        font-size: 60px; }
+      .about--app .about-logo .logo-img {
+        width: 70px;
+        height: 70px; }
+    .about--app .about-description {
+      margin-bottom: 30px;
+      font-family: exo_r, exo_r, Arial, sans-serif;
+      font-size: 18px; }
 
 .select_file input[type=file] {
   display: none; }
@@ -1456,28 +1571,30 @@ li {
     align-items: center;
     min-height: 100vh;
     color: #FFF; }
-  .calories-features_list {
-    padding: 100px 5%;
-    background-color: #dcdcdd; }
-    @media screen and (max-width: 750px) {
-      .calories-features_list {
-        padding: 50px 5%; } }
-  .calories-developers {
+  .calories-features_list, .calories-developers, .calories-about, .calories-send_message {
     padding: 100px 5%; }
     @media screen and (max-width: 750px) {
-      .calories-developers {
+      .calories-features_list, .calories-developers, .calories-about, .calories-send_message {
         padding: 50px 5%; } }
+  .calories-features_list {
+    background-color: #dcdcdd; }
+  .calories-about {
+    background-color: #dcdcdd; }
+    .calories-about .about, .calories-about .send_message {
+      display: inline-block;
+      vertical-align: top;
+      width: 50%; }
+    .calories-about .about {
+      box-sizing: border-box;
+      padding-right: 50px; }
+    @media screen and (max-width: 900px) {
+      .calories-about .about, .calories-about .send_message {
+        width: 100%;
+        padding: 20px 0; } }
   .calories-send_message {
-    padding: 100px;
-    background-color: #dcdcdd;
+    color: #dcdcdd;
     text-align: center;
     font-size: 40px; }
-  .calories-navigation {
-    z-index: 10;
-    color: #2f6665; }
-  .calories-header {
-    background-color: #2f6665;
-    padding: 0 5%; }
   .calories-app {
     -webkit-flex: 2;
     -ms-flex: 2;
@@ -1502,4 +1619,9 @@ li {
       display: none; }
   .calories-footer {
     background-color: #333;
-    padding: 0 5%; }
+    padding: 40px 5%; }
+    .calories-footer .footer-navigation, .calories-footer .footer-info {
+      width: 100%;
+      text-align: center; }
+    .calories-footer .footer-navigation {
+      line-height: 60px; }

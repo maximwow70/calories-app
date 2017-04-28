@@ -1,0 +1,65 @@
+.send_message{
+    display: block;
+    
+    box-sizing: border-box;
+    padding: 20px 20px;
+    border-radius: 20px;
+    color: $dark-color;
+
+    &-title{
+        margin-bottom: 20px;
+
+        font-size: 32px;
+        font-weight: normal;
+    }
+    &-select{
+        display: block;
+        
+        box-sizing: border-box;
+        width: 100%;
+        max-width: 100%;
+        padding: 4px 8px;
+        border: 2px solid $dark-color;
+        outline: none;
+
+        color: $dark-color;
+        font-size: 24px;
+
+        transition: border-color 0.3s;
+
+        &:not(:last-child){
+            margin-bottom: 20px;
+        }
+        &:focus{
+            border-color: $yellow-color;
+        }
+
+        &--message{
+            min-width: 100%;
+            max-width: 100%;
+            width: 100%;
+            min-height: 100px;
+            max-height: 600px;
+        }
+    }
+    &-btn{
+        display: inline-block;
+
+        box-sizing: border-box;
+        width: 200px;
+        padding: 4px 10px;
+        background-color: $dark-color;
+        outline: none;
+
+        color: $light-color;
+        font-size: 24px;
+        text-align: center;
+
+        cursor: pointer;
+
+        transition: 0.3s;
+        &:hover{
+            box-shadow: 0 0 20px rgba($dark-color, 0.5);
+        }
+    }
+}
