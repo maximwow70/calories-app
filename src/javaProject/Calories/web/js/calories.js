@@ -42,7 +42,6 @@ var links = app.getAllControls();
     itemListUser.onsetitems = function(){
         var items = itemListUser.items;
         for (var i = 0; i < items.length; i++){
-            console.log(i);
             btn = items[i].getDom().querySelector('.item-select--add');
 
             
@@ -170,6 +169,56 @@ function addItem(){
         server.getComponents(toolbar);
     }
     initAppAdd();
+
+    function initBtn(){
+        var id = this.getAttribute('data-id');
+        var item = itemList.getItemById(id);
+
+        var userItems = user.getItemList().items;
+        var isInUser = false;
+        for (var i = 0; i < userItems.length; i++){
+            if (id == userItems[i].id){
+                isInUser = true;
+            }
+        }
+        if (isInUser) {
+            console.log('remove');
+            $(this).removeClass('item-select--added');
+            server.userRemoveItem(item, user);
+        } else {
+            console.log('add');
+            $(this).addClass('item-select--added');
+            server.userAddItem(item, user);
+        }
+    }
+    itemList.onsetitems = function(){
+        var items = itemList.items;
+        for (var i = 0; i < items.length; i++){
+            console.log(i);
+            btn = items[i].getDom().querySelector('.item-select--add');
+
+            
+            btn.addEventListener('click', initBtn);
+            
+            var id = btn.getAttribute('data-id');
+            var item = itemList.getItemById(id);
+
+            var userItems = user.getItemList().items;
+            var isInUser = false;
+            for (var j = 0; j < userItems.length; j++){
+                if (id == userItems[j].id){
+                    isInUser = true;
+                }
+            }
+            if (isInUser) {
+                console.log('added');
+                $(btn).addClass('item-select--added');
+            } else {
+                console.log('removed');
+                $(btn).removeClass('item-select--added');
+            }
+        }
+    }
 }
 addItem();
 

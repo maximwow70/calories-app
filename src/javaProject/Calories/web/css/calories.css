@@ -381,7 +381,8 @@
       width: 50%;
       -webkit-transform: translate(-50%, -50%);
       -ms-transform: translate(-50%, -50%);
-      transform: translate(-50%, -50%); }
+      transform: translate(-50%, -50%);
+      transition: 0.3s; }
       .smart_navigation-btn .bars .bar {
         position: absolute;
         top: 50%;
@@ -399,9 +400,10 @@
           opacity: 1; }
         .smart_navigation-btn .bars .bar:nth-child(3) {
           top: 10px; }
-    .smart_navigation-btn:hover + .navigation {
-      -webkit-transform: rotateY(-15deg);
-      transform: rotateY(-15deg); }
+    .smart_navigation-btn:hover .bars .bar:nth-child(1) {
+      top: -8px; }
+    .smart_navigation-btn:hover .bars .bar:nth-child(3) {
+      top: 8px; }
   .smart_navigation--open {
     -webkit-transform: translateX(0%);
     -ms-transform: translateX(0%);
@@ -409,6 +411,14 @@
     .smart_navigation--open .navigation {
       -webkit-transform: rotateY(0deg);
       transform: rotateY(0deg); }
+    .smart_navigation--open .smart_navigation-btn:hover .bars {
+      -webkit-transform: translate(-50%, -50%) scale(1.1);
+      -ms-transform: translate(-50%, -50%) scale(1.1);
+      transform: translate(-50%, -50%) scale(1.1); }
+      .smart_navigation--open .smart_navigation-btn:hover .bars .bar:nth-child(1) {
+        top: 0px; }
+      .smart_navigation--open .smart_navigation-btn:hover .bars .bar:nth-child(3) {
+        top: 0px; }
     .smart_navigation--open .bars .bar:nth-child(1) {
       top: 0px;
       -webkit-transform: translate(-50%, -25%) rotate(45deg);

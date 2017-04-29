@@ -86,6 +86,8 @@
             left: 50%;
             width: 50%;
             transform: translate(-50%, -50%);
+
+            transition: 0.3s;
             .bar{
                 position: absolute;
                 top: 50%;
@@ -107,8 +109,17 @@
                 }
             }
         }
-        &:hover + .navigation{
-                transform: rotateY(-15deg);
+        &:hover{
+            .bars{
+                .bar{
+                    &:nth-child(1){
+                        top: -8px;
+                    }
+                    &:nth-child(3){
+                        top: 8px;
+                    }
+                }
+            }
         }
     }
     &--open{
@@ -116,11 +127,26 @@
         .navigation{
             transform: rotateY(0deg);
         }
+        .smart_navigation-btn{
+            &:hover{
+                .bars{
+                    transform: translate(-50%, -50%) scale(1.1);
+                    .bar{
+                        &:nth-child(1){
+                            top: 0px;
+                        }
+                        &:nth-child(3){
+                            top: 0px;
+                        }
+                    }
+                }
+            }
+        }
         .bars{
             .bar{
                 &:nth-child(1){
                     top: 0px;
-                    transform: translate(-50%, -25%)  rotate(45deg);
+                    transform:  translate(-50%, -25%) rotate(45deg) ;
                 }
                 &:nth-child(2){
                     opacity: 0;
