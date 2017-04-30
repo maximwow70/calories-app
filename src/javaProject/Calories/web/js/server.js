@@ -219,9 +219,6 @@ Server.prototype.signInUser = function(inUser, user){
         }
     }
 }
-Server.prototype.updateUserData = function(user){
-
-}
 Server.prototype.userAddItem = function(_item, user){
     var that = this;
 
@@ -238,6 +235,42 @@ Server.prototype.userAddItem = function(_item, user){
     
     var xhr = that.getNewXhr();
     xhr.open('POST', 'AddDishIntoDishList', true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send(_addInfo);
+    xhr.onreadystatechange = function(){
+        if (this.readyState == 4 && this.status == 200){
+            if (xhr.responseText){
+                var result = JSON.parse(xhr.responseText);
+                if (result.result=="true"){
+                    var addUser = {
+                        eMail: user.getMail(),
+                        password: user.getPassword()
+                    }
+                    that.signInUser(addUser, user);
+                }
+                else {
+                    alert('pesos');
+                }
+            }
+        }
+    }
+}
+Server.prototype.userRemoveItem = function(_item, user){
+    var that = this;
+
+    var addUser = {
+        id: user.getId(),
+        eMail: user.getMail(),
+        password: user.getPassword()
+    }
+    var addInfo = {
+        user: addUser,
+        dish: _item
+    }
+    var _addInfo = JSON.stringify(addInfo);
+    
+    var xhr = that.getNewXhr();
+    xhr.open('POST', 'RemoveDishFromDishList', true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.send(_addInfo);
     xhr.onreadystatechange = function(){

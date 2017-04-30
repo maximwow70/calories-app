@@ -4,6 +4,9 @@
         margin-bottom: 10px;
         font-size: 26px;
     }
+    &-title{
+        font-size: 32px;
+    }
     &-description{
         margin-bottom: 10px;
     }
@@ -16,5 +19,29 @@
     &-version{
         font-size: 16px;
         font-weight: normal;
+    }
+    &--app{
+        text-align: left;
+        .about{
+            &-logo{
+                margin-bottom: 30px;
+                .logo{
+                    &-title{
+                        color: $dark-color;
+                        font-size: 60px;
+                    }
+                    &-img{
+                        width: 70px;
+                        height: 70px;
+                    }
+                }
+            }
+            &-description{
+                margin-bottom: 30px;
+
+                font-family: exo_r, $font-stack;
+                font-size: 18px;
+            }
+        }
     }
 }

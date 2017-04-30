@@ -16,6 +16,10 @@
         vertical-align: top;
 
         width: 275px;
-
+    }
+    @media screen and (max-width: 750px){
+        &-developer{
+            margin: 0 0 20px 0;
+        }
     }
 }

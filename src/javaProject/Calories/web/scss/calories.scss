@@ -4,6 +4,8 @@
 @import '../components/features/features_list.scss';
 @import '../components/introduction/introduction.scss';
 @import '../components/developers/developers_list.scss';
+@import '../components/send_message/send_message.scss';
+@import '../components/smart_navigation/smart_navigation.scss';
 
 @import 'navigation.scss';
 @import 'header.scss';
@@ -64,13 +66,23 @@ li{
     &-parallax{
         z-index: -1;
         position: fixed;
-        width: 100%;
-        min-height: 100vh;
+        width: 100vw;
+        height: 100vh;
         background-color: #333;
         background-image: url(../components/introduction/intro.jpg);
         background-position: center;
         background-size: 100% 120%;
         background-repeat: no-repeat;
+
+        @media screen and (max-width: 900px){
+            background-size: 120% 120%;
+        }
+        @media screen and (max-width: 700px){
+            background-size: 140% 120%;
+        }
+        @media screen and (max-width: 550px){
+            background-size: 160% 120%;
+        }
     }
     &-introduction{
         display: flex;
@@ -85,38 +97,46 @@ li{
         .introduction{
 
         }
-    }    
-    &-features_list{
+    }   
+    &-features_list, &-developers,
+    &-about, &-send_message{
         padding: 100px 5%;
-        background-color: $light-color;
 
         @media screen and (max-width: 750px){
             padding: 50px 5%;
         } 
     }
+    &-features_list{
+        background-color: $light-color;
+    }
     &-developers{
-        padding: 100px 5%;
-
-        @media screen and (max-width: 750px){
-            padding: 50px 5%;
-        }  
+         
+    }
+    &-about{
+        background-color: $light-color;
+        .about, .send_message{
+            display: inline-block;
+            vertical-align: top;
+            width: 50%;
+        }
+        .about{
+            box-sizing: border-box;
+            padding-right: 50px;
+        }
+        @media screen and (max-width: 900px){
+            .about, .send_message{
+                width: 100%;
+                padding: 20px 0;
+            }
+        }
     }
     &-send_message{
-        padding: 100px;
-        background-color: $light-color;
-
+        color: $light-color;
         text-align: center;
         font-size: 40px;
     }
 
-    &-navigation{
-        z-index: 10;
-        color: $blue-color;
-    }
-    &-header{
-        background-color: $blue-color;
-        padding: 0 5%;
-    }
+
     &-app{
         flex: 2;
 
@@ -134,7 +154,17 @@ li{
     }
     &-footer{
         background-color: #333;
-        padding: 0 5%;
+        padding: 40px 5%;
+        .footer{
+            &-navigation,
+            &-info{
+                width: 100%;
+                text-align: center;
+            }
+            &-navigation{
+                line-height: 60px;
+            }
+        }
     }
 
 }

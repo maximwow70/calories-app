@@ -1,9 +1,9 @@
 function initNavigation(){
-    var navigation = document.querySelector('.app-navigation');
-    var btn = navigation.querySelector('.app-navigation-btn');
+    var navigation = document.querySelector('.smart_navigation');
+    var btn = navigation.querySelector('.smart_navigation-btn');
 
     btn.addEventListener('click', function(){
-        $(navigation).toggleClass('app-navigation--open');
+        $(navigation).toggleClass('smart_navigation--open');
     });
 
     var navLists = navigation.querySelectorAll('.navigation-list');
