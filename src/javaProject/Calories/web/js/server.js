@@ -270,7 +270,7 @@ Server.prototype.userRemoveItem = function(_item, user){
     var _addInfo = JSON.stringify(addInfo);
     
     var xhr = that.getNewXhr();
-    xhr.open('POST', 'RemoveDishIntoDishList', true);
+    xhr.open('POST', 'RemoveDishFromDishList', true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.send(_addInfo);
     xhr.onreadystatechange = function(){
