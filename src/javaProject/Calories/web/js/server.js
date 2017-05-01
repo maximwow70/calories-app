@@ -215,6 +215,7 @@ Server.prototype.signInUser = function(inUser, user){
     xhr.onreadystatechange = function(){
         if (this.readyState == 4 && this.status == 200){
             var regUser = JSON.parse(xhr.responseText);
+            console.log(regUser);
             user.setUserFromServer(regUser);
         }
     }
