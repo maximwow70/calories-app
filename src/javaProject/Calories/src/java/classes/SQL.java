@@ -59,7 +59,7 @@ public class SQL {
                 list.add(initComponentWithoutInfo(res));
             }
             return list;
-        } catch (SQLException e) {return null;}
+        } catch (SQLException e) {return new ArrayList<>();}
     }
     
     public static ArrayList<Component> findComponentsByType(String type) {
@@ -71,7 +71,7 @@ public class SQL {
                 list.add(initComponentWithoutInfo(res));
             }
             return list;
-        } catch (SQLException e) { return null;}
+        } catch (SQLException e) { return new ArrayList<>();}
     }
     
     public static ArrayList<String> findTypesComponents() {
@@ -83,7 +83,7 @@ public class SQL {
                 list.add(res.getString("Type"));
             }
             return list;
-        } catch(SQLException e) {return null;}
+        } catch(SQLException e) {return new ArrayList<>();}
     }
     
     public static Component findComponentById(int id) {
@@ -115,7 +115,7 @@ public class SQL {
                 list.add(initComponentWithInfo(res));
             }
             return list;
-        } catch(SQLException e) {System.out.println("ByDishId ERROR");return null;}
+        } catch(SQLException e) {return new ArrayList<>();}
     }
     
     public static String addComponent(Component component, User user) {
@@ -201,7 +201,7 @@ public class SQL {
             while(res.next())
                 list.add(initDish(res));
             return list;
-        } catch (Exception e) {return null;}
+        } catch (Exception e) {return new ArrayList<>();}
     }
     
     public static ArrayList<Dish> findDishesByNameAndComponents(Dish dish) {
@@ -248,7 +248,7 @@ public class SQL {
                 list.add(initDish(res));
             }
             return list;
-        } catch(SQLException e) {return null;}
+        } catch(SQLException e) {return new ArrayList<>();}
     }
     
     public static String addDish(Dish dish, User user) {
