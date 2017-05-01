@@ -1,0 +1,211 @@
+.app{
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch;
+    flex-wrap: wrap;
+
+    min-height: 100vh;
+
+    overflow: hidden;
+    
+    
+    
+    // modules
+    &-user{
+        flex: 1;
+        width: 100%;
+
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        text-align: center;
+
+        background-color: $blue-color;
+        color: $light-color;
+        
+        &--close{
+            display: none;
+        }
+        .user{
+            padding: 50px 5%;
+            width: 100%;
+        }
+    }
+    &-loading{
+        flex: 2;
+
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+
+        min-height: 450px;
+        &--close{
+            display: none;
+        }
+    }
+    &-select{
+        flex: 1;
+
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        
+        min-height: 450px;
+        &--close{
+            display: none;
+        }
+    }
+    &-find, &-add, &-about, 
+    &-search, &-view, &-calculator,
+    &-add_component{
+        flex: 1;
+
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: stretch;
+        flex-wrap: wrap;
+
+        min-height: 450px;
+        &--close{
+            display: none;
+        }
+    }
+    &-find{
+        .app-toolbar{
+
+        }
+        .toolbar-select--component{
+            width: 100%;
+        }
+        .toolbar-select--weight{
+            display: none;
+            width: 0%;
+        }
+    }
+    &-add{
+
+    }
+    &-search{
+        
+    }
+    &-add_component{
+    }
+    &-calculator{
+        .app-toolbar{
+        }
+        .app-toolbar, .app-info{
+            flex: 1;
+
+            align-items: center;
+            justify-content: center;
+        }
+        .toolbar{
+            flex: 0;
+            
+            margin: 20px;
+            border: none;
+            max-width: 350px;
+
+            text-align: center;
+            box-shadow: 0 0 40px $blue-color;
+            .toolbar-btn{
+                width: 100%;
+            }
+        }
+        .info{
+            &-title{
+                font-size: 32px;
+            }
+            &-content{
+                max-width: 200px;
+                padding: 10px 10px;
+                background-color: $dark-color; 
+
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+
+                font-size: 30px;
+                color: $light-color;
+
+                box-shadow: 0 0 10px $dark-color;
+                transition: box-shadow 0.3s;
+                &:hover{
+                    box-shadow: 0 0 20px $dark-color;
+                }
+            }
+        }
+    }
+    &-view_item{
+        display: none;
+    }
+    &-about{
+        align-items: center;
+        justify-content: center;
+        .about{
+            padding: 20px;
+            max-width: 300px;
+        }
+    }
+    // components
+    &-toolbar{
+        flex: 1;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: stretch;
+        .toolbar{
+            flex: 1;
+        }
+    }
+    &-item_list{
+        flex: 2;
+        text-align: justify;
+        &--one_item{
+            .item_list{
+                .item{
+                    
+                    
+                }
+            }
+        }
+
+        
+        &--close{
+            display: none;
+        }
+    }
+    &-info{
+        flex: 2;
+        
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .info{
+            margin: 20px;
+            max-width: 400px;
+            text-align: center;
+        }
+
+    }
+    &-navigation{
+        
+    }
+
+    @media screen and (max-width: 900px){
+        &-toolbar, &-info, &-item_list,
+        .app-calculator &-toolbar, .app-calculator &-info{
+            flex: 1;
+            width: 100%;
+            flex-basis: 100%;
+        }
+    }
+}

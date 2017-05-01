@@ -1,0 +1,55 @@
+.account{
+    position: relative;
+    &-header{
+        margin-bottom: 20px; 
+        
+        padding: 10px 20px;
+        border-radius: 5px;
+        background-color: $light-color;
+        .header{
+            color: $dark-color;
+            
+        }
+        .logo{
+            text-align: left;
+            &-title{
+                font-family: exo_r, $font-stack;
+                font-size: 24px;
+            }
+
+        }
+    }
+    &-sign_in, &-registration{
+        z-index: 10;
+        position: absolute;
+        top: 0%;
+        left: 0;
+        right: 0;
+        max-width: 400px;
+
+        margin: 0 auto;
+
+        padding: 20px;
+        background-color: $dark-color;
+        border-radius: 5px;
+        box-shadow: 0 0 50px rgba($dark-color, 0.8);
+        
+        max-width: 400px;
+        &--close{
+            display: none;
+        }
+    }
+    @media screen and (max-width: 800px){
+        &-header{
+            .logo{
+                margin-bottom: 10px;
+                text-align: center;
+            }
+            .navigation{
+                &-list{
+                    margin: 0 10px;
+                }
+            }
+        }
+    }
+}

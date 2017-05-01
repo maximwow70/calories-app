@@ -1,0 +1,26 @@
+@font-face{
+    font-family: logo;
+    src: url(../fonts/EmilySmiles.ttf);
+}
+@font-face{
+    font-family: exo_r;
+    src: url(../fonts/Exo2Regular.ttf);
+}
+@font-face{
+    font-family: exo_l;
+    src: url(../fonts/Exo2Light.ttf);
+}
+@font-face{
+    font-family: exo_t;
+    src: url(../fonts/Exo2Thin.ttf);
+}
+
+$font-stack: exo_r, Arial, sans-serif;
+
+$transition-time: 0.4s;
+
+//$blue-color: #34495e;
+$dark-color: rgb(44,54,63);
+$blue-color: rgb(47,102,101);
+$light-color: rgb(220,220,221);
+$yellow-color: rgb(229,189,71);

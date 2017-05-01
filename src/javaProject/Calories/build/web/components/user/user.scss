@@ -1,0 +1,45 @@
+@import 'account.scss';
+@import 'registration.scss';
+@import 'sign_in.scss';
+@import 'portfolio.scss';
+@import 'statistic.scss';
+@import 'dashboard.scss';
+
+.user{
+    &-account{
+
+    }
+    &-portfolio{
+        margin-bottom: 20px;
+    }
+    &-statistic{
+        margin-bottom: 20px;
+    }
+    &-item_list{
+        padding-top: 20px;
+        background-color: $light-color;
+        border-radius: 5px;
+        .item_list{
+            text-align: center;
+            &-title{
+                color: $dark-color;
+            }
+            &-item{
+                margin: 0 20px 20px 20px;
+                width: auto;
+            }
+        }
+    }
+    @media screen and (max-width: 500px){
+        &-item_list{
+            padding: 0;
+            .item_list{
+                padding-left: 0;
+                padding-right: 0;
+                &-item{
+                    margin: 0;
+                }
+            }
+        }
+    }
+}

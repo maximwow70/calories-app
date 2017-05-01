@@ -1,0 +1,161 @@
+.smart_navigation{
+    z-index: 5;
+
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    transform: translateX(100%);
+
+    width: 200px;
+    background-color: $dark-color;
+
+    perspective: 1000px;
+
+    transition: 0.3s;
+
+    .navigation{
+        position: relative;
+        transform: rotateY(-30deg);
+
+        text-align: right;
+        padding: 40px 20px;
+        color: $light-color;
+
+        transition: 0.3s;
+        &-list{
+            position: relative;
+
+            margin: 0 0 20px 0;
+            width: 100%;
+            display: inline-block;
+            vertical-align: middle;
+
+            font-size: 20px;
+            
+            
+            &:after{
+                content: '\2014';
+                position: absolute;
+                right: -5px;
+                top: 50%;
+                transform: translate(100%, -50%);
+
+                opacity: 0;
+                transition: opacity 0.3s;
+            }
+            &:hover{
+                transform: translateX(-20px);
+                &:after{
+                    opacity: 1;
+                }
+            }
+            &--selected{
+                transform: translateX(-20px);
+                color: $yellow-color;
+                &:after{
+                    opacity: 1;
+                }
+            }
+            &--close_app{
+                margin-top: 50px;
+            }
+        }
+    }
+    &-btn{
+        position: absolute;
+        top: 0;
+        left: 0px;
+        transform: translateX(-100%);
+
+        box-sizing: border-box;
+        width: 60px;
+        height: 60px;
+        border-right: 1px solid $yellow-color;
+        border-bottom-left-radius: 10px;
+        background-color: $dark-color;
+
+        line-height: 60px;
+        color: $light-color;
+        font-size: 36px;
+        text-align: center;
+
+        .bars{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 50%;
+            transform: translate(-50%, -50%);
+
+            transition: 0.3s;
+            .bar{
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 100%;
+                height: 4px;
+                background-color: $light-color;
+
+                transition: all 0.3s;
+                &:nth-child(1){
+                    top: -10px;
+                }
+                &:nth-child(2){
+                    opacity: 1;
+                }
+                &:nth-child(3){
+                    top: 10px;
+                }
+            }
+        }
+        &:hover{
+            .bars{
+                .bar{
+                    &:nth-child(1){
+                        top: -8px;
+                    }
+                    &:nth-child(3){
+                        top: 8px;
+                    }
+                }
+            }
+        }
+    }
+    &--open{
+        transform: translateX(0%);
+        .navigation{
+            transform: rotateY(0deg);
+        }
+        .smart_navigation-btn{
+            &:hover{
+                .bars{
+                    transform: translate(-50%, -50%) scale(1.1);
+                    .bar{
+                        &:nth-child(1){
+                            top: 0px;
+                        }
+                        &:nth-child(3){
+                            top: 0px;
+                        }
+                    }
+                }
+            }
+        }
+        .bars{
+            .bar{
+                &:nth-child(1){
+                    top: 0px;
+                    transform:  translate(-50%, -25%) rotate(45deg) ;
+                }
+                &:nth-child(2){
+                    opacity: 0;
+                }
+                &:nth-child(3){
+                    top: 0px;
+                    transform: translate(-50%, -50%)  rotate(-45deg);
+                }
+            }
+        }
+    }
+}

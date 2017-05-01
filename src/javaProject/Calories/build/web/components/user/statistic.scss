@@ -1,0 +1,34 @@
+.statistic{
+    text-align: center;
+
+    background-color: $light-color;
+    border-radius: 5px;
+
+    color: $dark-color;
+    // module
+    &-type{
+        margin-top: 0;
+
+        display: inline-block;
+        vertical-align: middle;
+        padding: 10px;
+        width: 200px;
+    }
+
+    // components
+    &-img{
+        margin-bottom: 5px;
+
+        display: inline-block;
+        width: 40px;
+        height: 40px;
+    }
+    &-value{
+        font-size: 20px;
+        font-weight: bold;
+    }
+    &-name{
+        font-size: 18px;
+        
+    }
+}

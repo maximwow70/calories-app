@@ -1,0 +1,79 @@
+$select_btn_size: 140px;
+.select{
+    text-align: center;
+    &-title{
+        margin-bottom: 40px;
+        font-family: exo_r + ',' + $font-stack;
+        font-size: 26px;
+    }
+    &-btn{
+        z-index: 2;
+        position: relative;
+        margin: 0 ($select_btn_size / 5);
+        display: inline-block;
+        vertical-align: middle;
+        width: $select_btn_size;
+        height: $select_btn_size;
+        border-radius: 50%;
+        border: 2px solid $blue-color;
+        background-color: $light-color;
+        
+        font-size: 24px;
+        
+        box-shadow: 0 0 20px rgba($blue-color, 0.8);
+        cursor: pointer;
+
+        transition: $transition-time;
+        &:hover{
+            color: inherit;
+            box-shadow: 0 0 50px rgba($blue-color, 0.8);
+        }
+        &:after, &:before{
+            z-index: 1;
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            transform: translate(-50%, -50%);
+            display: block;
+            border-radius: 50%;
+            background-color: $blue-color;
+        }
+        &:before{
+            animation: select_btn_anim_before 3s linear infinite; 
+            @keyframes select_btn_anim_before{
+                0%{
+                    opacity: 0.5;
+                }
+                100%{
+                    width: $select_btn_size + $select_btn_size / 4;
+                    height: $select_btn_size + $select_btn_size / 4;
+                    opacity: 0;
+                }
+            }
+        }
+        &:after{
+            animation: select_btn_anim_after 3s linear infinite;
+            animation-delay: 1s; 
+            @keyframes select_btn_anim_after{
+                0%{
+                    opacity: 0.3;
+                }
+                100%{
+                    width: $select_btn_size + $select_btn_size / 4;
+                    height: $select_btn_size + $select_btn_size / 4;
+                    opacity: 0;
+                }
+            }
+        }
+        span{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: $select_btn_size - $select_btn_size / 10;
+        }
+    }
+}

@@ -1,0 +1,35 @@
+.component{
+    &-id{
+        &:after{
+            display: inline;
+            content: '';
+        }
+    }
+    &-name{
+        vertical-align: middle;
+        &:after{
+            display: inline;
+            content: ': ';
+        }
+    }
+    &-img{
+        margin-right: 5px;
+        display: inline-block;
+        vertical-align: middle;
+        width: 40px;
+        height: 40px;
+    }
+    &-description{
+        vertical-align: middle;
+        /*
+        &:before{
+            display: inline;
+            content: '(';
+        }
+        &:after{
+            display: inline;
+            content: ')';
+        }
+        */
+    }
+}

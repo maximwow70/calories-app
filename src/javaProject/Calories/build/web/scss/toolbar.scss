@@ -1,0 +1,90 @@
+.toolbar{
+    box-sizing: border-box;
+    padding: 40px 40px;
+    background-color: $blue-color;
+    color: $light-color;
+    &-title{
+        margin-bottom: 20px;
+        color: $yellow-color;
+        font-size: 24px;
+        font-weight: normal;
+        text-transform: capitalize;
+    }
+    &-select_component{
+        overflow: hidden;
+        margin-bottom: 10px;
+        &:after{
+            content: '';
+            clear: both;
+        }
+        &:last-of-type{
+            margin-bottom: 20px;
+        }
+    }
+    &-select{
+        display: inline-block;
+        vertical-align: top;
+        height: 26px;
+        box-sizing: border-box;
+        padding: 2px 4px;
+        width: 100%;
+        //border: 2px solid $light-color;
+
+        color: $dark-color;
+        font-size: 18px;
+        outline: none;
+
+        &:last-child{
+            margin-bottom: 0;
+        }
+        //transition: $transition-time;
+        &:hover{
+            //border-color: $yellow-color;
+            //background-color: $yellow-color;
+        }
+        &--name{
+            margin-bottom: 10px;
+        }
+        &--component{
+            float: left;
+            width: 65%;
+        }
+        &--weight{
+            margin-left: 5%;
+            width: 30%;
+        }
+        &--description{
+            margin-bottom: 10px;
+            display: block;
+            resize: none;
+            height: 100px;
+        }
+        &--category{
+            margin-bottom: 10px;
+        }
+    }
+    &-select_file{
+        margin-bottom: 10px;
+    }
+    &-btn{
+        min-width: 70px;
+        font-size: 18px;
+        padding: 5px 10px;
+
+        background-color: $yellow-color;
+        color: $dark-color;
+        font-family: $font-stack;
+        text-transform: capitalize;
+        outline: none;
+
+        cursor: pointer;
+
+        transition: $transition-time;
+        &:hover{
+            box-shadow: 0 0 10px rgba($yellow-color, 0.7);
+        }
+        &--add_component{
+            margin-bottom: 10px;
+        }
+    }
+}

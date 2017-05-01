@@ -1,0 +1,104 @@
+.navigation{
+    font-size: 24px;
+    text-transform: uppercase;
+    text-align: inherit;
+    &-list{
+        position: relative;
+        margin-left: 15px;
+
+        &:first-child{
+            margin-left: 0;
+        }
+        &--add{
+            font-size: 26px;
+        }
+        &--user{
+            font-size: 26px;
+        }
+        &--calculate{
+            margin-top: 2px;
+            font-size: 26px;
+        }
+        &--search{
+            display: inline-block;
+            margin-top: 2px;
+            font-size: 26px;
+        }
+        &--main{
+            margin-top: 1px;
+            font-size: 32px;
+        }
+        &--about{
+            margin-top: 2px;
+            font-size: 32px;
+        }
+        &:hover{
+            .navigation-helper{
+                display: inline-block;
+            }
+        }
+    }
+    &-description{
+        margin-left: 10px;
+        vertical-align: middle;
+    }
+    &-helper{
+        display: none;
+        position: absolute;
+        left: -100%;
+        top: 50%;
+        transform: translate(-100%,-50%);
+
+        padding: 4px 6px;
+        background-color: #FFF;
+        border: 1px solid $dark-color;
+        border-radius: 2px;
+
+        color: $dark-color;
+        font-family: exo_r , $font-stack;
+        font-size: 16px;
+        text-align: center;
+        text-transform: capitalize;
+        white-space: nowrap;
+        
+    }
+    &--fixed{
+        position: fixed;
+        top: 50%;
+        right: 20px;
+        transform: translateY(-50%);
+        width: 30px;
+
+        padding: 5px 5px;
+        background-color: #FFF;
+        border: 2px solid $dark-color;
+        border-radius: 5px;
+
+        text-align: center;
+
+        .navigation-list{
+            margin: 0;
+            margin-bottom: 5px;
+
+            display: inline-block;
+            font-size: 22px;
+            &:first-child{
+                margin-bottom: 5px;
+            }
+            &:hover{
+                .navigation-helper{
+                    display: block;
+                }
+            }
+            &--calculate{
+                margin-left: 2px;
+            }
+            &--main{
+                font-size: 24px;
+            }
+            &--about{
+                font-size: 24px;
+            }
+        }
+    }
+}

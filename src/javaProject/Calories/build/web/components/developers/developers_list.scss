@@ -1,0 +1,25 @@
+@import './developer.scss';
+
+.developers_list{
+
+    text-align: center;
+    &-title{
+        margin-bottom: 20px;
+
+        color: $light-color;
+        font-size: 32px;
+    }
+    &-developer{
+        margin: 20px 20px 20px;
+
+        display: inline-block;
+        vertical-align: top;
+
+        width: 275px;
+    }
+    @media screen and (max-width: 750px){
+        &-developer{
+            margin: 0 0 20px 0;
+        }
+    }
+}
